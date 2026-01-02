@@ -233,28 +233,46 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
 
                 // 이동 명령
                 player.MoveTo(targetLocalPos);
+                UpdatePastNodesVisual(targetNode.y);
             }
         }
     }
 
-    // 플레이어프리펩 노드컨테이너 밑에 생성
-    private void InitializePlayerParent()
+// 플레이어프리펩 노드컨테이너 밑에 생성
+   private void InitializePlayerParent()
+{
+    // 1. 플레이어 찾기
+    if (MapManager.Instance.playerMove == null)
     {
-        var player = MapManager.Instance.playerMove;
-
-        // 1. 플레이어는 ScrollView의 내용 오브젝트와 함께 움직임
-        player.transform.SetParent(nodeContainer, false);
-
-        // 2. 크기 및 회전 초기화
-        player.transform.localScale = Vector3.one;
-        player.transform.localRotation = Quaternion.identity;
-
-        // 3. Z값 0으로 고정
-        Vector3 pos = player.transform.localPosition;
-        pos.z = 0;
-        player.transform.localPosition = pos;
-
+        MapManager.Instance.playerMove = FindFirstObjectByType<PlayerMove>(FindObjectsInactive.Include);
     }
+
+    var player = MapManager.Instance.playerMove;
+
+    player.transform.SetParent(nodeContainer, false); 
+    player.transform.localScale = Vector3.one;
+    player.transform.localRotation = Quaternion.identity;
+
+    Vector3 pos = player.transform.localPosition;
+    pos.z = 0;
+    player.transform.localPosition = pos;
+
+    // 2. 배틀에서 돌아왔을 때 처리
+    if (MapManager.Instance.CurrentNode != null)
+    {
+        // 딕셔너리에서 노드 오브젝트를 가져와서 바로 위치 이동
+        if (nodeObjMap.TryGetValue(MapManager.Instance.CurrentNode, out GameObject targetObj))
+        {
+            player.transform.localPosition = targetObj.transform.localPosition;                    
+            player.gameObject.SetActive(true);
+            UpdatePastNodesVisual(MapManager.Instance.CurrentNode.y);   // 현재층보다 낮은 노드를 흐릿하게 처리
+        }
+    }
+    else
+    {
+        player.gameObject.SetActive(false);
+    }
+}
     // 플레이어 프리펩 초기위치 지정용
     public void SetPlayerPositionDirectly(MapNode targetNode, Vector3 offset)
     {
@@ -270,4 +288,40 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
 
         }
     }
+
+    // 지나온 노드들을 흐릿하게 만드는 함수
+    public void UpdatePastNodesVisual(int currentFloor)
+    {
+        // 생성된 모든 노드 오브젝트(nodeObjMap)를 하나씩 검사
+        foreach (var kvp in nodeObjMap)
+        {
+            MapNode node = kvp.Key;       // 데이터 (좌표 정보)
+            GameObject obj = kvp.Value;   // 실제 게임 오브젝트 (UI)
+
+            // UI 이미지와 버튼 컴포넌트 가져오기
+            var img = obj.GetComponent<UnityEngine.UI.Image>();
+            var btn = obj.GetComponent<UnityEngine.UI.Button>();
+
+            if (img == null) continue;
+
+            // 로직: 노드의 층(y)이 현재 층보다 작으면 = 지나온 층
+            if (node.y < currentFloor)
+            {
+                // 1. 색상을 어둡고 투명하게 변경 (반투명)
+                img.color = new Color(1f, 1f, 1f, 0.7f); // 흰색에 투명도 50%
+                
+                // 2. 버튼 클릭 비활성화 (이미 지나온 곳은 못 누르게)
+                if (btn != null) btn.interactable = false;
+            }
+            else
+            {
+                // 현재 층이거나 미래의 층은 원래대로 밝게
+                img.color = Color.white;
+                
+                // (선택) 버튼은 원래 로직대로 활성화
+                if (btn != null) btn.interactable = true; 
+            }
+        }
+    }
+    
 }

@@ -56,7 +56,7 @@ public class StoreCardUI : MonoBehaviour, IClickable
             // GameManager가 없을 때를 대비한 로그 (게임 멈춤 방지)
             Debug.LogWarning("현재 보유 코인 연결안됨");
             
-            // 기본적으로 구매 가능 상태로 둠 (나중에 갱신되길 기대하며)
+            // 기본적으로 구매 가능 상태로 둠
             if (button != null) button.interactable = true;
         }
     }
@@ -73,7 +73,7 @@ public class StoreCardUI : MonoBehaviour, IClickable
         else
         {
             // 돈이 충분해지면 다시 하얀색으로 (필요하다면 추가)
-            priceText.color = Color.white;
+            priceText.color = Color.black;
             button.interactable = true;
         }
     }

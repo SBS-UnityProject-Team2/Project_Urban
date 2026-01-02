@@ -3450,6 +3450,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1169ba4a7a1784498a25f4a25bf81ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonEvent
+  UI_Store: {fileID: 0}
+  UI_Shelter: {fileID: 0}
+  UI_Map: {fileID: 0}
 --- !u!1001 &489003143
 PrefabInstance:
   m_ObjectHideFlags: 0

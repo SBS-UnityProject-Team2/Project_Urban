@@ -145,6 +145,8 @@ public class MapManager : Singleton<MapManager>
     
     // 플레이어가 현재 위치한 노드
     private MapNode currentNode = null;
+    //외부에서 접근가능하도록 프로퍼티 추가
+    public MapNode CurrentNode => currentNode;
 
     protected override void Awake()
     {
