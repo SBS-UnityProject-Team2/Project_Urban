@@ -38,12 +38,6 @@ MonoBehaviour:
     maxSpawnCount: 2
     minSpawnStep: 5
   - type: 4
-    ratio: 0
-    distanceMin: 0
-    distanceMax: 0
-    maxSpawnCount: 0
-    minSpawnStep: 0
-  - type: 4
     ratio: 10
     distanceMin: 1
     distanceMax: 4

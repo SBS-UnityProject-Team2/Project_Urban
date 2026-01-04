@@ -13,8 +13,18 @@ public class OnClickHandler : MonoBehaviour
     }
 
     public void AddClickHandler(UnityAction handleClick)
-    {
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(handleClick);
+    {   
+        // 버튼 컴포넌트 연결
+        if (button == null)
+        {
+            button = GetComponent<Button>();
+        }
+
+        // 버튼 클릭 이벤트 연결
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners(); 
+            button.onClick.AddListener(handleClick);
+        }       
     }
 } 

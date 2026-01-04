@@ -7,7 +7,7 @@ public class CardRemovePanel : MonoBehaviour
     [Header("Display Settings")]
     [SerializeField] private Transform displayArea;       // ScrollView의 Content
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
-
+    [SerializeField] private GameObject RemoveCardPanel; // 패널
     [Header("Popup Settings")]
     [SerializeField] private RemoveConfirmPopup removeConfirmPopup;
 
@@ -24,12 +24,12 @@ public class CardRemovePanel : MonoBehaviour
             prevCardCount = curCardCount;
         }
 
-        gameObject.SetActive(true);
+        RemoveCardPanel.SetActive(true);
     }
 
     public void CloseDeckDisplay()
     {
-        gameObject.SetActive(false);
+        RemoveCardPanel.SetActive(false);
     }
 
     private void RenderDeck(IEnumerable<CardName> deckToRender)

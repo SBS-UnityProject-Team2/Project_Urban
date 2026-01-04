@@ -10,17 +10,12 @@ public class PlayerMove : MonoBehaviour
     // 현재 이동 중인지 확인하는 변수
     public bool IsMoving { get; private set; } = false;
 
-    // 현재 위치에서 타겟 위치로 이동
+    // 그냥 위치만 옮겨주는 함수
     public void MoveTo(Vector3 targetPos)
     {
-        // 혹시라도 꺼져있다면 키기
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
-
-        StartCoroutine(MoveRoutine(targetPos));
+        transform.localPosition = targetPos;
     }
+
 
     private IEnumerator MoveRoutine(Vector3 targetPos)
     {
@@ -38,3 +33,7 @@ public class PlayerMove : MonoBehaviour
         IsMoving = false;
     }
 }
+
+
+
+    

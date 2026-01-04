@@ -6,6 +6,7 @@ public class StoreDisplayUI : MonoBehaviour
     [Header("Display Settings")]
     [SerializeField] private Transform displayArea;
     [SerializeField] private int targetCount = 6; // 상점에 진열할 개수
+    
 
     [Header("Card Prefab Settings")]
     [SerializeField] private GameObject cardPrefab;
@@ -58,5 +59,10 @@ public class StoreDisplayUI : MonoBehaviour
         cardList.RemoveAt(cardList.Count - 1);
 
         return CardManager.Instance.GetCardData(cardName);
+    }
+
+    public void CloseStoreDisplay()
+    {
+        gameObject.SetActive(false);
     }
 }

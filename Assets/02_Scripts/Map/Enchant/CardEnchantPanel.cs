@@ -6,8 +6,9 @@ public class CardEnchantPanel : MonoBehaviour
 {
 
     [Header("Display Settings")]
-    [SerializeField] private Transform displayArea;       // ScrollView의 Content
+    [SerializeField] private Transform displayArea;   // ScrollView의 Content
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
+    [SerializeField] private GameObject EnchantCardPanel; // 인챈트 패널
 
     [Header("Popup Settings")]
     [SerializeField] private EnchantConfirmPopup deckEnchantPopup;
@@ -25,12 +26,12 @@ public class CardEnchantPanel : MonoBehaviour
             prevCardCount = curCardCount;
         }
 
-        gameObject.SetActive(true);
+        EnchantCardPanel.SetActive(true);
     }
 
     public void CloseDeckDisplay()
     {
-        gameObject.SetActive(false);
+        EnchantCardPanel.SetActive(false);
     }
 
     private void RenderDeck(IEnumerable<CardName> deckToRender)
