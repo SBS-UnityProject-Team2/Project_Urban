@@ -1,10 +1,10 @@
-abstract public class ConditionStatus
+abstract public class TimedStatusEffect : StatusEffect
 {
     private readonly int initTurn;
     private int turn;
     public int RemainingTurn => turn;
 
-    public ConditionStatus(int initTurn)
+    public TimedStatusEffect(int initTurn)
     {
         this.initTurn = initTurn;
 
@@ -25,5 +25,5 @@ abstract public class ConditionStatus
         turn = initTurn;   
     }
 
-    abstract public void Execute(Target target);
+    abstract public void Revert(Target target);
 }

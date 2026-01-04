@@ -12,7 +12,7 @@ public class GlacialWedge : Attack
         target.Damage(damage);
 
         // 2. 빙결 상태 적용         
-        target.AddConditionStatus(new Stun(remainingTurn));
+        // target.AddConditionStatus(new Stun(remainingTurn));
 
         return cost;
     }

@@ -38,6 +38,8 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Health = GameManager.Instance.PlayerHealth;
         Cost = new CostController(maxCost);
 
+        statusEffectList = new(this);
+
         // 죽으면 종료처리
         OnDead.AddListener(HandleDead);
         
@@ -69,7 +71,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     
     public void OnTurnStart()
     {
-        if (IsStun())
+        if (isStun)
         {
             BattleManager.Instance.EndPlayerTurn();
             return;

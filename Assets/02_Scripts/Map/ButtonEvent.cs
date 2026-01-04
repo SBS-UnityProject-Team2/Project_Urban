@@ -22,16 +22,32 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     // 전투 씬 이동
     public void OnClickNormal()
     {
+        int currentFloor = MapManager.Instance.GetCurrentFloor();
+        GameManager.Instance.IsNormal = true;
+
+        if (currentFloor == 0)
+            GameManager.Instance.SetEnemyScore(2, 2);
+        else if (currentFloor < 8)
+            GameManager.Instance.SetEnemyScore(2, 3);
+        else
+            GameManager.Instance.SetEnemyScore(3, 4);
+
         SceneManager.LoadScene(Scene.Battle);
     }
 
     public void OnClickElite()
     {
+        GameManager.Instance.SetEnemyScore(5, 5);
+        GameManager.Instance.IsNormal = false;
+        
         SceneManager.LoadScene(Scene.Battle);
     }
 
     public void OnClickBoss()
     {
+        GameManager.Instance.SetEnemyScore(9, 9);
+        GameManager.Instance.IsNormal = false;
+
         SceneManager.LoadScene(Scene.Battle);
     }
 

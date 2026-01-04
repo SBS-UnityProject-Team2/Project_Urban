@@ -11,14 +11,16 @@ abstract public class Enemy : Target
     [SerializeField] protected NextActionView nextActionText;
 
     [Header("Enemy Settings")]
+    [SerializeField] protected int score;
     [SerializeField] protected int baseHp;
     [SerializeField] private int typeCount;
     [SerializeField] private int hpIncrement;
-    [SerializeField] private float rewardCoefficient;
+    [SerializeField] private float rewardCoin;
 
     [Header("Pattern Settings")]
     [SerializeField] private List<ActionType> actionPattern = new();
     [SerializeField] private List<EnemyAction> enemyActions = new();
+    
 
     private readonly Dictionary<ActionType, List<EnemyAction>> actionMap = new();
     private int actionIdx = 0;
@@ -26,7 +28,8 @@ abstract public class Enemy : Target
     private Coroutine moveCoroutine;
     private IEnemyEventHandler handler;
 
-    public float RewardCoefficient => rewardCoefficient;
+    public float RewardCoin => rewardCoin;
+    public int Score => score;
 
     private void Awake()
     {   

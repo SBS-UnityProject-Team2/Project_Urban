@@ -23,6 +23,11 @@ public class GameManager : Singleton<GameManager>
     private CoinController coin;
     private Deck deck;
 
+    // Battle Stage Score
+    private int minScore = 2;
+    private int maxScore = 2;
+    public bool IsNormal { get; set; } = true;
+
     public HealthController PlayerHealth => playerHp;
     public CoinController Coin => coin;
     public Deck Deck => deck;
@@ -67,5 +72,17 @@ public class GameManager : Singleton<GameManager>
     {
         Destroy(gameObject);
         SceneManager.LoadScene(Scene.Main);
+    }
+
+
+    public void SetEnemyScore(int minScore, int maxScore)
+    {
+        this.minScore = minScore;
+        this.maxScore = maxScore;
+    }
+
+    public int GetEnemyScore()
+    {
+        return Random.Range(minScore, maxScore + 1);
     }
 }

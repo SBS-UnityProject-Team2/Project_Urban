@@ -9,15 +9,20 @@ abstract public class Target : MonoBehaviour
 
     [Header("Base View Settings")]
     [SerializeField] protected HealthView healthView;
-    [SerializeField] protected ConditionStatusView conditionStatusView;
-
     // 버프-디버프 관리
-    protected List<ConditionStatus> conditionStatusList = new();
+    protected StatusEffectList statusEffectList;
+    
+    // Status
+    protected int attack;
+    protected int block;
+    protected int bleed;
 
-    public UnityEvent<IEnumerable<ConditionStatus>> OnUpdateConditionStatusList = new();
-
+    protected bool isStun;
+ 
     // Property
     public HealthController Health { get; protected set; }
+    public bool IsStun => isStun;
+    public int Bleed => bleed;
 
     public Element Element
     {
@@ -29,9 +34,30 @@ abstract public class Target : MonoBehaviour
     public UnityEvent<Target> OnDead { get; } = new();
     public UnityEvent<Target, bool> OnDamaged { get; } = new();
 
+    public void Heal(int healPoint)
+    {
+        if (bleed > 0)
+        {
+            int bleedReduction = Mathf.Min(bleed, healPoint);
+            bleed -= bleedReduction;
+            healPoint -= bleedReduction;
+        }
+        
+        if (healPoint > 0)
+        {
+            Health.IncreaseHp(healPoint);
+        }
+    }
 
     public void Damage(int hitPoint)
     {
+        if (block != 0)
+        {
+            block--;
+
+            return;
+        }
+
         // 방패로 데미지 흡수
         int shieldPoints = Health.Protect;
         int damageToShield = Mathf.Min(shieldPoints, hitPoint);
@@ -58,19 +84,34 @@ abstract public class Target : MonoBehaviour
         Health.IncreaseProtect(protectPoint);
     }
 
-    public void AddConditionStatus(ConditionStatus conditionStatus)
+    public void AddBleed(int bleedCount)
     {
-        conditionStatusList.Add(conditionStatus);
+        bleed += bleedCount;
     }
 
-    public bool IsStun()
+    public void AddBlock(int blockCount = 1)
     {
-        foreach (ConditionStatus status in conditionStatusList)
-        {
-            if (status is Stun)
-                return true;
-        }
+        block += blockCount;
+    }
 
-        return false;
+    public void ApplyStatusEffect(StatusEffect statusEffect)
+    {
+        if (statusEffect is TimedStatusEffect)
+            statusEffectList.AddEffects(statusEffect as TimedStatusEffect);
+        else
+            statusEffect.Apply(this);
+    }
+
+    public void IncreaseAttack(int amount = 1)
+    {
+        attack += amount;
+    }
+
+    public void DecreaseAttack(int amount = 1)
+    {
+        attack -= amount;
+
+        if (attack < 0)
+            attack = 0;
     }
 }

@@ -11,6 +11,6 @@ public class HardenPill : EnemyAction
     public override void Execute(Target target)
     {
         target.AddProtect(shield);
-        target.AddConditionStatus(new Armor(remainingTurn));
+        // target.AddConditionStatus(new Armor(remainingTurn));
     }
 }

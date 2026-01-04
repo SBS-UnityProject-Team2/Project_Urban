@@ -234,12 +234,16 @@ MonoBehaviour:
   element: 0
   healthView: {fileID: 4295513656600534293}
   conditionStatusView: {fileID: 7050763360853890896}
+  OnUpdateConditionStatusList:
+    m_PersistentCalls:
+      m_Calls: []
   selectedArrow: {fileID: 3515555034441816934}
   nextActionText: {fileID: 8296309700260891106}
+  score: 2
   baseHp: 1
   typeCount: 3
   hpIncrement: 0
-  rewardCoefficient: 0
+  rewardCoin: 0
   actionPattern: 000000000000000001000000020000000000000001000000
   enemyActions:
   - {fileID: 11400000, guid: 4018aaf31b1e0f2499420cb4814645fd, type: 2}

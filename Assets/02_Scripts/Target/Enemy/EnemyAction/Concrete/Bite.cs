@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bite : EnemyAction
 {
     [SerializeField] private int damage = 6;
-    [SerializeField] private int remainingTurn = int.MaxValue;
+    [SerializeField] private int bleedCount = 2;
 
     public override ActionType Type => ActionType.Attack;
     public override Element Element => Element.None;
@@ -12,6 +12,6 @@ public class Bite : EnemyAction
     public override void Execute(Target target)
     {
         target.Damage(damage);
-        target.AddConditionStatus(new Bleed(remainingTurn));
+        target.ApplyStatusEffect(new Bleed(bleedCount));
     }
 }

@@ -14,7 +14,7 @@ public class Ignition : Debuff
         target.Damage(damage);
 
         // 2. 도트 데미지 
-        target.AddConditionStatus(new DoTDamage(burnDamage, remainingTurn));
+        // target.AddConditionStatus(new DoTDamage(burnDamage, remainingTurn));
         
         return cost;
     }

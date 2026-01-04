@@ -12,6 +12,6 @@ public class ScrapShield : EnemyAction
     public override void Execute(Target target)
     {
         target.AddProtect(shield);
-        target.AddConditionStatus(new Broken(remainingTurn));
+        // target.ApplyStatusEffect(new Broken(remainingTurn));
     }
 }
