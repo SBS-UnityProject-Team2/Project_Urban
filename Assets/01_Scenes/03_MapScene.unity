@@ -4020,6 +4020,7 @@ MonoBehaviour:
   UI_EnterShelter: {fileID: 983073675}
   Panel_ShelterPopup: {fileID: 464493211}
   Panel_ShelterCardEnchantPopup: {fileID: 1379066882}
+  Panel_EnchantCardPopup: {fileID: 0}
   UI_Event: {fileID: 156217299}
 --- !u!4 &468701847
 Transform:
@@ -4477,14 +4478,14 @@ PrefabInstance:
     - target: {fileID: 526369373906582287, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 468701846}
+      objectReference: {fileID: 1892416596}
     - target: {fileID: 526369373906582287, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickShelterCardEnchant
+      value: OpenDeckDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 526369373906582287, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonEvent, Assembly-CSharp
+      value: CardEnchantPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1508570722917604133, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7391,6 +7392,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
+--- !u!114 &966775356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7374973465773631952, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
+  m_PrefabInstance: {fileID: 966775353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &974586423
 GameObject:
   m_ObjectHideFlags: 0
@@ -7442,7 +7454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &983073676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10046,6 +10058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckEnchantPopup
   BeforeCardUI: {fileID: 489003145}
   AfterCardUI: {fileID: 1737512921}
+  AfterCardNameText: {fileID: 1737512922}
 --- !u!225 &1379066887
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11837,6 +11850,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
+--- !u!114 &1737512922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7374973465773631952, guid: 889a4809f1d251d498344502c4a67589, type: 3}
+  m_PrefabInstance: {fileID: 1737512919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1740042799
 GameObject:
   m_ObjectHideFlags: 0
@@ -12912,6 +12936,10 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7077517988473822003, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 7293535141034106536, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -12942,7 +12970,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7810743088500963080, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -22
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870342968530883036, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1892416596}
+    - target: {fileID: 7870342968530883036, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseDeckDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870342968530883036, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CardEnchantPanel, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12952,6 +12992,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2116948898}
   m_SourcePrefab: {fileID: 100100000, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+--- !u!114 &1892416596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2656048199382207044, guid: eb9e2e8a89aaa534abd7b25d9442247b, type: 3}
+  m_PrefabInstance: {fileID: 1892416595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116948892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfe62f20cad73d4c8dd4d80d596030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckEnchantPanel
 --- !u!1 &1896981194
 GameObject:
   m_ObjectHideFlags: 0
@@ -15778,13 +15829,13 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 8113308315743424853}
+        m_TargetAssemblyTypeName: EnchantConfirmPopup, Assembly-CSharp
+        m_MethodName: OnClickEnchant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16558,7 +16609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1551119931532687016
 GameObject:
   m_ObjectHideFlags: 0
@@ -17524,7 +17575,7 @@ GameObject:
   - component: {fileID: 7245675096130673299}
   - component: {fileID: 9146185259165124495}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: YES
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 334450e98a5cf444a9f758ab16f567aa, type: 3}
   m_NavMeshLayer: 0
@@ -18912,7 +18963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTINUE
+  m_text: YES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -19440,7 +19491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CONTINUE
+  m_text: YES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -22327,6 +22378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoreCardRemovePopup
   targetCardUI: {fileID: 674146307}
+  Panel_CardRemovePanel: {fileID: 1280654204}
 --- !u!222 &6682704252984325522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24215,6 +24267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnchantConfirmPopup
   BeforeCardUI: {fileID: 328007238}
   AfterCardUI: {fileID: 966775355}
+  AfterCardNameText: {fileID: 966775356}
 --- !u!224 &8131398400054405136
 RectTransform:
   m_ObjectHideFlags: 0

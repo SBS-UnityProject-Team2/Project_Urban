@@ -7,6 +7,8 @@ public class RemoveConfirmPopup : MonoBehaviour
 {
     [Header("UI 연결")]
     [SerializeField] private UICard targetCardUI; 
+    [SerializeField] private GameObject Panel_CardRemovePanel;
+
 
     private CardDataEntry targetCard;    
     private ModalWindowManager mwManager;
@@ -27,6 +29,8 @@ public class RemoveConfirmPopup : MonoBehaviour
     {  
         GameManager.Instance.Deck.RemoveCard(targetCard.cardName);
         ClosePopup();
+        Panel_CardRemovePanel.SetActive(false);
+
     }
 
     public void OnClickCancel()
