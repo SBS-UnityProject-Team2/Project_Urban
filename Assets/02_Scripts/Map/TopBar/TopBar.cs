@@ -12,6 +12,6 @@ public class TopBar : MonoBehaviour
     {
         healthView.Bind(GameManager.Instance.PlayerHealth);
         coinView.Bind(GameManager.Instance.Coin);
-        toMainButton.onClick.AddListener(() => SceneManager.LoadScene(Scene.Main));
+        toMainButton.onClick.AddListener(() => GameManager.Instance.GameOver());
     }
 }

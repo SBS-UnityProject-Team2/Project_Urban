@@ -44,9 +44,11 @@ abstract public class Target : MonoBehaviour
 
     protected virtual void Awake()
     {
+        
         statusEffectList = new(this);
         statusEffectListView.Bind(statusEffectList);
-        
+
+        OnTurnStart.AddListener(HandleTurnStart);
         OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
@@ -218,11 +220,16 @@ abstract public class Target : MonoBehaviour
             regeneration = 0;
     }
     
+    private void HandleTurnStart()
+    {
+        Health.ResetProtect();
+    }
 
     private void HandleTurnEnd()
     {
         statusEffectList.DecreaseTurn();
-        
+
+ 
         Health.IncreaseHp(regeneration);
         
         Health.DecreaseHp(bleed);

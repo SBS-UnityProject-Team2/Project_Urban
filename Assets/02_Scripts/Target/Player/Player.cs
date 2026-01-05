@@ -74,7 +74,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         }
 
         Cost.ResetCost();
-        Health.ResetProtect();
         Deck.Draw(startingDrawCount);
         DeselectCard();
     }

@@ -99,8 +99,9 @@ public class EnemyManager : SceneSingleton<EnemyManager>
                 continue;
 
             // Enemy Attack Animation 
-            
+            enemy.OnTurnStart?.Invoke();
             enemy.Action();
+            enemy.OnTurnEnd?.Invoke();
 
             // Enemy Anim
             enemy.transform.localScale *= 1.2f;
