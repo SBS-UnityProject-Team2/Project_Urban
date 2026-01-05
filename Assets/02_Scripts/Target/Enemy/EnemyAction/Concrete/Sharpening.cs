@@ -11,6 +11,6 @@ public class Sharpening : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddConditionStatus(new ExtraDamage(remainingTurn, damage));
+        //target.AddConditionStatus(new ExtraDamage(remainingTurn, damage));
     }
 }

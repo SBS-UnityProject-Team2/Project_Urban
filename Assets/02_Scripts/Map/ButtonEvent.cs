@@ -15,6 +15,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     [SerializeField] private GameObject UI_EnterShelter;
     [SerializeField] private GameObject Panel_ShelterPopup;
     [SerializeField] private GameObject Panel_ShelterCardEnchantPopup;
+    [SerializeField] private GameObject Panel_EnchantCardPopup;
 
 
     [SerializeField] private GameObject UI_Event;
@@ -22,7 +23,19 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     // 전투 씬 이동
     public void OnClickNormal()
     {
-        int currentFloor = MapManager.Instance.GetCurrentFloor();
+        // [안전장치] MapManager가 없으면 0층으로 가정하고 진행
+        int currentFloor = 0;
+
+        if (MapManager.Instance != null)
+        {
+            currentFloor = MapManager.Instance.GetCurrentFloor();
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ MapManager가 없어서 층수를 0으로 가정합니다.");
+        }
+
+        // --- 기존 로직 ---
         GameManager.Instance.IsNormal = true;
 
         if (currentFloor == 0)
@@ -112,5 +125,10 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     {
         UI_Event.SetActive(false);
         UI_Map.SetActive(true);
+    }
+
+    public void OnClickEnchantPopupExit()
+    {
+        Panel_EnchantCardPopup.SetActive(false);
     }
 }

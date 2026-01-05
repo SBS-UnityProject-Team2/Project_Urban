@@ -447,6 +447,7 @@ public class MapManager : Singleton<MapManager>
 
     public int GetCurrentFloor()
     {
+        if (currentNode == null) return 0;
         return currentNode.y; 
     }
 }
