@@ -9,13 +9,15 @@ abstract public class NodeButton : MonoBehaviour
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnClick);
     }
 
     public void AddOnClickEvent(UnityAction action)
     {
- 
-        button.onClick.AddListener(action);
+        button.onClick.AddListener(() =>
+        {
+            action?.Invoke();
+            OnClick();
+        });
     }
 
     abstract public void OnClick();

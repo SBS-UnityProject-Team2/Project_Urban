@@ -418,10 +418,7 @@ public class MapManager : Singleton<MapManager>
             currentNode = targetNode;
 
             // 4. 시각적 이동 요청           
-            
             MapVisualizer.Instance.MovePlayer(targetNode);
-            
-            
             Debug.Log($"[MapManager] ({targetNode.x}, {targetNode.y})로 이동");
         }        
     }

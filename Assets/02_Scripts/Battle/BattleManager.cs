@@ -16,9 +16,6 @@ public class BattleManager : SceneSingleton<BattleManager>
     public bool IsBattleEnded => isBattleEnded;
     public int EarnedCoin => earnedCoin;
 
-    // Event
-    public UnityEvent OnTurnStart = new();
-    public UnityEvent OnTurnEnd = new();
     public UnityEvent<bool> OnBattleEnd = new();
     
     private void Start()
@@ -30,9 +27,8 @@ public class BattleManager : SceneSingleton<BattleManager>
     private void InitializeBattle()
     {
         // 명시적 초기화
-        player.OnBattleStart();
         GameManager.Instance.Deck.ResetDeck();
-        OnTurnStart?.Invoke();
+        player.OnTurnStart?.Invoke();
     }
 
     private void HandleBattleEnd(bool isVictory)
@@ -46,14 +42,17 @@ public class BattleManager : SceneSingleton<BattleManager>
         GameManager.Instance.AddCoin(earnedCoin);
         GameManager.Instance.PlayerHealth.ResetProtect();
     }
+        
+    private void StartPlayerTurn()
+    {
+        player.OnTurnStart?.Invoke();
+    }
 
-    // UI 또는 Player가 호출
     public void EndPlayerTurn()
     {
         if (!isPlayerTurn) return;
 
-        player.OnTurnEnd();
-        OnTurnEnd?.Invoke();
+        player.OnTurnEnd?.Invoke();
     
         isPlayerTurn = false;
         curTurn++;
@@ -63,12 +62,6 @@ public class BattleManager : SceneSingleton<BattleManager>
             isPlayerTurn = true;
             StartPlayerTurn();
         });
-    }
-    
-    private void StartPlayerTurn()
-    {
-        player.OnTurnStart();
-        OnTurnStart?.Invoke();
     }
 
     public void AddCoin(int amount)

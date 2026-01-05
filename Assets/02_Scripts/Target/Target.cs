@@ -9,6 +9,7 @@ abstract public class Target : MonoBehaviour
 
     [Header("Base View Settings")]
     [SerializeField] protected HealthView healthView;
+    [SerializeField] protected StatusEffectListView statusEffectListView;
     // 버프-디버프 관리
     protected StatusEffectList statusEffectList;
     
@@ -16,6 +17,11 @@ abstract public class Target : MonoBehaviour
     protected int attack;
     protected int block;
     protected int bleed;
+    protected int burn;
+    protected int regeneration;
+    protected int additionalDamage;
+    protected int additionalDamageCount;
+    protected float damageModifier;
 
     protected bool isStun;
  
@@ -31,8 +37,18 @@ abstract public class Target : MonoBehaviour
     }
 
     // Event
+    public UnityEvent OnTurnStart = new();
+    public UnityEvent OnTurnEnd = new();
     public UnityEvent<Target> OnDead { get; } = new();
     public UnityEvent<Target, bool> OnDamaged { get; } = new();
+
+    protected virtual void Awake()
+    {
+        statusEffectList = new(this);
+        statusEffectListView.Bind(statusEffectList);
+        
+        OnTurnEnd.AddListener(HandleTurnEnd);
+    }
 
     public void Heal(int healPoint)
     {
@@ -57,6 +73,9 @@ abstract public class Target : MonoBehaviour
 
             return;
         }
+        
+        // 받는 데미지 증가
+        hitPoint += (int)(hitPoint * damageModifier);
 
         // 방패로 데미지 흡수
         int shieldPoints = Health.Protect;
@@ -94,6 +113,19 @@ abstract public class Target : MonoBehaviour
         block += blockCount;
     }
 
+    public void IncreaseBurn(int burnCount = 1)
+    {
+        burn += burnCount;
+    }
+
+    public void DecreaseBurn(int burnCount = 1)
+    {
+        burn -= burnCount;
+
+        if (burn < 0)
+            burn = 0;
+    }
+
     public void ApplyStatusEffect(StatusEffect statusEffect)
     {
         if (statusEffect is TimedStatusEffect)
@@ -113,5 +145,89 @@ abstract public class Target : MonoBehaviour
 
         if (attack < 0)
             attack = 0;
+    }
+
+    
+    public void IncreaseAttack(float amount)
+    {
+        attack += (int)(attack * amount);
+    }
+
+    public void DecreaseAttack(float amount)
+    {
+        attack -= (int)(attack * amount);
+
+        if (attack < 0)
+            attack = 0;
+    }
+
+    public void IncreaseDamageTaken(float amount = 1)
+    {
+        damageModifier += amount;
+    }
+
+    public void DecreaseDamageTaken(float amount = 1)
+    {
+        damageModifier -= amount;
+
+        if (damageModifier < 0.0f)
+            damageModifier = 0.0f;
+    }
+
+    public void IncreaseAdditionalDamage(int amount = 1)
+    {
+        additionalDamage += amount;
+    }
+
+    public void DecreaseAdditionalDamage(int amount = 1)
+    {
+        additionalDamage -= amount;
+
+        if (additionalDamage < 0)
+            additionalDamage = 0;
+    }
+
+    public void ResetAdditionalDamage()
+    {
+        additionalDamage = 0;
+    }
+
+    public void IncreaseAdditionalDamageCount(int amount = 1)
+    {
+        additionalDamageCount += amount;
+    }
+
+    public void DecreaseAdditionalDamageCount(int amount = 1)
+    {
+        additionalDamageCount -= amount;
+
+        if (additionalDamageCount < 0)
+            additionalDamageCount = 0;
+    }
+
+    public void IncreaseRegeneration(int amount = 1)
+    {
+        regeneration += amount;
+    }
+
+    public void DecreaseRegeneration(int amount = 1)
+    {
+        regeneration -= amount;
+
+        if (regeneration < 0)
+            regeneration = 0;
+    }
+    
+
+    private void HandleTurnEnd()
+    {
+        statusEffectList.DecreaseTurn();
+        
+        Health.IncreaseHp(regeneration);
+        
+        Health.DecreaseHp(bleed);
+        Health.DecreaseHp(burn);
+
+        DecreaseRegeneration();
     }
 }

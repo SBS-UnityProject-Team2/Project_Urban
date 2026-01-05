@@ -12,15 +12,12 @@ abstract public class Enemy : Target
 
     [Header("Enemy Settings")]
     [SerializeField] protected int score;
-    [SerializeField] protected int baseHp;
-    [SerializeField] private int typeCount;
-    [SerializeField] private int hpIncrement;
-    [SerializeField] private float rewardCoin;
+    [SerializeField] protected int maxHp;
+
 
     [Header("Pattern Settings")]
     [SerializeField] private List<ActionType> actionPattern = new();
     [SerializeField] private List<EnemyAction> enemyActions = new();
-    
 
     private readonly Dictionary<ActionType, List<EnemyAction>> actionMap = new();
     private int actionIdx = 0;
@@ -28,32 +25,30 @@ abstract public class Enemy : Target
     private Coroutine moveCoroutine;
     private IEnemyEventHandler handler;
 
-    public float RewardCoin => rewardCoin;
+    public float RewardCoin => score * 0.1f;
     public int Score => score;
 
-    private void Awake()
+    protected override void Awake()
     {   
+        base.Awake();
+
         // Action Pattern 초기화
-        foreach(ActionType type in actionPattern)
+        foreach(EnemyAction action in enemyActions)
         {
-            if (!actionMap.ContainsKey(type))
-                actionMap[type] = new List<EnemyAction>();
+            if (!actionMap.ContainsKey(action.Type))
+                actionMap[action.Type] = new List<EnemyAction>();
+
+            actionMap[action.Type].Add(action);
         }
 
-        foreach(EnemyAction action in enemyActions)
-            actionMap[action.Type].Add(action);
-
-        // A B C 타입 랜덤 설정하기
-        int increment = Random.Range(0, typeCount) * hpIncrement;
-        baseHp += increment;
-
-        Health = new HealthController(baseHp);
+        Health = new HealthController(maxHp);
+        OnTurnStart.AddListener(() => Health.ResetProtect());
     }
 
     private void Start()
     {   
         // 핸들러 주입
-        handler = BattleManager.Instance?.Player;
+        handler = BattleManager.Instance.Player;
         
         healthView.Bind(Health);
         selectedArrow.enabled = false;
