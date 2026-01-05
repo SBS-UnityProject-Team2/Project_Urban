@@ -31,17 +31,19 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         playerInput = GetComponent<PlayerInput>();
         
         Health = GameManager.Instance.PlayerHealth;
         Cost = new CostController(maxCost);
 
-        statusEffectList = new(this);
-
         // 죽으면 종료처리
         OnDead.AddListener(HandleDead);
+        OnTurnStart.AddListener(HandleTurnStart);
+        OnTurnEnd.AddListener(HandleTurnEnd);
         
         // 우클릭으로 선택 해제
         playerInput.actions["RightClick"].started += OnRightClick;
@@ -62,14 +64,8 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         healthView.Bind(Health);
         costView.Bind(Cost);
     }
-    
-    // BattleManager가 호출
-    public void OnBattleStart()
-    {
-       OnTurnStart();
-    }
-    
-    public void OnTurnStart()
+
+    public void HandleTurnStart()
     {
         if (isStun)
         {
@@ -78,12 +74,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         }
 
         Cost.ResetCost();
-        Health.ResetProtect();
         Deck.Draw(startingDrawCount);
         DeselectCard();
     }
 
-    public void OnTurnEnd()
+    public void HandleTurnEnd()
     {
         DeselectCard();
         Deck.DiscardAll();

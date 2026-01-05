@@ -4314,8 +4314,19 @@ MonoBehaviour:
   enemyCount: 3
   enemySpacing: 3.5
   enemyPrefabs:
-  - {fileID: 44064602579077910, guid: 807a635da67c8a340b91659d282b36a0, type: 3}
   - {fileID: 4908663920435200096, guid: 22bf538289655ea4196653326ef72031, type: 3}
+  - {fileID: 4908663920435200096, guid: 0ce94849fa1406f478e386f240bc9297, type: 3}
+  - {fileID: 4908663920435200096, guid: c0eb401124a0cab478a4526694b9feca, type: 3}
+  - {fileID: 44064602579077910, guid: 807a635da67c8a340b91659d282b36a0, type: 3}
+  - {fileID: 44064602579077910, guid: ab4d7b20a8b5cc74196506a12b0d4dbf, type: 3}
+  - {fileID: 44064602579077910, guid: b0d927c770d497543a9b95d220932ee6, type: 3}
+  - {fileID: 8540065305981802419, guid: 3e6d2a666d97026429d353c6293ae1d9, type: 3}
+  - {fileID: 7438915997961794338, guid: 64cd90a68d172284cb0178ad92458345, type: 3}
+  - {fileID: 4532982202456391433, guid: 927ddb42b4716aa41a1848733af1609c, type: 3}
+  - {fileID: 6521158542269013999, guid: e059f70f517c81d489c2f4506e5c944e, type: 3}
+  - {fileID: 3354438360438278702, guid: ed0c0b1f1c221ee46a724064661f27db, type: 3}
+  - {fileID: 5649960004841327185, guid: d243c3455cedb114995b28adf6b125b2, type: 3}
+  - {fileID: -1787494676650798344, guid: 02197e6877806304790e8d156f675fb9, type: 3}
 --- !u!1 &1250263682
 GameObject:
   m_ObjectHideFlags: 0
@@ -4618,7 +4629,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60.885, y: -25}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 121.77, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314107271
 MonoBehaviour:
@@ -5218,12 +5229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   player: {fileID: 2039570482}
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
   OnBattleEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -5606,11 +5611,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2847508669397410488, guid: 75cfa60f6c8551541aaf4d7a7a9cbd79, type: 3}
+      propertyPath: m_Name
+      value: Text_StatusEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 3314101758229673895, guid: 75cfa60f6c8551541aaf4d7a7a9cbd79, type: 3}
       propertyPath: m_Name
-      value: UI_ConditionStatus
+      value: UI_StatusEffect
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4684113222710668010, guid: 75cfa60f6c8551541aaf4d7a7a9cbd79, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -5632,10 +5642,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 560618987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b252dd7fb34f74da50e07c29df7dd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ConditionStatusView
-  costText: {fileID: 1173881645}
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
+  statusEffectListText: {fileID: 1173881645}
 --- !u!1 &1791753600
 GameObject:
   m_ObjectHideFlags: 0
@@ -6278,7 +6288,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   element: 0
   healthView: {fileID: 2840391441834483104}
-  conditionStatusView: {fileID: 1721619613}
+  statusEffectListView: {fileID: 1721619613}
+  OnTurnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
   maxCost: 10
   startingDrawCount: 6
   hand: {fileID: 506069452}

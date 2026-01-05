@@ -5,7 +5,7 @@ class Guard : Defense
 
     public override int Use(Target target)
     {
-        target.ApplyStatusEffect(new Armor(value));
+        target.AddProtect(value);
 
         return cost;
     }

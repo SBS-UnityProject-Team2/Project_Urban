@@ -7,12 +7,14 @@ abstract public class TimedStatusEffect : StatusEffect
     public TimedStatusEffect(int initTurn)
     {
         this.initTurn = initTurn;
-
     }
 
     public void DecreaseTurn(int amount = 1)
     {
         turn -= amount;
+
+        if (turn < 0)
+            turn = 0;
     }
 
     public void IncreaseTurn(int amount = 1)

@@ -1,3 +1,1 @@
-public class Straggler : Enemy
-{
-}
+public class Straggler : Enemy {}
