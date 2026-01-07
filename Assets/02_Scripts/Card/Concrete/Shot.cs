@@ -4,7 +4,7 @@ class Shooting : Attack
 
     public override int Use(Target target)
     {
-        target.Damage(damage);
+        // target.Damage(damage);
 
         return cost;
     }

@@ -12,11 +12,7 @@ public class EnchantConfirmPopup : MonoBehaviour
     [Header("임시 강화로직")]    
     [SerializeField] private TMP_Text AfterCardNameText; 
 
-    private ModalWindowManager mwManager;
     private CardDataEntry currentTarget; 
-
-   
-
 
 
     public void OpenPopup(CardDataEntry card)
@@ -37,7 +33,7 @@ public class EnchantConfirmPopup : MonoBehaviour
 
     public void ClosePopup()
     {
-        mwManager.ModalWindowOut();
+        GetComponent<ModalWindowManager>().ModalWindowOut();
     }
 
     public void OnClickEnchant()

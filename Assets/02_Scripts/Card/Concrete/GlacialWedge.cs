@@ -9,7 +9,7 @@ public class GlacialWedge : Attack
     public override int Use(Target target)
     {
         // 1. 데미지 적용 
-        target.Damage(damage);
+        // target.Damage(damage);
 
         // 2. 빙결 상태 적용         
         // target.AddConditionStatus(new Stun(remainingTurn));

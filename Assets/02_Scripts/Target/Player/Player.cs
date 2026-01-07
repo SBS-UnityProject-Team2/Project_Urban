@@ -6,7 +6,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 {
     [Header("Player Settings")]
     [SerializeField] private int maxCost;
-    [SerializeField] private int startingDrawCount = 6; //시작할때 카드 6장 드로우
+    [SerializeField] private int drawCount = 6; //시작할때 카드 6장 드로우
     [SerializeField] private Hand hand;
 
     [Header("Player View")]
@@ -74,7 +74,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         }
 
         Cost.ResetCost();
-        Deck.Draw(startingDrawCount);
+        Deck.Draw(drawCount);
         DeselectCard();
     }
 
@@ -89,7 +89,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         BattleManager.Instance.OnBattleEnd?.Invoke(false);
     }
 
-    public void DrawCard(int amount)
+    public void DrawCard(int amount = 1)
     {
         Deck.Draw(amount);
     }
@@ -202,5 +202,18 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Deck.Discard(card);
 
         selectedCard = null;
+    }
+
+    public void IncreaseDrawCount(int amount = 1)
+    {
+        drawCount += amount;
+    }
+
+    public void DecreaseDrawCount(int amount = 1)
+    {
+        drawCount -= amount;
+
+        if (drawCount < 0)
+            drawCount = 0;
     }
 }

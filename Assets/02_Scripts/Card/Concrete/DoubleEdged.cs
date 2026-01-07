@@ -8,11 +8,11 @@ public class DoubleEdged : Attack
 
     public override int Use(Target target)
     {
-        // 1. 적에게 데미지 주기     
-        target.Damage(damage);
+        // // 1. 적에게 데미지 주기     
+        // target.Damage(damage);
 
-        // 2. 반동 데미지        
-        BattleManager.Instance.Player.Damage(selfDamage);
+        // // 2. 반동 데미지        
+        // BattleManager.Instance.Player.Damage(selfDamage);
 
         // 3. 코스트 반환
         return cost;

@@ -121,4 +121,10 @@ public class EnemyManager : SceneSingleton<EnemyManager>
     {
         StartCoroutine(ExecuteEnemyActionRoutine(completeRoutine));
     }
+
+    public void DamageAll(int hitPoint)
+    {
+        foreach(Enemy enemy in enemies)
+            enemy.Damage(enemy, hitPoint);
+    }
 }

@@ -11,7 +11,7 @@ public class Ignition : Debuff
     public override int Use(Target target)
     {
         // 1. 즉발 데미지 
-        target.Damage(damage);
+        // target.Damage(damage);
 
         // 2. 도트 데미지 
         // target.AddConditionStatus(new DoTDamage(burnDamage, remainingTurn));

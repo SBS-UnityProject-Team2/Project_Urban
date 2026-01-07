@@ -5,7 +5,7 @@ public class BlazeBarrier : Defense
     public override CardName Name => CardName.BlazeBarrier;
     public override int Use(Target target)
     {
-        target.AddProtect(armor);
+        target.Protect(armor);
         target.Element = Element.Flame;
 
         return cost;

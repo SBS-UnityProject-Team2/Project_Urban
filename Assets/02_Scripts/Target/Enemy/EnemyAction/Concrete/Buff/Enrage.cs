@@ -9,6 +9,6 @@ public class Enrage : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.ApplyStatusEffect(new Reinforce(count));
+        target.Reinforce(count);
     }
 }

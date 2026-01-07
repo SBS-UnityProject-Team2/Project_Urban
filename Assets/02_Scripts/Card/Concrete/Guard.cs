@@ -5,7 +5,7 @@ class Guard : Defense
 
     public override int Use(Target target)
     {
-        target.AddProtect(value);
+        target.Protect(value);
 
         return cost;
     }

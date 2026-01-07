@@ -11,6 +11,6 @@ public class Charge : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.Damage(damage);
+        // target.Damage(damage);
     }
 }

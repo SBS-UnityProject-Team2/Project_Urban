@@ -12,7 +12,7 @@ public class CrudeMolotov : EnemyAction
     public override void Execute(Target target)
     {   
         for (int i = 0; i < count; i++)
-            target.Damage(damage);
+            // target.Damage(damage);
             
         target.ApplyStatusEffect(new Burn(count));
     }

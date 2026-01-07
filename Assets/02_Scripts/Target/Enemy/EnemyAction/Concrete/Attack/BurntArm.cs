@@ -4,6 +4,7 @@ using UnityEngine;
 public class BurntArm : EnemyAction
 {
     [SerializeField] private int damage = 10;
+    [SerializeField] private int reinforce = 3;
 
     public override ActionType Type => ActionType.Attack;
 
@@ -11,7 +12,7 @@ public class BurntArm : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.Damage(damage);
-        target.ApplyStatusEffect(new Reinforce());
+        // target.Damage(damage);
+        target.Reinforce(reinforce);
     }
 }

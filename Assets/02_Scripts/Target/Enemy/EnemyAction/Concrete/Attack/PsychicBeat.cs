@@ -10,7 +10,7 @@ public class PsychicBeat : EnemyAction
 
     public override void Execute(Target target)
     {
-        for (int i = 0; i < count; i++)
-            target.Damage(damage);
+        // for (int i = 0; i < count; i++)
+            // target.Damage(damage);
     }
 }
