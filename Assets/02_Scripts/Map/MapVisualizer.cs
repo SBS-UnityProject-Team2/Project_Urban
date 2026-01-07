@@ -337,11 +337,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         }
     }
 
-
-    // [시각 효과 최적화 함수]
-
     //특정 층(targetFloor)에 있는 노드와 선들을 흐리게(반투명/비활성)
-    // Dictionary를 사용하여 O(1)로 해당 층 데이터에 접근
     public void FadeOutFloorVisuals(int targetFloor)
     {
         // 1. 노드 처리
@@ -360,7 +356,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         {
             foreach (var lineImg in lines)
             {
-                lineImg.color = new Color(1f, 1f, 1f, 0.5f); // 선은 좀 더 투명하게
+                lineImg.color = new Color(lineImg.color.r, lineImg.color.g, lineImg.color.b, 0.5f); // 투명도만 살짝 내림
             }
         }
     }
