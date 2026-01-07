@@ -10,7 +10,7 @@ public class HardenPill : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddProtect(shield);
-        target.ApplyStatusEffect(new Armor());
+        target.Protect(shield);
+        target.Armor(2);
     }
 }

@@ -11,7 +11,7 @@ public class Bite : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.Damage(damage);
-        target.ApplyStatusEffect(new Bleed(bleedCount));
+        // target.Damage(damage);
+        target.Bleed(bleedCount);
     }
 }

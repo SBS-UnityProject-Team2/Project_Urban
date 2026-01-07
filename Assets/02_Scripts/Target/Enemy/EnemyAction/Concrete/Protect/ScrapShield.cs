@@ -10,7 +10,7 @@ public class ScrapShield : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddProtect(shield);
+        target.Protect(shield);
         target.ApplyStatusEffect(new Broken());
     }
 }

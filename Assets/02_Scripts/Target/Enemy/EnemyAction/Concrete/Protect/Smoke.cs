@@ -9,6 +9,6 @@ public class Smoke : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddProtect(shield);
+        target.Protect(shield);
     }
 }

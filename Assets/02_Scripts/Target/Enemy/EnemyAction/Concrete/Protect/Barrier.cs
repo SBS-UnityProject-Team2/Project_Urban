@@ -10,6 +10,6 @@ public class Barrier : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddProtect(shield);
+        target.Protect(shield);
     }
 }

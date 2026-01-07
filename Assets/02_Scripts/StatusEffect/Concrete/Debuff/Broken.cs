@@ -4,6 +4,8 @@ public class Broken : TimedStatusEffect
 
     public Broken() : base(2) {}
 
+    public override StatusEffectName Name => StatusEffectName.Broken;
+
     public override void Apply(Target target)
     {
         target.IncreaseDamageTaken(damageModifier);

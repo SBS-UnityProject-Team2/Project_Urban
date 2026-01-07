@@ -7,6 +7,8 @@ public class Burn : InstantStatusEffect
         this.count = count;
     }
 
+    public override StatusEffectName Name => StatusEffectName.Burn;
+
     public override void Apply(Target target)
     {
         target.IncreaseBurn(count);

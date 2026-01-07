@@ -8,6 +8,6 @@ public class EnhanceBody : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.ApplyStatusEffect(new Armor());
+        
     }
 }

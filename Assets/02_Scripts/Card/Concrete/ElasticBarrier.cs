@@ -6,7 +6,7 @@ public class ElasticBarrier : Defense
 
     public override int Use(Target target)
     {
-        target.AddProtect(armor);
+        target.Protect(armor);
         target.Element = Element.Ice;
 
         return cost;

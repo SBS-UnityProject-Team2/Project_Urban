@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections.Generic;
+
 
 abstract public class Target : MonoBehaviour
 {
@@ -11,14 +11,27 @@ abstract public class Target : MonoBehaviour
     [SerializeField] protected HealthView healthView;
     [SerializeField] protected StatusEffectListView statusEffectListView;
     // 버프-디버프 관리
+    protected Status status;
     protected StatusEffectList statusEffectList;
+
+    // Buff
+    protected Reinforce reinforce;
+    protected Armor armor;
+    protected Dummy dummy;
+    protected Refined refined;
+    protected Incendiary incendiary;
+    protected KineticVeil kineticVeil;
+    protected SuperConduct superConduct;
+    protected BioActiveShell bioActiveShell;
+    protected Regeneration regeneration;
+    protected Spike spike;
+
+
+    protected Bleed bleed;
     
     // Status
-    protected int attack;
     protected int block;
-    protected int bleed;
     protected int burn;
-    protected int regeneration;
     protected int additionalDamage;
     protected int additionalDamageCount;
     protected float damageModifier;
@@ -27,8 +40,8 @@ abstract public class Target : MonoBehaviour
  
     // Property
     public HealthController Health { get; protected set; }
+    public Status Status => status;
     public bool IsStun => isStun;
-    public int Bleed => bleed;
 
     public Element Element
     {
@@ -39,12 +52,24 @@ abstract public class Target : MonoBehaviour
     // Event
     public UnityEvent OnTurnStart = new();
     public UnityEvent OnTurnEnd = new();
+    public UnityEvent<Target> OnAttack = new();
+    public UnityEvent<Target, Target, bool> OnDamaged { get; } = new();
     public UnityEvent<Target> OnDead { get; } = new();
-    public UnityEvent<Target, bool> OnDamaged { get; } = new();
 
     protected virtual void Awake()
     {
+        status = new Status();
+
+        reinforce = new Reinforce();
+        armor = new Armor();
+
+        bleed = new Bleed(this);
+        refined = new Refined(this);
+        incendiary = new Incendiary(this);
+        superConduct = new SuperConduct(this);
+        regeneration = new Regeneration(this);
         
+
         statusEffectList = new(this);
         statusEffectListView.Bind(statusEffectList);
 
@@ -54,12 +79,7 @@ abstract public class Target : MonoBehaviour
 
     public void Heal(int healPoint)
     {
-        if (bleed > 0)
-        {
-            int bleedReduction = Mathf.Min(bleed, healPoint);
-            bleed -= bleedReduction;
-            healPoint -= bleedReduction;
-        }
+       
         
         if (healPoint > 0)
         {
@@ -67,8 +87,14 @@ abstract public class Target : MonoBehaviour
         }
     }
 
-    public void Damage(int hitPoint)
+    public void Protect(int protectPoint)
     {
+        Health.IncreaseProtect(protectPoint + status.Armor);
+    }
+    public void Damage(Target attacker, int hitPoint)
+    {
+        if (status.IsBlock) return;
+
         if (block != 0)
         {
             block--;
@@ -95,20 +121,68 @@ abstract public class Target : MonoBehaviour
         if (Health.CurrentHp <= 0)
             OnDead?.Invoke(this);
         else
-            OnDamaged?.Invoke(this, Health.Protect > 0);
+            OnDamaged?.Invoke(attacker, this, Health.Protect > 0);
 
         Debug.Log($"{gameObject.name} : {Health.CurrentHp}, hitPoint : {hitPoint}");
     }
 
-    public void AddProtect(int protectPoint)
+    
+    public void Reinforce(int count)
     {
-        Health.IncreaseProtect(protectPoint);
+        reinforce.Modify(status, count);
     }
 
-    public void AddBleed(int bleedCount)
+    public void Armor(int count)
     {
-        bleed += bleedCount;
+        armor.Modify(status, count);
     }
+
+    public void Dummy(int count)
+    {
+        dummy.Modify(status, count);
+    }
+
+    public void Refined(int turn)
+    {
+        refined.Apply(turn);
+    }
+
+    public void Incendiary(int count)
+    {
+        incendiary.Active(count);
+    }
+
+    public void KineticVeil(int turn)
+    {
+        kineticVeil.Apply(turn);
+    }
+
+    public void SuperConduct(int turn)
+    {
+        superConduct.Apply(turn);
+    }
+
+    public void BioActiveShell(int turn)
+    {
+        bioActiveShell.Apply(turn);
+    }
+
+    public void Regeneration(int turn)
+    {
+        regeneration.Apply(turn);
+    }
+
+    public void Bleed(int count)
+    {
+        bleed.Increase(count);
+    }
+
+    public void Spike(int count)
+    {
+        spike.Active(count);
+    }
+
+
 
     public void AddBlock(int blockCount = 1)
     {
@@ -136,32 +210,6 @@ abstract public class Target : MonoBehaviour
             statusEffect.Apply(this);
     }
 
-    public void IncreaseAttack(int amount = 1)
-    {
-        attack += amount;
-    }
-
-    public void DecreaseAttack(int amount = 1)
-    {
-        attack -= amount;
-
-        if (attack < 0)
-            attack = 0;
-    }
-
-    
-    public void IncreaseAttack(float amount)
-    {
-        attack += (int)(attack * amount);
-    }
-
-    public void DecreaseAttack(float amount)
-    {
-        attack -= (int)(attack * amount);
-
-        if (attack < 0)
-            attack = 0;
-    }
 
     public void IncreaseDamageTaken(float amount = 1)
     {
@@ -207,18 +255,6 @@ abstract public class Target : MonoBehaviour
             additionalDamageCount = 0;
     }
 
-    public void IncreaseRegeneration(int amount = 1)
-    {
-        regeneration += amount;
-    }
-
-    public void DecreaseRegeneration(int amount = 1)
-    {
-        regeneration -= amount;
-
-        if (regeneration < 0)
-            regeneration = 0;
-    }
     
     private void HandleTurnStart()
     {
@@ -228,13 +264,6 @@ abstract public class Target : MonoBehaviour
     private void HandleTurnEnd()
     {
         statusEffectList.DecreaseTurn();
-
- 
-        Health.IncreaseHp(regeneration);
-        
-        Health.DecreaseHp(bleed);
         Health.DecreaseHp(burn);
-
-        DecreaseRegeneration();
     }
 }

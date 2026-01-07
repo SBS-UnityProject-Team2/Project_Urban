@@ -15,7 +15,7 @@ public class CostController
     public int MaxCost => maxCost;
     public UnityEvent<int, int> OnUpdateCost { get; } = new();
 
-    public void IncreaseCost(int amount)
+    public void IncreaseCost(int amount = 1)
     {
         curCost += amount;
 
@@ -25,7 +25,7 @@ public class CostController
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
-    public void DecreaseCost(int amount)
+    public void DecreaseCost(int amount = 1)
     {
         curCost -= amount;
 

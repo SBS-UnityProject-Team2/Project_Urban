@@ -10,7 +10,7 @@ public class RepulsiveMatrix : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.Damage(damage);
-        target.AddProtect(protect);   
+        // target.Damage(damage);
+        target.Protect(protect);   
     }
 }

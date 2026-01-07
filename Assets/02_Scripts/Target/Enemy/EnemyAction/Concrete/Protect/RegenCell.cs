@@ -10,7 +10,7 @@ public class RegenCell : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.AddProtect(shield);
-        target.ApplyStatusEffect(new Regeneration());
+        target.Protect(shield);
+        target.Regeneration(2);
     }
 }
