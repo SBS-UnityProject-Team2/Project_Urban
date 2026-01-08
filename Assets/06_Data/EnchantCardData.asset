@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab6cdcf9c7179d45a98811ddc77e517, type: 3}
+  m_Name: EnchantCardData
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  spriteBasePath: 03_Images/Cards
+  prefabBasePath: 05_Prefabs/Cards
+  useElementFolder: 1
+  cards: []
+  enchantcards:
+  - cardName: 0
+    koreanName: "\uD0C0\uACA9 +"
+    cardSprite: {fileID: 21300000, guid: 24391036af2e88c44ac97ad497c9b6bd, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 6109157307790009158, guid: 84dc2cec793e937468c15a56ff7b4a1d, type: 3}
+    price: 0
+    isExtinct: 0
+    description: "\uB370\uBBF8\uC9C0 8"
+  - cardName: 1
+    koreanName: "\uC0AC\uACA9 +"
+    cardSprite: {fileID: 21300000, guid: 02ed10b494f354c4ca5225923456677f, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 70
+    isExtinct: 0
+    description: "\uB370\uBBF8\uC9C0 10, \uD574\uB2F9 \uD134\uC5D0\uC11C \uC774\uC804\uC5D0
+      \uB0B8 \uCE74\uB4DC\uC758 \uC18D\uC131\uACFC \uAC19\uC740 \uC18D\uC131"
+  - cardName: 2
+    koreanName: "\uAC15\uD0C0 +"
+    cardSprite: {fileID: 21300000, guid: 97122a9b1f3cd9b45a088286cec8cec6, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 70
+    isExtinct: 0
+    description: "\uB370\uBBF8\uC9C0 18"
+  - cardName: 3
+    koreanName: "\uBE44\uC5F4\uD55C \uACF5\uACA9 +"
+    cardSprite: {fileID: 21300000, guid: d86f35a4fe86bc74182d0de582bbf49b, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 100
+    isExtinct: 0
+    description: "\uB370\uBBF8\uC9C0 12, \uC57D\uD654 3"
+  - cardName: 5
+    koreanName: "\uBC29\uC5B4 +"
+    cardSprite: {fileID: 21300000, guid: d0b3b32ac9572db4a916af4c00b552d8, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 4493257747658455124, guid: c2af1532dc5284d48939c86c71a8d8bb, type: 3}
+    price: 0
+    isExtinct: 0
+    description: "\uBC29\uC5B4 8"
+  - cardName: 6
+    koreanName: "\uAD6C\uB974\uAE30 +"
+    cardSprite: {fileID: 21300000, guid: d8dc348a1da00e24c8547325dedeb0dd, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 70
+    isExtinct: 0
+    description: "\uBC29\uC5B4 10, \uB2E4\uC74C \uD134\uC5D0 \uB4DC\uB85C\uC6B0 1
+      \uC99D\uAC00"
+  - cardName: 7
+    koreanName: "\uC815\uBE44 +"
+    cardSprite: {fileID: 21300000, guid: 2ce724a31e074c5409ed09bc32a47b0d, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 100
+    isExtinct: 0
+    description: "\uCE74\uB4DC 2\uC7A5 \uB4DC\uB85C\uC6B0"
+  - cardName: 8
+    koreanName: "\uB354\uBBF8 +"
+    cardSprite: {fileID: 21300000, guid: 8d4609d66935b1c4ba31a385c9409b81, type: 3}
+    element: 0
+    isSpecial: 0
+    cardPrefab: {fileID: 0}
+    price: 100
+    isExtinct: 0
+    description: "\uB354\uBBF8 2"

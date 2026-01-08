@@ -384,11 +384,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4048776908165795839}
-  - component: {fileID: 4493257747658455124}
   - component: {fileID: 5187498936907150788}
   - component: {fileID: 3362647646868778303}
+  - component: {fileID: -4275630856269831353}
   m_Layer: 6
-  m_Name: Guard
+  m_Name: Maintenance
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,23 +410,6 @@ Transform:
   - {fileID: 7105748813127312764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4493257747658455124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138447040532560346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ff29cc8a5b63b840903cfcb75ea36fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Defend
-  element: 0
-  cost: 1
-  cardTitle: {fileID: 8485551270251244324}
-  cardDesc: {fileID: 1280594981490796624}
-  armor: 5
 --- !u!212 &5187498936907150788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -531,3 +514,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.29, y: 13.65}
   m_EdgeRadius: 0
+--- !u!114 &-4275630856269831353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138447040532560346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580bcc192b211c040ba479661b22a815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Maintenance
+  element: 0
+  cost: 1
+  cardTitle: {fileID: 8485551270251244324}
+  cardDesc: {fileID: 1280594981490796624}
+  drawCount: 2
