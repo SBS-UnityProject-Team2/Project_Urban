@@ -10,13 +10,13 @@ public class Refined
 
     public void Apply(int turn)
     {
-        owner.Element = Element.Flame;
+        owner.Element = Element.Ruin;
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        if (owner.Element == Element.Flame)
+        if (owner.Element == Element.Ruin)
             owner.Element = Element.None;
     }
 

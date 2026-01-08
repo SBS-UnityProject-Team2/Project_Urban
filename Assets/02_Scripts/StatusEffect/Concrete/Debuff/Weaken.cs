@@ -4,6 +4,10 @@ public class Weaken
     private readonly Target owner;
     private int remainingTurn;
 
+    public Weaken()
+    {
+    }
+
     public Weaken(Target target)
     {
         owner = target;
@@ -21,7 +25,7 @@ public class Weaken
 
     public void Revert()
     {
-        if (owner.Element == Element.Ice)
+        if (owner.Element == Element.Psychic)
             owner.Element = Element.None;
     }
 

@@ -7,7 +7,7 @@ public class ToxicSpore : EnemyAction
     [SerializeField] private int count = 4;
 
     public override ActionType Type => ActionType.Buff;
-    public override Element Element => Element.Grass;
+    public override Element Element => Element.Bio;
 
     public override void Execute(Target target)
     {

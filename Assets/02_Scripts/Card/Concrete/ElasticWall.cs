@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class IceShield : Defense
+public class ElasticWall : Defense
 {
-    public override CardName Name => CardName.IceShield;
+    public override CardName Name => CardName.ElasticWall;
 
     public override int Use(Target target)
     {
-        // 1. 방어도 추가
         target.Protect(armor);
         target.Element = Element.Psychic;
-        
+
         return cost;
     }
 }

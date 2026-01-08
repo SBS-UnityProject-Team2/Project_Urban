@@ -6,7 +6,7 @@ public class PsychicBeat : EnemyAction
     [SerializeField] private int count = 5;
     [SerializeField] private int damage = 2;
     public override ActionType Type => ActionType.Attack;
-    public override Element Element => Element.Ice;
+    public override Element Element => Element.Psychic;
 
     public override void Execute(Target target)
     {

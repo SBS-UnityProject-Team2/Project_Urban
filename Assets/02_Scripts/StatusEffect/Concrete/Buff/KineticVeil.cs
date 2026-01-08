@@ -12,13 +12,13 @@ public class KineticVeil
 
     public void Apply(int turn)
     {
-        owner.Element = Element.Ice;
+        owner.Element = Element.Psychic ;
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        if (owner.Element == Element.Ice)
+        if (owner.Element == Element.Psychic)
             owner.Element = Element.None;
     }
 

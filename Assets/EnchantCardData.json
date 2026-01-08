@@ -50,7 +50,7 @@
         "price": 100
       },
       {
-        "cardName": "Assualt",
+        "cardName": "Assault",
         "koreanName": "기습 +",
         "element": "None",
         "isExtinct": "TRUE",
@@ -314,7 +314,7 @@
         "price": 70
       },
       {
-        "cardName": "GlacierlWedge",
+        "cardName": "GlacialWedge",
         "koreanName": "빙하 쐐기 +",
         "element": "Psychic",
         "isExtinct": "FALSE",
