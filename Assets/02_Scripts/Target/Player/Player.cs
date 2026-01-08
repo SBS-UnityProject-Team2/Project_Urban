@@ -67,13 +67,13 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void HandleTurnStart()
     {
-        if (isStun)
+        if (status.IsFrozen)
         {
             BattleManager.Instance.EndPlayerTurn();
             return;
         }
 
-        Cost.ResetCost();
+        Cost.Recovery();
         Deck.Draw(drawCount);
         DeselectCard();
     }
@@ -198,7 +198,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private void UseCard(Card card, Target target)
     {
         int cost = card.Use(target);
-        Cost.DecreaseCost(cost);
+        Cost.Decrease(cost);
         Deck.Discard(card);
 
         selectedCard = null;

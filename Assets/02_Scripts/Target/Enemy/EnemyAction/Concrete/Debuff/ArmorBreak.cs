@@ -8,7 +8,7 @@ public class ArmorBreak : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.ApplyStatusEffect(new Broken());
+        target.Broken(2);
         target.Armor(2);
     }
 }

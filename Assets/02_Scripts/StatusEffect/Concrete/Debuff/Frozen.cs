@@ -1,10 +1,11 @@
-public class Burn 
+using System.Runtime.CompilerServices;
+
+public class Frozen 
 {
     private readonly Target owner;
     private int remainingTurn;
-    private int count;
-
-    public Burn(Target target)
+    
+    public Frozen(Target target)
     {
         owner = target;
 
@@ -13,24 +14,20 @@ public class Burn
 
     public void Apply(int turn)
     {
+        owner.Status.IsFrozen = true;
         remainingTurn = turn;
-        count = turn;
     }
 
     public void Revert()
     {
-        remainingTurn = 0;
-        count = 0;
+        owner.Status.IsFrozen = false;
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        owner.DebuffDamage(count);
-        
         remainingTurn--;
-        count--;
 
         if (remainingTurn == 0) Revert();
     }

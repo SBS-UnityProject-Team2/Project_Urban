@@ -1,36 +1,31 @@
-public class Burn 
+public class Slow
 {
-    private readonly Target owner;
+    private readonly Player player;
     private int remainingTurn;
-    private int count;
 
-    public Burn(Target target)
+    public Slow(Player player)
     {
-        owner = target;
+        this.player = player;
 
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        player.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
     public void Apply(int turn)
     {
+        player.DecreaseDrawCount();
         remainingTurn = turn;
-        count = turn;
     }
 
     public void Revert()
     {
-        remainingTurn = 0;
-        count = 0;
+       player.IncreaseDrawCount();
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        owner.DebuffDamage(count);
-        
         remainingTurn--;
-        count--;
 
         if (remainingTurn == 0) Revert();
     }

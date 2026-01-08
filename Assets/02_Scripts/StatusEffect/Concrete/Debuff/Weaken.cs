@@ -1,6 +1,7 @@
 public class Weaken
 {
-    private static readonly float ratio = 0.3f;
+    private static readonly float reductionRatio = 0.3f;
+    private static int reduction;
     private readonly Target owner;
     private int remainingTurn;
 
@@ -13,16 +14,15 @@ public class Weaken
 
     public void Apply(int turn)
     {
-        int attack = (int)(owner.Status.Attack * ratio);
-        owner.Status.DecreaseAttack(attack);
+        reduction = (int)(owner.Status.Attack * reductionRatio);
+        owner.Status.DecreaseAttack(reduction);
         
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        if (owner.Element == Element.Ice)
-            owner.Element = Element.None;
+        owner.Status.IncreaseAttack(reduction);
     }
 
     private void HandleTurnEnd()

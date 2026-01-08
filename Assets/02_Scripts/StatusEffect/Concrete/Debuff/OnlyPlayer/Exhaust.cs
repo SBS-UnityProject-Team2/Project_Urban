@@ -1,36 +1,29 @@
-public class Burn 
+public class Exhaust
 {
-    private readonly Target owner;
+    private readonly Player player;
     private int remainingTurn;
-    private int count;
 
-    public Burn(Target target)
+    public Exhaust(Player player)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        player.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
     public void Apply(int turn)
     {
+        player.Cost.DecreaseRecovery();
         remainingTurn = turn;
-        count = turn;
     }
 
     public void Revert()
     {
-        remainingTurn = 0;
-        count = 0;
+        player.Cost.IncreaseRecovery();
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        owner.DebuffDamage(count);
-        
         remainingTurn--;
-        count--;
 
         if (remainingTurn == 0) Revert();
     }

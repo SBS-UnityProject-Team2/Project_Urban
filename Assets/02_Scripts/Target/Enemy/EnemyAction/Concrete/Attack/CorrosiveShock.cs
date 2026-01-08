@@ -14,6 +14,6 @@ public class CorrosiveShock : EnemyAction
         for (int i = 0; i < count; i++)
             // target.Damage(damage);
             
-        target.ApplyStatusEffect(new Broken());
+        target.Broken(2);
     }
 }

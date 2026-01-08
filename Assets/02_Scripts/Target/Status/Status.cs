@@ -3,15 +3,19 @@ public class Status
     private int attack;
     private int armor;
     private int dummy;
-    private bool isBlock;
+    private int additionalCost;
     
     public int Attack => attack;
     public int Armor => armor;
-    public bool IsBlock
-    {
-        get => isBlock;
-        set => isBlock = value;
-    }
+    public int Dummy => dummy;
+    public int AdditionalCost => additionalCost;
+
+    public bool IsBlock { get; set; }
+    public bool IsBroken { get; set; }
+    public bool IsFrozen { get; set; }
+    public bool IsAnointed { get; set; }
+    public bool IsDelirium { get; set; }
+    public bool IsInfested { get; set; }
 
     public void IncreaseAttack(int amount)
     {

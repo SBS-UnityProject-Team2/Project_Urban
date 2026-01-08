@@ -1,12 +1,10 @@
-public class Broken 
+public class Infested
 {
-    private readonly float damageModifier = 0.3f;
+    static private readonly float damageModifier = 0.5f;
     private readonly Target owner;
     private int remainingTurn;
-    
-    public float DamageModifier => damageModifier;
 
-    public Broken(Target target)
+    public Infested(Target target)
     {
         owner = target;
 
@@ -15,18 +13,21 @@ public class Broken
 
     public void Apply(int turn)
     {
-        owner.Status.IsBroken = true;
+        owner.Status.IsInfested = true;
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        owner.Status.IsBroken = false;
+        owner.Status.IsInfested = false;
     }
 
-    public int Modify(int damage)
+    public int Modify(int hitPoint, Element hitType)
     {
-        return damage + (int)(damage * damageModifier);
+        if (hitType != Element.Grass) return hitPoint;
+        if (!owner.Status.IsInfested) return hitPoint;
+
+        return (int)(hitPoint + hitPoint * damageModifier);
     }
 
     private void HandleTurnEnd()
