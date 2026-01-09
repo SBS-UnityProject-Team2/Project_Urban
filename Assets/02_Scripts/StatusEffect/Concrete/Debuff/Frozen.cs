@@ -1,15 +1,11 @@
-public class Weaken
+using System.Runtime.CompilerServices;
+
+public class Frozen 
 {
-    private static readonly float reductionRatio = 0.3f;
-    private static int reduction;
     private readonly Target owner;
     private int remainingTurn;
-
-    public Weaken()
-    {
-    }
-
-    public Weaken(Target target)
+    
+    public Frozen(Target target)
     {
         owner = target;
 
@@ -18,16 +14,13 @@ public class Weaken
 
     public void Apply(int turn)
     {
-        reduction = (int)(owner.Status.Attack * reductionRatio);
-        owner.Status.DecreaseAttack(reduction);
-        
+        owner.Status.IsFrozen = true;
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        if (owner.Element == Element.Psychic)
-            owner.Element = Element.None;
+        owner.Status.IsFrozen = false;
     }
 
     private void HandleTurnEnd()

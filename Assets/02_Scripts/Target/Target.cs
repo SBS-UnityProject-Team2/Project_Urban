@@ -26,22 +26,23 @@ abstract public class Target : MonoBehaviour
     protected Regeneration regeneration;
     protected Spike spike;
 
-
+    protected Weaken weaken;
+    protected Broken broken;
     protected Bleed bleed;
-    
-    // Status
-    protected int block;
-    protected int burn;
-    protected int additionalDamage;
-    protected int additionalDamageCount;
-    protected float damageModifier;
+    protected Burn burn;
+    protected Poisoned poisoned;
+    protected Stigma stigma;
+    protected Frozen frozen;
+    protected Anointed anointed;
+    protected Delirium delirium;
+    protected Infested infested;
+    protected Scarred scarred;
 
-    protected bool isStun;
+
  
     // Property
     public HealthController Health { get; protected set; }
     public Status Status => status;
-    public bool IsStun => isStun;
 
     public Element Element
     {
@@ -68,19 +69,17 @@ abstract public class Target : MonoBehaviour
         incendiary = new Incendiary(this);
         superConduct = new SuperConduct(this);
         regeneration = new Regeneration(this);
+
+        weaken = new Weaken(this);
+        broken = new Broken(this);
         
 
         statusEffectList = new(this);
         statusEffectListView.Bind(statusEffectList);
-
-        OnTurnStart.AddListener(HandleTurnStart);
-        OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
     public void Heal(int healPoint)
     {
-       
-        
         if (healPoint > 0)
         {
             Health.IncreaseHp(healPoint);
@@ -95,15 +94,15 @@ abstract public class Target : MonoBehaviour
     {
         if (status.IsBlock) return;
 
-        if (block != 0)
+        if (status.Dummy != 0)
         {
-            block--;
 
             return;
         }
         
         // 받는 데미지 증가
-        hitPoint += (int)(hitPoint * damageModifier);
+        if (status.IsBroken)
+            hitPoint = broken.Modify(hitPoint);
 
         // 방패로 데미지 흡수
         int shieldPoints = Health.Protect;
@@ -124,6 +123,25 @@ abstract public class Target : MonoBehaviour
             OnDamaged?.Invoke(attacker, this, Health.Protect > 0);
 
         Debug.Log($"{gameObject.name} : {Health.CurrentHp}, hitPoint : {hitPoint}");
+    }
+
+    public void DebuffDamage(int hitPoint, Element attackType = Element.None)
+    {
+        if (status.IsBroken)
+            hitPoint = broken.Modify(hitPoint);
+
+        // 방패로 데미지 흡수
+        int shieldPoints = Health.Protect;
+        int damageToShield = Mathf.Min(shieldPoints, hitPoint);
+        int remainingDamage = hitPoint - damageToShield;
+
+        // 방패에 데미지 적용
+        if (damageToShield > 0)
+            Health.DecreaseProtect(damageToShield);
+
+        // 남은 데미지를 체력에 적용
+        if (remainingDamage > 0)
+            Health.DecreaseHp(remainingDamage);
     }
 
     
@@ -172,98 +190,33 @@ abstract public class Target : MonoBehaviour
         regeneration.Apply(turn);
     }
 
-    public void Bleed(int count)
-    {
-        bleed.Increase(count);
-    }
-
     public void Spike(int count)
     {
         spike.Active(count);
     }
 
-
-
-    public void AddBlock(int blockCount = 1)
+    public void Weaken(int turn)
     {
-        block += blockCount;
+        weaken.Apply(turn);
     }
 
-    public void IncreaseBurn(int burnCount = 1)
+    public void Broken(int turn)
     {
-        burn += burnCount;
+        broken.Apply(turn);
     }
 
-    public void DecreaseBurn(int burnCount = 1)
+    public void Bleed(int count)
     {
-        burn -= burnCount;
-
-        if (burn < 0)
-            burn = 0;
+        bleed.Increase(count);
     }
 
-    public void ApplyStatusEffect(StatusEffect statusEffect)
+
+
+       public void ApplyStatusEffect(StatusEffect statusEffect)
     {
         if (statusEffect is TimedStatusEffect)
             statusEffectList.AddEffects(statusEffect as TimedStatusEffect);
         else
             statusEffect.Apply(this);
-    }
-
-
-    public void IncreaseDamageTaken(float amount = 1)
-    {
-        damageModifier += amount;
-    }
-
-    public void DecreaseDamageTaken(float amount = 1)
-    {
-        damageModifier -= amount;
-
-        if (damageModifier < 0.0f)
-            damageModifier = 0.0f;
-    }
-
-    public void IncreaseAdditionalDamage(int amount = 1)
-    {
-        additionalDamage += amount;
-    }
-
-    public void DecreaseAdditionalDamage(int amount = 1)
-    {
-        additionalDamage -= amount;
-
-        if (additionalDamage < 0)
-            additionalDamage = 0;
-    }
-
-    public void ResetAdditionalDamage()
-    {
-        additionalDamage = 0;
-    }
-
-    public void IncreaseAdditionalDamageCount(int amount = 1)
-    {
-        additionalDamageCount += amount;
-    }
-
-    public void DecreaseAdditionalDamageCount(int amount = 1)
-    {
-        additionalDamageCount -= amount;
-
-        if (additionalDamageCount < 0)
-            additionalDamageCount = 0;
-    }
-
-    
-    private void HandleTurnStart()
-    {
-        Health.ResetProtect();
-    }
-
-    private void HandleTurnEnd()
-    {
-        statusEffectList.DecreaseTurn();
-        Health.DecreaseHp(burn);
     }
 }

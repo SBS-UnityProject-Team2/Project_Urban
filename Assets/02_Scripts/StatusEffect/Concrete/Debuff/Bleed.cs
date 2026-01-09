@@ -5,10 +5,10 @@ public class Bleed
 
     public Bleed(Target target)
     {
-        this.owner = target;
+        owner = target;
 
         target.OnTurnEnd.AddListener(() => {
-            // owner.Damage(bleedPoint);
+            owner.DebuffDamage(bleedPoint);
         });
     }
 

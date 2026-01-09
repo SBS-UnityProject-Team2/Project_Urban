@@ -4,18 +4,20 @@ public class CostController
 {
     private int curCost;
     private int maxCost;
+    private int recoveryCost;
 
     public CostController(int maxCost)
     {
         this.maxCost = maxCost;
         curCost = maxCost;
+        recoveryCost = maxCost;
     }
 
     public int CurrentCost => curCost;
     public int MaxCost => maxCost;
     public UnityEvent<int, int> OnUpdateCost { get; } = new();
 
-    public void IncreaseCost(int amount = 1)
+    public void Increase(int amount = 1)
     {
         curCost += amount;
 
@@ -25,7 +27,7 @@ public class CostController
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
-    public void DecreaseCost(int amount = 1)
+    public void Decrease(int amount = 1)
     {
         curCost -= amount;
 
@@ -35,14 +37,18 @@ public class CostController
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
-    public void ExpandMaxCost(int amount)
+    public void ExpandMax(int amount)
     {
+        int diff = maxCost - recoveryCost;
+
         maxCost += amount;
+        recoveryCost = maxCost - diff;
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
-    public void ReduceMAxCost(int amount)
+    public void ReduceMax(int amount)
     {
+        int diff = maxCost - recoveryCost;
         maxCost -= amount;
 
         if (maxCost < 0)
@@ -51,12 +57,36 @@ public class CostController
         if (maxCost < curCost)
             curCost = maxCost;
 
+        recoveryCost = maxCost - diff;
+
+        if (recoveryCost < 0)
+            recoveryCost = 0;
+
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
-    public void ResetCost()
+    public void Reset()
     {
         curCost = maxCost;
         OnUpdateCost?.Invoke(curCost, maxCost);
+    }
+
+    public void Recovery()
+    {
+        curCost = recoveryCost;
+        OnUpdateCost?.Invoke(curCost, maxCost);
+    }
+
+    public void IncreaseRecovery(int amount = 1)
+    {
+        recoveryCost += amount;
+    }
+
+    public void DecreaseRecovery(int amount = 1)
+    {
+        recoveryCost -= amount;
+
+        if (recoveryCost < 0)
+            recoveryCost = 0;
     }
 }
