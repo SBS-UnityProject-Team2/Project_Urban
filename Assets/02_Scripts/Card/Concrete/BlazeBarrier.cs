@@ -6,7 +6,7 @@ public class BlazeBarrier : Defense
     public override int Use(Target target)
     {
         target.Protect(armor);
-        target.Element = Element.Flame;
+        target.Element = Element.Ruin;
 
         return cost;
     }

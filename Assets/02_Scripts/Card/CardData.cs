@@ -116,13 +116,23 @@ public class CardData : ScriptableObject
                     continue;
                 }
 
+                //string {value1}, {value2} 를 숫자로 변환
+                string processedDescription = jsonCard.description;
+
+                // {value1}이 있다면 jsonCard.value1 값으로 교체
+                if (!string.IsNullOrEmpty(processedDescription))
+                {
+                    processedDescription = processedDescription.Replace("{value1}", jsonCard.value1.ToString());
+                    processedDescription = processedDescription.Replace("{value2}", jsonCard.value2.ToString());
+                }
+
                 CardDataEntry entry = new()
                 {
                     cardName = parsedCardName,
                     koreanName = jsonCard.koreanName ?? string.Empty,
                     element = parsedElement,
                     isSpecial = jsonCard.isSpecial,
-                    description = jsonCard.description ?? string.Empty,
+                    description = processedDescription,
                     price = jsonCard.price
                 };
 
@@ -179,6 +189,7 @@ public class CardDataEntry
     public Card cardPrefab;
     public int price;
     [TextArea] public string description;
+
 }
 
 #if UNITY_EDITOR
@@ -197,5 +208,7 @@ public class JsonCardData
     public bool isSpecial;
     public string description;   
     public int price; 
+    public int value1; 
+    public int value2;
 }
 #endif

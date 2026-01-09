@@ -7,7 +7,7 @@ public class CorrosiveShock : EnemyAction
     [SerializeField] private int count = 2;
 
     public override ActionType Type => ActionType.Attack;
-    public override Element Element => Element.Grass;
+    public override Element Element => Element.Bio;
 
     public override void Execute(Target target)
     {   

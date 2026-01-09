@@ -1,7 +1,7 @@
 public enum Element
 {
     None,       //무속성
-    Flame = 100,      //불꽃
-    Ice = 200 ,        //얼음
-    Grass = 300       //풀
+    Ruin     = 100,      //불꽃
+    Psychic = 200 ,        //얼음
+    Bio = 300       //풀
 }

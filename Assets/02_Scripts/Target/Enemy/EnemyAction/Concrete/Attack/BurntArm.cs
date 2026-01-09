@@ -8,7 +8,7 @@ public class BurntArm : EnemyAction
 
     public override ActionType Type => ActionType.Attack;
 
-    public override Element Element => Element.Flame;
+    public override Element Element => Element.Ruin;
 
     public override void Execute(Target target)
     {

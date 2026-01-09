@@ -16,9 +16,9 @@ public class CardSelectUI : MonoBehaviour
     private readonly List<ElementWeight> elementWeights = new()
     {
         new() { element = Element.None },
-        new() { element = Element.Flame },
-        new() { element = Element.Ice },
-        new() { element = Element.Grass },
+        new() { element = Element.Ruin },
+        new() { element = Element.Psychic },
+        new() { element = Element.Bio },
     };
 
     public void Initialize(UnityAction<CardName> onCardSelected)

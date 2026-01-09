@@ -30,18 +30,18 @@ public class UISelectElement : MonoBehaviour
 
     public void OnClickFlame()
     {
-        SelectElement(Element.Flame);
+        SelectElement(Element.Ruin);
     }
 
     // 2. Ice 속성 선택 버튼 연결
     public void OnClickIce()
     {
-       SelectElement(Element.Ice);
+       SelectElement(Element.Psychic);
     }
 
     // 3. Grass 속성 선택 버튼 연결
     public void OnClickGrass()
     {
-       SelectElement(Element.Grass);
+       SelectElement(Element.Bio);
     }
 }
