@@ -1,6 +1,6 @@
 {
   "cards": [
-    [
+    
       {
         "cardName": "Punch",
         "koreanName": "타격",
@@ -50,7 +50,7 @@
         "price": 80
       },
       {
-        "cardName": "Assualt",
+        "cardName": "Assault",
         "koreanName": "기습",
         "element": "None",
         "isExtinct": "TRUE",
@@ -314,7 +314,7 @@
         "price": 50
       },
       {
-        "cardName": "GlacierlWedge",
+        "cardName": "GlacialWedge",
         "koreanName": "빙하 쐐기",
         "element": "Psychic",
         "isExtinct": "FALSE",
@@ -554,5 +554,5 @@
         "price": 80
       }
     ]
-  ]
+  
 }

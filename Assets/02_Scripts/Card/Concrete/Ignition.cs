@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Ignition : Debuff
 {   
-    [SerializeField] private int damage = 5;
-    [SerializeField] private int burnDamage = 1; // 도트 데미지
-    [SerializeField] private int remainingTurn = 3;
+    [SerializeField] private int damage = 6;
+    [SerializeField] private int burn = 2; 
+
 
     public override CardName Name => CardName.Ignition;
 
     public override int Use(Target target)
     {
         // 1. 즉발 데미지 
-        // target.Damage(damage);
+        // target.Damage(6);
 
         // 2. 도트 데미지 
-        // target.AddConditionStatus(new DoTDamage(burnDamage, remainingTurn));
+        target.IncreaseBurn(burn);
         
         return cost;
     }

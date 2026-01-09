@@ -4,14 +4,14 @@ static class Util
     {
         int nameNum = (int)name;
 
-        if (nameNum >= (int)Element.Grass)
-            return Element.Grass;
+        if (nameNum >= (int)Element.Bio)
+            return Element.Bio;
 
-        if (nameNum >= (int)Element.Ice)
-            return Element.Ice;
+        if (nameNum >= (int)Element.Psychic)
+            return Element.Psychic;
 
-        if (nameNum >= (int)Element.Flame)
-            return Element.Flame;
+        if (nameNum >= (int)Element.Ruin)
+            return Element.Ruin;
 
         return Element.None;
     }

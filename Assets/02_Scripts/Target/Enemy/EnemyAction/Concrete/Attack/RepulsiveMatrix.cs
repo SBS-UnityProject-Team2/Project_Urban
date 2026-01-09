@@ -6,7 +6,7 @@ public class RepulsiveMatrix : EnemyAction
     [SerializeField] private int damage = 9;
     [SerializeField] private int protect = 9;
     public override ActionType Type => ActionType.Attack;
-    public override Element Element => Element.Ice;
+    public override Element Element => Element.Psychic;
 
     public override void Execute(Target target)
     {

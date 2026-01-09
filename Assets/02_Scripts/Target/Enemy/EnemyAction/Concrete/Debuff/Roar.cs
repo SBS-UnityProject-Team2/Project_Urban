@@ -8,6 +8,6 @@ public class Roar : EnemyAction
 
     public override void Execute(Target target)
     {
-        
+        //target.ApplyStatusEffect(new Weaken());
     }
 }

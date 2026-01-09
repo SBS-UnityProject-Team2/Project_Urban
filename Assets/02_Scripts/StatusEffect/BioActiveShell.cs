@@ -10,13 +10,13 @@ public class BioActiveShell
 
     public void Apply(int turn)
     {
-        owner.Element = Element.Grass;
+        owner.Element = Element.Bio;
         remainingTurn = turn;
     }
 
     public void Revert()
     {
-        if (owner.Element == Element.Grass)
+        if (owner.Element == Element.Bio)
             owner.Element = Element.None;
     }
 
