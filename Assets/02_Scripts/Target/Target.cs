@@ -63,8 +63,6 @@ abstract public class Target : MonoBehaviour
 
         reinforce = new Reinforce();
         armor = new Armor();
-
-        bleed = new Bleed(this);
         refined = new Refined(this);
         incendiary = new Incendiary(this);
         superConduct = new SuperConduct(this);
@@ -72,6 +70,16 @@ abstract public class Target : MonoBehaviour
 
         weaken = new Weaken(this);
         broken = new Broken(this);
+        bleed = new Bleed(this);
+        burn = new Burn(this);
+        poisoned = new Poisoned(this);
+        stigma = new Stigma(this);
+        frozen = new Frozen(this);
+        anointed = new Anointed(this);
+        delirium = new Delirium(this);
+        infested = new Infested(this);
+        scarred = new Scarred(this);
+
         
 
         statusEffectList = new(this);
@@ -210,7 +218,45 @@ abstract public class Target : MonoBehaviour
         bleed.Increase(count);
     }
 
+    public void Burn(int turn)
+    {
+        burn.Apply(turn);
+    }
 
+    public void Poisoned()
+    {
+        poisoned.Apply();
+    }
+
+    public void Stigma(int turn)
+    {
+        stigma.Apply(turn);
+    }
+
+    public void Frozen(int turn)
+    {
+        frozen.Apply(turn);
+    }
+
+    public void Anointed(int turn)
+    {
+        anointed.Apply(turn);
+    }
+
+    public void Delirium(int turn)
+    {
+        delirium.Apply(turn);
+    }
+
+    public void Infested(int turn)
+    {
+        infested.Apply(turn);
+    }
+
+    public void Scarred(int count)
+    {
+        scarred.Apply(count);
+    }
 
        public void ApplyStatusEffect(StatusEffect statusEffect)
     {
