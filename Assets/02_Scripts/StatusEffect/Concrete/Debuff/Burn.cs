@@ -3,6 +3,7 @@ public class Burn
     private readonly Target owner;
     private int remainingTurn;
     private int count;
+    public int CurrentCount => count;   // 외부에서 현재 화상수치 가져가는용도
 
     public Burn(Target target)
     {
@@ -34,4 +35,6 @@ public class Burn
 
         if (remainingTurn == 0) Revert();
     }
+
+    
 }

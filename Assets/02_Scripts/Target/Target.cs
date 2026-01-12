@@ -223,6 +223,11 @@ abstract public class Target : MonoBehaviour
         burn.Apply(turn);
     }
 
+    public int GetBurnAmount()                              // Burn 객체의 현재수치 가져오는 프로퍼티
+    {
+        return burn != null ? burn.CurrentCount : 0;        // burn 걸려있는 상태면 그 값을, 아니면 0으로 반환
+    }
+
     public void Poisoned()
     {
         poisoned.Apply();
@@ -265,4 +270,6 @@ abstract public class Target : MonoBehaviour
         else
             statusEffect.Apply(this);
     }
+
+    
 }

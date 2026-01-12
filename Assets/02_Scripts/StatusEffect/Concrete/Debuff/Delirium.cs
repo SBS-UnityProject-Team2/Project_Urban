@@ -24,7 +24,7 @@ public class Delirium
 
     public int Modify(int hitPoint, Element hitType)
     {
-        if (hitType != Element.Ice) return hitPoint;
+        if (hitType != Element.Psychic) return hitPoint;
         if (!owner.Status.IsDelirium) return hitPoint;
 
         return (int)(hitPoint + hitPoint * damageModifier);

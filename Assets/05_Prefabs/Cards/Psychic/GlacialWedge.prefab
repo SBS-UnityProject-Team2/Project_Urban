@@ -287,11 +287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlacialWedge
   element: 200
-  cost: 2
+  cost: 1
+  isExtinct: 0
+  isSpecial: 0
   cardTitle: {fileID: 5130317781085875830}
   cardDesc: {fileID: 1196711842195997585}
-  damage: 1
-  remainingTurn: 1
+  damage: 6
+  turn: 1
 --- !u!212 &1398124178353846787
 SpriteRenderer:
   m_ObjectHideFlags: 0

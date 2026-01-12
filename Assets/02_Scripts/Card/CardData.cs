@@ -186,6 +186,7 @@ public class CardDataEntry
     public Sprite cardSprite;
     public Element element;
     public bool isSpecial;
+    public bool isExtinct;
     public Card cardPrefab;
     public int price;
     [TextArea] public string description;
@@ -206,6 +207,7 @@ public class JsonCardData
     public string koreanName;
     public string element;
     public bool isSpecial;
+    public bool isExtinct;
     public string description;   
     public int price; 
     public int value1; 

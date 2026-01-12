@@ -14,10 +14,15 @@ public class Hand : MonoBehaviour
     private readonly List<Card> curHand = new();
     public IEnumerable<Card> CurHand => curHand;
 
-    public void AddCard(CardName cardName)
+    public Card AddCard(CardName cardName)      // void > Card
     {   
-        InternalAddCard(cardName);
+        // 내부 함수에서 생성된 카드를 받아서 저장
+        Card newCard = InternalAddCard(cardName);
+        
         Align();
+
+        // 생성된 카드를 외부로 반환
+        return newCard;
     }
 
     public void AddCards(IEnumerable<CardName> cardNames)
@@ -49,10 +54,13 @@ public class Hand : MonoBehaviour
         curHand.Clear();
     }
 
-    private void InternalAddCard(CardName cardName)
+    private Card InternalAddCard(CardName cardName)     // void > Card
     {
         Card newCard = CardManager.Instance.CreateCard(cardName, cardSpawnPoint.position, transform);
         curHand.Add(newCard);
+
+        // 생성한 카드를 반환
+        return newCard;
     }
 
     private void DestroyCard(Card card)

@@ -25,7 +25,7 @@ public class Stigma
     private void HandleDamage(Target _, Target target, bool __)
     {
         if (isActive)
-            target.DebuffDamage(count, Element.Flame);
+            target.DebuffDamage(count, Element.Ruin);
     }
 
     private void HandleTurnEnd()

@@ -12,6 +12,8 @@ public class EnemyManager : SceneSingleton<EnemyManager>
     [SerializeField] private float enemySpacing = 3.5f;
     [SerializeField] private List<Enemy> enemyPrefabs = new();
 
+    public List<Enemy> EnemyList => enemies;    // 광역디버프 카드에서 현재 살아있는 적 리스트 확인용
+
     private readonly List<Enemy> enemies = new();
 
     private void Start()
@@ -95,7 +97,7 @@ public class EnemyManager : SceneSingleton<EnemyManager>
         {   
             Enemy enemy = enemies[i];
 
-            if (enemy.IsStun)
+            if (enemy.Status.IsFrozen)
                 continue;
 
             // Enemy Attack Animation 
@@ -122,9 +124,14 @@ public class EnemyManager : SceneSingleton<EnemyManager>
         StartCoroutine(ExecuteEnemyActionRoutine(completeRoutine));
     }
 
-    public void DamageAll(int hitPoint)
-    {
-        foreach(Enemy enemy in enemies)
-            enemy.Damage(enemy, hitPoint);
+    public void DamageAll(int hitPoint)     // 약간의 최적화 수정
+    {        
+        foreach(Enemy enemy in enemies.ToList())
+        {
+            if (enemy != null && enemy.gameObject.activeSelf)
+            {                
+                enemy.Damage(BattleManager.Instance.Player, hitPoint); 
+            }
+        }
     }
 }
