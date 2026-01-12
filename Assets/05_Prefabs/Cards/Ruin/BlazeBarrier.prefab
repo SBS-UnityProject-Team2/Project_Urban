@@ -287,10 +287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlameBarrier
   element: 100
-  cost: 1
+  cost: 2
+  isExtinct: 0
+  isSpecial: 0
   cardTitle: {fileID: 8848045993063123046}
   cardDesc: {fileID: 7481433080428554963}
-  armor: 3
+  armor: 10
+  turn: 2
 --- !u!212 &6500936304541094541
 SpriteRenderer:
   m_ObjectHideFlags: 0

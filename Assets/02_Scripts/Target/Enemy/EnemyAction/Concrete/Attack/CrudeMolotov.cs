@@ -14,6 +14,6 @@ public class CrudeMolotov : EnemyAction
         for (int i = 0; i < count; i++)
             // target.Damage(damage);
             
-        target.ApplyStatusEffect(new Burn(count));
+        target.Burn(count);
     }
 }

@@ -69,13 +69,18 @@
     },
     "dotnet.defaultSolution": "Project_Urban.slnx",
     "cSpell.words": [
+        "Anxiolytic",
+        "Backdraft",
         "Behaviour",
+        "Conducter",
         "Debuff",
         "Dont",
         "enchantcards",
         "interactable",
         "Lerp",
         "playermove",
+        "selfburn",
+        "Superconducter",
         "UGUI"
     ]
 }

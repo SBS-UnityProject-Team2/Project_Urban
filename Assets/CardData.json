@@ -98,7 +98,7 @@
         "price": 80
       },
       {
-        "cardName": "Dummy",
+        "cardName": "dummy",
         "koreanName": "더미",
         "element": "None",
         "isExtinct": "FALSE",
@@ -230,7 +230,7 @@
         "price": 80
       },
       {
-        "cardName": "Cinder",
+        "cardName": "cinder",
         "koreanName": "잔불",
         "element": "Ruin",
         "isExtinct": "TRUE",
@@ -338,7 +338,7 @@
         "price": 50
       },
       {
-        "cardName": "ElectricField",
+        "cardName": "electricField",
         "koreanName": "전자기장",
         "element": "Psychic",
         "isExtinct": "FALSE",
@@ -350,7 +350,7 @@
         "price": 80
       },
       {
-        "cardName": "AccelConcoction",
+        "cardName": "accelConcoction",
         "koreanName": "가속 화합물",
         "element": "Psychic",
         "isExtinct": "TRUE",
@@ -530,7 +530,7 @@
         "price": 80
       },
       {
-        "cardName": "Cycle",
+        "cardName": "cycle",
         "koreanName": "순환",
         "element": "Bio",
         "isExtinct": "TRUE",

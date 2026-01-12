@@ -7,7 +7,7 @@ public enum CardType
 {
     Attack,  // 공격
     Defense, // 방어
-    Buff,    // 버프
+    BuffCard,    // 버프
     Debuff   // 디버프
 }
 
@@ -17,6 +17,8 @@ abstract public class Card : MonoBehaviour
     //카드 기본 정보
     [SerializeField] protected Element element;
     [SerializeField] protected int cost;            // 코스트
+    [SerializeField] protected bool isExtinct; // 소멸 여부 
+    [SerializeField] protected bool isSpecial; // 특수 카드 여부
     [SerializeField] TMP_Text cardTitle;
     [SerializeField] TMP_Text cardDesc;
 
@@ -27,27 +29,47 @@ abstract public class Card : MonoBehaviour
     private ICardEventHandler handler;
 
     // 카드 정보 관련
-    public bool IsSpecial { get; }      // 특수 카드 여부 
-    public bool IsException { get; }     //제외 카드 여부
+    //public bool IsSpecial { get; }      // 특수 카드 여부 
+    //public bool IsException { get; }     //제외 카드 여부
 
     // Property
     public int Cost => cost;
     public Vector3 OriginPos { get; set; } = new();
     public bool IsEntered { get; set; } = false;
+    public virtual bool IsExtinct => isExtinct; 
+    public virtual bool IsSpecial => isSpecial;
 
     private void Awake()
     {
         localScale = transform.localScale;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        // 핸들러 주입
         handler = BattleManager.Instance?.Player;
         
-        CardDataEntry cardData = CardManager.Instance.GetCardData(Name);
-        cardTitle.text = cardData.koreanName;
-        cardDesc.text = cardData.description;
+       
+        // CardData(JSON)와 정보 동기화
+        
+        if (CardManager.Instance != null)
+        {
+            CardDataEntry cardData = CardManager.Instance.GetCardData(Name);
+            
+            if (cardData != null)
+            {
+                // 1. 텍스트 정보 동기화
+                if(cardTitle) cardTitle.text = cardData.koreanName;
+                if(cardDesc) cardDesc.text = cardData.description; // {value}가 치환된 텍스트
+
+                // 2. 스탯 정보도 데이터 기준으로 덮어씌우기          
+                // this.cost = cardData.cost;        
+                this.element = cardData.element;
+                this.isSpecial = cardData.isSpecial;
+                
+                // 만약 CardDataEntry에 isExtinct(소멸) 정보가 있다면
+                this.isExtinct = cardData.isExtinct; 
+            }
+        }
     }
 
     // Unity 마우스 이벤트
@@ -111,6 +133,13 @@ abstract public class Card : MonoBehaviour
 
         // 도착 후 실행할 행동(파괴 등)이 있다면 실행
         onComplete?.Invoke();
+    }
+
+    // 임시 코스트 조정함수
+    public void SetCost(int newCost)
+    {
+        this.cost = newCost;
+        // 만약 UI에 코스트가 표시된다면 갱신하는 코드가 여기에 들어가야 함        
     }    
 
     abstract public CardName Name { get; }

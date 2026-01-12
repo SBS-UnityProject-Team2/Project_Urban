@@ -320,10 +320,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IceShield
   element: 200
-  cost: 1
+  cost: 2
+  isExtinct: 0
+  isSpecial: 0
   cardTitle: {fileID: 1767128997618045011}
   cardDesc: {fileID: 5748571358520734293}
-  armor: 3
+  armor: 10
+  turn: 2
 --- !u!212 &5092977104102050904
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -424,11 +424,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ignite
   element: 100
   cost: 2
+  isExtinct: 0
+  isSpecial: 0
   cardTitle: {fileID: 3233429475745401682}
   cardDesc: {fileID: 110227493543166221}
-  damage: 3
-  burnDamage: 1
-  remainingTurn: 3
+  burn: 3
 --- !u!212 &4942003193995019729
 SpriteRenderer:
   m_ObjectHideFlags: 0

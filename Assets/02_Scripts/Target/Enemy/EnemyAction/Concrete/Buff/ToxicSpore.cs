@@ -11,7 +11,7 @@ public class ToxicSpore : EnemyAction
 
     public override void Execute(Target target)
     {
-        target.IncreaseAdditionalDamage(damage);
-        target.IncreaseAdditionalDamageCount(count);
+        //target.IncreaseAdditionalDamage(damage);
+        //target.IncreaseAdditionalDamageCount(count);
     }
 }

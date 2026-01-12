@@ -118,4 +118,22 @@ public class Deck
     {
         return new List<CardName>(originCardList);
     }
+
+    //UsedCardList 에서 1장 랜덤으로 뽑기로직
+    public Card DrawRandomFromDiscard()
+    {       
+
+        // 1. 무작위 인덱스 선택
+        int randomIndex = Random.Range(0, usedCardList.Count);
+        CardName targetCardName = usedCardList[randomIndex];
+
+        // 2. 리스트에서 제거
+        usedCardList.RemoveAt(randomIndex);
+
+        // 3. 손패에 추가하고, 추가된 카드 객체를 반환
+        // Hand 스크립트의 AddCard 함수가 Card를 반환하도록 수정
+        return hand.AddCard(targetCardName);
+    }
+
+    
 }

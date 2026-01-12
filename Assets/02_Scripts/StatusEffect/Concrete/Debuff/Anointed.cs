@@ -24,7 +24,7 @@ public class Anointed
 
     public int Modify(int hitPoint, Element hitType)
     {
-        if (hitType != Element.Flame) return hitPoint;
+        if (hitType != Element.Ruin) return hitPoint;
         if (!owner.Status.IsAnointed) return hitPoint;
 
         return (int)(hitPoint + hitPoint * damageModifier);

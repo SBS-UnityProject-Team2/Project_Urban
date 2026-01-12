@@ -24,7 +24,7 @@ public class AccelConcoction
         if (remainingTurn == 0) return;
 
         player.DrawCard();
-        player.Cost.IncreaseCost();
+        player.Cost.Increase();
 
         remainingTurn--;
 

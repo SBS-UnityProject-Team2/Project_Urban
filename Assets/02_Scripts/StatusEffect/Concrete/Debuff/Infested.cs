@@ -24,7 +24,7 @@ public class Infested
 
     public int Modify(int hitPoint, Element hitType)
     {
-        if (hitType != Element.Grass) return hitPoint;
+        if (hitType != Element.Bio) return hitPoint;
         if (!owner.Status.IsInfested) return hitPoint;
 
         return (int)(hitPoint + hitPoint * damageModifier);
