@@ -1,12 +1,14 @@
-public class Exhaust
+public class Exhaust : PlayerStatusEffect
 {
-    private readonly Player player;
     private int remainingTurn;
 
-    public Exhaust(Player player)
+    public Exhaust(Player player) : base(player)
     {
         player.OnTurnEnd.AddListener(HandleTurnEnd);
     }
+
+    public override int StatusNumber => remainingTurn;
+    public override StatusEffectName Name => StatusEffectName.Exhaust;
 
     public void Apply(int turn)
     {

@@ -1,40 +1,40 @@
-public class Anointed
+public class Anointed : TurnStatusEffect
 {
     static private readonly float damageModifier = 0.5f;
-    private readonly Target owner;
-    private int remainingTurn;
-    
-    public Anointed(Target target)
-    {
-        owner = target;
 
+    public Anointed(Target target) : base(target)
+    {
         target.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Anointed;
+
+    public override int StatusNumber => remainingTurn;
+
+    public override void Apply(int turn)
     {
-        owner.Status.IsAnointed = true;
-        remainingTurn = turn;
+        SetActive(true);
+        UpdateRemainingTurn(turn);
     }
 
-    public void Revert()
+    public override void Revert()
     {
-        owner.Status.IsAnointed = false;
+       SetActive(false);
     }
 
     public int Modify(int hitPoint, Element hitType)
     {
-        if (hitType != Element.Ruin) return hitPoint;
-        if (!owner.Status.IsAnointed) return hitPoint;
+        if (hitType != Element.Psychic) return 0;
+        if (!IsActive) return 0;
 
-        return (int)(hitPoint + hitPoint * damageModifier);
+        return (int)(hitPoint * damageModifier);
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }

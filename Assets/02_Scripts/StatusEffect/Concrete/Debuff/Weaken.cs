@@ -1,40 +1,35 @@
-public class Weaken
+public class Weaken : TurnStatusEffect
 {
     private static readonly float reductionRatio = 0.3f;
-    private static int reduction;
-    private readonly Target owner;
-    private int remainingTurn;
+    private int reduction = 0;
 
-    public Weaken()
+    public int Reduction => reduction;
+
+    public Weaken(Target target) : base(target)
     {
-    }
-
-    public Weaken(Target target)
-    {
-        owner = target;
-
         target.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Weaken;
+
+    public override void Apply(int turn)
     {
         reduction = (int)(owner.Status.Attack * reductionRatio);
-        owner.Status.DecreaseAttack(reduction);
-        
-        remainingTurn = turn;
+        UpdateRemainingTurn(turn);
+        SetActive(true);
     }
 
-    public void Revert()
+    public override void Revert()
     {
-        if (owner.Element == Element.Psychic)
-            owner.Element = Element.None;
+        reduction = 0;
+        SetActive(false);
     }
-
+    
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }

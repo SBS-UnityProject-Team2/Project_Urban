@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/05_Prefabs/UI/Button_CardPopup.prefab.meta
 guid: 75cfa60f6c8551541aaf4d7a7a9cbd79
-========
-guid: 253103ae0a4f77b4c84bb09783651fa5
->>>>>>>> main:Assets/05_Prefabs/UI/Battle/Player/UI_ConditionStatus.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

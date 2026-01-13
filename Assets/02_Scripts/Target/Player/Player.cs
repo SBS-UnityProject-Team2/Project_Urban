@@ -16,10 +16,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private PlayerInput playerInput;
     private Deck deck;
     private Card selectedCard;
-    private ElectricField electricFieldBuff;         // 전자기장버프 로직용
-    private Cinder cinderBuff;                       // 잔불 버프 로직용
-    private AccelConcoction accelConcoctionBuff;     // 가속화합물 버프용
-
     public CostController Cost { get; private set; }
 
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
@@ -69,14 +65,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     {
         healthView.Bind(Health);
         costView.Bind(Cost);
-        electricFieldBuff = new ElectricField(this);        //전자기장 버프 로직용
-        cinderBuff = new Cinder(this);                      //잔불 버프 로직용
-        accelConcoctionBuff = new AccelConcoction(this);    //가속화합물 로직용
     }
 
     public void HandleTurnStart()
     {
-        if (status.IsFrozen)
+        if (status.Frozen.IsActive)
         {
             BattleManager.Instance.EndPlayerTurn();
             return;
@@ -105,6 +98,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void DrawCard(int amount = 1)
     {
         Deck.Draw(amount);
+    }
+
+    public void DiscardCard(int amount = 1)
+    {
+        
     }
 
     // 다음턴 (1턴만) 추가드로우 보너스
@@ -236,22 +234,173 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
             drawCount = 0;
     }
 
-    // 카드에서 전자기장 버프를 활성화시키는 함수
-    public void ActivateElectricField(int damageAmount)
-    {        
-        electricFieldBuff = new ElectricField(this);
-        electricFieldBuff.Active(damageAmount);
+
+    
+
+    #region Test Methods
+    // 버프 테스트 메서드들
+    public void TestReinforce()
+    {
+        int amount = Random.Range(1, 5);
+        status.Reinforce.IncreaseStack(amount);
+        Debug.Log($"Reinforce 버프 추가: {amount}");
     }
 
-    // 잔불버프 활성화 함수
-    public void ActivateCinder(int drawAmount)
+    public void TestArmor()
     {
-        cinderBuff.Active(drawAmount);        
+        int amount = Random.Range(5, 20);
+        status.Armor.IncreaseStack(amount);
+        Debug.Log($"Armor 버프 추가: {amount}");
     }
 
-    // 가속화합물버프 활성화 함수
-    public void ActivateAccelConcoction(int turns)
+    public void TestDummy()
     {
-        accelConcoctionBuff.Apply(turns);
+        int amount = Random.Range(1, 3);
+        status.Blur.IncreaseStack(amount);
+        Debug.Log($"Dummy 버프 추가: {amount}");
     }
+
+    public void TestRefined()
+    {
+        int turns = Random.Range(1, 4);
+        Refined(turns);
+        Debug.Log($"Refined 버프 적용: {turns}턴");
+    }
+
+    public void TestIncendiary()
+    {
+        int count = Random.Range(5, 15);
+        LoadedIncendiary(count);
+        Debug.Log($"Incendiary 버프 활성화: {count}");
+    }
+
+    public void TestKineticVeil()
+    {
+        int turns = Random.Range(1, 3);
+        KineticVeil(turns);
+        Debug.Log($"KineticVeil 버프 적용: {turns}턴");
+    }
+
+    public void TestSuperConduct()
+    {
+        int turns = Random.Range(1, 3);
+        Nullification(turns);
+        Debug.Log($"SuperConduct 버프 적용: {turns}턴");
+    }
+
+    public void TestBioActiveShell()
+    {
+        int turns = Random.Range(1, 4);
+        status.BioActiveShell.Apply(turns);
+        Debug.Log($"BioActiveShell 버프 적용: {turns}턴");
+    }
+
+    public void TestRegeneration()
+    {
+        int turns = Random.Range(2, 5);
+        status.Regeneration.Apply(turns);
+        Debug.Log($"Regeneration 버프 적용: {turns}턴");
+    }
+
+    public void TestSpike()
+    {
+        int count = Random.Range(5, 20);
+        status.Spike.Active(count);
+        Debug.Log($"Spike 버프 활성화: {count}");
+    }
+
+    // 디버프 테스트 메서드들
+    public void TestWeaken()
+    {
+        int amount = Random.Range(1, 5);
+        status.Weaken.Apply(amount);
+        Debug.Log($"Weaken 디버프 적용: {amount}");
+    }
+
+    public void TestBroken()
+    {
+        int turns = Random.Range(1, 3);
+        status.Broken.Apply(turns);
+        Debug.Log($"Broken 디버프 적용: {turns}턴");
+    }
+
+    public void TestBleed()
+    {
+        int amount = Random.Range(5, 15);
+        status.Bleed.Increase(amount);
+        Debug.Log($"Bleed 디버프 추가: {amount}");
+    }
+
+    public void TestBurn()
+    {
+        int turns = Random.Range(2, 5);
+        status.Burn.Apply(turns);
+        Debug.Log($"Burn 디버프 적용: {turns}턴");
+    }
+
+    public void TestPoisoned()
+    {
+        int turns = Random.Range(2, 5);
+        status.Poisoned.Apply(turns);
+        Debug.Log($"Poisoned 디버프 적용");
+    }
+
+    public void TestStigma()
+    {
+        int count = Random.Range(5, 15);
+        status.Branded.Active(count);
+        Debug.Log($"Stigma 디버프 활성화: {count}");
+    }
+
+    public void TestFrozen()
+    {
+        int turns = Random.Range(1, 3);
+        status.Frozen.Apply(turns);
+        Debug.Log($"Frozen 디버프 적용: {turns}턴");
+    }
+
+    public void TestAnointed()
+    {
+        int turns = Random.Range(1, 3);
+        status.Anointed.Apply(turns);
+        Debug.Log($"Anointed 디버프 적용: {turns}턴");
+    }
+
+    public void TestDelirium()
+    {
+        int turns = Random.Range(1, 4);
+        status.Delirium.Apply(turns);
+        Debug.Log($"Delirium 디버프 적용: {turns}턴");
+    }
+
+    public void TestInfested()
+    {
+        int turns = Random.Range(2, 5);
+        status.Infested.Apply(turns);
+        Debug.Log($"Infested 디버프 적용: {turns}턴");
+    }
+
+    public void TestScarred()
+    {
+        int count = Random.Range(1, 4);
+        status.Scarred.Active(count);
+        Debug.Log($"Scarred 디버프 활성화: {count}");
+    }
+
+    // Attack 테스트
+    public void TestIncreaseAttack()
+    {
+        int amount = Random.Range(1, 5);
+        status.IncreaseAttack(amount);
+        Debug.Log($"Attack 증가: {amount}");
+    }
+
+    public void TestDecreaseAttack()
+    {
+        int amount = Random.Range(1, 3);
+        status.DecreaseAttack(amount);
+        Debug.Log($"Attack 감소: {amount}");
+    }
+    #endregion
+
 }

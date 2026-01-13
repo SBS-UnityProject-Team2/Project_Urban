@@ -1,8 +1,4 @@
-public class Armor : ModifierEffect
+public class Armor : StackStatusEffect
 {
-    public override void Modify(Status status, int count)
-    {
-        status.IncreaseArmor(count);
-        stack += count;
-    }
+    public override StatusEffectName Name => StatusEffectName.Armor;
 }

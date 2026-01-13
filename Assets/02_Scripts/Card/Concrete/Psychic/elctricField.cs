@@ -11,7 +11,7 @@ public class electricField : BuffCard
         Player player = target as Player;
 
         // 2. Player에 만들어둔 활성화 함수 호출
-        player.ActivateElectricField(damage);       // 전체 몇데미지 주는지 없음   
+        player.ElectricVeil(damage);       // 전체 몇데미지 주는지 없음   
 
         return cost;
     }

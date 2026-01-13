@@ -10,7 +10,7 @@ public class Pulse : Attack
     {
         int finalDamage = damage;       // 최종 데미지 계산
 
-        if (target.Status.IsFrozen)     // 적이 동결상태인지 확인
+        if (target.Status.Frozen.IsActive)     // 적이 동결상태인지 확인
         {
             finalDamage += bonusDamage;
         }

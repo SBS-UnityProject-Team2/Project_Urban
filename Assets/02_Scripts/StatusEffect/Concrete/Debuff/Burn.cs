@@ -1,26 +1,24 @@
-public class Burn 
-{
-    private readonly Target owner;
-    private int remainingTurn;
+public class Burn : TurnStatusEffect
+{    
     private int count;
-    public int CurrentCount => count;   // 외부에서 현재 화상수치 가져가는용도
+    public int Count => count;   // 외부에서 현재 화상수치 가져가는용도
 
-    public Burn(Target target)
+    public Burn(Target target) : base(target)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Burn;
+
+    public override void Apply(int turn)
     {
-        remainingTurn = turn;
+        UpdateRemainingTurn(turn);
         count = turn;
     }
 
-    public void Revert()
+    public override void Revert()
     {
-        remainingTurn = 0;
+        UpdateRemainingTurn(0);
         count = 0;
     }
 
@@ -28,9 +26,9 @@ public class Burn
     {
         if (remainingTurn == 0) return;
 
-        owner.DebuffDamage(count);
+        owner.DebuffDamage(owner, count);
         
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
         count--;
 
         if (remainingTurn == 0) Revert();

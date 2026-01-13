@@ -1,14 +1,16 @@
-public class Slow
+public class Slow : PlayerStatusEffect
 {
-    private readonly Player player;
+
     private int remainingTurn;
 
-    public Slow(Player player)
+    public Slow(Player player) : base(player)
     {
-        this.player = player;
-
+        
         player.OnTurnEnd.AddListener(HandleTurnEnd);
     }
+
+    public override int StatusNumber => remainingTurn;
+    public override StatusEffectName Name => StatusEffectName.Slow;
 
     public void Apply(int turn)
     {

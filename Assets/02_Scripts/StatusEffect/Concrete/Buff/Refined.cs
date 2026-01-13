@@ -1,30 +1,33 @@
-public class Refined
+public class Refined : TurnStatusEffect
 {
-    private readonly Target owner;
-    private int remainingTurn;
-
-    public Refined(Target target)
+    public Refined(Target target) : base(target)
     {
-        owner = target;
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Refined;
+
+    public override void Apply(int turn)
     {
         owner.Element = Element.Ruin;
-        remainingTurn = turn;
+        UpdateRemainingTurn(turn);
+        SetActive(true);
     }
 
-    public void Revert()
+    public override void Revert()
     {
         if (owner.Element == Element.Ruin)
             owner.Element = Element.None;
+
+        SetActive(false);
     }
-
-    public void DecreaseTurn()
+    
+    private void HandleTurnEnd()
     {
-        remainingTurn--;
+        if (remainingTurn == 0) return;
 
-        if (remainingTurn < 0)
-            remainingTurn = 0;
+        UpdateRemainingTurn(remainingTurn - 1);
+
+        if (remainingTurn == 0) Revert();
     }
 }

@@ -1,25 +1,24 @@
-public class Spike
+public class Spike : ActiveStatusEffect
 {
     private int count;
-    private bool isActive;
+    public override int StatusNumber => count;
 
-    public bool IsActive => isActive;
-
-    public Spike(Target owner)
+    public Spike(Target target) : base(target)
     {
         owner.OnDamaged.AddListener((attacker, target, isProtected) =>
         {
-            if (isActive)
-            {
-                attacker.Damage(owner, count);
-                isActive = false;
-            }
+            if (!IsActive) return;
+
+            attacker.Damage(owner, count);
+            SetActive(false);
         });
     }
 
-    public void Active(int count)
+    public override StatusEffectName Name => StatusEffectName.Spike;
+
+    public override void Active(int count)
     {
         this.count = count;
-        isActive = true;
+        SetActive(true);
     }
 }

@@ -1,33 +1,33 @@
-public class KineticVeil
+public class KineticVeil : TurnStatusEffect
 {
-    private readonly Target owner;
-    private int remainingTurn;
-
-    public KineticVeil(Target target)
+    public KineticVeil(Target target) : base(target)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.KineticVeil;
+
+    public override void Apply(int turn)
     {
         owner.Element = Element.Psychic ;
-        remainingTurn = turn;
+        UpdateRemainingTurn(turn);
+        SetActive(true);
     }
 
-    public void Revert()
+    public override void Revert()
     {
         if (owner.Element == Element.Psychic)
             owner.Element = Element.None;
+        
+        SetActive(false);
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }
-}
+}   
