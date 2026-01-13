@@ -4,7 +4,9 @@ class Strike : Attack
 
     public override int Use(Target target)
     {
-        // target.Damage(damage);
+        Player player = BattleManager.Instance.Player;
+
+        target.Damage(player, damage);
 
         return cost;
     }

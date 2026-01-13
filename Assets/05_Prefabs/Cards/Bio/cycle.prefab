@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4048776908165795839}
   - component: {fileID: 589138425674569443}
   - component: {fileID: 2163708595606163099}
-  - component: {fileID: -3904314117680473672}
+  - component: {fileID: 8348590318188832053}
   m_Layer: 6
   m_Name: cycle
   m_TagString: Card
@@ -378,7 +378,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.27, y: 13.7}
   m_EdgeRadius: 0
---- !u!114 &-3904314117680473672
+--- !u!114 &8348590318188832053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,16 +387,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7138447040532560346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282d6e65457132044abe569853b9331e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c46a441967150b46a3d105aeddccde2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Plague
+  m_EditorClassIdentifier: Assembly-CSharp::cycle
   element: 300
-  cost: 1
-  isExtinct: 0
+  cost: 2
+  isExtinct: 1
   isSpecial: 0
   cardTitle: {fileID: 2654786389302699832}
   cardDesc: {fileID: 2597096315428668656}
-  damage: 6
+  turns: 1
 --- !u!1 &7758189160335067560
 GameObject:
   m_ObjectHideFlags: 0

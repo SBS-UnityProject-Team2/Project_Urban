@@ -321,10 +321,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElasticBarrier
   element: 300
-  cost: 1
+  cost: 2
+  isExtinct: 0
+  isSpecial: 0
   cardTitle: {fileID: 1432387714952698852}
   cardDesc: {fileID: 1516220181775578043}
-  armor: 3
+  armor: 6
+  turn: 1
 --- !u!212 &6397968027821810065
 SpriteRenderer:
   m_ObjectHideFlags: 0
