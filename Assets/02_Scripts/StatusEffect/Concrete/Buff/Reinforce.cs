@@ -1,8 +1,4 @@
-public class Reinforce : ModifierEffect
+public class Reinforce : StackStatusEffect
 {
-    public override void Modify(Status status, int count)
-    {
-        status.IncreaseAttack(count);
-        stack += count;
-    }
+    public override StatusEffectName Name => StatusEffectName.Reinforce;
 }

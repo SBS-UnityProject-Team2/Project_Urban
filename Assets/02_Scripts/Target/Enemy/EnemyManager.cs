@@ -97,7 +97,7 @@ public class EnemyManager : SceneSingleton<EnemyManager>
         {   
             Enemy enemy = enemies[i];
 
-            if (enemy.Status.IsFrozen)
+            if (enemy.Status.Frozen.IsActive)
                 continue;
 
             // Enemy Attack Animation 

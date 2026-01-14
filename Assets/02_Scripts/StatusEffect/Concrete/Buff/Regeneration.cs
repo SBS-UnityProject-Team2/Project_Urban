@@ -1,25 +1,24 @@
-public class Regeneration 
-{
-    private readonly Target owner;
-    private int remainingTurn;
+public class Regeneration : TurnStatusEffect
+{    
     private int count;
 
-    public Regeneration(Target target)
+    public Regeneration(Target target) : base(target)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Regeneration;
+
+    public override void Apply(int turn)
     {
-        remainingTurn = turn;
+        UpdateRemainingTurn(turn);
         count = turn;
+        SetActive(true);
     }
 
-    public void Revert()
+    public override void Revert()
     {
-        
+        SetActive(false);
     }
 
     private void HandleTurnEnd()
@@ -28,7 +27,7 @@ public class Regeneration
 
         owner.Heal(count);
         
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
         count--;
 
         if (remainingTurn == 0) Revert();

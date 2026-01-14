@@ -1,40 +1,38 @@
-public class Infested
+public class Infested :  TurnStatusEffect
 {
     static private readonly float damageModifier = 0.5f;
-    private readonly Target owner;
-    private int remainingTurn;
 
-    public Infested(Target target)
+    public Infested(Target target) : base(target)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Apply(int turn)
+    public override StatusEffectName Name => StatusEffectName.Infested;
+
+    public override void Apply(int turn)
     {
-        owner.Status.IsInfested = true;
-        remainingTurn = turn;
+        SetActive(true);
+        UpdateRemainingTurn(turn);
     }
 
-    public void Revert()
+    public override void Revert()
     {
-        owner.Status.IsInfested = false;
+        SetActive(false);
     }
 
     public int Modify(int hitPoint, Element hitType)
     {
-        if (hitType != Element.Bio) return hitPoint;
-        if (!owner.Status.IsInfested) return hitPoint;
+        if (hitType != Element.Bio) return 0;
+        if (!IsActive) return 0;
 
-        return (int)(hitPoint + hitPoint * damageModifier);
+        return (int)(hitPoint * damageModifier);
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }

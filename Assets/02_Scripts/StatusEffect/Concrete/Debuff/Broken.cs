@@ -1,39 +1,37 @@
-public class Broken 
+public class Broken : TurnStatusEffect
 {
-    private readonly float damageModifier = 0.3f;
-    private readonly Target owner;
-    private int remainingTurn;
+    private readonly float damageModifier = 0.3f;    
+
+    public Broken(Target target) : base(target)
+    {
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
+    }
     
-    public float DamageModifier => damageModifier;
+    public override StatusEffectName Name => StatusEffectName.Broken;
 
-    public Broken(Target target)
+    public override void Apply(int turn)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        SetActive(true);
+        UpdateRemainingTurn(turn);
     }
 
-    public void Apply(int turn)
+    public override void Revert()
     {
-        owner.Status.IsBroken = true;
-        remainingTurn = turn;
-    }
-
-    public void Revert()
-    {
-        owner.Status.IsBroken = false;
+        SetActive(false);
     }
 
     public int Modify(int damage)
-    {
-        return damage + (int)(damage * damageModifier);
+    {   
+        if (!IsActive) return 0;
+
+        return (int)(-damage * damageModifier);
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }

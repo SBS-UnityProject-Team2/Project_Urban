@@ -1,32 +1,39 @@
-public class Poisoned
+public class Poisoned : TurnStatusEffect
 {
     static readonly private float hpRatio = 0.2f;
-    private readonly Target owner;
-    private bool isActive;
 
-    public Poisoned(Target target)
+    public Poisoned(Target target) : base(target)
     {
-        owner = target;
         owner.OnTurnEnd.AddListener(HandleTurnEnd);
-    } 
-
-    public void Apply()
-    {
-        isActive = true;
     }
 
-    public void Revert()
+    public override StatusEffectName Name => StatusEffectName.Poisoned;
+
+    public override void Apply(int turn)
     {
-        isActive = false;
+        remainingTurn = turn;
+        SetActive(IsActive);
+    }
+
+
+    public override void Revert()
+    {
+        SetActive(true);
+    }
+
+    private void Damage()
+    {
+        int damage = (int)(owner.Health.CurrentHp * hpRatio);
+        owner.DebuffDamage(damage);
     }
 
     private void HandleTurnEnd()
     {
-        if (isActive)
-        {
-            int damage = (int)(owner.Health.CurrentHp * hpRatio);
-            owner.DebuffDamage(damage);
-            isActive = false;
-        }
+        if (remainingTurn == 0) return;
+        
+        Damage();
+        UpdateRemainingTurn(remainingTurn - 1);
+
+        if (remainingTurn == 0) Revert();
     }
 }

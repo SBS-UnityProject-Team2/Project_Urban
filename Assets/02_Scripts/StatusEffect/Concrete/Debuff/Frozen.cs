@@ -1,33 +1,28 @@
-using System.Runtime.CompilerServices;
-
-public class Frozen 
+public class Frozen : TurnStatusEffect
 {
-    private readonly Target owner;
-    private int remainingTurn;
+
+    public Frozen(Target target) : base(target)
+    {
+        owner.OnTurnEnd.AddListener(HandleTurnEnd);
+    }
+    public override StatusEffectName Name => StatusEffectName.Frozen;
     
-    public Frozen(Target target)
+    public override void Apply(int turn)
     {
-        owner = target;
-
-        target.OnTurnEnd.AddListener(HandleTurnEnd);
+        SetActive(true);
+        UpdateRemainingTurn(turn);
     }
 
-    public void Apply(int turn)
+    public override void Revert()
     {
-        owner.Status.IsFrozen = true;
-        remainingTurn = turn;
-    }
-
-    public void Revert()
-    {
-        owner.Status.IsFrozen = false;
+        SetActive(false);
     }
 
     private void HandleTurnEnd()
     {
         if (remainingTurn == 0) return;
 
-        remainingTurn--;
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }

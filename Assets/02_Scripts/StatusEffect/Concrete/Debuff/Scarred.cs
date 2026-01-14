@@ -1,30 +1,25 @@
-public class Scarred
+public class Scarred : ActiveStatusEffect
 {
-    private readonly Target owner;
     private int count;
-    private bool isActive;
+    public override int StatusNumber => count;
 
-    public Scarred(Target target)
+    public Scarred(Target target) : base(target)
     {
-        owner = target;
-
         owner.OnDamaged.AddListener(HandleDamage);
     }
 
-    public void Apply(int count)
-    {
-        isActive = true;
-        this.count = count;
-    }
+    public override StatusEffectName Name => StatusEffectName.Scarred;
 
-    public void Revert()
+    public override void Active(int count)
     {
-        isActive = false;
+        SetActive(true);
+        this.count = count;
     }
 
     private void HandleDamage(Target _, Target target, bool __)
     {
-        if (isActive)
-            target.DebuffDamage(count);
+        if (!IsActive) return;
+
+        target.DebuffDamage(count);
     }
 }
