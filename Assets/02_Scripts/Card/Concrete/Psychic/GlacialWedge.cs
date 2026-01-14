@@ -7,7 +7,9 @@ public class GlacialWedge : Attack
     public override CardName Name => CardName.GlacialWedge;
 
     public override int Use(Player player, Target target)
-    {   
+    {
+        // 1. 적에게 데미지 입히기
+        target.Damage(player, damage, Element.Psychic);
         target.Frozen(turn);        
 
         return curCost;

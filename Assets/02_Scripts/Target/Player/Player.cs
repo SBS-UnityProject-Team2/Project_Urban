@@ -21,7 +21,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private bool isDiscardMode = false;              // 카드 버리기 로직용
 
     public CostController Cost { get; private set; }
-    public UnityEvent OnUseCard = new();
+    public UnityEvent OnUseCard { get; } = new();
         
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
     

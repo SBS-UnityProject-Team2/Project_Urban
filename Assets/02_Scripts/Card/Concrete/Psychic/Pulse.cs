@@ -13,7 +13,7 @@ public class Pulse : Attack
         if (target.Status.Frozen.IsActive)     // 적이 동결상태인지 확인
         {
             finalDamage += bonusDamage;
-        }
+        }      
 
         target.Damage(player, finalDamage);
 

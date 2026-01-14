@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class AccelConcoction : BuffCard
+public class accelConcoction : BuffCard
 {
-    [SerializeField] private int duration; // 지속 턴 수 << 기존 버프카드들이 상속받는 Turns 랑 겹치는지 확인해봐야함
+    [SerializeField] private int duration;
 
-    public override CardName Name => CardName.accelConcoction;
+    public override CardName Name => CardName.AccelConcoction;
 
-    public override int Use(Player player, Target _)
-    {
+    public override int Use(Player player, Target target)
+    {        
         // Player에 만들어둔 함수 호출 (3턴 적용)
         player.Acceleration(duration);        
 

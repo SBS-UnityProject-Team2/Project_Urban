@@ -6,6 +6,7 @@ public class Deck
     private readonly List<CardName> originCardList = new();     // 원본 덱 
     private readonly List<CardName> unusedCardList = new();     // 뽑을 덱 
     private readonly List<CardName> usedCardList = new();       // 사용한 카드리스트
+    private readonly List<CardName> extinctCardList = new();    // 사용한 소멸카드 리스트
     private readonly List<CardName> tempCardList = new(12);         // 카드 임시 버퍼
 
     private Hand hand;
@@ -13,6 +14,7 @@ public class Deck
     public IEnumerable<CardName> CardList => originCardList;
     public int UnusedCardCount => unusedCardList.Count;
     public int UsedCardCount => usedCardList.Count;
+    public int ExtinctCardCount => extinctCardList.Count;
 
     public Deck(IEnumerable<CardName> cardRecipes)
     {
@@ -75,7 +77,17 @@ public class Deck
     // 사용한 카드 UsedCardList 로 보내기
     public void Discard(Card usedCard)
     {
-        usedCardList.Add(usedCard.Name);
+        // 1. 소멸(Extinct)체크 확인
+        if (usedCard.IsExtinct)
+        {
+            // 소멸 리스트에 추가
+            extinctCardList.Add(usedCard.Name);
+        }
+        else
+        {
+            // 일반 버린 카드 리스트에 추가
+            usedCardList.Add(usedCard.Name);
+        }
         hand.RemoveCard(usedCard);
     }
 
@@ -135,5 +147,28 @@ public class Deck
         return hand.AddCard(targetCardName);
     }
 
-    
+    public CardName? GetLastUsedCard()
+    {
+        if (usedCardList.Count > 0)
+        {
+            // 리스트의 맨 마지막 요소(가장 최근에 버려진 카드 이름) 반환
+            return usedCardList[usedCardList.Count - 1];
+        }
+        
+        return null; // 버린 카드가 없으면 null 반환
+    }
+
+    // 덱(unusedCardList)에 특정카드 추가 함수
+    public void AddCardToDrawPile(CardName cardName)
+    {
+        int randomIndex = Random.Range(0, unusedCardList.Count + 1);        //랜덤으로 리스트 아무데나 찔러넣음
+        unusedCardList.Insert(randomIndex, cardName);
+    }
+
+    // 소멸카드(IsExtincted) 로직
+    public void Extinct(Card card)
+    {
+        extinctCardList.Add(card.Name);
+        hand.RemoveCard(card);        
+    }
 }

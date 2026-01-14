@@ -9,7 +9,7 @@ public enum CardName
     Guard,              // 방어
     Rollout,            // 구르기
     Maintenance,        // 정비
-    dummy,              // 더미
+    Dummy,              // 더미
 
     // [Ruin] 100 ~ 199: 파멸(화염) 속성
     Ignition = 100,     // 점화
@@ -33,9 +33,9 @@ public enum CardName
     ElectricArrow,      // 전기 화살
     GlacialWedge,       // 빙하 쐐기
     IceShield,          // 얼음 방패
-    electricField,      // 전자기장
-    accelConcoction,    // 가속 화합물
-    Superconducter,     // 초전도체 (JSON 철자: Superconducter)
+    ElectricField,      // 전자기장
+    AccelConcoction,    // 가속 화합물
+    SuperConducter,     // 초전도체 (JSON 철자: Superconducter)
     Anxiolytic,         // 신경 안정제
     CryoPowder,         // 초저온 분말
     Disturb,            // 방해
@@ -51,6 +51,6 @@ public enum CardName
     Blooming,           // 개화
     SurgingLife,        // 맥동하는 생명
     CellChange,         // 체조직 교환
-    cycle,              // 순환
+    Cycle,              // 순환
     EnfeebleSludge,     // 약화 점액
 }

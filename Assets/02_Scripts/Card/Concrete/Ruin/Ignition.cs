@@ -1,16 +1,17 @@
 using System.Threading;
 using UnityEngine;
 
-public class Ignition : Debuff
+public class Ignition : Attack
 {
-    [SerializeField] private int burn; 
+    [SerializeField] private int burncount; 
 
     public override CardName Name => CardName.Ignition;
 
     public override int Use(Player player, Target target)
-    {
-        // 1. 도트 데미지 
-        target.Burn(burn);
+    {   
+        target.Damage(player, damage);
+        
+        target.Burn(burncount);
         
         return curCost;
     }

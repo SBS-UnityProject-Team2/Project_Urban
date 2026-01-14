@@ -2,20 +2,30 @@ using UnityEngine;
 
 public class ElectricArrow : Attack
 {
-    private int amount = 1;
+    private int drawCount = 1;       // 기본 드로우 수
+
     public override CardName Name => CardName.ElectricArrow;
 
     public override int Use(Player player, Target target)
     {
-        // 2. 적에게 데미지 주기
-        target.Damage(player, damage);
+        // 1. 적에게 데미지 주기
+        target.Damage(player, damage, Element.None);
 
-        // 3. 적이 동결 상태인지 확인 후 드로우
-        if (target.Status.Frozen.IsActive)
+        // 2. 드로우 로직 수행
+        Player user = player as Player;
+        if (user != null)
         {
-            player.DrawCard(amount);
-        }
+            int finalDrawCount = drawCount;
 
+            // 적이 빙결(Frozen) 상태인지 확인
+            if (target.Status.Frozen.IsActive)
+            {
+                finalDrawCount++; // 1 추가
+            }
+
+            // 계산된 수만큼 드로우
+            user.DrawCard(finalDrawCount);
+        }
 
         return curCost;
     }

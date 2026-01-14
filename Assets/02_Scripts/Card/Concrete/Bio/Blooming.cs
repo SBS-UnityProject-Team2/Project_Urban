@@ -1,21 +1,26 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Blooming : BuffCard
 {
-    [SerializeField] private int costGain = 2; // 회복 코스트
+    [SerializeField] private int costGain = 2; // 회복할 코스트 양
 
     public override CardName Name => CardName.Blooming;
 
     public override int Use(Player player, Target target)
     {
-        // 1. UI 패널에게 카드 선택 요청
-        DiscardPanelUI.Instance.StartSelectionProcess((selectedCard) =>
-        {
-            // 카드 버리기 (Deck 기능 호출)
-            player.Deck.Discard(selectedCard);
+        // 1. 버리기로직 실행요청
+        DiscardPanelUI.Instance.StartDiscardProcess(1, (discardedCards) =>
+        {             
+            // 2. 버리기로직 실행완료후 콜백
+            if (discardedCards.Count > 0)
+            {
+                // 버리기 실행확인
+                Player user = player as Player;
 
-            // 코스트 회복
-            player.Cost.Increase(costGain);
+                user.Cost.Increase(costGain);
+            }
+
         });
         return curCost;
     }

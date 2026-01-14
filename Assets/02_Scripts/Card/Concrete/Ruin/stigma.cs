@@ -1,12 +1,13 @@
 using UnityEngine;
-public class Stigma : Debuff
+public class stigma : Debuff
 {
 
-    [SerializeField] private int turn;
+    [SerializeField] private int count;
     public override CardName Name => CardName.Stigma;
     public override int Use(Player player, Target target)
     {
-        target.Branded(turn);
+        target.Branded(count);
+
         return curCost;
     }
 }

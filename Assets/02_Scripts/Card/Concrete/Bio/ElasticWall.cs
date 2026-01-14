@@ -1,15 +1,15 @@
 using UnityEngine;
 
 public class ElasticWall : Defense
-{   
-    [SerializeField] private int turn;
+{ 
+    [SerializeField] private int turn;      // 버프 적용 턴수
     public override CardName Name => CardName.ElasticWall;
 
     public override int Use(Player player, Target target)
     {
         target.Protect(armor);
         target.BioActiveShell(turn);
-        // 탄성막 버프 구현 필요
+        target.ElasticVeil(turn);
 
         return curCost;
     }

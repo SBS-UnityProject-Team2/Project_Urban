@@ -6,11 +6,15 @@ public class Anxiolytic : BuffCard
 
     public override int Use(Player player, Target target)
     {
-        // 2. 덱(Deck)에서 버린 카드 중 하나를 랜덤으로 뽑아옴
-        Card drawnCard = player.Deck.DrawRandomFromDiscard();        
+        // 1. 플레이어 형변환
+        Player user = player as Player;
 
-        // 3. 해당 카드의 코스트를 0으로 변경
+        // 2. UsedCardList에서 랜덤으로 1장 뽑아오기
+        Card drawnCard = user.Deck.DrawRandomFromDiscard();        
+
+        
         drawnCard.SetCost(0);
+      
 
         return curCost;
     }

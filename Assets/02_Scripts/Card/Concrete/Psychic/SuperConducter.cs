@@ -1,16 +1,15 @@
 using UnityEngine;
 
 public class SuperConducter : BuffCard
-{   
-    [SerializeField] private int Kineticturn;
-    public override CardName Name => CardName.Superconducter;
+{     
+    public override CardName Name => CardName.SuperConducter;
 
     public override int Use(Player player, Target target)
-    {   
+    {
 
-        target.KineticVeil(Kineticturn);
-        target.Frozen(turns);
         target.Nullification(turns);
+        player.Frozen(turns);
+        player.KineticVeil(turns);
         
         return curCost;
     }

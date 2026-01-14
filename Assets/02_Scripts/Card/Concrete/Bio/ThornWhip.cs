@@ -6,10 +6,9 @@ public class ThornWhip : Attack
     public override CardName Name => CardName.ThornWhip;
 
     public override int Use(Player player, Target target)
-    {   
-        // 2. 적에게 데미지 입히기
+    { 
+        // 적에게 데미지 입히기
         target.Damage(player, damage);
-
         target.Broken(turn);
         return curCost;
     }
