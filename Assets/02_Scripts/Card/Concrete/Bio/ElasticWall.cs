@@ -9,7 +9,7 @@ public class ElasticWall : Defense
     {
         target.Protect(armor);
         target.BioActiveShell(turn);
-        // 탄성막이 어떤건지모르겠음;;;
+        // 탄성막 버프 구현 필요
 
         return cost;
     }

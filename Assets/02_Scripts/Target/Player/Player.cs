@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : Target, ICardEventHandler, IEnemyEventHandler
@@ -16,6 +17,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private PlayerInput playerInput;
     private Deck deck;
     private Card selectedCard;
+    private ElectricField electricFieldBuff;         // 전자기장버프 로직용
+    private Cinder cinderBuff;                       // 잔불 버프 로직용
+    private AccelConcoction accelConcoctionBuff;     // 가속화합물 버프용
+    private bool isDiscardMode = false;              // 카드 버리기 로직용
+
     public CostController Cost { get; private set; }
 
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
@@ -134,6 +140,14 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     {
         if (BattleManager.Instance.IsBattleEnded) return;
         if (!BattleManager.Instance.IsPlayerTurn) return;
+
+        // 카드 버리기 로직 작동중에는 카드를 사용하지않고 버리기패널UI로 넘김
+        if (isDiscardMode)
+        {
+            // 버리기패널에 카드 골랐다고 전달
+            DiscardPanelUI.Instance.SelectCard(card);
+            return;
+        }
 
         // 같은 카드 재클릭 - 자신에게 사용
         if (selectedCard == card)
@@ -364,6 +378,25 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         int turns = Random.Range(1, 3);
         status.Anointed.Apply(turns);
         Debug.Log($"Anointed 디버프 적용: {turns}턴");
+    }
+    public void DiscardSelectedCard()
+    {
+        string cardName = selectedCard.Name.ToString();
+
+        // 2. 선택된 카드를 덱의 Discard 함수로 전달
+        Deck.Discard(selectedCard);
+
+        // 3. 선택 변수 초기화
+        selectedCard = null;
+    }
+
+
+    // 카드 버리기로직용 함수
+    public void SetDiscardMode(bool isActive)
+    {
+        isDiscardMode = isActive;
+        
+        DeselectCard();
     }
 
     public void TestDelirium()

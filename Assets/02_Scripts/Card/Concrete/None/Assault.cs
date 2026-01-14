@@ -8,6 +8,9 @@ public class Assault : Attack
 
     public override int Use(Target target)
     {   
+        Player player = BattleManager.Instance.Player;
+
+        target.Damage(player, damage); 
         // 디버프 동결 2턴부여
         target.Frozen(turn);
 

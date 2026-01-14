@@ -9,12 +9,11 @@ public class CryoPowder : Debuff
 
     public override int Use(Target target)
     {
-        // 1. EnemyManager에서 현재 살아있는 모든 적 리스트 받아옴
+        // EnemyManager에서 현재 살아있는 모든 적 리스트 받아옴
         List<Enemy> enemies = EnemyManager.Instance.EnemyList;
 
         if (enemies != null)
         {
-            // 2. 반복문을 돌며 모든 적에게 Frozen 함수 실행
             foreach (Enemy enemy in enemies)
             {
                 // 적이 죽어있거나 비활성화 상태가 아닐 때만 적용
