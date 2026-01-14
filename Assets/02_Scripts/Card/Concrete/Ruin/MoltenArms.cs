@@ -7,7 +7,7 @@ public class MoltenArms : Attack
 
     public override CardName Name => CardName.MoltenArms;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {    
         // 2. 나에게 화상 디버프 걸기
         target.Burn(selfburn);

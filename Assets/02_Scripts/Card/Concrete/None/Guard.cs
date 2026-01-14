@@ -3,9 +3,9 @@ public class Guard : Defense
     private readonly int value = 5;
     public override CardName Name => CardName.Guard;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target _)
     {
-        target.Protect(value);
+        player.Protect(value);
 
         return cost;
     }

@@ -7,7 +7,7 @@
     
     public override CardName Name => CardName.Overheat;
 
-        public override int Use(Target target)
+        public override int Use(Player player, Target target)
         {
             // 1. 코스트 회복      
             Player player = target as Player;       

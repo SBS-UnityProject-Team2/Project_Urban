@@ -5,7 +5,7 @@
     [SerializeField] private int count;
     public override CardName Name => CardName.HeatUp;
 
-        public override int Use(Target target)
+        public override int Use(Player player, Target target)
         {
             target.Reinforce(count);
 

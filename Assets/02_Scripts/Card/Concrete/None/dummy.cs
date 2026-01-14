@@ -1,13 +1,11 @@
-using UnityEngine;
-
-public class dummy : BuffCard
+public class Dummy : BuffCard
 {
 
     public override CardName Name => CardName.dummy;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target _)
     {
-        target.Dummy(turns);
+        player.Blur(turns);
         
         return cost;
     }

@@ -2,9 +2,9 @@ class Shooting : Attack
 {
     public override CardName Name => CardName.Shooting;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
-        // target.Damage(damage);
+        target.Damage(player, damage);
 
         return cost;
     }

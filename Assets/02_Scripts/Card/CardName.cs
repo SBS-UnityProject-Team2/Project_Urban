@@ -22,7 +22,7 @@ public enum CardName
     Incendiary,         // 소이탄
     HeatUp,             // 열기
     Overheat,           // 과열
-    cinder,             // 잔불
+    Cinder,             // 잔불
     Stigma,             // 낙인
     OilSplash,          // 기름 뿌리기
 

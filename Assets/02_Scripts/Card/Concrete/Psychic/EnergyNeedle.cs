@@ -6,10 +6,8 @@ public class EnergyNeedle : Attack
 
     public override CardName Name => CardName.EnergyNeedle;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
-        Player player = BattleManager.Instance.Player;      // 배틀매니저 통해 플레이어 연결
-
         // 추가 회복 조건 확인 
         int finalGain = costGain;
 

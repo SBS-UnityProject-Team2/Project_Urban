@@ -5,11 +5,8 @@ public class ElectricArrow : Attack
     private int amount = 1;
     public override CardName Name => CardName.ElectricArrow;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
-        // 플레이어 받아옴
-        Player player = BattleManager.Instance.Player;
-
         // 2. 적에게 데미지 주기
         target.Damage(player, damage);
 

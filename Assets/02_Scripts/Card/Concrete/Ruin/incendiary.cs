@@ -1,15 +1,15 @@
     using UnityEngine;
 
-    public class incendiary : BuffCard
+    public class Incendiary : BuffCard
     {
 
     [SerializeField] private int addedDamage;
     
     public override CardName Name => CardName.Incendiary;
 
-        public override int Use(Target target)
+        public override int Use(Player player, Target target)
         {
-            target.Incendiary(addedDamage);
+            target.LoadedIncendiary(addedDamage);
 
             return cost;
         }

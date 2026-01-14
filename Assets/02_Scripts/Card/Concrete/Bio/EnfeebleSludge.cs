@@ -6,7 +6,7 @@ public class EnfeebleSludge : Debuff
     [SerializeField] private int turn = 1;
     public override CardName Name => CardName.EnfeebleSludge;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // 1. EnemyManager에서 현재 살아있는 모든 적 리스트 받아옴
         List<Enemy> enemies = EnemyManager.Instance.EnemyList;

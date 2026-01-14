@@ -4,7 +4,7 @@ public class Anxiolytic : BuffCard
 {
     public override CardName Name => CardName.Anxiolytic;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // 1. 플레이어 정보 가져오기
         Player player = target as Player;

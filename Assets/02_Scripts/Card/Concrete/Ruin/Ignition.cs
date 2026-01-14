@@ -7,7 +7,7 @@ public class Ignition : Debuff
 
     public override CardName Name => CardName.Ignition;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // 1. 도트 데미지 
         target.Burn(burn);

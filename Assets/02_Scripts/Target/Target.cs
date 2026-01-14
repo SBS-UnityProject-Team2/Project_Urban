@@ -235,7 +235,6 @@ abstract public class Target : MonoBehaviour
         status.ElasticVeil.Active(count);
     }
 
-
     public void Weaken(int turn)
     {
         status.Weaken.Apply(turn);

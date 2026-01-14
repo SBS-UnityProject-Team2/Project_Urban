@@ -99,7 +99,6 @@ public class Status
         return GetEffect(name) as T;
     }
 
-
     public IEnumerable<StatusEffect> GetActiveEffects()
     {
         return effectMap.Values.Where(effect => effect.IsActive);

@@ -7,7 +7,7 @@ public class Disturb : Debuff
 
     public override CardName Name => CardName.Disturb;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // 1. EnemyManager에서 현재 살아있는 모든 적 리스트 받아옴
         List<Enemy> enemies = EnemyManager.Instance.EnemyList;

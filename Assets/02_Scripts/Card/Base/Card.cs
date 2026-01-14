@@ -144,5 +144,5 @@ abstract public class Card : MonoBehaviour
 
     abstract public CardName Name { get; }
     abstract public CardType Type { get; }
-    abstract public int Use(Target target);
+    abstract public int Use(Player user, Target target);
 }

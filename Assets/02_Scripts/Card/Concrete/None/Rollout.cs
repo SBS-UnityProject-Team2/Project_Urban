@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Rollout : Defense
@@ -7,12 +6,9 @@ public class Rollout : Defense
 
     public override CardName Name => CardName.Rollout;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         target.Protect(armor);
-
-        Player player = target as Player;
-
         player.AddNextTurnDrawCount(drawBonus);
 
         return cost;

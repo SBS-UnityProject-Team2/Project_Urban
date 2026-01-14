@@ -7,7 +7,7 @@ public class CryoPowder : Debuff
 
     public override CardName Name => CardName.CryoPowder;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // EnemyManager에서 현재 살아있는 모든 적 리스트 받아옴
         List<Enemy> enemies = EnemyManager.Instance.EnemyList;

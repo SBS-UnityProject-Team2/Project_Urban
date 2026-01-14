@@ -6,7 +6,7 @@ public class Pulse : Attack
 
     public override CardName Name => CardName.Pulse;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         int finalDamage = damage;       // 최종 데미지 계산
 
@@ -14,8 +14,6 @@ public class Pulse : Attack
         {
             finalDamage += bonusDamage;
         }
-
-        Player player = BattleManager.Instance.Player;
 
         target.Damage(player, finalDamage);
 

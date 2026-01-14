@@ -26,7 +26,7 @@ public class Burn : TurnStatusEffect
     {
         if (remainingTurn == 0) return;
 
-        owner.DebuffDamage(owner, count);
+        owner.DebuffDamage(count);
         
         UpdateRemainingTurn(remainingTurn - 1);
         count--;

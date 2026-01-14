@@ -4,10 +4,8 @@ public class AbsorbingStrike : Attack
 {
     public override CardName Name => CardName.AbsorbingStrike;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
-        Player player = BattleManager.Instance.Player;
-
         // 1. 공격 전, 적몬스터 체력 확인
         int hpBefore = target.Health.CurrentHp;
 

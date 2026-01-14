@@ -7,12 +7,9 @@ public class Maintenance : Card
     public override CardType Type => CardType.BuffCard;
 
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target _)
     {       
-        if (target is Player player)
-        {
-            player.DrawCard(drawCount);
-        }       
+        player.DrawCard(drawCount);
         
         return cost;
     }

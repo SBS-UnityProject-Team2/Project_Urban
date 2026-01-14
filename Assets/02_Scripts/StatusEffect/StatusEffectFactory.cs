@@ -39,6 +39,10 @@ public static class StatusEffectFactory
             StatusEffectName.Delirium => new Delirium(owner),
             StatusEffectName.Infested => new Infested(owner),
             StatusEffectName.Scarred => new Scarred(owner),
+
+            StatusEffectName.Dizzy =>  owner is Player player ? new Dizzy(player) : null,
+            StatusEffectName.Exhaust =>  owner is Player player ? new Exhaust(player) : null,
+            StatusEffectName.Slow =>  owner is Player player ? new Slow(player) : null,
             
             _ => throw new ArgumentException($"Unknown StatusEffectName: {name}")
         };

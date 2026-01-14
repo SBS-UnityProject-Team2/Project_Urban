@@ -48,10 +48,8 @@ public class KineticGrasp : Attack
         }
     }
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
-        Player player = BattleManager.Instance.Player;        
-        
         target.Damage(player, damage); 
 
         return cost;

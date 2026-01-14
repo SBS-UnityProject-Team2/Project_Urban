@@ -4,7 +4,7 @@ public class OilSplash : Debuff
 {
     public override CardName Name => CardName.OilSplash;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {
         // 1. 적의 현재 화상 수치
         int currentBurn = target.Status.Burn.Count;

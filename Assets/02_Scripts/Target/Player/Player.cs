@@ -17,9 +17,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private PlayerInput playerInput;
     private Deck deck;
     private Card selectedCard;
-    private ElectricField electricFieldBuff;         // 전자기장버프 로직용
-    private Cinder cinderBuff;                       // 잔불 버프 로직용
-    private AccelConcoction accelConcoctionBuff;     // 가속화합물 버프용
     private bool isDiscardMode = false;              // 카드 버리기 로직용
 
     public CostController Cost { get; private set; }
@@ -228,7 +225,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     private void UseCard(Card card, Target target)
     {
-        int cost = card.Use(target);
+        int cost = card.Use(this, target);
         Cost.Decrease(cost);
         Deck.Discard(card);
 

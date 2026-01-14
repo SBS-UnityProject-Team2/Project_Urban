@@ -6,7 +6,7 @@ public class GlacialWedge : Attack
 
     public override CardName Name => CardName.GlacialWedge;
 
-    public override int Use(Target target)
+    public override int Use(Player player, Target target)
     {   
         target.Frozen(turn);        
 
