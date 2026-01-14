@@ -9,6 +9,6 @@ public class Cinder : BuffCard
     {        
         // 2. Player에 만들어둔 함수 호출
         player.Searing(drawAmount);      // 근데 잃은체력 얼마당 몇드로우인지가없음 > ???
-        return cost;
+        return curCost;
     }
 }

@@ -8,6 +8,6 @@ public class SurgingLife : BuffCard
     public override int Use(Player player, Target target)
     {   
         target.Regeneration(count);
-        return cost;
+        return curCost;
     }
 }

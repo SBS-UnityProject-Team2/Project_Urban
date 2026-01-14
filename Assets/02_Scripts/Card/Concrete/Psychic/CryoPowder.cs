@@ -23,6 +23,6 @@ public class CryoPowder : Debuff
                 }
             }
         }
-        return cost;
+        return curCost;
     }
 }

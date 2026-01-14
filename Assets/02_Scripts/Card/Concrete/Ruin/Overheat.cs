@@ -8,15 +8,12 @@
     public override CardName Name => CardName.Overheat;
 
         public override int Use(Player player, Target target)
-        {
-            // 1. 코스트 회복      
-            Player player = target as Player;       
-            
+        {            
             player.Cost.Increase(costGain);       
 
             // 2. 화상 상태이상 부여        
             target.Burn(burnAmount);       
 
-            return cost;
+            return curCost;
         }
     }

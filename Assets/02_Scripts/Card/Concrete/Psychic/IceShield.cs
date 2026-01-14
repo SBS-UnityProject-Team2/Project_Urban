@@ -11,6 +11,6 @@ public class IceShield : Defense
         target.Protect(armor);
         target.KineticVeil(turn);
         
-        return cost;
+        return curCost;
     }
 }

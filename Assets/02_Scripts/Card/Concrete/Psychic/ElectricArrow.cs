@@ -17,6 +17,6 @@ public class ElectricArrow : Attack
         }
 
 
-        return cost;
+        return curCost;
     }
 }

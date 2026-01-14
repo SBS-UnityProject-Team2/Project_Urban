@@ -14,6 +14,6 @@ public class DoubleEdge : Attack
         // 3. 반동 데미지 입히기
         player.Damage(player, selfDamage);
 
-        return cost;
+        return curCost;
     }
 }

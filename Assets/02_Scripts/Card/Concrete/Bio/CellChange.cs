@@ -7,6 +7,6 @@ public class CellChange : Attack
     public override int Use(Player player, Target target)
     {   
         // 카드 선택해서 usedCardList 로 보냄
-        return cost;
+        return curCost;
     }
 }

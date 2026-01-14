@@ -1,10 +1,9 @@
-public class Bleed : StatusEffect
+public class Bleed : StackStatusEffect
 {
     private readonly Target owner;
-    private int bleedPoint;
 
     public override StatusEffectName Name => StatusEffectName.Bleed;
-    public override int StatusNumber => bleedPoint;
+    public override int StatusNumber => stack;
 
     public Bleed(Target target)
     {
@@ -13,32 +12,10 @@ public class Bleed : StatusEffect
         target.OnTurnEnd.AddListener(HandleTurnEnd);
     }
 
-    public void Increase(int amount)
-    {
-        bleedPoint += amount;
-        SetActive(true);
-    }
-
-    public int Decrease(int amount)
-    {
-        bleedPoint -= amount;
-
-        if (bleedPoint <= 0)
-        {
-            bleedPoint = 0;
-            SetActive(true);
-
-            return 0;
-        }
-
-        NotifyStatusChanged();
-        return bleedPoint;
-    }
-
     private void HandleTurnEnd()
     {
         if (!IsActive) return;
 
-        owner.DebuffDamage(bleedPoint);
+        owner.DebuffDamage(stack);
     }
 }

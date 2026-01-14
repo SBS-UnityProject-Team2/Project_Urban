@@ -9,6 +9,6 @@ public class BlazeBarrier : Defense
         target.Protect(armor);
         target.Refined(turn);
 
-        return cost;
+        return curCost;
     }
 }

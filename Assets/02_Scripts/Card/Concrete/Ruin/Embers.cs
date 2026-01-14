@@ -9,6 +9,6 @@ public class Embers : Attack
         // 1. 덱에 이 카드 복사해서 덱에 추가
              
         
-        return cost;
+        return curCost;
     }
 }

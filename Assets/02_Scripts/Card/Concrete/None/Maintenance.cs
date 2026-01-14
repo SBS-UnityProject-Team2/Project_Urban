@@ -11,6 +11,6 @@ public class Maintenance : Card
     {       
         player.DrawCard(drawCount);
         
-        return cost;
+        return curCost;
     }
 }

@@ -16,11 +16,11 @@ public class LoadedIncendiary : ActiveStatusEffect
         SetActive(true);
     }
 
-    private void HandleAttack(Target target)
+    private void HandleAttack(Target attacker, Target target)
     {
         if (!IsActive) return;
 
-        target.Damage(owner, count);
+        target.Damage(attacker, count, Element.Ruin);
         SetActive(false);
     }
 }

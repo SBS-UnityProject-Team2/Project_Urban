@@ -7,6 +7,6 @@ public class Guard : Defense
     {
         player.Protect(value);
 
-        return cost;
+        return curCost;
     }
 }

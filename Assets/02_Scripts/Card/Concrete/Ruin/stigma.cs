@@ -7,6 +7,6 @@ public class Stigma : Debuff
     public override int Use(Player player, Target target)
     {
         target.Branded(turn);
-        return cost;
+        return curCost;
     }
 }

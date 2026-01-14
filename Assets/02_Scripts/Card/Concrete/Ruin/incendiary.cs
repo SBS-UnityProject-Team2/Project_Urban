@@ -11,6 +11,6 @@
         {
             target.LoadedIncendiary(addedDamage);
 
-            return cost;
+            return curCost;
         }
     }

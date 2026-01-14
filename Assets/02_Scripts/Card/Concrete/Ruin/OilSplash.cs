@@ -16,6 +16,6 @@ public class OilSplash : Debuff
             target.Burn(currentBurn * 2);            
         }
 
-        return cost;
+        return curCost;
     }
 }

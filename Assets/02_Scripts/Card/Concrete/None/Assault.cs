@@ -12,6 +12,6 @@ public class Assault : Attack
         // 디버프 동결 2턴부여
         target.Frozen(turn);
 
-        return cost;
+        return curCost;
     }
 }

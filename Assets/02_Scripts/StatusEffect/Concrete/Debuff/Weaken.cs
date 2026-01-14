@@ -15,7 +15,7 @@ public class Weaken : TurnStatusEffect
     public override void Apply(int turn)
     {
         reduction = (int)(owner.Status.Attack * reductionRatio);
-        UpdateRemainingTurn(turn);
+        remainingTurn = turn;
         SetActive(true);
     }
 

@@ -12,14 +12,14 @@ public class Burn : TurnStatusEffect
 
     public override void Apply(int turn)
     {
-        UpdateRemainingTurn(turn);
+        remainingTurn = turn;
+        SetActive(true);
         count = turn;
     }
 
     public override void Revert()
     {
-        UpdateRemainingTurn(0);
-        count = 0;
+        SetActive(false);
     }
 
     private void HandleTurnEnd()
@@ -27,9 +27,7 @@ public class Burn : TurnStatusEffect
         if (remainingTurn == 0) return;
 
         owner.DebuffDamage(count);
-        
         UpdateRemainingTurn(remainingTurn - 1);
-        count--;
 
         if (remainingTurn == 0) Revert();
     }

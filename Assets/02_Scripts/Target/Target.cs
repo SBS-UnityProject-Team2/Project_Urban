@@ -1,3 +1,4 @@
+using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,7 +28,8 @@ abstract public class Target : MonoBehaviour
     // Event
     public UnityEvent OnTurnStart = new();
     public UnityEvent OnTurnEnd = new();
-    public UnityEvent<Target> OnAttack = new();
+    public UnityEvent<Target, Target> OnAttack = new();
+    public UnityEvent OnHeal = new();
     public UnityEvent<Target, Target, bool> OnDamaged { get; } = new();
     public UnityEvent<Target> OnDead { get; } = new();
 
@@ -38,10 +40,13 @@ abstract public class Target : MonoBehaviour
 
     public void Heal(int healPoint)
     {
+        int bleedStack = status.Bleed.Stack;
+        status.Bleed.DecreaseStack(healPoint);
+
+        healPoint -= bleedStack;
+
         if (healPoint > 0)
-        {
             Health.IncreaseHp(healPoint);
-        }
     }
 
     public void Protect(int protectPoint)
@@ -257,7 +262,7 @@ abstract public class Target : MonoBehaviour
 
     public void Bleed(int count)
     {
-        status.Bleed.Increase(count);
+        status.Bleed.IncreaseStack(count);
     }
 
     public void Burn(int turn)

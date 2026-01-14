@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : Target, ICardEventHandler, IEnemyEventHandler
@@ -20,8 +21,10 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private bool isDiscardMode = false;              // 카드 버리기 로직용
 
     public CostController Cost { get; private set; }
-
+    public UnityEvent OnUseCard = new();
+        
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
+    
     public Deck Deck
     {
         get
@@ -226,8 +229,12 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     private void UseCard(Card card, Target target)
     {
         int cost = card.Use(this, target);
+
         Cost.Decrease(cost);
         Deck.Discard(card);
+
+        if (card.Type == CardType.Attack)  
+            OnAttack?.Invoke(this, target);
 
         selectedCard = null;
     }
@@ -338,7 +345,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void TestBleed()
     {
         int amount = Random.Range(5, 15);
-        status.Bleed.Increase(amount);
+        status.Bleed.IncreaseStack(amount);
         Debug.Log($"Bleed 디버프 추가: {amount}");
     }
 

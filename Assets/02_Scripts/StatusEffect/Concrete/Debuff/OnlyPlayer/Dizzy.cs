@@ -24,7 +24,7 @@ public class Dizzy : PlayerTurnStatusEffect
     {
         if (remainingTurn == 0) return;
 
-        UpdateRemainingTurn(--remainingTurn);
+        UpdateRemainingTurn(remainingTurn - 1);
 
         if (remainingTurn == 0) Revert();
     }   

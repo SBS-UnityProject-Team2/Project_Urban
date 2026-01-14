@@ -11,6 +11,6 @@ public class Rollout : Defense
         target.Protect(armor);
         player.AddNextTurnDrawCount(drawBonus);
 
-        return cost;
+        return curCost;
     }
 }

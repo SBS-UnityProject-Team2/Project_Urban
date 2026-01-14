@@ -1,6 +1,5 @@
 public class Regeneration : TurnStatusEffect
 {    
-    private int count;
 
     public Regeneration(Target target) : base(target)
     {
@@ -11,8 +10,7 @@ public class Regeneration : TurnStatusEffect
 
     public override void Apply(int turn)
     {
-        UpdateRemainingTurn(turn);
-        count = turn;
+        remainingTurn = turn;
         SetActive(true);
     }
 
@@ -25,10 +23,8 @@ public class Regeneration : TurnStatusEffect
     {
         if (remainingTurn == 0) return;
 
-        owner.Heal(count);
-        
+        owner.Heal(remainingTurn);
         UpdateRemainingTurn(remainingTurn - 1);
-        count--;
 
         if (remainingTurn == 0) Revert();
     }

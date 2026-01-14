@@ -24,6 +24,6 @@ public class Disturb : Debuff
                 }
             }
         }
-        return cost;
+        return curCost;
     }
 }

@@ -124,14 +124,12 @@ public class EnemyManager : SceneSingleton<EnemyManager>
         StartCoroutine(ExecuteEnemyActionRoutine(completeRoutine));
     }
 
-    public void DamageAll(int hitPoint)     // 약간의 최적화 수정
+    public void DamageAll(int hitPoint, Element attackType = Element.None)     // 약간의 최적화 수정
     {        
         foreach(Enemy enemy in enemies.ToList())
         {
-            if (enemy != null && enemy.gameObject.activeSelf)
-            {                
-                enemy.Damage(BattleManager.Instance.Player, hitPoint); 
-            }
+            if (enemy != null && enemy.gameObject.activeSelf)    
+                enemy.Damage(BattleManager.Instance.Player, hitPoint, attackType); 
         }
     }
 }

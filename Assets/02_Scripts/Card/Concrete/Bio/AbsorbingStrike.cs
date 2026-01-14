@@ -23,6 +23,6 @@ public class AbsorbingStrike : Attack
         {
             player.Heal(actualDamageDealt);
         }
-        return cost;
+        return curCost;
     }
 }

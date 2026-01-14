@@ -23,6 +23,6 @@ public class EnfeebleSludge : Debuff
                 }
             }
         }
-        return cost;
+        return curCost;
     }
 }

@@ -21,6 +21,6 @@ public class ElectricVeil : PlayerStatusEffect
     {
         if (!IsActive) return; 
         
-        EnemyManager.Instance.DamageAll(count);
+        EnemyManager.Instance.DamageAll(count, Element.Psychic);
     }
 }

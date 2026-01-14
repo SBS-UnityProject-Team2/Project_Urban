@@ -16,7 +16,7 @@ abstract public class Card : MonoBehaviour
 {
     //카드 기본 정보
     [SerializeField] protected Element element;
-    [SerializeField] protected int cost;            // 코스트
+    [SerializeField] protected int initCost;            // 코스트
     [SerializeField] protected bool isExtinct; // 소멸 여부 
     [SerializeField] protected bool isSpecial; // 특수 카드 여부
     [SerializeField] TMP_Text cardTitle;
@@ -27,13 +27,14 @@ abstract public class Card : MonoBehaviour
     private Coroutine moveCoroutine;
     private Vector3 localScale;
     private ICardEventHandler handler;
+    protected int curCost;
 
     // 카드 정보 관련
     //public bool IsSpecial { get; }      // 특수 카드 여부 
     //public bool IsException { get; }     //제외 카드 여부
 
     // Property
-    public int Cost => cost;
+    public int Cost => curCost;
     public Vector3 OriginPos { get; set; } = new();
     public bool IsEntered { get; set; } = false;
     public virtual bool IsExtinct => isExtinct; 
@@ -42,13 +43,17 @@ abstract public class Card : MonoBehaviour
     private void Awake()
     {
         localScale = transform.localScale;
+        curCost = initCost;
     }
 
     protected virtual void Start()
     {
-        handler = BattleManager.Instance?.Player;
-        
        
+        Player player = BattleManager.Instance.Player;
+        handler = player;
+        player.OnTurnStart.AddListener(HandleTurnStart);
+
+        
         // CardData(JSON)와 정보 동기화
         
         if (CardManager.Instance != null)
@@ -135,10 +140,21 @@ abstract public class Card : MonoBehaviour
         onComplete?.Invoke();
     }
 
+    private void HandleTurnStart()
+    {
+        Player player = BattleManager.Instance.Player;
+        
+        if (player.Status.Dizzy.IsActive)
+            SetCost(curCost + 1);
+        else   
+            SetCost(initCost);
+
+    }
+
     // 임시 코스트 조정함수
     public void SetCost(int newCost)
     {
-        this.cost = newCost;
+        curCost = newCost;
         // 만약 UI에 코스트가 표시된다면 갱신하는 코드가 여기에 들어가야 함        
     }    
 

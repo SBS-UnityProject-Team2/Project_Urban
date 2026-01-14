@@ -11,6 +11,6 @@ public class ThornWhip : Attack
         target.Damage(player, damage);
 
         target.Broken(turn);
-        return cost;
+        return curCost;
     }
 }

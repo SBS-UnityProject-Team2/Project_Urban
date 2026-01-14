@@ -13,6 +13,6 @@ public class MoltenArms : Attack
         target.Burn(selfburn);
         
 
-        return cost;
+        return curCost;
     }
 }

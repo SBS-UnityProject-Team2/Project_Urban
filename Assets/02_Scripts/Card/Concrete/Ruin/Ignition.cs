@@ -12,6 +12,6 @@ public class Ignition : Debuff
         // 1. 도트 데미지 
         target.Burn(burn);
         
-        return cost;
+        return curCost;
     }
 }

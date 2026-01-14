@@ -12,6 +12,6 @@ public class Backdraft : Debuff
         //target.Damage(target, damage);
         // 전체데미지
         target.Burn(burn);  // 적 대상 전체에 화상부여 필요
-        return cost;
+        return curCost;
     }
 }

@@ -9,6 +9,6 @@
         {
             target.Reinforce(count);
 
-            return cost;
+            return curCost;
         }
     }

@@ -12,6 +12,6 @@ public class Reforge : Defense
         target.Refined(turn);
         
 
-        return cost;
+        return curCost;
     }
 }

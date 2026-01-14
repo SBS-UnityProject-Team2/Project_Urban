@@ -17,6 +17,6 @@ public class Pulse : Attack
 
         target.Damage(player, finalDamage);
 
-        return cost;
+        return curCost;
     }
 }

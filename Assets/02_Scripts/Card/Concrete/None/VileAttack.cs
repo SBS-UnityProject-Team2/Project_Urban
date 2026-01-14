@@ -11,6 +11,6 @@ class VileAttack : Attack
         // 디버프 약화 2턴부여
         target.Weaken(turn);
 
-        return cost;
+        return curCost;
     }
 }

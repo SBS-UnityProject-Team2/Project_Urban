@@ -9,6 +9,6 @@ public class Inferno : Debuff
     {
         // 1. 소멸카드 1장당 적에게 데미지 8       
         
-        return cost;
+        return curCost;
     }
 }

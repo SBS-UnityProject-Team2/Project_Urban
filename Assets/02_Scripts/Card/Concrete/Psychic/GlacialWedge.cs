@@ -10,6 +10,6 @@ public class GlacialWedge : Attack
     {   
         target.Frozen(turn);        
 
-        return cost;
+        return curCost;
     }
 }

@@ -11,6 +11,6 @@ public class ElasticWall : Defense
         target.BioActiveShell(turn);
         // 탄성막 버프 구현 필요
 
-        return cost;
+        return curCost;
     }
 }

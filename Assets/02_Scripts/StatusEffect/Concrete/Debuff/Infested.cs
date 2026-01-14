@@ -11,8 +11,8 @@ public class Infested :  TurnStatusEffect
 
     public override void Apply(int turn)
     {
+        remainingTurn = turn;
         SetActive(true);
-        UpdateRemainingTurn(turn);
     }
 
     public override void Revert()

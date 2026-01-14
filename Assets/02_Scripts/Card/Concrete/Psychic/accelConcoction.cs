@@ -11,6 +11,6 @@ public class AccelConcoction : BuffCard
         // Player에 만들어둔 함수 호출 (3턴 적용)
         player.Acceleration(duration);        
 
-        return cost;
+        return curCost;
     }
 }

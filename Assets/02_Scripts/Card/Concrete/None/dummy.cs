@@ -7,6 +7,6 @@ public class Dummy : BuffCard
     {
         player.Blur(turns);
         
-        return cost;
+        return curCost;
     }
 }

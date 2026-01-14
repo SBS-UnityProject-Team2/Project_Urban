@@ -12,6 +12,6 @@ public class SpikyBush : Defense
         target.BioActiveShell(turn);
         target.Spike(count);
 
-        return cost;
+        return curCost;
     }
 }

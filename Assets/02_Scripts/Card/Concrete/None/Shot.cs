@@ -6,6 +6,6 @@ class Shooting : Attack
     {
         target.Damage(player, damage);
 
-        return cost;
+        return curCost;
     }
 }

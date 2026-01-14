@@ -13,8 +13,8 @@ public class Branded : ActiveStatusEffect
 
     public override void Active(int count)
     {
-        SetActive(true);
         this.count = count;
+        SetActive(true);
     }
 
     private void HandleDamage(Target attacker, Target target, bool __)

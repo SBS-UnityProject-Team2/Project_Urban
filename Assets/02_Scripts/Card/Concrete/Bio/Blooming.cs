@@ -17,6 +17,6 @@ public class Blooming : BuffCard
             // 코스트 회복
             player.Cost.Increase(costGain);
         });
-        return cost;
+        return curCost;
     }
 }

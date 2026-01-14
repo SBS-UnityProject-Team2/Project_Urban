@@ -12,6 +12,6 @@ public class SuperConducter : BuffCard
         target.Frozen(turns);
         target.Nullification(turns);
         
-        return cost;
+        return curCost;
     }
 }

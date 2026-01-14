@@ -13,4 +13,9 @@ public class GameStart : MonoBehaviour
     {        
         Application.Quit();
     }
+
+    public void OnTestSceneLoad()
+    {
+        SceneManager.LoadScene("05_TestScene");
+    }
 }
