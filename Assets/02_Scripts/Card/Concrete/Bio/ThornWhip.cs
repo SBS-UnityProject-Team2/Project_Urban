@@ -8,7 +8,7 @@ public class ThornWhip : Attack
     public override int Use(Player player, Target target)
     { 
         // 적에게 데미지 입히기
-        target.Damage(player, damage);
+        target.Damage(player, damage, Element.Bio);
         target.Broken(turn);
         return curCost;
     }
