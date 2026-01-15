@@ -9,9 +9,8 @@ public class Rollout : Defense
 
     public override int Use(Player player, Target target)
     {
-        target.Protect(armor);
-        Player user = player as Player;       
-        user.AddNextTurnDrawCount(drawBonus);     // 다음1턴 드로우보너스      
+        target.Protect(armor);   
+        player.AddNextTurnDrawCount(drawBonus);     // 다음1턴 드로우보너스      
 
         return curCost;
     }

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AbsorbingStrike : Attack
 {
     public override CardName Name => CardName.AbsorbingStrike;

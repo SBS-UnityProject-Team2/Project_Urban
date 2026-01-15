@@ -18,7 +18,7 @@ public class DistortedSlay : Attack
         // 4. 그 카운트만큼 반복해서 추가 공격 실행
         for (int i = 0; i < additionalHits; i++)
         {
-            target.Damage(user, damage);
+            target.Damage(user, damage, Element.Bio);
         }
 
         return curCost;

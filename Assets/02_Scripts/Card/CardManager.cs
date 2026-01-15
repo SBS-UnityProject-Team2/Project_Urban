@@ -37,6 +37,9 @@ public class CardManager : Singleton<CardManager>
         return cardData.GetCardsByElement(element);
     }       
 
-
+    public IEnumerable<CardDataEntry> GetAllCardData()
+    {
+        return cardData.GetAllCards();
+    }
 }
 

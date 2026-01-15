@@ -8,20 +8,15 @@ public class Inferno : Attack
 
     public override int Use(Player player, Target target)
     {
-        // 1. 플레이어 형변환
-        Player user = player as Player;       
 
         // 2. 소멸된 카드 갯수 가져오기
-        int extinctCount = user.Deck.ExtinctCardCount;
+        int extinctCount = player.Deck.ExtinctCardCount;
 
         // 3. 데미지 계산
         int totalDamage = extinctCount * damagePerCount;
+        
+        target.Damage(player, totalDamage, Element.Ruin);      
 
-        // 4. 데미지 적용
-        if (totalDamage > 0)
-        {
-            target.Damage(player, totalDamage, Element.Ruin);
-        }        
         return curCost;
     }
 }

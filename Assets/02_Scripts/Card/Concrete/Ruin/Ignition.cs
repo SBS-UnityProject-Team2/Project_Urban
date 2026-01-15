@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Ignition : Attack
 {
-    [SerializeField] private int burncount; 
+    [SerializeField] private int burnCount; 
 
     public override CardName Name => CardName.Ignition;
 
@@ -11,7 +11,7 @@ public class Ignition : Attack
     {   
         target.Damage(player, damage);
         
-        target.Burn(burncount);
+        target.Burn(burnCount);
         
         return curCost;
     }
