@@ -1,6 +1,6 @@
     using UnityEngine;
 
-    public class incendiary : BuffCard
+    public class Incendiary : BuffCard
     {
 
     [SerializeField] private int addedDamage;

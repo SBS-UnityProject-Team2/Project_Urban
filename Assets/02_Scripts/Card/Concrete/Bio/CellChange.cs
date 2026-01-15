@@ -17,7 +17,7 @@ public class CellChange :BuffCard
             // 3. 버리기 완료 후 실행될 로직            
             if (discardedCards.Count > 0)
             {
-                user.DrawCard(4);
+                user.DrawCard(3);
             }           
         });
 

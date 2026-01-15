@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Blooming
   element: 300
-  cost: 1
+  initCost: 1
   isExtinct: 0
   isSpecial: 0
   cardTitle: {fileID: 2654786389302699832}

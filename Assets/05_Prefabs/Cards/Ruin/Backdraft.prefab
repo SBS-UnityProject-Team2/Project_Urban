@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 4048776908165795839}
   - component: {fileID: 6500936304541094541}
   - component: {fileID: 9143712137951889463}
+  - component: {fileID: 3441742042632562555}
   m_Layer: 6
   m_Name: Backdraft
   m_TagString: Card
@@ -377,6 +378,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.29, y: 13.65}
   m_EdgeRadius: 0
+--- !u!114 &3441742042632562555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138447040532560346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157a5411ac2b6cc4c97d01858e0b9697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Backdraft
+  element: 100
+  initCost: 3
+  isExtinct: 0
+  isSpecial: 1
+  cardTitle: {fileID: 8848045993063123046}
+  cardDesc: {fileID: 7481433080428554963}
+  damage: 6
+  burncount: 5
 --- !u!1 &7372374631495351571
 GameObject:
   m_ObjectHideFlags: 0

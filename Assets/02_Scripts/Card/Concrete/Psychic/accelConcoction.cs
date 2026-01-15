@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class accelConcoction : BuffCard
+public class AccelConcoction : BuffCard
 {
     [SerializeField] private int duration;
 

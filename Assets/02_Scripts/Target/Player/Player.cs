@@ -22,9 +22,9 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public CostController Cost { get; private set; }
     public UnityEvent OnUseCard { get; } = new();
-        
+
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
-    
+
     public Deck Deck
     {
         get
@@ -106,9 +106,29 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Deck.Draw(amount);
     }
 
-    public void DiscardCard(int amount = 1)
+    public void DiscardCard(int amount = 1, System.Action<List<Card>> onComplete = null)    // 자원교환 버프에서 호출용
     {
-        
+        // UI 매니저가 없으면 중단
+        if (DiscardPanelUI.Instance == null)
+        {
+            Debug.LogError("DiscardPanelUI가 없습니다.");
+            return;
+        }
+
+        // UI 패널에게 버리기 프로세스 위임
+        DiscardPanelUI.Instance.StartDiscardProcess(amount, (discardedCards) =>
+        {
+            // UI에서 확인 버튼을 눌러 콜백이 돌아왔을 때 실행되는 부분
+
+            // 실제로 카드를 버렸는지 확인 (취소했을 경우 실행 안 함)
+            if (discardedCards != null && discardedCards.Count > 0)
+            {
+                Debug.Log($"[Player] 카드 {discardedCards.Count}장 버리기 완료.");
+
+                // 버리기 성공 후에 수행해야 할 추가 로직(힐, 코스트 회복 등) 실행
+                onComplete?.Invoke(discardedCards);
+            }
+        });
     }
 
     // 다음턴 (1턴만) 추가드로우 보너스
@@ -233,7 +253,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Cost.Decrease(cost);
         Deck.Discard(card);
 
-        if (card.Type == CardType.Attack)  
+        if (card.Type == CardType.Attack)
             OnAttack?.Invoke(this, target);
 
         selectedCard = null;
@@ -253,7 +273,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     }
 
 
-    
+
 
     #region Test Methods
     // 버프 테스트 메서드들
@@ -399,7 +419,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void SetDiscardMode(bool isActive)
     {
         isDiscardMode = isActive;
-        
+
         DeselectCard();
     }
 

@@ -9,7 +9,7 @@ public class Ignition : Attack
 
     public override int Use(Player player, Target target)
     {   
-        target.Damage(player, damage);
+        target.Damage(player, damage, Element.Ruin);
         
         target.Burn(burncount);
         

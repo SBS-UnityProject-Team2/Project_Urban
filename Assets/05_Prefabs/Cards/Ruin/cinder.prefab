@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 9143712137951889463}
   - component: {fileID: 8974383789671709182}
   m_Layer: 6
-  m_Name: cinder
+  m_Name: Cinder
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

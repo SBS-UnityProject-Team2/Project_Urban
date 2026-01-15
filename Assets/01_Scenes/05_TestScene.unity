@@ -7643,9 +7643,6 @@ MonoBehaviour:
   nextTurnDrawBonus: 0
   hand: {fileID: 506069452}
   costView: {fileID: 3106057965538273753}
-  OnUseCard:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &2039570483
 Transform:
   m_ObjectHideFlags: 0

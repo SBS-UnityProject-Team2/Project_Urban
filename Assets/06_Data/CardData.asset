@@ -58,7 +58,7 @@ MonoBehaviour:
     cardSprite: {fileID: 21300000, guid: 660064d050999b84ab6e24265fb63463, type: 3}
     element: 0
     isSpecial: 0
-    isExtinct: 0
+    isExtinct: 1
     cardPrefab: {fileID: 8113398510874191772, guid: f14b181be09e5534c967d6c7226df5e0, type: 3}
     price: 80
     description: "\uB370\uBBF8\uC9C0 10, \uB3D9\uACB0 1, \uC18C\uBA78"
@@ -96,7 +96,7 @@ MonoBehaviour:
     element: 0
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 4865769701541936390, guid: 3673d5b785bd0cb4d955965a77bbb1a6, type: 3}
     price: 80
     description: "\uB354\uBBF8 1"
   - cardName: 100
@@ -114,7 +114,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: -6192055113034264990, guid: 40643788c30bae5499bdb5964d1fedbc, type: 3}
     price: 80
     description: "\uB370\uBBF8\uC9C0 15, \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1 5"
   - cardName: 102
@@ -123,7 +123,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6284332568102713303, guid: 1204e4bc8b7741f4eb46b2a273720045, type: 3}
     price: 50
     description: "\uB370\uBBF8\uC9C0 6, \uB3D9\uC77C\uD55C \uCE74\uB4DC\uB97C \uBF51\uC744
       \uCE74\uB4DC \uB354\uBBF8\uC5D0 \uBCF5\uC0AC, \uC18C\uBA78"
@@ -133,7 +133,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: -2264472578924423489, guid: 09571d52e2e93844dab5c600e060fbfb, type: 3}
     price: 120
     description: "\uC18C\uBA78\uB41C \uCE74\uB4DC 1\uC7A5\uB2F9 \uC801\uC5D0\uAC8C
       \uB370\uBBF8\uC9C0 8"
@@ -143,7 +143,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 3441742042632562555, guid: baa05301dfd0d7e43bdf6dea7c834211, type: 3}
     price: 120
     description: "\uC801 \uC804\uCCB4 \uB370\uBBF8\uC9C0 6, \uC9C0\uC815\uD55C \uC801\uC758
       \uD654\uC0C1 \uC218\uCE58\uB9CC\uD07C \uBC18\uBCF5, \uC790\uC2E0\uACFC \uC801
@@ -173,7 +173,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6650522284680676736, guid: 27c21275f6bc95844ab740bb5f930691, type: 3}
     price: 80
     description: "\uC18C\uC774\uD0C4 2"
   - cardName: 108
@@ -201,7 +201,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 8974383789671709182, guid: e6439dc1d9e32944a875861c9cebe553, type: 3}
     price: 80
     description: "\uC794\uBD88 1 \uD68D\uB4DD, \uC18C\uBA78"
   - cardName: 111
@@ -210,7 +210,7 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 8673644889357945447, guid: 6c205a5e440024547aa8a11cd3359fba, type: 3}
     price: 50
     description: "\uB099\uC778 1"
   - cardName: 112
@@ -219,54 +219,54 @@ MonoBehaviour:
     element: 100
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6504519320903050476, guid: 76351658e1d87c2408f63ce1994ee902, type: 3}
     price: 80
     description: "\uC801\uC758 \uD654\uC0C1 \uC218\uCE58\uB97C 2\uBC30, \uC18C\uBA78"
   - cardName: 200
     koreanName: "\uC5D0\uB108\uC9C0 \uC1A1\uACF3"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 03e6f53330caf66478ca551a9ca527ab, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 5220621323950420776, guid: 0c4fc8f1c1b704045b740c28a4e28d70, type: 3}
     price: 80
     description: "\uB370\uBBF8\uC9C0 7, \uCF54\uC2A4\uD2B8 1 \uD68D\uB4DD, \uC790\uC2E0\uC758
       \uCF54\uC2A4\uD2B8\uAC00 0\uC77C \uACBD\uC6B0 \uCD94\uAC00\uB85C \uCF54\uC2A4\uD2B8
       1 \uD68D\uB4DD"
   - cardName: 201
     koreanName: "\uC5FC\uB825 \uC190\uC544\uADC0"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 525edf7481e67084aa8d61c0f6eb940e, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 2070681540135498962, guid: f33c034c14b704b4aa478a16e50890f6, type: 3}
     price: 120
     description: "\uB370\uBBF8\uC9C0 24, \uC774 \uCE74\uB4DC \uC774\uC678\uC758 \uC190\uD328\uC758
       \uCE74\uB4DC 2\uC7A5\uB2F9 \uBE44\uC6A9 1 \uAC10\uC18C"
   - cardName: 202
     koreanName: "\uD30C\uB3D9"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 47a5b40f9e92a3842a721099ed1124c2, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 2244029060598661249, guid: 6e2c91d63c4089a47a5b2d2e7a380791, type: 3}
     price: 80
     description: "\uB370\uBBF8\uC9C0 6, \uB3D9\uACB0 \uC0C1\uD0DC\uC778 \uC801\uC5D0\uAC8C\uB294
       \uB370\uBBF8\uC9C0 6 \uCD94\uAC00"
   - cardName: 203
     koreanName: "\uC804\uAE30 \uD654\uC0B4"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: ef46f3576f5127a4492b7a008b54e0fa, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6934951592817324063, guid: aa034de2edd1fcb43a3f9353f849129e, type: 3}
     price: 50
     description: "\uB370\uBBF8\uC9C0 7, \uB4DC\uB85C\uC6B0 1 \uD68D\uB4DD, \uC801\uC774
       \uB3D9\uACB0 \uC0C1\uD0DC\uC77C \uACBD\uC6B0 \uCD94\uAC00\uB85C \uB4DC\uB85C\uC6B0
       1 \uD68D\uB4DD"
   - cardName: 204
     koreanName: "\uBE59\uD558 \uC410\uAE30"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: a04fba5351d3ebe4ba6888bd17eb6ac2, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -284,59 +284,59 @@ MonoBehaviour:
     description: "\uBC29\uC5B4 10, \uC5FC\uB825 \uC7A5\uB9C9 2"
   - cardName: 206
     koreanName: "\uC804\uC790\uAE30\uC7A5"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: d3f625bb7acc62b429922d0d347a5cf9, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6130836694063246567, guid: f6705326936841243921afdf06fefeba, type: 3}
     price: 80
     description: "\uC804\uC790\uAE30\uC7A5 2 \uD68D\uB4DD"
   - cardName: 207
     koreanName: "\uAC00\uC18D \uD654\uD569\uBB3C"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 31295ef818c6e7844b05abae9e533739, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 2631821538380939688, guid: 66fb99e0a839eaa48b0472476af64741, type: 3}
     price: 80
     description: "3\uD134\uAC04 \uC2DC\uC791 \uB4DC\uB85C\uC6B0 1, \uC2DC\uC791 \uCF54\uC2A4\uD2B8
       1 \uD68D\uB4DD, \uC18C\uBA78"
   - cardName: 208
     koreanName: "\uCD08\uC804\uB3C4\uCCB4"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: ff99905be9c8d174da5d79c673a4877b, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 479362924593482660, guid: 482edc312d0aa904e931b2b66258cd4d, type: 3}
     price: 120
     description: "\uCD08\uC804\uB3C4 1, \uC5FC\uB825 \uC7A5\uB9C9 2, \uB3D9\uACB0
       1, \uC18C\uBA78"
   - cardName: 209
     koreanName: "\uC2E0\uACBD \uC548\uC815\uC81C"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 5b2fa60b4a1b1be489e6ce33055724d9, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 5738542816189973857, guid: e906fb75c753b7e448704f92364ce5ae, type: 3}
     price: 80
     description: "\uBC84\uB824\uC9C4 \uCE74\uB4DC \uB354\uBBF8\uC5D0\uC11C \uCE74\uB4DC
       1\uC7A5\uC744 \uCF54\uC2A4\uD2B8\uB97C 0\uC73C\uB85C \uD558\uACE0 \uD68C\uC218"
   - cardName: 210
     koreanName: "\uCD08\uC800\uC628 \uBD84\uB9D0"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 5576c375f317cb5499818ca9dfdf81e4, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 1172597688351183978, guid: 1702f1bc421f1ed4b9ff6d3b57525e92, type: 3}
     price: 120
     description: "\uC801 \uC804\uCCB4 \uB3D9\uACB0 1"
   - cardName: 211
     koreanName: "\uBC29\uD574"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: e8ab799898a3f124e9611d619aa58832, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 695885858617749288, guid: 601519fb766009843adf3116888448b5, type: 3}
     price: 80
     description: "\uC801 \uC804\uCCB4 \uD30C\uAC11 2"
   - cardName: 300
@@ -355,7 +355,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: -3904314117680473672, guid: 4cfcb2563c360254f9d7051c697adb07, type: 3}
     price: 80
     description: "\uC190\uD328\uC758 \uCE74\uB4DC\uB97C \uCD5C\uB300 3\uC7A5\uAE4C\uC9C0
       \uBC84\uB9AC\uACE0, \uBC84\uB9B0 \uCE74\uB4DC 1\uC7A5\uB2F9 \uB370\uBBF8\uC9C0
@@ -366,7 +366,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 2458846363401348117, guid: ad0997933cefc6849af5030f625809a5, type: 3}
     price: 80
     description: "\uBC29\uC5B4 8, \uC0DD\uCCB4 \uBC18\uC751 \uC7A5\uAC11 2, \uAC00\uC2DC
       3"
@@ -375,8 +375,8 @@ MonoBehaviour:
     cardSprite: {fileID: 21300000, guid: e41710d0e0a38fc49ad2cf907df50067, type: 3}
     element: 300
     isSpecial: 1
-    isExtinct: 0
-    cardPrefab: {fileID: 0}
+    isExtinct: 1
+    cardPrefab: {fileID: 4733283888955232830, guid: 96a54eb819494344a84b8aa7a1503468, type: 3}
     price: 120
     description: "\uB370\uBBF8\uC9C0 8, \uBC29\uC5B4\uC5D0 \uB9C9\uD788\uC9C0 \uC54A\uC740
       \uB370\uBBF8\uC9C0 \uB9CC\uD07C \uD68C\uBCF5"
@@ -386,7 +386,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 4269441500018643784, guid: 7422bd7590755f24e9072853b5456729, type: 3}
     price: 120
     description: "\uB370\uBBF8\uC9C0 6, \uBC84\uB824\uC9C4 \uCE74\uB4DC \uB354\uBBF8\uC758
       \uCE74\uB4DC 1\uC7A5 \uB2F9 \uB3D9\uC77C\uD55C \uB370\uBBF8\uC9C0\uB85C \uCD94\uAC00
@@ -397,7 +397,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 4896721036170839495, guid: 4332d18e87d501e4e9e87273f0f4421f, type: 3}
     price: 80
     description: "\uC801\uC5D0\uAC8C \uB370\uBBF8\uC9C0 10 \uBD80\uC5EC, \uD30C\uAC11
       2 \uBD80\uC5EC"
@@ -417,7 +417,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6744245634795877406, guid: c8b22e41acdc00b44b76fa9ff163067d, type: 3}
     price: 50
     description: "\uCE74\uB4DC 1\uC7A5\uC744 \uBC84\uB9AC\uACE0 \uCF54\uC2A4\uD2B8
       2 \uD68D\uB4DD"
@@ -427,7 +427,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 1
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 3105746417775122384, guid: 68019e5c2588db143a64b7e7e67d21f2, type: 3}
     price: 120
     description: "\uC7AC\uC0DD 5, \uC18C\uBA78"
   - cardName: 309
@@ -436,7 +436,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 7383513483497746936, guid: b3674bf990aa0b74180bae0c6ec7838c, type: 3}
     price: 80
     description: "\uCE74\uB4DC 2\uC7A5\uC744 \uBC84\uB9AC\uACE0 \uBF51\uC744 \uCE74\uB4DC
       \uB354\uBBF8\uC5D0\uC11C \uB4DC\uB85C\uC6B0 3"
@@ -446,7 +446,7 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 8348590318188832053, guid: 1293c2774a3005147baaaa64c8652929, type: 3}
     price: 80
     description: "\uC21C\uD658 1, \uC18C\uBA78"
   - cardName: 311
@@ -455,6 +455,6 @@ MonoBehaviour:
     element: 300
     isSpecial: 0
     isExtinct: 0
-    cardPrefab: {fileID: 0}
+    cardPrefab: {fileID: 6519227669682515972, guid: 867085f8c1f5c574e8881c8fb117a6e3, type: 3}
     price: 80
     description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uC57D\uD654 2 \uBD80\uC5EC"

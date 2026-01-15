@@ -250,9 +250,9 @@ GameObject:
   - component: {fileID: 4048776908165795839}
   - component: {fileID: 1398124178353846787}
   - component: {fileID: 3463609974987783139}
-  - component: {fileID: 7160332188955571130}
+  - component: {fileID: 6130836694063246567}
   m_Layer: 6
-  m_Name: electricField
+  m_Name: ElectricField
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.29, y: 13.65}
   m_EdgeRadius: 0
---- !u!114 &7160332188955571130
+--- !u!114 &6130836694063246567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,17 +387,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 7138447040532560346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2befd94c4477540be2376f3ad41184, type: 3}
+  m_Script: {fileID: 11500000, guid: 45d0caeb4d269e14bae5b776dbc56610, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::electricField
+  m_EditorClassIdentifier: Assembly-CSharp::ElectricField
   element: 200
-  cost: 1
+  initCost: 1
   isExtinct: 0
   isSpecial: 0
   cardTitle: {fileID: 5130317781085875830}
   cardDesc: {fileID: 1196711842195997585}
-  turns: 2
-  damage: 1
+  turns: 0
+  damage: 2
 --- !u!1 &7605677265237259364
 GameObject:
   m_ObjectHideFlags: 0

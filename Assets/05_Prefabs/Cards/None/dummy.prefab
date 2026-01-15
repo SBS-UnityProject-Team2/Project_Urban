@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 3362647646868778303}
   - component: {fileID: 4865769701541936390}
   m_Layer: 6
-  m_Name: dummy
+  m_Name: Dummy
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

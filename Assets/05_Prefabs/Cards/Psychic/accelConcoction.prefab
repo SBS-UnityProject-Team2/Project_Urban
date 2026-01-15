@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 3463609974987783139}
   - component: {fileID: 2631821538380939688}
   m_Layer: 6
-  m_Name: accelConcoction
+  m_Name: AccelConcoction
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

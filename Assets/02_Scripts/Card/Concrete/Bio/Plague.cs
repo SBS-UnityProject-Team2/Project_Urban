@@ -22,7 +22,7 @@ public class Plague : Attack
                 int totalDamage = count * damagePerCard;
 
                 // 4. 적에게 데미지 적용
-                target.Damage(player, totalDamage, Element.None);
+                target.Damage(player, totalDamage, Element.Bio);
             }
         });
 
