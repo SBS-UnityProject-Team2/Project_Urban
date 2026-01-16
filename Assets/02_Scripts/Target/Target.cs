@@ -36,6 +36,7 @@ abstract public class Target : MonoBehaviour
     protected virtual void Awake()
     {
         status = new Status(this);
+        statusView?.Bind(status);
     }
 
     public void Heal(int healPoint)
