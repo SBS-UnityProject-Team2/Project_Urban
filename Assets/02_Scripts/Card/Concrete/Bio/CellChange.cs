@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class CellChange : BuffCard
 {
     [SerializeField] private int maxDiscard = 1;
