@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
   m_sharedMaterial: {fileID: 1073631401402722801, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -535,7 +535,7 @@ MonoBehaviour:
   cardDesc: {fileID: 7481433080428554963}
   cardCost: {fileID: 7236364188855510272}
   damage: 6
-  burncount: 5
+  burnCount: 5
 --- !u!1 &7372374631495351571
 GameObject:
   m_ObjectHideFlags: 0

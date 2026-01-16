@@ -8703,7 +8703,7 @@ MonoBehaviour:
   element: 0
   damageModifier: 0.3
   healthView: {fileID: 2840391441834483104}
-  statusView: {fileID: 0}
+  statusView: {fileID: 1773627516498903788}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -8998,7 +8998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  content: {fileID: 0}
+  content: {fileID: 5429065977907728772}
+  startYPosition: 275
+  spacing: 100
   statusEffectUIPrefab: {fileID: 4910157300566933677, guid: 75cfa60f6c8551541aaf4d7a7a9cbd79, type: 3}
 --- !u!114 &1846330574343933946
 MonoBehaviour:

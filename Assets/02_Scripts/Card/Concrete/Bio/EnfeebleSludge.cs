@@ -9,6 +9,7 @@ public class EnfeebleSludge : Debuff
     public override int Use(Player player, Target target)
     {
         EnemyManager.Instance.ApplyAll(enemy => enemy.Weaken(turn));
+        
         return curCost;
     }
 }

@@ -397,7 +397,7 @@ MonoBehaviour:
   isSpecial: 0
   cardTitle: {fileID: 5130317781085875830}
   cardDesc: {fileID: 1196711842195997585}
-  cardCost: {fileID: 0}
+  cardCost: {fileID: 1185629912615928016}
   damage: 24
 --- !u!1 &7605677265237259364
 GameObject:
