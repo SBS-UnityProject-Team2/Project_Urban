@@ -1,3 +1,6 @@
+using TMPro;
+using UnityEngine;
+
 public class AbsorbingStrike : Attack
 {
     public override CardName Name => CardName.AbsorbingStrike;
@@ -8,7 +11,7 @@ public class AbsorbingStrike : Attack
         int hpBefore = target.Health.CurrentHp;
 
         // 2. 공격 실행
-        target.Damage(player, damage);
+        target.Damage(player, damage, Element.Bio);
 
         // 3. 공격 후, 적몬스터 현재 체력 확인
         int hpAfter = target.Health.CurrentHp;

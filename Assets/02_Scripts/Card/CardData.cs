@@ -133,7 +133,10 @@ public class CardData : ScriptableObject
                     element = parsedElement,
                     isSpecial = jsonCard.isSpecial,
                     description = processedDescription,
-                    price = jsonCard.price
+                    price = jsonCard.price,
+                    isExtinct = jsonCard.isExtinct, 
+                    cost = jsonCard.cost,           
+                    //cardCost = jsonCard.cardCost   
                 };
 
                 // Sprite 로드
@@ -147,7 +150,18 @@ public class CardData : ScriptableObject
                 entry.cardPrefab = AssetDatabase.LoadAssetAtPath<Card>(prefabPath);
                 if (entry.cardPrefab == null)
                     Debug.LogWarning($"Prefab not found: {prefabPath}");
-
+                if (entry.cardPrefab != null)
+                {
+                    SerializedObject so = new SerializedObject(entry.cardPrefab);
+                    
+                    SerializedProperty costProp = so.FindProperty("initCost"); 
+                    
+                    if (costProp != null)
+                    {
+                        costProp.intValue = jsonCard.cost; // JSON 값으로 덮어쓰기
+                        so.ApplyModifiedProperties();      // 변경사항 적용
+                    }
+                }
                 cards.Add(entry);
             }
 
@@ -189,7 +203,9 @@ public class CardDataEntry
     public bool isExtinct;
     public Card cardPrefab;
     public int price;
+    public int cost;
     [TextArea] public string description;
+    //[TextArea] public string cardCost;
 
 }
 
@@ -212,5 +228,7 @@ public class JsonCardData
     public int price; 
     public int value1; 
     public int value2;
+    public int cost;
+    public string cardCost;
 }
 #endif

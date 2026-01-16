@@ -9,133 +9,212 @@ public class DiscardPanelUI : MonoBehaviour
     public static DiscardPanelUI Instance { get; private set; }
 
     [Header("UI Components")]
-    [SerializeField] private GameObject panelObject;          // 패널 전체
-    [SerializeField] private Transform cardPreviewContainer;  // Horizontal Layout Group이 달린 프리뷰 부모
-    [SerializeField] private TextMeshProUGUI infoText;        // 안내 텍스트
-    [SerializeField] private Button confirmButton;            // 확인(버리기 실행) 버튼
-    [SerializeField] private Button cancelButton;             // 취소 버튼
+    [SerializeField] private GameObject panelObject;          
+    [SerializeField] private Transform cardPreviewContainer;  
+    [SerializeField] private TextMeshProUGUI infoText;        
+    [SerializeField] private Button confirmButton;            
+    [SerializeField] private Button cancelButton;             
 
-    // 상태 관리 변수
-    private List<Card> selectedCards = new List<Card>();      // 현재 선택한 카드 리스트
-    private int maxSelectionCount;                            // 최대 선택 가능 수
-    private Action<List<Card>> onDiscardCompleteCallback;     // 버리기 완료 후 카드에게 결과 알려줄 콜백
+    private List<Card> selectedCards = new List<Card>();
+    
+    
+    private Dictionary<Card, GameObject> previewMap = new Dictionary<Card, GameObject>();
+
+    private int maxSelectionCount;    
+    private int minSelectionCount = 1;                        
+    private Action<List<Card>> onDiscardCompleteCallback;     
 
     private void Awake()
     {
-        Instance = this;
-        panelObject.SetActive(false);
+        if (Instance == null) Instance = this;
+        else { Destroy(gameObject); return; }
+
+        if (panelObject != null) panelObject.SetActive(false);
 
         confirmButton.onClick.AddListener(OnConfirm);
         cancelButton.onClick.AddListener(OnCancel);
     }
 
-    // 1. 프로세스 시작
-    public void StartDiscardProcess(int maxCount, Action<List<Card>> onComplete)
+    public void StartDiscardProcess(int count, Action<List<Card>> onComplete, int minCount = 1)
     {
-        this.maxSelectionCount = maxCount;
+        this.maxSelectionCount = count;
+        this.minSelectionCount = minCount;
         this.onDiscardCompleteCallback = onComplete;
 
-        // 초기화
+        // 데이터 및 UI 초기화
         selectedCards.Clear();
-        UpdatePreviewUI();
+        ClearAllPreviews(); // 기존 프리뷰 싹 정리
 
-        // 플레이어를 버리기 모드로 전환 (카드를 클릭하면 SelectCard가 호출됨)
-        BattleManager.Instance.Player.SetDiscardMode(true);
+        if (BattleManager.Instance != null && BattleManager.Instance.Player != null)
+        {
+            BattleManager.Instance.Player.SetDiscardMode(true);
+        }
 
-        // UI 활성화
-        panelObject.SetActive(true);
+        if (panelObject != null) panelObject.SetActive(true);
         UpdateInfoText();
     }
 
-    // 2. 플레이어가 핸드에서 카드를 클릭했을 때 호출 
+    // 클릭한 카드만 추가하거나 제거함
     public void SelectCard(Card card)
     {
-        // 이미 선택된 카드라면 -> 선택 해제
-        if (selectedCards.Contains(card))
+        // 1. 이미 선택된 카드 -> 제거 (Deselect)
+        if (previewMap.ContainsKey(card))
         {
-            selectedCards.Remove(card);
+            RemoveCard(card);
         }
-        // 선택되지 않은 카드라면 -> 추가
+        // 2. 선택되지 않은 카드 -> 추가 (Select)
         else
         {
-            // 최대 개수 제한 확인
             if (selectedCards.Count >= maxSelectionCount)
             {
-                // 이미 N장을 다 골랐다면 기존 것을 지우고 넣을지, 막을지 결정.
-                // 여기서는 "더 이상 선택 불가"로 처리
+                Debug.Log("더 이상 선택할 수 없습니다.");
                 return;
             }
-            selectedCards.Add(card);
+            AddCard(card);
         }
 
-        // 프리뷰 갱신
-        UpdatePreviewUI();
         UpdateInfoText();
     }
 
-    // 선택된 카드들을 UI에 복제해서 보여주는 함수
-    private void UpdatePreviewUI()
+    // 카드 추가 로직
+    private void AddCard(Card card)
     {
-        // 기존 프리뷰 삭제
+        selectedCards.Add(card);
+
+        // 프리뷰 생성
+        GameObject cardClone = Instantiate(card.gameObject, cardPreviewContainer);
+        
+        // 딕셔너리에 등록 
+        previewMap.Add(card, cardClone);
+
+        // UI 변환 최적화 
+        SetupPreviewObject(cardClone);
+    }
+
+    // 카드 제거 로직 
+    private void RemoveCard(Card card)
+    {
+        selectedCards.Remove(card);
+
+        // 딕셔너리에서 프리뷰 오브젝트를 찾아 제거
+        if (previewMap.TryGetValue(card, out GameObject previewObj))
+        {
+            Destroy(previewObj);
+            previewMap.Remove(card);
+        }
+    }
+
+    // 모든 프리뷰 제거 (패널 닫을 때나 초기화 할 때 사용)
+    private void ClearAllPreviews()
+    {
+        // 딕셔너리에 있는 모든 오브젝트 파괴
+        foreach (var preview in previewMap.Values)
+        {
+            if (preview != null) Destroy(preview);
+        }
+        previewMap.Clear();
+        
+        // 혹시 모를 잔여물 처리 (안전장치)
         foreach (Transform child in cardPreviewContainer)
         {
             Destroy(child.gameObject);
         }
+    }
 
-        // 현재 선택된 카드들을 복제해서 배치
-        foreach (Card card in selectedCards)
+    private void SetupPreviewObject(GameObject cardClone)
+    {
+        // 1. SpriteRenderer -> Image 변환
+        if (cardClone.TryGetComponent<SpriteRenderer>(out var sr))
         {
-            // 핸드에 있는 카드 오브젝트 복사
-            GameObject cardClone = Instantiate(card.gameObject, cardPreviewContainer);
+            Sprite originalSprite = sr.sprite;
+            sr.enabled = false; // 렌더러 끄기
 
-            cardClone.transform.localPosition = Vector3.zero;
-            cardClone.transform.localRotation = Quaternion.identity;
-            cardClone.transform.localScale = Vector3.one; 
+            // Image가 없으면 추가, 있으면 가져오기
+            if (!cardClone.TryGetComponent<Image>(out var img))
+                img = cardClone.AddComponent<Image>();
 
-            // 복제된 카드 기능 끄기 (클릭 방지)
-            CanvasGroup cg = cardClone.GetComponent<CanvasGroup>();
-            if (cg == null) cg = cardClone.AddComponent<CanvasGroup>();
-            cg.blocksRaycasts = false; // 마우스 입력 무시
-
-            Card cloneScript = cardClone.GetComponent<Card>();
-            if (cloneScript != null) cloneScript.enabled = false;
+            img.sprite = originalSprite;
+            img.color = Color.white;
         }
+
+        // 2. RectTransform 설정
+        if (!cardClone.TryGetComponent<RectTransform>(out var rect))
+            rect = cardClone.AddComponent<RectTransform>();
+
+        rect.localScale = new Vector3(0.6f, 0.6f, 1f);
+        rect.localRotation = Quaternion.identity;
+        rect.anchoredPosition3D = new Vector3(rect.anchoredPosition.x, rect.anchoredPosition.y, 0);
+
+        // 3. LayoutElement 설정
+        if (!cardClone.TryGetComponent<LayoutElement>(out var le))
+            le = cardClone.AddComponent<LayoutElement>();
+            
+        le.preferredWidth = 200f;
+        le.preferredHeight = 300f;
+        le.flexibleWidth = 0;
+        le.flexibleHeight = 0;
+
+        // 4. CanvasGroup 설정
+        if (!cardClone.TryGetComponent<CanvasGroup>(out var cg))
+            cg = cardClone.AddComponent<CanvasGroup>();
+            
+        cg.blocksRaycasts = false;
+        cg.alpha = 1f;
+
+        // 5. 불필요한 물리 연산 제거
+        if (cardClone.TryGetComponent<Collider2D>(out var col))
+            col.enabled = false;
+
+        // 6. 텍스트 표시를 위해 Card 스크립트 활성화
+        if (cardClone.TryGetComponent<Card>(out var cloneScript))
+            cloneScript.enabled = true;
     }
 
     private void UpdateInfoText()
     {
-        infoText.text = $"버릴 카드를 선택하세요\n({selectedCards.Count}/{maxSelectionCount})";
+        if (infoText != null)
+            infoText.text = $"버릴 카드를 선택하세요\n({selectedCards.Count}/{maxSelectionCount})";
     }
 
-    // 3. 확인 버튼 클릭 시 -> 실제 버리기 수행 및 결과 전달
-    private void OnConfirm()
+    public void OnConfirm()
     {        
-        // 버리기 로직 
-        Player player = BattleManager.Instance.Player;
-        foreach (Card card in selectedCards)
-        {
-            player.Deck.Discard(card);
+        if (selectedCards.Count < minSelectionCount)
+        {            
+            return; 
         }
 
-        // 리스트 전달
-        onDiscardCompleteCallback?.Invoke(new List<Card>(selectedCards));
+        Player player = BattleManager.Instance.Player;
+        if (player != null)
+        {
+            foreach (Card card in selectedCards)
+            {
+                player.Deck.Discard(card);
+            }
+        }
 
-        // 패널 닫기
+        // 콜백 호출 (리스트 복사본 전달)
+        onDiscardCompleteCallback?.Invoke(new List<Card>(selectedCards));
         ClosePanel();
     }
 
     private void OnCancel()
     {
+        onDiscardCompleteCallback?.Invoke(null);
         ClosePanel();
     }
 
     private void ClosePanel()
     {
-        panelObject.SetActive(false);
+        if (panelObject != null) panelObject.SetActive(false);
+        
+        // 데이터 초기화
         selectedCards.Clear();
+        ClearAllPreviews(); // 프리뷰 제거
         onDiscardCompleteCallback = null;
         
-        // 플레이어 버리기 모드 해제
-        BattleManager.Instance.Player.SetDiscardMode(false);
+        if (BattleManager.Instance != null && BattleManager.Instance.Player != null)
+        {
+            BattleManager.Instance.Player.SetDiscardMode(false);
+        }
     }
 }
