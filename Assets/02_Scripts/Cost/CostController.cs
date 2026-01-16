@@ -20,7 +20,7 @@ public class CostController
     public void Increase(int amount = 1)
     {
         curCost += amount;
-
+        
         if (curCost > maxCost)
             curCost = maxCost;
 
