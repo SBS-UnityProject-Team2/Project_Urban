@@ -137,11 +137,19 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         nextTurnDrawBonus += amount;
     }
 
+    private bool IsEnable()
+    {
+        if (BattleManager.Instance.IsBattleEnded) return false;
+        if (BattleManager.Instance.IsBattlePause) return false;
+        if (!BattleManager.Instance.IsPlayerTurn) return false;
+
+        return true;
+    }
+
     // ICardEventHandler 구현
     public void OnCardEnter(Card card)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
         if (selectedCard != null) return;  // 카드가 선택되어 있으면 호버 안 함
 
         card.Select();
@@ -149,8 +157,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void OnCardExit(Card card)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
         if (selectedCard != null) return;  // 카드가 선택되어 있으면 언호버 안 함
 
         card.UnSelect();
@@ -158,8 +165,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void OnCardClick(Card card)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
 
         // 카드 버리기 로직 작동중에는 카드를 사용하지않고 버리기패널UI로 넘김
         if (isDiscardMode)
@@ -187,8 +193,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     // IEnemyEventHandler 구현
     public void OnEnemyEnter(Enemy enemy)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
 
         // 카드가 선택되어 있고, 공격/디버프 카드일 때만 호버
         if (selectedCard != null &&
@@ -200,15 +205,13 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void OnEnemyExit(Enemy enemy)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
         enemy.UnHover();
     }
 
     public void OnEnemyClick(Enemy enemy)
     {
-        if (BattleManager.Instance.IsBattleEnded) return;
-        if (!BattleManager.Instance.IsPlayerTurn) return;
+        if (!IsEnable()) return;
         if (selectedCard == null) return;
 
         if (selectedCard.Type != CardType.Attack && selectedCard.Type != CardType.Debuff)

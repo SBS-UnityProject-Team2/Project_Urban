@@ -8,12 +8,14 @@ public class BattleManager : SceneSingleton<BattleManager>
     private int curTurn;
     private bool isPlayerTurn = true;
     private bool isBattleEnded = false;
+    private bool isBattlePause = false;
     private int earnedCoin;
 
     public Player Player => player;
     public int CurrentTurn => curTurn;
     public bool IsPlayerTurn => isPlayerTurn;
     public bool IsBattleEnded => isBattleEnded;
+    public bool IsBattlePause => isBattlePause;
     public int EarnedCoin => earnedCoin;
 
     public UnityEvent<bool> OnBattleEnd = new();
@@ -62,6 +64,16 @@ public class BattleManager : SceneSingleton<BattleManager>
             isPlayerTurn = true;
             StartPlayerTurn();
         });
+    }
+
+    public void Pause()
+    {
+        isBattlePause = true;
+    }
+
+    public void Restart()
+    {
+        isBattlePause = false;
     }
 
     public void AddCoin(int amount)
