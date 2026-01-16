@@ -8,8 +8,7 @@ public class DoubleEdge : Attack
     public override int Use(Player player, Target target)
     {
         target.Damage(player, damage, Element.Bio);
-
-        player.Damage(player, selfDamage, Element.None);
+        player.Damage(player, selfDamage, Element.Bio);
 
         return curCost;
     }

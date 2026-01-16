@@ -1,8 +1,5 @@
-using UnityEngine;
-
 public class Dummy : BuffCard
 {
-
     public override CardName Name => CardName.Dummy;
 
     public override int Use(Player player, Target target)

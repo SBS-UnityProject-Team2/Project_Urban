@@ -1,15 +1,14 @@
-using UnityEditor;
+using UnityEngine;
 
 class VileAttack : Attack
 {
+    [SerializeField] private int turn;
+
     public override CardName Name => CardName.VileAttack;
-    public int turn;
 
     public override int Use(Player player, Target target)
     {
-
         target.Damage(player, damage); 
-        // 디버프 약화 2턴부여
         target.Weaken(turn);
 
         return curCost;
