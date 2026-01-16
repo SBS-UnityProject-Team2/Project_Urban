@@ -1833,7 +1833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &340597534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2844,7 +2844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1048
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6703,7 +6703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1048
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.y
@@ -8524,7 +8524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1048
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 792815380282649067, guid: 09ea18f20c5e5a942a7c87d9bc611c32, type: 3}
       propertyPath: m_SizeDelta.y

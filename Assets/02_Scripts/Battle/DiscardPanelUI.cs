@@ -17,9 +17,11 @@ public class DiscardPanelUI : MonoBehaviour
 
     private List<Card> selectedCards = new List<Card>();
     
+    
     private Dictionary<Card, GameObject> previewMap = new Dictionary<Card, GameObject>();
 
-    private int maxSelectionCount;                            
+    private int maxSelectionCount;    
+    private int minSelectionCount = 1;                        
     private Action<List<Card>> onDiscardCompleteCallback;     
 
     private void Awake()
@@ -33,9 +35,10 @@ public class DiscardPanelUI : MonoBehaviour
         cancelButton.onClick.AddListener(OnCancel);
     }
 
-    public void StartDiscardProcess(int count, Action<List<Card>> onComplete)
+    public void StartDiscardProcess(int count, Action<List<Card>> onComplete, int minCount = 1)
     {
         this.maxSelectionCount = count;
+        this.minSelectionCount = minCount;
         this.onDiscardCompleteCallback = onComplete;
 
         // 데이터 및 UI 초기화
@@ -175,8 +178,8 @@ public class DiscardPanelUI : MonoBehaviour
 
     public void OnConfirm()
     {        
-        if (selectedCards.Count != maxSelectionCount)
-        {
+        if (selectedCards.Count < minSelectionCount)
+        {            
             return; 
         }
 

@@ -23,7 +23,7 @@ public static class StatusEffectFactory
 
             // Buff - Only Player
             StatusEffectName.Acceleration => owner is Player player ? new Acceleration(player) : null,
-            StatusEffectName.ElasticVeil => owner is Player player ? new ElectricVeil(player) : null,
+            StatusEffectName.ElasticVeil => owner is Player player ? new ElasticVeil(player) : null,
             StatusEffectName.ResourceTrade => owner is Player player ? new ResourceTrade(player) : null,
             StatusEffectName.Searing => owner is Player player ? new Searing(player) : null,
             

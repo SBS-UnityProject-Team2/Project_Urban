@@ -21,7 +21,7 @@ abstract public class Card : MonoBehaviour
     [SerializeField] protected bool isSpecial; // 특수 카드 여부
     [SerializeField] TMP_Text cardTitle;
     [SerializeField] TMP_Text cardDesc;
-
+    [SerializeField] TMP_Text cardCost;
     
     // 이동 코루틴
     private Coroutine moveCoroutine;
@@ -65,6 +65,7 @@ abstract public class Card : MonoBehaviour
                 // 1. 텍스트 정보 동기화
                 if(cardTitle) cardTitle.text = cardData.koreanName;
                 if(cardDesc) cardDesc.text = cardData.description; // {value}가 치환된 텍스트
+                if(cardCost) cardCost.text = cardData.cost.ToString();  // 카드 코스트 텍스트
 
                 // 2. 스탯 정보도 데이터 기준으로 덮어씌우기          
                 // this.cost = cardData.cost;        
