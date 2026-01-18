@@ -9,7 +9,7 @@ public class ToxicSpore : EnemyAction
     public override ActionType Type => ActionType.Buff;
     public override Element Element => Element.Bio;
 
-    public override void Execute(Target target)
+    public override void Execute(Enemy enemy, Target target)
     {
         //target.IncreaseAdditionalDamage(damage);
         //target.IncreaseAdditionalDamageCount(count);

@@ -10,6 +10,8 @@ public class Deck
     private readonly List<CardName> tempCardList = new(12);         // 카드 임시 버퍼
 
     private Hand hand;
+
+    public Hand Hand => hand;
     
     public IEnumerable<CardName> CardList => originCardList;
     public int UnusedCardCount => unusedCardList.Count;

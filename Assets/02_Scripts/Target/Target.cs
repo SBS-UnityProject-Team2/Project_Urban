@@ -1,3 +1,4 @@
+using System.Text;
 using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,12 +58,18 @@ abstract public class Target : MonoBehaviour
 
     private bool IsBlock()
     {
-        if (status.Nullification.IsActive) return true;
+        if (status.Nullification.IsActive)
+        {
+            Debug.Log("Nullification Active");
+
+            return true;
+        }
 
         if (status.Blur.IsActive)
         {
-            status.Blur.DecreaseStack();
+            Debug.Log("Blur Active");
 
+            status.Blur.DecreaseStack();
             return true;
         }
 
@@ -71,18 +78,28 @@ abstract public class Target : MonoBehaviour
 
     private int CalcDamage(int hitPoint, Element attackType)
     {
+        StringBuilder stringBuilder = new ();
+        stringBuilder.Append($"Origin Damage : {hitPoint}, ");
+
         // 속성 상성 데미지 적용
         hitPoint = ModifyDamageByElement(hitPoint, attackType);
+        stringBuilder.Append($"Element Modify Damage : {hitPoint}, ");
         
         // 버프 및 디버프
         int damage = hitPoint;
         // 파갑
         damage += status.Broken.Modify(hitPoint);
+        stringBuilder.Append($"Broken Modify Damage : {damage}, ");
 
         // 속성별 추가데미지 디버프 
         damage += status.Anointed.Modify(hitPoint, attackType);
+        stringBuilder.Append($"Anointed Modify Damage : {damage}, ");
+
         damage += status.Delirium.Modify(hitPoint, attackType);
+        stringBuilder.Append($"Delirium Modify Damage : {damage}, ");
+
         damage += status.Infested.Modify(hitPoint, attackType);
+        stringBuilder.Append($"Infested Modify Damage : {damage}");
 
         return damage;
     }

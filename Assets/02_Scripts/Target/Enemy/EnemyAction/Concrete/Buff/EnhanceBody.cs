@@ -6,7 +6,7 @@ public class EnhanceBody : EnemyAction
     public override ActionType Type => ActionType.Buff;
     public override Element Element => Element.Ruin;
 
-    public override void Execute(Target target)
+    public override void Execute(Enemy enemy, Target target)
     {
         
     }

@@ -6,25 +6,21 @@ public class StatusView : MonoBehaviour
 {
     [Header("Content Settings")]
     [SerializeField] private Transform content;
-    [SerializeField] private float startYPosition;
-    [SerializeField] private float spacing;
     [SerializeField] private StatusEffectUI statusEffectUIPrefab;
 
     public void UpdateView(IEnumerable<StatusEffect> effects)
     {
-        int idx = 0;
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
 
         foreach (var effect in effects.ToList())
-            CreateStatusEffect(effect, idx++);
+            CreateStatusEffect(effect);
     }
 
-    private void CreateStatusEffect(StatusEffect statusEffect, int idx)
+    private void CreateStatusEffect(StatusEffect statusEffect)
     {
         StatusEffectUI statusEffectUI = Instantiate(statusEffectUIPrefab, content);
-        float yPos = -spacing * idx + startYPosition;
-
         statusEffectUI.Init(null, statusEffect.Name.ToString(), statusEffect.StatusNumber);
-        statusEffectUI.GetComponent<RectTransform>().localPosition = new Vector3(0 , yPos, 0);
     }
 
     public void Bind(Status status)

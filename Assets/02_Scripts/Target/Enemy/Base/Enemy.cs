@@ -70,9 +70,9 @@ abstract public class Enemy : Target
     public void Action()
     {
         if (enemyAction.Type == ActionType.Attack || enemyAction.Type == ActionType.Debuff)
-            enemyAction.Execute(BattleManager.Instance.Player);
+            enemyAction.Execute(this, BattleManager.Instance.Player);
         else   
-            enemyAction.Execute(this);
+            enemyAction.Execute(this, this);
 
         SetNextEnemyAction();
     }

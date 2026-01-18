@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AddCardList : MonoBehaviour
 {
-    [Header("Grid Settings")]
-    [SerializeField] private RectTransform startPos;
-    [SerializeField] private float xSpacing;
-    [SerializeField] private float ySpacing;
-
     [Header("Card Settings")]
     [SerializeField] private RectTransform content;
     [SerializeField] private UICard uiCardPrefab;
+
 
     private void Start()
     {
@@ -20,35 +17,29 @@ public class AddCardList : MonoBehaviour
 
     private void Init()
     {
-        float startXPos = startPos.localPosition.x;
-        float startYPos = startPos.localPosition.y;
-        int xIdx = 0;
-        int yIdx = 0;
-
+       
         List<CardDataEntry> cardDataEntries = CardManager.Instance.GetAllCardData().ToList();
 
         foreach (CardDataEntry cardDataEntry in cardDataEntries)
         {
-            Vector3 position = new(startXPos + xIdx * xSpacing, startYPos - yIdx * ySpacing, 0);
-            CreateUICard(cardDataEntry, position);
-
-            xIdx++;
-            
-            if (xIdx % 5 == 0)
-            {
-                xIdx = 0;
-                yIdx++;
-            }
+            CreateUICard(cardDataEntry);
         }
         
     }
 
-    private UICard CreateUICard(CardDataEntry cardDataEntry, Vector3 position)
+    private UICard CreateUICard(CardDataEntry cardDataEntry)
     {
         UICard uiCard = Instantiate(uiCardPrefab, content);
-        uiCard.GetComponent<RectTransform>().localPosition = position;
         uiCard.SetCardDataEntry(cardDataEntry);
+        
+        Button button = uiCard.gameObject.AddComponent<Button>();
+        button.onClick.AddListener(() => HandleClick(cardDataEntry.cardName));
 
         return uiCard;
+    }
+
+    private void HandleClick(CardName cardName)
+    {
+        BattleManager.Instance.Player.Deck.Hand.AddCard(cardName);
     }
 }

@@ -14,5 +14,5 @@ abstract public class EnemyAction : ScriptableObject
     abstract public ActionType Type { get; }
     abstract public Element Element { get; }
 
-    abstract public void Execute(Target target);
+    abstract public void Execute(Enemy enemy, Target target);
 } 

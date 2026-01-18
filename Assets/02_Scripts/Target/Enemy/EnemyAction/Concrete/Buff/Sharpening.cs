@@ -9,7 +9,7 @@ public class Sharpening : EnemyAction
     public override ActionType Type => ActionType.Buff;
     public override Element Element => Element.None;
 
-    public override void Execute(Target target)
+    public override void Execute(Enemy enemy, Target target)
     {
         //target.IncreaseAdditionalDamage(damage);
         //target.IncreaseAdditionalDamageCount(count);
