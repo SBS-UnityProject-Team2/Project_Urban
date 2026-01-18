@@ -73,4 +73,6 @@ public class CardSelectUI : MonoBehaviour
         List<CardDataEntry> cards = CardManager.Instance.GetCardsByElement(element);
         return cards[Random.Range(0, cards.Count)];
     }
+
+    
 } 

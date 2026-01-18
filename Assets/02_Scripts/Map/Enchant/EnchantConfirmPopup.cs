@@ -6,29 +6,40 @@ using TMPro;
 public class EnchantConfirmPopup : MonoBehaviour
 {
     [Header("Card UI Objects")]
-    [SerializeField] private UICard BeforeCardUI; // 왼쪽 카드 프리팹 
-    [SerializeField] private UICard AfterCardUI;  // 오른쪽 카드 프리팹 
+    [SerializeField] private UICard BeforeCardUI; // 왼쪽 (강화 전)
+    [SerializeField] private UICard AfterCardUI;  // 오른쪽 (강화 후)
 
-    [Header("임시 강화로직")]    
+    [Header("UI References")]
     [SerializeField] private TMP_Text AfterCardNameText; 
+    [SerializeField] private CardEnchantPanel cardEnchantPanel;
 
-    private CardDataEntry currentTarget; 
-
+    private CardDataEntry currentOriginalCard; // 원본 데이터 저장용
+    private CardDataEntry currentEnchantedCard; // 강화 데이터 저장용 
 
     public void OpenPopup(CardDataEntry card)
     {        
-        currentTarget = card;
-       
-        BeforeCardUI.SetCardDataEntry(card); 
-        AfterCardUI.SetCardDataEntry(card); 
+        currentOriginalCard = card;
 
-        // 2. 오른쪽 카드의 이름 텍스트만 강제로 덮어쓰기
-        if (AfterCardNameText != null)
+        // 1. 왼쪽: 원본 카드 표시
+        BeforeCardUI.SetCardDataEntry(card); 
+
+        // 2. 오른쪽: 강화 데이터 찾아오기
+        if (CardManager.Instance != null)
         {
-            AfterCardNameText.text = card.koreanName + " +";        //한글이름에 + 붙임
+            currentEnchantedCard = CardManager.Instance.GetEnchantedCardData(card.cardName);
+        }
+
+        if (currentEnchantedCard != null)
+        {
+            // 강화 데이터가 존재하면 오른쪽 UI에 적용
+            AfterCardUI.SetCardDataEntry(currentEnchantedCard);            
+            
+            if (AfterCardNameText != null)
+            {
+                AfterCardNameText.text = currentEnchantedCard.koreanName;
+            }
         }
         GetComponent<ModalWindowManager>().ModalWindowIn();
-        
     }
 
     public void ClosePopup()
@@ -38,11 +49,18 @@ public class EnchantConfirmPopup : MonoBehaviour
 
     public void OnClickEnchant()
     {
-        Debug.Log($"[강화 성공] {currentTarget.cardName} 강화 로직 실행!");
+        if (currentEnchantedCard == null || GameManager.Instance == null) return;
+
+        Debug.Log($"[강화 성공] {currentOriginalCard.cardName} -> {currentEnchantedCard.koreanName}");
         
-        // 실제 데이터 변경은 여기서 수행
-        //currentTarget.cardName = currentTarget.cardName + " +";
+        GameManager.Instance.Deck.UpgradeCard(currentOriginalCard.cardName);
+    
+        if (cardEnchantPanel != null && cardEnchantPanel.gameObject.activeInHierarchy)
+        {
+            cardEnchantPanel.OpenDeckDisplay();
+        }       
 
         ClosePopup();
+        cardEnchantPanel.CloseDeckDisplay();
     }
 }

@@ -10458,6 +10458,7 @@ MonoBehaviour:
   BeforeCardUI: {fileID: 489003145}
   AfterCardUI: {fileID: 1737512921}
   AfterCardNameText: {fileID: 1737512922}
+  cardEnchantPanel: {fileID: 0}
 --- !u!225 &1379066887
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12518,7 +12519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bbd2ab3440283478dcf9bc5ed002f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardFactory
-  cardData: {fileID: 11400000, guid: 352b2212eb8d1f0479d2abe2aa07dbac, type: 2}
+  cardData: {fileID: 11400000, guid: 71f7d62a017a8024a88375c4e3619639, type: 2}
 --- !u!4 &1742541501
 Transform:
   m_ObjectHideFlags: 0
@@ -15735,7 +15736,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 530d80e02c13f6848b42f40d99730498, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &264676116854485946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24526,6 +24527,7 @@ MonoBehaviour:
   BeforeCardUI: {fileID: 328007238}
   AfterCardUI: {fileID: 966775355}
   AfterCardNameText: {fileID: 966775356}
+  cardEnchantPanel: {fileID: 2114412404}
 --- !u!224 &8131398400054405136
 RectTransform:
   m_ObjectHideFlags: 0
