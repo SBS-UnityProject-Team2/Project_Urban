@@ -246,7 +246,7 @@ MonoBehaviour:
     description: "\uC801\uC758 \uD654\uC0C1 \uC218\uCE58\uB97C 2\uBC30, \uC18C\uBA78"
   - cardName: 200
     koreanName: "\uC5D0\uB108\uC9C0 \uC1A1\uACF3"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 03e6f53330caf66478ca551a9ca527ab, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
       1 \uD68D\uB4DD"
   - cardName: 201
     koreanName: "\uC5FC\uB825 \uC190\uC544\uADC0"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 525edf7481e67084aa8d61c0f6eb940e, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
       \uCE74\uB4DC 2\uC7A5\uB2F9 \uBE44\uC6A9 1 \uAC10\uC18C"
   - cardName: 202
     koreanName: "\uD30C\uB3D9"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 47a5b40f9e92a3842a721099ed1124c2, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
       \uB370\uBBF8\uC9C0 6 \uCD94\uAC00"
   - cardName: 203
     koreanName: "\uC804\uAE30 \uD654\uC0B4"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: ef46f3576f5127a4492b7a008b54e0fa, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
       1 \uD68D\uB4DD"
   - cardName: 204
     koreanName: "\uBE59\uD558 \uC410\uAE30"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: a04fba5351d3ebe4ba6888bd17eb6ac2, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
     description: "\uB370\uBBF8\uC9C0 6 \uBD80\uC5EC \uB3D9\uACB0 1"
   - cardName: 205
     koreanName: "\uC5BC\uC74C \uBC29\uD328"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 60f9278c179b3734ca22bc5229b84600, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
     description: "\uBC29\uC5B4 10, \uC5FC\uB825 \uC7A5\uB9C9 2"
   - cardName: 206
     koreanName: "\uC804\uC790\uAE30\uC7A5"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: d3f625bb7acc62b429922d0d347a5cf9, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
     description: "\uC804\uC790\uAE30\uC7A5 2 \uD68D\uB4DD"
   - cardName: 207
     koreanName: "\uAC00\uC18D \uD654\uD569\uBB3C"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 31295ef818c6e7844b05abae9e533739, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 1
@@ -333,7 +333,7 @@ MonoBehaviour:
       1 \uD68D\uB4DD, \uC18C\uBA78"
   - cardName: 208
     koreanName: "\uCD08\uC804\uB3C4\uCCB4"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: ff99905be9c8d174da5d79c673a4877b, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
       1, \uC18C\uBA78"
   - cardName: 209
     koreanName: "\uC2E0\uACBD \uC548\uC815\uC81C"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 5b2fa60b4a1b1be489e6ce33055724d9, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
       1\uC7A5\uC744 \uCF54\uC2A4\uD2B8\uB97C 0\uC73C\uB85C \uD558\uACE0 \uD68C\uC218"
   - cardName: 210
     koreanName: "\uCD08\uC800\uC628 \uBD84\uB9D0"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: 5576c375f317cb5499818ca9dfdf81e4, type: 3}
     element: 200
     isSpecial: 1
     isExtinct: 1
@@ -365,7 +365,7 @@ MonoBehaviour:
     description: "\uC801 \uC804\uCCB4 \uB3D9\uACB0 1"
   - cardName: 211
     koreanName: "\uBC29\uD574"
-    cardSprite: {fileID: 0}
+    cardSprite: {fileID: 21300000, guid: e8ab799898a3f124e9611d619aa58832, type: 3}
     element: 200
     isSpecial: 0
     isExtinct: 0

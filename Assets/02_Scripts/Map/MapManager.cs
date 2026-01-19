@@ -419,6 +419,10 @@ public class MapManager : Singleton<MapManager>
 
             // 4. 시각적 이동 요청           
             MapVisualizer.Instance.MovePlayer(targetNode);
+
+            // 5. 갈 수 있는 버튼만 켜도록 UI 갱신 요청
+            MapVisualizer.Instance.UpdateNodeInteractivity(currentNode);
+
             Debug.Log($"[MapManager] ({targetNode.x}, {targetNode.y})로 이동");
         }        
     }
