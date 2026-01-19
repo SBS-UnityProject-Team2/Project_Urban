@@ -4,7 +4,6 @@ using System.Linq; // 리스트 검색(Find) 등을 위해 필요
 
 public class Deck 
 {
-    // [변경점] List<CardName> -> List<DeckCard>
     // 이제 덱에서는 이름 + 강화 여부가 포함된 객체 목록으로 관리
     private readonly List<DeckCard> originCardList = new();     // 원본 덱
     private readonly List<DeckCard> unusedCardList = new();     // 뽑을 덱 

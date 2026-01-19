@@ -19,10 +19,7 @@ public class CostController
 
     public void Increase(int amount = 1)
     {
-        curCost += amount;
-        
-        if (curCost > maxCost)
-            curCost = maxCost;
+        curCost += amount;       
 
         OnUpdateCost?.Invoke(curCost, maxCost);
     }
@@ -53,9 +50,10 @@ public class CostController
 
         if (maxCost < 0)
             maxCost = 0;
-
+        /*
         if (maxCost < curCost)
             curCost = maxCost;
+        */
 
         recoveryCost = maxCost - diff;
 
@@ -80,6 +78,7 @@ public class CostController
     public void IncreaseRecovery(int amount = 1)
     {
         recoveryCost += amount;
+        OnUpdateCost?.Invoke(curCost, maxCost);
     }
 
     public void DecreaseRecovery(int amount = 1)
@@ -88,5 +87,7 @@ public class CostController
 
         if (recoveryCost < 0)
             recoveryCost = 0;
+
+        OnUpdateCost?.Invoke(curCost, maxCost);
     }
 }

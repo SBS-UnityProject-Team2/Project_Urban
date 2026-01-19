@@ -155,7 +155,13 @@ abstract public class Card : MonoBehaviour
     public void SetCost(int newCost)
     {
         curCost = newCost;
-        // 만약 UI에 코스트가 표시된다면 갱신하는 코드가 여기에 들어가야 함        
+        if (cardCost != null)
+        {
+            cardCost.text = curCost.ToString();
+            
+            if (newCost < initCost) cardCost.color = Color.yellow;
+            else cardCost.color = Color.white; 
+        }      
     }    
 
     abstract public CardName Name { get; }

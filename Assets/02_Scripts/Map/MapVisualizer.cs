@@ -39,17 +39,15 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
     [SerializeField] private float fixedContentHeight = 6000f;  
   
 
-    // 계층 구조정리를 위한 컨테이너 (선은 뒤에, 노드는 앞에 그리기 위함)
+    
     private Transform lineContainer;
     private Transform nodeContainer;
 
-    // MapNode 데이터와 실제 게임오브젝트를 연결하는 딕셔너리 
+    
     private Dictionary<MapNode, GameObject> nodeObjMap = new Dictionary<MapNode, GameObject>();
 
-    // Key: 층수(y), Value: 해당 층에 있는 노드들의 컴포넌트 정보 리스트
     private Dictionary<int, List<NodeVisualData>> nodesByFloor = new Dictionary<int, List<NodeVisualData>>();
 
-    // Key: 시작 층(y), Value: 해당 층에서 시작하는 선들의 Image 컴포넌트 리스트
     private Dictionary<int, List<Image>> linesByFloor = new Dictionary<int, List<Image>>();
 
 
@@ -96,6 +94,9 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         // 5. 스크롤 뷰 초기 상태 설정 (맨 아래)                
         mapScrollView.verticalNormalizedPosition = 0f; // 0: 바닥, 1: 천장
         mapScrollView.velocity = Vector2.zero;         // 관성 제거
+
+        // 맵 생성 직후 버튼 상태 갱신 (1층만 활성화)
+        UpdateNodeInteractivity(MapManager.Instance.CurrentNode);
         
     }
 
@@ -254,7 +255,47 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         };
     }
 
-    // [플레이어 이동 및 시각 효과 로직]
+    // 현재 위치를 기준으로 갈 수 없는 버튼은 끄고, 갈 수 있는 버튼만 활성화
+    public void UpdateNodeInteractivity(MapNode currentNode)
+    {
+        // 1. 모든 노드 버튼 비활성화
+        foreach (var kvp in nodeObjMap)
+        {
+            Button btn = kvp.Value.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.interactable = false;
+            }
+        }
+        // 2. 갈 수 있는 노드만 활성화
+        if (currentNode == null)
+        {
+            foreach (var kvp in nodeObjMap)
+            {
+                MapNode node = kvp.Key;
+                if (node.y == 0 && node.isActive)
+                {
+                    kvp.Value.GetComponent<Button>().interactable = true;
+                }
+            }
+        }
+        else
+        {
+            // 게임 진행 중: 현재 노드와 연결된 노드만 활성화
+            foreach (MapNode nextNode in currentNode.nextNodes)
+            {
+                if (nodeObjMap.TryGetValue(nextNode, out GameObject nextObj))
+                {
+                    Button btn = nextObj.GetComponent<Button>();
+                    if (btn != null)
+                    {
+                        btn.interactable = true;
+                    }
+                }
+            }
+        }
+    }
+
     // 플레이어를 특정 노드로 이동
     public void MovePlayer(MapNode targetNode)
     {
