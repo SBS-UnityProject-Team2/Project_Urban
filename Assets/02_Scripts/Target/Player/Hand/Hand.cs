@@ -14,10 +14,13 @@ public class Hand : MonoBehaviour
     private readonly List<Card> curHand = new();
     public IEnumerable<Card> CurHand => curHand;
 
-    public Card AddCard(CardName cardName)      // void > Card
+    public Card AddCard(Deck.DeckCard cardInfo)      // void > Card
     {   
+       //  핸드 최대 매수 체크 
+        if (curHand.Count >= maxCardCount) return null;
+
         // 내부 함수에서 생성된 카드를 받아서 저장
-        Card newCard = InternalAddCard(cardName);
+        Card newCard = InternalAddCard(cardInfo);
         
         Align();
 
@@ -25,10 +28,15 @@ public class Hand : MonoBehaviour
         return newCard;
     }
 
-    public void AddCards(IEnumerable<CardName> cardNames)
+    public void AddCards(IEnumerable<Deck.DeckCard> cards)
     {
-        foreach(CardName cardName in cardNames)
-            InternalAddCard(cardName);
+        foreach(var cardInfo in cards)
+        {
+            // [추가] 핸드가 가득 차면 더 이상 받지 않음
+            if (curHand.Count >= maxCardCount) break;
+
+            InternalAddCard(cardInfo);
+        }
 
         Align();
     }
@@ -54,9 +62,18 @@ public class Hand : MonoBehaviour
         curHand.Clear();
     }
 
-    private Card InternalAddCard(CardName cardName)     // void > Card
+    private Card InternalAddCard(Deck.DeckCard cardInfo)     
     {
-        Card newCard = CardManager.Instance.CreateCard(cardName, cardSpawnPoint.position, transform);
+        // CardManager에게 이름(CardName)과 강화여부(IsEnchanted)를 함께 전달
+        // cardInfo.CardName: 카드 이름
+        // cardInfo.IsEnchanted: 강화 여부 (true/false)
+        Card newCard = CardManager.Instance.CreateCard(
+            cardInfo.CardName, 
+            cardInfo.IsEnchanted, 
+            cardSpawnPoint.position, 
+            transform
+        );
+
         curHand.Add(newCard);
 
         // 생성한 카드를 반환

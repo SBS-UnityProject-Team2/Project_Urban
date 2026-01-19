@@ -39,6 +39,7 @@ abstract public class Card : MonoBehaviour
     public bool IsEntered { get; set; } = false;
     public virtual bool IsExtinct => isExtinct; 
     public virtual bool IsSpecial => isSpecial;
+    public bool IsEnchanted { get; private set; }
 
     private void Awake()
     {
@@ -48,34 +49,32 @@ abstract public class Card : MonoBehaviour
 
     protected virtual void Start()
     {
-       
         Player player = BattleManager.Instance.Player;
         handler = player;
         player.OnTurnStart.AddListener(HandleTurnStart);
+    }
 
-        
-        // CardData(JSON)와 정보 동기화
-        
-        if (CardManager.Instance != null)
-        {
-            CardDataEntry cardData = CardManager.Instance.GetCardData(Name);
-            
-            if (cardData != null)
-            {
-                // 1. 텍스트 정보 동기화
-                if(cardTitle) cardTitle.text = cardData.koreanName;
-                if(cardDesc) cardDesc.text = cardData.description; // {value}가 치환된 텍스트
-                if(cardCost) cardCost.text = cardData.cost.ToString();  // 카드 코스트 텍스트
+    // 외부에서 데이터를 주입해주는 초기화 함수
+    public void Setup(CardDataEntry data)
+    {
+        if (data == null) return;
 
-                // 2. 스탯 정보도 데이터 기준으로 덮어씌우기          
-                // this.cost = cardData.cost;        
-                this.element = cardData.element;
-                this.isSpecial = cardData.isSpecial;
-                
-                // 만약 CardDataEntry에 isExtinct(소멸) 정보가 있다면
-                this.isExtinct = cardData.isExtinct; 
-            }
-        }
+        // 1. 텍스트 정보 동기화
+        if (cardTitle) cardTitle.text = data.koreanName; // 강화된 이름
+        if (cardDesc) cardDesc.text = data.description;
+        if (cardCost) cardCost.text = data.cost.ToString();
+
+        // 2. 스탯 정보 덮어씌우기
+        this.element = data.element;
+        this.isSpecial = data.isSpecial;
+        this.isExtinct = data.isExtinct;     
+        
+        this.initCost = data.cost;
+        this.curCost = data.cost;
+
+        // 이름에 "+"가 포함되어 있거나, 데이터 자체가 강화 데이터라면 true로 설정
+        this.IsEnchanted = data.koreanName.EndsWith("+");        
+        
     }
 
     // Unity 마우스 이벤트

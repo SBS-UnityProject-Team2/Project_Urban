@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bbd2ab3440283478dcf9bc5ed002f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardFactory
-  cardData: {fileID: 11400000, guid: 352b2212eb8d1f0479d2abe2aa07dbac, type: 2}
+  cardData: {fileID: 11400000, guid: 71f7d62a017a8024a88375c4e3619639, type: 2}
 --- !u!4 &864483422
 Transform:
   m_ObjectHideFlags: 0

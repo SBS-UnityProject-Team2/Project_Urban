@@ -1,6 +1,5 @@
 {
-  "enchantcards": [
-    [
+  "enchantcards": [    
       {
         "cardName": "Punch",
         "koreanName": "타격 +",
@@ -553,6 +552,5 @@
         "description": "적 전체에게 약화 {value1} 부여",
         "price": 100
       }
-    ]
-  ]
+    ]  
 }

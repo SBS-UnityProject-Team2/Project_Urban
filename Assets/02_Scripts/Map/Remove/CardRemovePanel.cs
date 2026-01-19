@@ -15,7 +15,8 @@ public class CardRemovePanel : MonoBehaviour
 
     public void OpenDeckDisplay()
     {
-        IEnumerable<CardName> receivedDeck = GameManager.Instance.Deck.CardList;
+        IEnumerable<Deck.DeckCard> receivedDeck = GameManager.Instance.Deck.CardList;
+        
         int curCardCount = receivedDeck.Count();
 
         if (prevCardCount != curCardCount)
@@ -32,7 +33,7 @@ public class CardRemovePanel : MonoBehaviour
         RemoveCardPanel.SetActive(false);
     }
 
-    private void RenderDeck(IEnumerable<CardName> deckToRender)
+    private void RenderDeck(IEnumerable<Deck.DeckCard> deckToRender)
     {
         // 1. 초기화
         foreach (Transform child in displayArea)
@@ -41,18 +42,33 @@ public class CardRemovePanel : MonoBehaviour
         }
 
         // 2. 슬롯 생성
-        foreach (CardName cardName in deckToRender)
+        foreach (Deck.DeckCard cardInfo in deckToRender)
         {
             GameObject cardObject = Instantiate(cardPrefab, displayArea);
             cardObject.transform.localScale = Vector3.one;
 
-            CardDataEntry cardData = CardManager.Instance.GetCardData(cardName);
+            // 강화 여부에 따라 알맞은 데이터 가져옴
+            CardDataEntry cardData = null;
 
-            UICard cardScript = cardObject.GetComponent<UICard>();
-            cardScript.SetCardDataEntry(cardData);
+            if (cardInfo.IsEnchanted)
+            {
+                cardData = CardManager.Instance.GetEnchantedCardData(cardInfo.CardName);
+            }
 
-            OnClickHandler onClick = cardObject.GetComponent<OnClickHandler>();
-            onClick.AddClickHandler(() => removeConfirmPopup.OpenPopup(cardData));
+            // 강화 데이터가 없거나 일반 카드라면 기본 데이터 가져오기
+            if (cardData == null)
+            {
+                cardData = CardManager.Instance.GetCardData(cardInfo.CardName);
+            }
+
+            if (cardData != null)
+            {
+                UICard cardScript = cardObject.GetComponent<UICard>();
+                cardScript.SetCardDataEntry(cardData);
+
+                OnClickHandler onClick = cardObject.GetComponent<OnClickHandler>();
+                onClick.AddClickHandler(() => removeConfirmPopup.OpenPopup(cardData));
+            }
         }
     }
 }
