@@ -40,8 +40,9 @@ public class AddCardList : MonoBehaviour
 
     private void HandleClick(CardName cardName)
     {
-        Deck.DeckCard newCard = new Deck.DeckCard(cardName, false);
+        Player player = BattleManager.Instance.Player;
+        Card card = player.Deck.CreateCard(cardName);
 
-        BattleManager.Instance.Player.Deck.Hand.AddCard(newCard);
+        player.Deck.Hand.AddCard(card);
     }
 }

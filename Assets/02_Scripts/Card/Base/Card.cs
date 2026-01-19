@@ -22,22 +22,22 @@ abstract public class Card : MonoBehaviour
     [SerializeField] TMP_Text cardTitle;
     [SerializeField] TMP_Text cardDesc;
     [SerializeField] TMP_Text cardCost;
-    
+
     // 이동 코루틴
     private Coroutine moveCoroutine;
     private Vector3 localScale;
     private ICardEventHandler handler;
     protected int curCost;
-
-    // 카드 정보 관련
-    //public bool IsSpecial { get; }      // 특수 카드 여부 
-    //public bool IsException { get; }     //제외 카드 여부
+    protected CardDataEntry cardData;
 
     // Property
     public int Cost => curCost;
     public Vector3 OriginPos { get; set; } = new();
+    public CardDataEntry Data => cardData;
+    public Element Element => element;
+
     public bool IsEntered { get; set; } = false;
-    public virtual bool IsExtinct => isExtinct; 
+    public virtual bool IsExtinct => isExtinct;
     public virtual bool IsSpecial => isSpecial;
     public bool IsEnchanted { get; private set; }
 
@@ -54,27 +54,34 @@ abstract public class Card : MonoBehaviour
         player.OnTurnStart.AddListener(HandleTurnStart);
     }
 
-    // 외부에서 데이터를 주입해주는 초기화 함수
-    public void Setup(CardDataEntry data)
+    public void Init(CardDataEntry cardDataEntry)
     {
-        if (data == null) return;
+        SetupDate(cardDataEntry);
+        cardData = cardDataEntry;
 
-        // 1. 텍스트 정보 동기화
-        if (cardTitle) cardTitle.text = data.koreanName; // 강화된 이름
-        if (cardDesc) cardDesc.text = data.description;
-        if (cardCost) cardCost.text = data.cost.ToString();
+        IsEnchanted = false;
+    }
 
-        // 2. 스탯 정보 덮어씌우기
-        this.element = data.element;
-        this.isSpecial = data.isSpecial;
-        this.isExtinct = data.isExtinct;     
-        
-        this.initCost = data.cost;
-        this.curCost = data.cost;
+    public void Enhance()
+    {
+        CardDataEntry cardDataEntry = CardManager.Instance.GetEnchantedCardData(Name);
+        SetupDate(cardDataEntry);
 
-        // 이름에 "+"가 포함되어 있거나, 데이터 자체가 강화 데이터라면 true로 설정
-        this.IsEnchanted = data.koreanName.EndsWith("+");        
-        
+        IsEnchanted = true;
+    }
+
+    private void SetupDate(CardDataEntry cardDataEntry)
+    {
+        cardTitle.text = cardDataEntry.koreanName;
+        cardDesc.text = cardDataEntry.description;
+        cardCost.text = cardDataEntry.cost.ToString();
+
+        element = cardDataEntry.element;
+        isSpecial = cardDataEntry.isSpecial;
+        isExtinct = cardDataEntry.isExtinct;
+
+        initCost = cardDataEntry.cost;
+        curCost = initCost;
     }
 
     // Unity 마우스 이벤트
@@ -99,7 +106,7 @@ abstract public class Card : MonoBehaviour
     public void Select()
     {
         transform.localScale = localScale * 1.2f;
-        
+
         Vector3 newPos = transform.localPosition;
         newPos.z = -3.0f;  // 최상단으로
         newPos.y = OriginPos.y + 0.5f;
@@ -116,7 +123,7 @@ abstract public class Card : MonoBehaviour
     public void MoveTo(Vector3 targetLocalPos, UnityAction onComplete = null)
     {
         if (moveCoroutine != null) StopCoroutine(moveCoroutine);
-        
+
         OriginPos = targetLocalPos;
         moveCoroutine = StartCoroutine(MoveRoutine(targetLocalPos, onComplete));
     }
@@ -143,10 +150,10 @@ abstract public class Card : MonoBehaviour
     private void HandleTurnStart()
     {
         Player player = BattleManager.Instance.Player;
-        
+
         if (player.Status.Dizzy.IsActive)
             SetCost(curCost + 1);
-        else   
+        else
             SetCost(initCost);
 
     }
@@ -155,14 +162,11 @@ abstract public class Card : MonoBehaviour
     public void SetCost(int newCost)
     {
         curCost = newCost;
-        if (cardCost != null)
-        {
-            cardCost.text = curCost.ToString();
-            
-            if (newCost < initCost) cardCost.color = Color.yellow;
-            else cardCost.color = Color.white; 
-        }      
-    }    
+        cardCost.text = curCost.ToString();
+
+        if (newCost < initCost) cardCost.color = Color.yellow;
+        else cardCost.color = Color.white;
+    }
 
     abstract public CardName Name { get; }
     abstract public CardType Type { get; }

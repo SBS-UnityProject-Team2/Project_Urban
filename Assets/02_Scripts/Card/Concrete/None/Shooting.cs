@@ -6,20 +6,13 @@ public class Shooting : Attack
 
     public override int Use(Player player, Target target)
     {
-        Deck.DeckCard lastCard = player.Deck.GetLastUsedCard();
+        Card lastCard = player.Deck.GetLastUsedCard();
         
         Element attackElement = Element.None;
 
         // 카드가 있는지 확인
         if (lastCard != null)
-        {
-            CardDataEntry cardData = CardManager.Instance.GetCardData(lastCard.CardName);
-            
-            if (cardData != null)
-            {
-                attackElement = cardData.element;
-            }
-        }
+            attackElement = lastCard.Element;
 
         target.Damage(player, damage, attackElement);
 

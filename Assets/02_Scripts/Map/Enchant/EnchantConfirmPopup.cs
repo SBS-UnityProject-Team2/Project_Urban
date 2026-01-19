@@ -13,32 +13,21 @@ public class EnchantConfirmPopup : MonoBehaviour
     [SerializeField] private TMP_Text AfterCardNameText; 
     [SerializeField] private CardEnchantPanel cardEnchantPanel;
 
+    private Card selectedCard;
     private CardDataEntry currentOriginalCard; // 원본 데이터 저장용
     private CardDataEntry currentEnchantedCard; // 강화 데이터 저장용 
 
-    public void OpenPopup(CardDataEntry card)
+    public void OpenPopup(Card card)
     {        
-        currentOriginalCard = card;
+        selectedCard = card;
 
-        // 1. 왼쪽: 원본 카드 표시
-        BeforeCardUI.SetCardDataEntry(card); 
+        currentOriginalCard = card.Data;
+        BeforeCardUI.SetCardDataEntry(currentOriginalCard); 
 
-        // 2. 오른쪽: 강화 데이터 찾아오기
-        if (CardManager.Instance != null)
-        {
-            currentEnchantedCard = CardManager.Instance.GetEnchantedCardData(card.cardName);
-        }
+        currentEnchantedCard = CardManager.Instance.GetEnchantedCardData(card.Name);
+        AfterCardUI.SetCardDataEntry(currentEnchantedCard);
+        AfterCardNameText.text = currentEnchantedCard.koreanName;            
 
-        if (currentEnchantedCard != null)
-        {
-            // 강화 데이터가 존재하면 오른쪽 UI에 적용
-            AfterCardUI.SetCardDataEntry(currentEnchantedCard);            
-            
-            if (AfterCardNameText != null)
-            {
-                AfterCardNameText.text = currentEnchantedCard.koreanName;
-            }
-        }
         GetComponent<ModalWindowManager>().ModalWindowIn();
     }
 
@@ -49,17 +38,9 @@ public class EnchantConfirmPopup : MonoBehaviour
 
     public void OnClickEnchant()
     {
-        if (currentEnchantedCard == null || GameManager.Instance == null) return;
-
+        selectedCard.Enhance();
         Debug.Log($"[강화 성공] {currentOriginalCard.cardName} -> {currentEnchantedCard.koreanName}");
         
-        GameManager.Instance.Deck.UpgradeCard(currentOriginalCard.cardName);
-    
-        if (cardEnchantPanel != null && cardEnchantPanel.gameObject.activeInHierarchy)
-        {
-            cardEnchantPanel.OpenDeckDisplay();
-        }       
-
         ClosePopup();
         cardEnchantPanel.CloseDeckDisplay();
     }

@@ -1,24 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq; // 리스트 검색(Find) 등을 위해 필요
 
 public class Deck 
 {
     // 이제 덱에서는 이름 + 강화 여부가 포함된 객체 목록으로 관리
-    private readonly List<DeckCard> originCardList = new();     // 원본 덱
-    private readonly List<DeckCard> unusedCardList = new();     // 뽑을 덱 
-    private readonly List<DeckCard> usedCardList = new();       // 사용한 카드 리스트 
-    private readonly List<DeckCard> extinctCardList = new();    // 소멸된 카드 리스트
-    private readonly List<DeckCard> tempCardList = new(12);     
+    private readonly List<Card> originCardList = new();     // 원본 덱
+    private readonly List<Card> unusedCardList = new();     // 뽑을 덱 
+    private readonly List<Card> usedCardList = new();       // 사용한 카드 리스트 
+    private readonly List<Card> extinctCardList = new();    // 소멸된 카드 리스트
 
     private Hand hand;
-
     public Hand Hand => hand;
     
     // 외부 접근용 프로퍼티도 DeckCard 타입으로 변경
-    public IEnumerable<DeckCard> CardList => originCardList;
-    public IEnumerable<DeckCard> UsedCardList => usedCardList;
-    public IEnumerable<DeckCard> ExtinctCardList => extinctCardList;
+    public IEnumerable<Card> CardList => originCardList;
+    public IEnumerable<Card> UsedCardList => usedCardList;
+    public IEnumerable<Card> ExtinctCardList => extinctCardList;
 
     public int UnusedCardCount => unusedCardList.Count;
     public int UsedCardCount => usedCardList.Count;
@@ -27,17 +24,20 @@ public class Deck
     public Deck(IEnumerable<CardName> cardRecipes)
     {
         foreach (CardName name in cardRecipes)
-        {
-            // 최초 생성 시에는 강화되지 않은 상태(false)로 객체 생성
-            DeckCard newCard = new DeckCard(name, false);
-
-            originCardList.Add(newCard);
-            unusedCardList.Add(newCard); 
-        }
+            AddCard(name);
 
         Shuffle();
     }
-    
+
+    public Card CreateCard(CardName cardName, bool isEnchanted = false)
+    {
+        return CardManager.Instance.CreateCard
+        (
+                cardName,
+                isEnchanted
+        );
+    }
+
     public void Initialize(Hand hand)
     {
         this.hand = hand;
@@ -63,43 +63,23 @@ public class Deck
     }
 
     // 카드 여러 장 드로우
-    public void Draw(int amount)
+    public void Draw(int amount = 1)
     {
-        tempCardList.Clear();
-        
         for (int i = 0; i < amount; i++)
         {
-            // 뽑을 카드가 없으면 셔플
-            if (unusedCardList.Count == 0)
-                Shuffle();
+            if (hand.IsHandFull()) break;
 
-            // 셔플 후에도 카드가 있으면 뽑기
-            if (unusedCardList.Count > 0)
-            {
-                tempCardList.Add(GetNextCard());
-            }
-        }
-        
-        hand.AddCards(tempCardList);
-    }
-
-    // 카드 1장 드로우
-    public void Draw()
-    {
-        if (unusedCardList.Count == 0)
-            Shuffle();
-
-        if (unusedCardList.Count > 0)
-        {
+            if (unusedCardList.Count == 0) Shuffle();
+            
             hand.AddCard(GetNextCard());
-        }
+        }   
     }
 
     // 다음 카드 가져오기 
-    private DeckCard GetNextCard()
+    private Card GetNextCard()
     {
         // 리스트의 맨 뒤에서부터 가져옴 
-        DeckCard card = unusedCardList[^1];
+        Card card = unusedCardList[^1];
         unusedCardList.RemoveAt(unusedCardList.Count - 1);
 
         return card;
@@ -108,18 +88,11 @@ public class Deck
     // 사용한 카드 버리기
     public void Discard(Card usedCard)
     {
-        // 카드에서 정보(이름, 강화여부)를 확인한 후 DeckCard 생성
-        DeckCard cardData = new DeckCard(usedCard.Name, usedCard.IsEnchanted);
-
         // 1. 소멸(Extinct) 체크
         if (usedCard.IsExtinct)
-        {
-            extinctCardList.Add(cardData);
-        }
+            extinctCardList.Add(usedCard);
         else
-        {
-            usedCardList.Add(cardData);
-        }
+            usedCardList.Add(usedCard);
         
         // 핸드에서 UI 오브젝트 제거
         hand.RemoveCard(usedCard);
@@ -129,12 +102,7 @@ public class Deck
     public void DiscardAll()
     {
         foreach (Card card in hand.CurHand)
-        {
-            bool isEnchanted = false; 
-            isEnchanted = card.IsEnchanted;
-
-            usedCardList.Add(new DeckCard(card.Name, card.IsEnchanted));
-        }
+            usedCardList.Add(card);
 
         hand.RemoveAll();
     }
@@ -156,69 +124,56 @@ public class Deck
     public void UpgradeCard(CardName targetName)
     {
         // 원본 덱에서 해당 이름을 가진 카드 중, 아직 강화되지 않은 카드 검색
-        DeckCard targetCard = originCardList.Find(c => c.CardName == targetName && !c.IsEnchanted);
-
-        if (targetCard != null)
-        {
-            // 상태 변경 -> 참조 타입이므로 originCardList 내부의 객체가 변경됨
-            targetCard.IsEnchanted = true;
-        }        
+        Card targetCard = originCardList.Find(c => c.Name == targetName && !c.IsEnchanted);
+        targetCard.Enhance();
     }
 
-    // 덱에 새로운 카드 추가
-    public void AddCard(CardName cardName, bool isEnchanted = false)
+    // 덱에 새로운 카드 추가 
+    // 여기서 카드 생성
+    public void AddCard(CardName cardName)
     {
-        DeckCard newCard = new DeckCard(cardName, isEnchanted);
-        originCardList.Add(newCard);
-        
-        // 전투 중이라면 뽑을 덱에도 넣어줌 
-        unusedCardList.Add(newCard);
+        Card card = CreateCard(cardName, false);
+        originCardList.Add(card);
     }
 
     // 덱에서 카드 영구 제거 (이벤트 등)
-    public void RemoveCard(CardName cardName)
+    public void RemoveCard(Card card)
     {
-        // 강화 안 된 카드 우선 제거, 없으면 강화된 카드 제거
-        DeckCard target = originCardList.Find(c => c.CardName == cardName && !c.IsEnchanted);
-        
-        if (target == null)
-            target = originCardList.Find(c => c.CardName == cardName);
-
-        if (target != null)
-        {
-            originCardList.Remove(target);
-            
-            if(unusedCardList.Contains(target)) unusedCardList.Remove(target);
-            else if(usedCardList.Contains(target)) usedCardList.Remove(target);
-        }
+        originCardList.Remove(card);
     }
     
     // 전체 덱 목록 반환
-    public List<DeckCard> GetAllCards()
+    public List<Card> GetAllCards()
     {
-        return new List<DeckCard>(originCardList);
+        return new List<Card>(originCardList);
     }
 
     // 버린 카드 더미에서 랜덤 뽑기 
-    public Card DrawRandomFromDiscard()
+    public bool DrawRandomFromDiscard(out Card card)
     {       
-        if (usedCardList.Count == 0) return null;
+        if (usedCardList.Count == 0 || hand.IsHandFull())
+        {
+            card = null;
+
+            return false;
+        }
 
         int randomIndex = Random.Range(0, usedCardList.Count);
-        DeckCard targetDeckCard = usedCardList[randomIndex];
+        card = usedCardList[randomIndex];
 
-        usedCardList.RemoveAt(randomIndex);
+        (usedCardList[randomIndex], usedCardList[^1]) = (usedCardList[^1], usedCardList[randomIndex]);
+        usedCardList.RemoveAt(usedCardList.Count - 1);
+        hand.AddCard(card);
 
-        // Hand에 DeckCard 정보를 넘김
-        return hand.AddCard(targetDeckCard);
+        return true;
     }
 
     // 가장 최근에 사용한 카드 정보 확인
-    public DeckCard GetLastUsedCard()
+    public Card GetLastUsedCard()
     {
         if (usedCardList.Count > 0)
         {
-            return usedCardList[usedCardList.Count - 1];
+            return usedCardList[^1];
         }
         return null; 
     }
@@ -226,18 +181,16 @@ public class Deck
     // 뽑을 덱 중간에 카드 찔러 넣기
     public void AddCardToDrawPile(CardName cardName, bool isEnchanted = false)
     {
-        DeckCard newCard = new DeckCard(cardName, isEnchanted);
+        Card card = CreateCard(cardName, isEnchanted);
         
-        int randomIndex = Random.Range(0, unusedCardList.Count + 1);
-        unusedCardList.Insert(randomIndex, newCard);
+        usedCardList.Add(card);
+        Shuffle();
     }
 
     // 소멸 로직
     public void Extinct(Card card)
     {        
-        DeckCard deckCard = new DeckCard(card.Name, card.IsEnchanted);
-        extinctCardList.Add(deckCard);
-        
+        extinctCardList.Add(card);
         hand.RemoveCard(card);        
     }
     

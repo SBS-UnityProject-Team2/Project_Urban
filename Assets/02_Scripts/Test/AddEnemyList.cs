@@ -39,8 +39,8 @@ public class AddEnemyList : MonoBehaviour
 
     private void HandleClick(CardName cardName)
     {
-        Deck.DeckCard newCard = new Deck.DeckCard(cardName, false);
-
-        BattleManager.Instance.Player.Deck.Hand.AddCard(newCard);
+        Player player = BattleManager.Instance.Player;
+        Card card = player.Deck.CreateCard(cardName);
+        player.Deck.Hand.AddCard(card);
     }
 }
