@@ -22,7 +22,8 @@ public class Hand : MonoBehaviour
     public void AddCard(Card card)     
     {   
         curHand.Add(card);
-        card.transform.parent = transform;
+        card.transform.position = cardSpawnPoint.position;
+        card.gameObject.SetActive(true);
         
         Align();
     }
@@ -50,7 +51,10 @@ public class Hand : MonoBehaviour
 
     private void DestroyCard(Card card)
     {
-        card.MoveTo(cardDespawnPoint.position, () => Destroy(card.gameObject));
+        card.MoveTo(cardDespawnPoint.position, () =>
+        {
+            card.gameObject.SetActive(false);
+        });
     }
 
     private void Align()

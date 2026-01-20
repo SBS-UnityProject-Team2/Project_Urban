@@ -23,7 +23,7 @@ public class UISelectElement : MonoBehaviour
     public void SelectElement(Element element)
     {
         GameManager.Instance.SelectedElement = element;
-        GameManager.Instance.SetBonusCards(elementCardMaps[element]);
+        DeckManager.Instance.AddCards(elementCardMaps[element]);
 
         SceneManager.LoadScene(Scene.Map);
     }

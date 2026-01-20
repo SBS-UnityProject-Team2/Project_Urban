@@ -261,7 +261,7 @@ public class CardData : ScriptableObject
     {
         string relativePath;
 
-        if (useElementFolder && element != Element.None)
+        if (useElementFolder)
         {
             relativePath = Path.Combine(basePath, element.ToString(), fileName + extension);
         }

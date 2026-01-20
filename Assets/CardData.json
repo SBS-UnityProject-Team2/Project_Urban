@@ -337,7 +337,7 @@
         "price": 50
       },
       {
-        "cardName": "electricField",
+        "cardName": "ElectricField",
         "koreanName": "전자기장",
         "element": "Psychic",
         "isExtinct": "FALSE",
@@ -349,7 +349,7 @@
         "price": 80
       },
       {
-        "cardName": "accelConcoction",
+        "cardName": "AccelConcoction",
         "koreanName": "가속 화합물",
         "element": "Psychic",
         "isExtinct": "TRUE",

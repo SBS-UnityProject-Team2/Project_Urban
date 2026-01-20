@@ -430,6 +430,8 @@ MonoBehaviour:
   cardTitle: {fileID: 8291934332962563233}
   cardDesc: {fileID: 2493825596561354744}
   cardCost: {fileID: 1094597000705484622}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 5
 --- !u!212 &6891848108542606975
 SpriteRenderer:

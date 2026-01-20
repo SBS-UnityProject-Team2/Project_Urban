@@ -6,6 +6,7 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] private Canvas battleEndUI;
     [SerializeField] private CanvasRenderer successUI;
     [SerializeField] private CanvasRenderer failUI;
+    [SerializeField] private Canvas discardUI;
 
     private void Start()
     {
@@ -24,5 +25,15 @@ public class UIManager : SceneSingleton<UIManager>
             successUI.gameObject.SetActive(true);
         else
             failUI.gameObject.SetActive(true);
+    }
+
+    public void OpenDiscardUI()
+    {
+        discardUI.gameObject.SetActive(true);
+    }
+
+    public void CloseDiscardUI()
+    {
+        discardUI.gameObject.SetActive(false);
     }
 }

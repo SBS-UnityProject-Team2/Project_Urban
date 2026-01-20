@@ -20,7 +20,7 @@ public class RemoveConfirmPopup : MonoBehaviour
 
     public void OnClickRemove()
     {  
-        GameManager.Instance.Deck.RemoveCard(targetCard);
+        DeckManager.Instance.RemoveCard(targetCard);
         ClosePopup();
         Panel_CardRemovePanel.SetActive(false);
     }

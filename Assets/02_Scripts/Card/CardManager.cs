@@ -6,19 +6,17 @@ public class CardManager : Singleton<CardManager>
     [Header("Data")]
     [SerializeField] private CardData cardData; 
 
-    [Header("Card Spawn / Despawn Point")]
-    [SerializeField] private Transform cardSpawnPoint;          // 카드가 생성될 위치
-    [SerializeField] private Transform cardDespawnPoint;        // 카드가 소멸할 위치
-
-    public Card CreateCard(CardName cardName, bool isEnchanted)
+    public Card CreateCard(CardName cardName, Transform transform, bool isEnchanted)
     {
         CardDataEntry cardDataEntry = GetCardData(cardName);
-        Card card = Instantiate(cardDataEntry.cardPrefab, cardSpawnPoint.position, Quaternion.identity);
+        Card card = Instantiate(cardDataEntry.cardPrefab, transform);
 
         card.Init(cardDataEntry);
 
         if (isEnchanted) 
             card.Enhance();
+
+        card.gameObject.SetActive(false);
         
         return card;
     }

@@ -29,6 +29,7 @@ abstract public class Target : MonoBehaviour
     // Event
     public UnityEvent OnTurnStart = new();
     public UnityEvent OnTurnEnd = new();
+    
     public UnityEvent<Target, Target> OnAttack = new();
     public UnityEvent OnHeal = new();
     public UnityEvent<Target, Target, bool> OnDamaged { get; } = new();

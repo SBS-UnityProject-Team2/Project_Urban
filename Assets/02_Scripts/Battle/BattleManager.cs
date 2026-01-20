@@ -28,8 +28,6 @@ public class BattleManager : SceneSingleton<BattleManager>
     
     private void InitializeBattle()
     {
-        // 명시적 초기화
-        GameManager.Instance.Deck.ResetDeck();
         player.OnTurnStart?.Invoke();
     }
 
@@ -39,6 +37,8 @@ public class BattleManager : SceneSingleton<BattleManager>
         
         isBattleEnded = true;
         isPlayerTurn = false;
+
+        player.Hand.RemoveAll();
         
         // 코인 전달
         GameManager.Instance.AddCoin(earnedCoin);

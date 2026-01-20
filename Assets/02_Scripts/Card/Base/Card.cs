@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 
 public enum CardType
 {
@@ -11,22 +12,34 @@ public enum CardType
     Debuff   // 디버프
 }
 
+[RequireComponent(typeof(SpriteRenderer))]
+
 // Prefab
 abstract public class Card : MonoBehaviour
 {
-    //카드 기본 정보
+    [Header("Card Settings")]
     [SerializeField] protected Element element;
     [SerializeField] protected int initCost;            // 코스트
     [SerializeField] protected bool isExtinct; // 소멸 여부 
     [SerializeField] protected bool isSpecial; // 특수 카드 여부
+
+    [Header("UI Reference")]
     [SerializeField] TMP_Text cardTitle;
     [SerializeField] TMP_Text cardDesc;
     [SerializeField] TMP_Text cardCost;
 
+    [Header("Color Settings")]
+    [SerializeField] private Color activeColor = new(255, 255, 255);
+    [SerializeField] private Color unActiveColor = new(125, 125, 125);
+
+    
     // 이동 코루틴
     private Coroutine moveCoroutine;
     private Vector3 localScale;
     private ICardEventHandler handler;
+    private SpriteRenderer sprite;
+    private bool isDiscardSelect = false;
+
     protected int curCost;
     protected CardDataEntry cardData;
 
@@ -41,10 +54,27 @@ abstract public class Card : MonoBehaviour
     public virtual bool IsSpecial => isSpecial;
     public bool IsEnchanted { get; private set; }
 
-    private void Awake()
+    public bool IsDiscardSelect 
     {
+        get => isDiscardSelect;
+        set
+        {
+            isDiscardSelect = value;
+            sprite.color = value ? unActiveColor : activeColor;
+        }
+    }
+
+    private void Awake()
+    {   
+        sprite = GetComponent<SpriteRenderer>();
+        
         localScale = transform.localScale;
         curCost = initCost;
+    }
+
+    private void OnEnable()
+    {
+        isDiscardSelect = false;
     }
 
     protected virtual void Start()
@@ -87,19 +117,19 @@ abstract public class Card : MonoBehaviour
     // Unity 마우스 이벤트
     private void OnMouseEnter()
     {
-        if (moveCoroutine != null) return;
+        if (moveCoroutine != null || isDiscardSelect) return;
         handler?.OnCardEnter(this);
     }
 
     private void OnMouseExit()
     {
-        if (moveCoroutine != null) return;
+        if (moveCoroutine != null || isDiscardSelect) return;
         handler?.OnCardExit(this);
     }
 
     private void OnMouseDown()
     {
-        if (moveCoroutine != null) return;
+        if (moveCoroutine != null || isDiscardSelect) return;
         handler?.OnCardClick(this);
     }
 
@@ -135,8 +165,12 @@ abstract public class Card : MonoBehaviour
 
         while (time < duration)
         {
-            transform.localPosition = Vector3.Lerp(startPos, targetPos, time / duration);       //Lerp 이용해서 부드럽게 이동
+            float t = time / duration;
+            float smoothT = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            transform.localPosition = Vector3.Lerp(startPos, targetPos, smoothT);
             time += Time.deltaTime;
+
             yield return null;
         }
 
@@ -155,7 +189,6 @@ abstract public class Card : MonoBehaviour
             SetCost(curCost + 1);
         else
             SetCost(initCost);
-
     }
 
     // 임시 코스트 조정함수

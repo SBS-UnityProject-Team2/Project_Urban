@@ -13,7 +13,7 @@ public class ExtinctCardCheck : MonoBehaviour
 
     public void OpenExtinctDisplay()
     {        
-        IEnumerable<Card> extinctCards = GameManager.Instance.Deck.ExtinctCardList;
+        IEnumerable<Card> extinctCards = BattleManager.Instance.Player.Deck.ExtinctCardList;
         int curextinctcardCount = extinctCards.Count();
 
         if (prevCardCount != curextinctcardCount)

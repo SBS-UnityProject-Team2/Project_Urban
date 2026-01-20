@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 9143712137951889463}
   - component: {fileID: 8974383789671709182}
   m_Layer: 6
-  m_Name: Cinder
+  m_Name: cinder
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,6 +534,8 @@ MonoBehaviour:
   cardTitle: {fileID: 8848045993063123046}
   cardDesc: {fileID: 7481433080428554963}
   cardCost: {fileID: 8948934309218587835}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   turns: 1
   count: 1
 --- !u!1 &7372374631495351571

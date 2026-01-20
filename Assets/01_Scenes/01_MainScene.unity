@@ -148,11 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aced5f5b861efa84aaebcf8cde391c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  initialDeckRecipe:
-  - name: 0
-    count: 5
-  - name: 5
-    count: 5
   playerMaxHp: 100
 --- !u!4 &110836245
 Transform:
@@ -923,8 +918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardFactory
   cardData: {fileID: 11400000, guid: 71f7d62a017a8024a88375c4e3619639, type: 2}
-  cardSpawnPoint: {fileID: 2119851960}
-  cardDespawnPoint: {fileID: 301327039}
 --- !u!4 &864483422
 Transform:
   m_ObjectHideFlags: 0
@@ -2576,6 +2569,55 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &1964830520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1964830522}
+  - component: {fileID: 1964830521}
+  m_Layer: 0
+  m_Name: DeckManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1964830521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964830520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339aa1f15bc7eec49851db1ef635ab46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckManager
+  initialDeckRecipe:
+  - name: 1000
+    count: 5
+  - name: 1005
+    count: 5
+--- !u!4 &1964830522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964830520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987620309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,4 +2856,5 @@ SceneRoots:
   - {fileID: 1987620314}
   - {fileID: 864483422}
   - {fileID: 110836245}
+  - {fileID: 1964830522}
   - {fileID: 2129564788}

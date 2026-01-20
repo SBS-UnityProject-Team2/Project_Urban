@@ -534,8 +534,11 @@ MonoBehaviour:
   cardTitle: {fileID: 2654786389302699832}
   cardDesc: {fileID: 2597096315428668656}
   cardCost: {fileID: 7526588461808244155}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   turns: 0
-  targetDiscardCount: 2
+  maxDiscard: 2
+  drawCount: 4
 --- !u!1 &7758189160335067560
 GameObject:
   m_ObjectHideFlags: 0

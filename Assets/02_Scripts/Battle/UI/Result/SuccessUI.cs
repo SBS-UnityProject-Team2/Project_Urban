@@ -13,7 +13,7 @@ public class SuccessUI : MonoBehaviour
     
     public void OnCardSelected(CardName cardName)
     {
-        GameManager.Instance.Deck.AddCard(cardName);
+        DeckManager.Instance.AddCard(cardName);
         rewardUI.DisableCardSelectButton();
         ShowReward();
     }

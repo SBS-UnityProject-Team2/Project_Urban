@@ -89,7 +89,7 @@ public class StoreCardUI : MonoBehaviour, IClickable
         if (GameManager.Instance != null)
         {
             GameManager.Instance.UseCoin(price);
-            GameManager.Instance.Deck.AddCard(cardName);
+            DeckManager.Instance.AddCard(cardName);
         }
     }
 

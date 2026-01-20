@@ -116,7 +116,7 @@ public class UICardProcess : MonoBehaviour
         GameManager.Instance.UseCoin(price);
 
         // 2. 덱에 카드 추가
-        GameManager.Instance.Deck.AddCard(cardData.cardName);
+        DeckManager.Instance.AddCard(cardData.cardName);
 
         // 3. UI 매진 처리
         isSoldOut = true;

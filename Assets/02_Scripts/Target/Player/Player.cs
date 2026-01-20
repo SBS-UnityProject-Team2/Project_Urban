@@ -15,29 +15,22 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     [Header("Player View")]
     [SerializeField] protected CostView costView;
 
+    [Header("UI Reference")]
+    [SerializeField] private DiscardPanelUI discardPanelUI;
+
     private PlayerInput playerInput;
     private Deck deck;
     private Card selectedCard;
     private bool isDiscardMode = false;              // 카드 버리기 로직용
 
     public CostController Cost { get; private set; }
+    public Deck Deck => deck;
+    public Hand Hand => hand;
+
     public UnityEvent OnUseCard { get; } = new();
 
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
 
-    public Deck Deck
-    {
-        get
-        {
-            if (deck == null)
-            {
-                deck = GameManager.Instance.Deck;
-                deck.Initialize(hand);
-            }
-
-            return deck;
-        }
-    }
 
     protected override void Awake()
     {
@@ -45,15 +38,15 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
         playerInput = GetComponent<PlayerInput>();
 
-        Health = GameManager.Instance.PlayerHealth;
-        Cost = new CostController(maxCost);
+        deck = DeckManager.Instance.GetDeck(hand);
 
-        // 죽으면 종료처리
+        Health = GameManager.Instance.PlayerHealth;
+        Cost = new CostController(maxCost);;
+
         OnDead.AddListener(HandleDead);
         OnTurnStart.AddListener(HandleTurnStart);
         OnTurnEnd.AddListener(HandleTurnEnd);
 
-        // 우클릭으로 선택 해제
         playerInput.actions["RightClick"].started += OnRightClick;
     }
 
@@ -81,10 +74,10 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
             return;
         }
 
-        Cost.Recovery();
-
         int totalDraw = drawCount + nextTurnDrawBonus;
-        Deck.Draw(totalDraw);
+
+        deck.Draw(totalDraw);
+        Cost.Recovery();
 
         nextTurnDrawBonus = 0;  //추가드로우 후 드로우보너스 초기화(1턴만인경우)
         DeselectCard();
@@ -93,7 +86,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void HandleTurnEnd()
     {
         DeselectCard();
-        Deck.DiscardAll();
+        deck.DiscardAll();
     }
 
     private void HandleDead(Target target)
@@ -103,31 +96,25 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void DrawCard(int amount = 1)
     {
-        Deck.Draw(amount);
+        deck.Draw(amount);
     }
 
-    public void DiscardCard(int amount = 1, System.Action<List<Card>> onComplete = null)    // 자원교환 버프에서 호출용
+    public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete = null)    // 자원교환 버프에서 호출용
     {
-        // UI 매니저가 없으면 중단
-        if (DiscardPanelUI.Instance == null)
+        isDiscardMode = true;
+        DeselectCard();
+
+        discardPanelUI.OpenPanel(minCount, maxCount);
+        discardPanelUI.OnConfirm.AddListener(discardList =>
         {
-            Debug.LogError("DiscardPanelUI가 없습니다.");
-            return;
-        }
+            foreach (Card card in discardList)
+                hand.RemoveCard(card);
+            
+            onComplete?.Invoke(discardList.Count);
+            discardPanelUI.OnConfirm.RemoveAllListeners();
+            discardPanelUI.ClosePanel();
 
-        // UI 패널에게 버리기 프로세스 위임
-        DiscardPanelUI.Instance.StartDiscardProcess(amount, (discardedCards) =>
-        {
-            // UI에서 확인 버튼을 눌러 콜백이 돌아왔을 때 실행되는 부분
-
-            // 실제로 카드를 버렸는지 확인 (취소했을 경우 실행 안 함)
-            if (discardedCards != null && discardedCards.Count > 0)
-            {
-                Debug.Log($"[Player] 카드 {discardedCards.Count}장 버리기 완료.");
-
-                // 버리기 성공 후에 수행해야 할 추가 로직(힐, 코스트 회복 등) 실행
-                onComplete?.Invoke(discardedCards);
-            }
+            isDiscardMode = false;
         });
     }
 
@@ -167,22 +154,20 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     {
         if (!IsEnable()) return;
 
-        // 카드 버리기 로직 작동중에는 카드를 사용하지않고 버리기패널UI로 넘김
         if (isDiscardMode)
         {
-            // 버리기패널에 카드 골랐다고 전달
-            DiscardPanelUI.Instance.SelectCard(card);
+            discardPanelUI.AddCard(card);
+            card.UnSelect();
+
             return;
         }
 
-        // 같은 카드 재클릭 - 자신에게 사용
         if (selectedCard == card)
         {
             TryUseCardOnSelf(card);
             return;
         }
 
-        // 다른 카드 선택
         if (selectedCard != null)
             selectedCard.UnSelect();
 
@@ -254,7 +239,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         int cost = card.Use(this, target);
 
         Cost.Decrease(cost);
-        Deck.Discard(card);
+        deck.Discard(card);
 
         if (card.Type == CardType.Attack)
             OnAttack?.Invoke(this, target);
@@ -274,9 +259,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         if (drawCount < 0)
             drawCount = 0;
     }
-
-
-
 
     #region Test Methods
     // 버프 테스트 메서드들
@@ -411,19 +393,10 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         string cardName = selectedCard.Name.ToString();
 
         // 2. 선택된 카드를 덱의 Discard 함수로 전달
-        Deck.Discard(selectedCard);
+        deck.Discard(selectedCard);
 
         // 3. 선택 변수 초기화
         selectedCard = null;
-    }
-
-
-    // 카드 버리기로직용 함수
-    public void SetDiscardMode(bool isActive)
-    {
-        isDiscardMode = isActive;
-
-        DeselectCard();
     }
 
     public void TestDelirium()

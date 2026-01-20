@@ -10,13 +10,7 @@ public class Blooming : BuffCard
 
     public override int Use(Player player, Target target)
     {
-        // 1. 버리기로직 실행요청
-        DiscardPanelUI.Instance.StartDiscardProcess(maxDiscard, (discardedCards) =>
-        {             
-            // 2. 버리기로직 실행완료후 콜백
-            if (discardedCards.Count > 0)
-                player.Cost.Increase(costGain);
-        });
+        player.DiscardCard(maxDiscard, maxDiscard, _ => player.Cost.Increase(costGain));
         return curCost;
     }
 }

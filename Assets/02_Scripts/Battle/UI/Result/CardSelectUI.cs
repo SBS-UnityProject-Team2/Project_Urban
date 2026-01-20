@@ -13,6 +13,8 @@ public class ElementWeight
 public class CardSelectUI : MonoBehaviour
 {
     [SerializeField] private List<UICard> cardSelectItems;
+    [SerializeField] private float weight;
+
     private readonly List<ElementWeight> elementWeights = new()
     {
         new() { element = Element.None },
@@ -36,7 +38,7 @@ public class CardSelectUI : MonoBehaviour
         {
             if (elementWeight.element == GameManager.Instance.SelectedElement)
             {
-                elementWeight.weight *= 2.0f;
+                elementWeight.weight *= weight;
                 break;
             }
         }
@@ -73,6 +75,4 @@ public class CardSelectUI : MonoBehaviour
         List<CardDataEntry> cards = CardManager.Instance.GetCardsByElement(element);
         return cards[Random.Range(0, cards.Count)];
     }
-
-    
 } 

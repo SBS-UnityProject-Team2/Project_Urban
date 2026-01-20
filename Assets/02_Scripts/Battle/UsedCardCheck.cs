@@ -14,7 +14,7 @@ public class UsedCardCheck : MonoBehaviour
     public void OpenDiscardDisplay()
     {
         // 1. 덱 체크 
-        IEnumerable<Card> usedCards = GameManager.Instance.Deck.UsedCardList;
+        IEnumerable<Card> usedCards = BattleManager.Instance.Player.Deck.UsedCardList;
         
         // 2. 리스트 체크        
         int curUsedCardCount = usedCards.Count();
@@ -42,14 +42,14 @@ public class UsedCardCheck : MonoBehaviour
         }
 
         // 반복문 변수 타입 변경 (CardName -> Deck.DeckCard)
-        foreach (Card cardInfo in deckToRender)
+        foreach (Card card in deckToRender)
         {
             GameObject slotObj = Instantiate(cardPrefab, displayArea);
             slotObj.transform.localScale = Vector3.one;
 
             UICard cardScript = slotObj.GetComponent<UICard>();
 
-            cardScript.SetCardDataEntry(cardInfo.Data);
+            cardScript.SetCardDataEntry(card.Data);
         }
     }
 }
