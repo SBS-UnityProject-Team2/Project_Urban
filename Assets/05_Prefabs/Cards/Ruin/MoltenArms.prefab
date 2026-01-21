@@ -534,8 +534,10 @@ MonoBehaviour:
   cardTitle: {fileID: 8848045993063123046}
   cardDesc: {fileID: 7481433080428554963}
   cardCost: {fileID: 1302652115149280928}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 15
-  burn: 5
+  burnCount: 5
 --- !u!1 &7372374631495351571
 GameObject:
   m_ObjectHideFlags: 0

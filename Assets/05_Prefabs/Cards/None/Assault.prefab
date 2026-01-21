@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7698084924583933862}
   - component: {fileID: 1008193798111358691}
   - component: {fileID: 3711266509753839787}
+  - component: {fileID: 4887994150074281691}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -240,6 +241,14 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!222 &4887994150074281691
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995256758978710308}
+  m_CullTransparentMesh: 1
 --- !u!1 &6856624150516279463
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +397,7 @@ GameObject:
   - component: {fileID: 6891848108542606975}
   - component: {fileID: 1212594357770187765}
   - component: {fileID: 8113398510874191772}
+  - component: {fileID: 6750131840886224440}
   m_Layer: 6
   m_Name: Assault
   m_TagString: Card
@@ -395,22 +405,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4048776908165795839
-Transform:
+--- !u!224 &4048776908165795839
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7138447040532560346}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2003619079677618599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10.29, y: 13.65}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6891848108542606975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -527,15 +541,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b7c9ce5445c654f9e19e7b9f567c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assault
-  element: 0
+  element: 1000
   initCost: 2
   isExtinct: 1
   isSpecial: 0
   cardTitle: {fileID: 8291934332962563233}
   cardDesc: {fileID: 2493825596561354744}
   cardCost: {fileID: 8789904847823580705}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 10
   turn: 1
+--- !u!222 &6750131840886224440
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7138447040532560346}
+  m_CullTransparentMesh: 1
 --- !u!1 &8598703620048085277
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: dddd
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
   m_sharedMaterial: {fileID: 1073631401402722801, guid: a181474f4e9885c439d4947c4ba59982, type: 2}

@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 377574533193239338}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!1 &2856355108988666343
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,12 +134,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e13cb8b2dd65c7f4ba54083fa490a660, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fd5876ff98fef64980b8fb978393156, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 5.06, y: 9.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -180,10 +181,10 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 17.716667, y: 8.416667, z: 17.633335, w: 3.1000001}
-    pivot: {x: 0.5080867, y: 0.6035096}
-    oldSize: {x: 42.666668, y: 24}
-    newSize: {x: 2.56, y: 2.56}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.325, y: 11.65}
+    newSize: {x: 5.06, y: 9.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -203,18 +204,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FeebleZombie
   element: 0
+  damageModifier: 0.3
   healthView: {fileID: 4295513656600534293}
-  statusEffectListView: {fileID: 5661465871013338855}
+  statusView: {fileID: 0}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
   OnTurnEnd:
     m_PersistentCalls:
       m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
   selectedArrow: {fileID: 3515555034441816934}
   nextActionText: {fileID: 8296309700260891106}
   score: 2
-  maxHp: 1
+  maxHp: 50
   actionPattern: 0200000000000000
   enemyActions:
   - {fileID: 11400000, guid: 14b00dba748400a48a90cff96a819b67, type: 2}

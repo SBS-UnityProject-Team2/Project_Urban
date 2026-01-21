@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 2163708595606163099}
   - component: {fileID: 8348590318188832053}
   m_Layer: 6
-  m_Name: Cycle
+  m_Name: cycle
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,6 +398,8 @@ MonoBehaviour:
   cardTitle: {fileID: 2654786389302699832}
   cardDesc: {fileID: 2597096315428668656}
   cardCost: {fileID: 4804742458542526364}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   turns: 1
 --- !u!1 &7758189160335067560
 GameObject:

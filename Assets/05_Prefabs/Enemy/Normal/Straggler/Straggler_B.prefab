@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 4184315123647694244}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!1 &1126559939100728021
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,12 +270,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 824157d89fc6b2f42a0eed38de2e49d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24f2026ebaaa7b84ba3812ce5a3a6755, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 42.666668, y: 24}
+  m_Size: {x: 2.83, y: 5.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -293,18 +294,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Straggler
   element: 0
+  damageModifier: 0.3
   healthView: {fileID: 4295513656600534293}
-  statusEffectListView: {fileID: 7554487805984910322}
+  statusView: {fileID: 0}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
   OnTurnEnd:
     m_PersistentCalls:
       m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
   selectedArrow: {fileID: 3515555034441816934}
   nextActionText: {fileID: 8296309700260891106}
   score: 2
-  maxHp: 1
+  maxHp: 50
   actionPattern: 01000000020000000000000000000000
   enemyActions:
   - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
@@ -347,10 +355,10 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 18.6, y: 8.066668, z: 18.266666, w: 3.9333334}
-    pivot: {x: 0.50646937, y: 0.574757}
-    oldSize: {x: 42.666668, y: 24}
-    newSize: {x: 42.666668, y: 24}
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.66, y: 10.6}
+    newSize: {x: 2.83, y: 5.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

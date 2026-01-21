@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 3773148312640236686}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!1 &2856355108988666343
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +209,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80f16298dad760245bcd2e0ca02b00e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3992a5128e499041861f94712001fc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -257,7 +258,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 15, y: 15}
+    oldSize: {x: 6.09, y: 7.68}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -278,12 +279,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrozenPriest
   element: 200
+  damageModifier: 0.3
   healthView: {fileID: 4295513656600534293}
-  statusEffectListView: {fileID: 8807641481171200110}
+  statusView: {fileID: 0}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
   OnTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
     m_PersistentCalls:
       m_Calls: []
   selectedArrow: {fileID: 3515555034441816934}

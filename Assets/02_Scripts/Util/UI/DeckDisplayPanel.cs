@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class DeckDisplayPanel : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class DeckDisplayPanel : MonoBehaviour
 
     public void OpenDeckDisplay()
     {
-        IEnumerable<Card> receivedDeck = GameManager.Instance.Deck.CardList;
+        IEnumerable<Card> receivedDeck = DeckManager.Instance.CardList;
 
         int curCardCount = receivedDeck.Count();
 

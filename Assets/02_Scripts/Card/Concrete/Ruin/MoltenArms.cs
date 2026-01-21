@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoltenArms : Attack 
 {
-    [SerializeField] private int burnCount;
+    [SerializeField] private int burnCount = 5;
 
     public override CardName Name => CardName.MoltenArms;
 

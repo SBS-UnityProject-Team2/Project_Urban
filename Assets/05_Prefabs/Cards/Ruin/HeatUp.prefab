@@ -670,5 +670,7 @@ MonoBehaviour:
   cardTitle: {fileID: 3233429475745401682}
   cardDesc: {fileID: 110227493543166221}
   cardCost: {fileID: 5344782138983690833}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   turns: 1
   count: 2

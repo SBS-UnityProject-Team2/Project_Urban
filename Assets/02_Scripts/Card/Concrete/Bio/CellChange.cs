@@ -2,21 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 public class CellChange : BuffCard
 {
-    [SerializeField] private int targetDiscardCount = 2; 
+    [SerializeField] private int maxDiscard = 2; 
+    [SerializeField] private int drawCount = 4;
 
     public override CardName Name => CardName.CellChange;
 
     public override int Use(Player player, Target target)
     {
-        Player user = player as Player;
-        if (user == null) return curCost;
-        DiscardPanelUI.Instance.StartDiscardProcess(targetDiscardCount, (discardedCards) =>
-        {
-            if (discardedCards.Count > 0)
-            {
-                user.DrawCard(3);
-            }           
-        }, targetDiscardCount); 
+        player.DiscardCard(maxDiscard, maxDiscard, _ => player.DrawCard(drawCount));
 
         return curCost;
     }

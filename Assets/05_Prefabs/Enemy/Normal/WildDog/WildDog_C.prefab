@@ -106,18 +106,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WildDog
   element: 0
+  damageModifier: 0.3
   healthView: {fileID: 5356925968401938809}
-  statusEffectListView: {fileID: 3854027718042706824}
+  statusView: {fileID: 0}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
   OnTurnEnd:
     m_PersistentCalls:
       m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
   selectedArrow: {fileID: 3515555034441816934}
   nextActionText: {fileID: 4368282588627673267}
   score: 1
-  maxHp: 1
+  maxHp: 50
   actionPattern: 000000000100000003000000
   enemyActions:
   - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
@@ -459,7 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 4795971728786469702}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!1 &6938503824347125700
 GameObject:
   m_ObjectHideFlags: 0

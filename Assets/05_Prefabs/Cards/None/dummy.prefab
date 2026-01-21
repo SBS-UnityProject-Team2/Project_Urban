@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 3362647646868778303}
   - component: {fileID: 4865769701541936390}
   m_Layer: 6
-  m_Name: dummy
+  m_Name: Dummy
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,4 +670,6 @@ MonoBehaviour:
   cardTitle: {fileID: 8485551270251244324}
   cardDesc: {fileID: 1280594981490796624}
   cardCost: {fileID: 5212137241615220414}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   turns: 1

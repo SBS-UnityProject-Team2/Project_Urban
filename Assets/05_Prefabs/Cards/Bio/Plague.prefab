@@ -536,8 +536,11 @@ MonoBehaviour:
   cardTitle: {fileID: 2654786389302699832}
   cardDesc: {fileID: 2597096315428668656}
   cardCost: {fileID: 4294568074084903442}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 6
   damagePerCard: 6
+  minDiscard: 0
   maxDiscard: 3
 --- !u!1 &7758189160335067560
 GameObject:

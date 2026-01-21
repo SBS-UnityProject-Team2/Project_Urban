@@ -463,6 +463,8 @@ MonoBehaviour:
   cardTitle: {fileID: 1432387714952698852}
   cardDesc: {fileID: 1516220181775578043}
   cardCost: {fileID: 4929448929214159941}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   armor: 6
   turn: 1
 --- !u!212 &6397968027821810065
