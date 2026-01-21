@@ -32,11 +32,10 @@ abstract public class Card : MonoBehaviour
     [SerializeField] private Color activeColor = new(255, 255, 255);
     [SerializeField] private Color unActiveColor = new(125, 125, 125);
 
-    
+
     // 이동 코루틴
     private Coroutine moveCoroutine;
     private Vector3 localScale;
-    private ICardEventHandler handler;
     private SpriteRenderer sprite;
     private bool isDiscardSelect = false;
 
@@ -49,12 +48,11 @@ abstract public class Card : MonoBehaviour
     public CardDataEntry Data => cardData;
     public Element Element => element;
 
-    public bool IsEntered { get; set; } = false;
     public virtual bool IsExtinct => isExtinct;
     public virtual bool IsSpecial => isSpecial;
     public bool IsEnchanted { get; private set; }
 
-    public bool IsDiscardSelect 
+    public bool IsDiscardSelect
     {
         get => isDiscardSelect;
         set
@@ -65,37 +63,44 @@ abstract public class Card : MonoBehaviour
     }
 
     private void Awake()
-    {   
+    {
         sprite = GetComponent<SpriteRenderer>();
-        
+
         localScale = transform.localScale;
         curCost = initCost;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        curCost = initCost;
         isDiscardSelect = false;
+        transform.localScale = localScale;
+
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
     }
 
     protected virtual void Start()
     {
         Player player = BattleManager.Instance.Player;
-        handler = player;
         player.OnTurnStart.AddListener(HandleTurnStart);
     }
 
     public void Init(CardDataEntry cardDataEntry)
     {
-        SetupDate(cardDataEntry);
         cardData = cardDataEntry;
+        SetupDate(cardData);
 
         IsEnchanted = false;
     }
 
     public void Enhance()
     {
-        CardDataEntry cardDataEntry = CardManager.Instance.GetEnchantedCardData(Name);
-        SetupDate(cardDataEntry);
+        cardData = CardManager.Instance.GetEnchantedCardData(Name);
+        SetupDate(cardData);
 
         IsEnchanted = true;
     }
@@ -114,23 +119,24 @@ abstract public class Card : MonoBehaviour
         curCost = initCost;
     }
 
+
     // Unity 마우스 이벤트
     private void OnMouseEnter()
     {
         if (moveCoroutine != null || isDiscardSelect) return;
-        handler?.OnCardEnter(this);
+        BattleManager.Instance.Player.OnCardEnter(this);
     }
 
     private void OnMouseExit()
     {
         if (moveCoroutine != null || isDiscardSelect) return;
-        handler?.OnCardExit(this);
+        BattleManager.Instance.Player.OnCardExit(this);
     }
 
     private void OnMouseDown()
     {
         if (moveCoroutine != null || isDiscardSelect) return;
-        handler?.OnCardClick(this);
+        BattleManager.Instance.Player.OnCardClick(this);
     }
 
     public void Select()

@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1809961097}
         m_TargetAssemblyTypeName: DisplayCardList, Assembly-CSharp
         m_MethodName: OpenUsedCardList
         m_Mode: 1
@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_CardSelect
       objectReference: {fileID: 0}
+    - target: {fileID: 2950833707058058074, guid: 057ec9b5308db1040b475d6821a3fe9f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4751802705323047374, guid: 057ec9b5308db1040b475d6821a3fe9f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1532,6 +1536,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4751802705323047374, guid: 057ec9b5308db1040b475d6821a3fe9f, type: 3}
   m_PrefabInstance: {fileID: 273430899}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &273430901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6231281412445046776, guid: 057ec9b5308db1040b475d6821a3fe9f, type: 3}
+  m_PrefabInstance: {fileID: 273430899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a756d7cf5d83d40923895ac5de7377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardSelectUI
 --- !u!1 &292254804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &340597534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1971,7 +1986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &371681286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4315,7 +4330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1809961097}
         m_TargetAssemblyTypeName: DisplayCardList, Assembly-CSharp
         m_MethodName: OpenDeckCardList
         m_Mode: 1
@@ -7414,7 +7429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503666024875513558, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 288
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5503666024875513558, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7438,7 +7453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503666024875513558, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -144
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5503666024875513558, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7466,6 +7481,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5503666024875513558, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
   m_PrefabInstance: {fileID: 1809961095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1809961097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 647305984448993136, guid: 969a58c0a5f78f4498fa280331acd1d9, type: 3}
+  m_PrefabInstance: {fileID: 1809961095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc238b394d6b1a4ab59df366513a12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayCardList
 --- !u!1 &1813820303
 GameObject:
   m_ObjectHideFlags: 0
@@ -7525,7 +7551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuccessUI
   rewardUI: {fileID: 371681287}
-  cardSelectUI: {fileID: 0}
+  cardSelectUI: {fileID: 273430901}
 --- !u!1 &1833020433
 GameObject:
   m_ObjectHideFlags: 0
@@ -8140,9 +8166,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1809961097}
         m_TargetAssemblyTypeName: DisplayCardList, Assembly-CSharp
-        m_MethodName: OpenUsedCardList
+        m_MethodName: OpenExtinctCardList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5,7 +5,19 @@ public class KineticGrasp : Attack
     protected override void Start()
     {
         base.Start();
-        BattleManager.Instance.Player.OnUseCard.AddListener(UpdateCurrentCost);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        BattleManager.Instance.Player.Hand.OnUpdateHand.AddListener(UpdateCurrentCost);
+        UpdateCurrentCost();
+    }
+
+    private void OnDisable()
+    {
+       BattleManager.Instance.Player.Hand.OnUpdateHand.RemoveListener(UpdateCurrentCost);
     }
 
     private void UpdateCurrentCost()
@@ -22,14 +34,7 @@ public class KineticGrasp : Attack
         // 4. 최소 코스트는 0
         if (newCost < 0) newCost = 0;
 
-        // 5. 실제 cost 변수에 적용
-        curCost = newCost;
-    }
-
-    // 카드 사용 후 코스트 원상복구
-    private void OnDisable()
-    {
-        curCost = initCost;
+        SetCost(newCost);
     }
 
     public override int Use(Player player, Target target)

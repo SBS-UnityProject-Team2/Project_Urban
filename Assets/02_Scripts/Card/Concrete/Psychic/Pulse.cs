@@ -15,7 +15,7 @@ public class Pulse : Attack
             finalDamage += bonusDamage;
         }      
 
-        target.Damage(player, finalDamage, Element.Psychic);
+        EnemyManager.Instance.DamageAll(finalDamage, Element.Psychic);
 
         return curCost;
     }

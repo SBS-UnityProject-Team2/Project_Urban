@@ -537,7 +537,7 @@ MonoBehaviour:
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 15
-  burnCount: 0
+  burnCount: 5
 --- !u!1 &7372374631495351571
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
   m_sharedMaterial: {fileID: 1073631401402722801, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
   m_sharedMaterial: {fileID: 1073631401402722801, guid: a181474f4e9885c439d4947c4ba59982, type: 2}
@@ -669,7 +669,7 @@ MonoBehaviour:
   isSpecial: 0
   cardTitle: {fileID: 8485551270251244324}
   cardDesc: {fileID: 1280594981490796624}
-  cardCost: {fileID: 1280594981490796624}
+  cardCost: {fileID: 790922345399965301}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   armor: 7

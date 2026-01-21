@@ -572,6 +572,7 @@ MonoBehaviour:
   mapContentParent: {fileID: 1347666519}
   linePrefab: {fileID: 3194506190788764836, guid: ffa1f2a80aba5b74ea7c19498e894e6c, type: 3}
   playerImagePrefab: {fileID: 3635762485152443206, guid: d46e2ddacdea1ac4da74eaf02fa880af, type: 3}
+  mapScrollView: {fileID: 0}
   normalStagePrefab: {fileID: 6205098669559856584, guid: e4e1e537a481eea4a84bbb148535c532, type: 3}
   eliteStagePrefab: {fileID: 2856633294087563437, guid: ef9fe0c7a2f96b14591dd4fc04ec94a2, type: 3}
   bossStagePrefab: {fileID: 3796755822488969795, guid: 64135ad5cb39b1848bc1f85f8246a26c, type: 3}
@@ -3453,6 +3454,11 @@ MonoBehaviour:
   UI_Store: {fileID: 0}
   UI_Shelter: {fileID: 0}
   UI_Map: {fileID: 0}
+  UI_EnterShelter: {fileID: 0}
+  Panel_ShelterPopup: {fileID: 0}
+  Panel_ShelterCardEnchantPopup: {fileID: 0}
+  Panel_EnchantCardPopup: {fileID: 0}
+  UI_Event: {fileID: 0}
 --- !u!1001 &489003143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5732,7 +5738,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 111.01, y: 75}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854203478
 MonoBehaviour:
@@ -8162,6 +8168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoreCardRemovePanel
   displayArea: {fileID: 2072367289}
   cardPrefab: {fileID: 513533824014746170, guid: c52b96d2adf5de2488b1c03579fc9c67, type: 3}
+  RemoveCardPanel: {fileID: 0}
   removeConfirmPopup: {fileID: 6666305555755250591}
 --- !u!114 &1280654207
 MonoBehaviour:
@@ -9347,6 +9354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeckEnchantPopup
   BeforeCardUI: {fileID: 489003145}
   AfterCardUI: {fileID: 1737512921}
+  AfterCardNameText: {fileID: 0}
+  cardEnchantPanel: {fileID: 0}
 --- !u!225 &1379066887
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10016,7 +10025,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 55.505, y: -37.5}
-  m_SizeDelta: {x: 111.01, y: 75}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554978786
 MonoBehaviour:
@@ -13646,6 +13655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEnchantPanel
   displayArea: {fileID: 374730165}
   cardPrefab: {fileID: 513533824014746170, guid: c52b96d2adf5de2488b1c03579fc9c67, type: 3}
+  EnchantCardPanel: {fileID: 0}
   deckEnchantPopup: {fileID: 8113308315743424853}
 --- !u!1 &2116948892 stripped
 GameObject:
@@ -15837,7 +15847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1551119931532687016
 GameObject:
   m_ObjectHideFlags: 0
@@ -18566,7 +18576,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -175, y: 0}
-  m_SizeDelta: {x: 121.76999, y: 75}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3914615580970724486
 RectTransform:
@@ -21606,6 +21616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoreCardRemovePopup
   targetCardUI: {fileID: 674146307}
+  Panel_CardRemovePanel: {fileID: 0}
 --- !u!222 &6682704252984325522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22141,7 +22152,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60.884995, y: -37.5}
-  m_SizeDelta: {x: 121.76999, y: 75}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &7166739888195505122
 CanvasGroup:
@@ -22993,7 +23004,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -23494,6 +23505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnchantConfirmPopup
   BeforeCardUI: {fileID: 328007238}
   AfterCardUI: {fileID: 966775355}
+  AfterCardNameText: {fileID: 0}
+  cardEnchantPanel: {fileID: 0}
 --- !u!224 &8131398400054405136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24476,7 +24489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8935612848562330576
 RectTransform:
   m_ObjectHideFlags: 0
