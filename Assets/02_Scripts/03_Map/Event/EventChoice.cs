@@ -2,22 +2,43 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EventChoice", menuName = "Event/EventChoice", order = 0)]
+/// <summary>
+/// [Model] 선택지 버튼의 텍스트와 결과 연결 정보를 관리합니다.
+/// </summary>
+[CreateAssetMenu(fileName = "EventChoiceData", menuName = "Event/EventChoiceData")]
 public class EventChoice : ScriptableObject
 {
-    [SerializeField] List<ScriptInfo> scriptInfos;
+    [Header("1. JSON Source")]
+    public TextAsset choiceTableJson;
 
-    public ScriptInfo GetScript(int scriptCode)
+    [Header("2. Data List")]
+    [SerializeField] private List<ChoiceInfo> choiceList = new List<ChoiceInfo>();
+    
+    private Dictionary<int, ChoiceInfo> choiceMap = new Dictionary<int, ChoiceInfo>();
+
+    public void Initialize()
     {
-        return scriptInfos.Find(info => info.scriptCode == scriptCode);
+        choiceMap.Clear();
+        foreach (var data in choiceList) choiceMap.TryAdd(data.ChoiceCode, data);
     }
-}    
 
-[Serializable]
-public class ChoiceInfo
-{
-    public int eventCode;
-    public int choiceCode;
-    public string script;
-    public string dialogue;
+    [ContextMenu("Import From JSON")]
+    public void ImportData()
+    {
+        choiceList = new List<ChoiceInfo>(JsonHelper.FromJson<ChoiceInfo>(choiceTableJson.text));
+        Debug.Log($"[EventChoice] 선택지 데이터 갱신 완료 ({choiceList.Count}개)");
+    }
+
+    public ChoiceInfo GetChoice(int choiceCode) => choiceMap.TryGetValue(choiceCode, out var data) ? data : null;
+
+    [Serializable]
+    public class ChoiceInfo
+    {
+        public int ChoiceCode;
+        public string ChoiceName;   // 버튼 표기 텍스트
+        public string ChoiceResult; // 호버 시 예상 결과 텍스트
+        public int ResultCode;      // 선택 시 적용할 보상 ID
+        public int ScriptCode;      // 선택 후 출력할 결과 스크립트 ID
+        public string ChoiceCondition; // 선택지 활성화 조건
+    }
 }

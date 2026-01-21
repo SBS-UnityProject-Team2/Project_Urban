@@ -1,0 +1,62 @@
+[
+  {
+    "$index": 0,
+    "EventCode": 10,
+    "Stage": 1,
+    "EventName": "불길한 사내",
+    "EventScript": 100,
+    "EventChoice1": 1000,
+    "EventChoice2": 1001,
+    "EventChoice3": 1002
+  },
+  {
+    "$index": 1,
+    "EventCode": 11,
+    "Stage": 1,
+    "EventName": "사제의 유언",
+    "EventScript": 101,
+    "EventChoice1": 1003,
+    "EventChoice2": 1004,
+    "EventChoice3": 1005
+  },
+  {
+    "$index": 2,
+    "EventCode": 12,
+    "Stage": 1,
+    "EventName": "버려진 기계팔",
+    "EventScript": 102,
+    "EventChoice1": 1006,
+    "EventChoice2": 1007,
+    "EventChoice3": 1008
+  },
+  {
+    "$index": 3,
+    "EventCode": 13,
+    "Stage": 1,
+    "EventName": "갈등",
+    "EventScript": 103,
+    "EventChoice1": 1009,
+    "EventChoice2": 1010,
+    "EventChoice3": 1011
+  },
+  {
+    "$index": 4,
+    "EventCode": 14,
+    "Stage": 1,
+    "EventName": "알던 사이",
+    "EventScript": 104,
+    "EventChoice1": 1012,
+    "EventChoice2": 1013,
+    "EventChoice3": 1014
+  },
+  {
+    "$index": 5,
+    "EventCode": 15,
+    "Stage": 1,
+    "EventName": "기이한 약",
+    "EventScript": 105,
+    "EventChoice1": 1015,
+    "EventChoice2": 1016,
+    "EventChoice3": 1017
+  }
+]

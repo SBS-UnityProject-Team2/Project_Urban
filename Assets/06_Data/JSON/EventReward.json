@@ -1,0 +1,200 @@
+[
+  {
+    "$index": 0,
+    "ResultCode": 10000,
+    "ResultHpPresent": -0.1,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 1,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 1,
+    "ResultCode": 10001,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": -18,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 2,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 2,
+    "ResultCode": 10002,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 3,
+    "ResultCode": 10003,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0.13,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 4,
+    "ResultCode": 10004,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 18,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 5,
+    "ResultCode": 10005,
+    "ResultHpPresent": -0.1,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 3,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 6,
+    "ResultCode": 10006,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 4,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 7,
+    "ResultCode": 10007,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 8,
+    "ResultCode": 10008,
+    "ResultHpPresent": -0.1,
+    "ResultHpMaximum": 0,
+    "ResultGold": 32,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 9,
+    "ResultCode": 10009,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 3,
+    "ResultRangeCard": 0,
+    "ResultRemove": 2,
+    "": ""
+  },
+  {
+    "$index": 10,
+    "ResultCode": 10010,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 4,
+    "ResultRangeCard": 0,
+    "ResultRemove": 3,
+    "": ""
+  },
+  {
+    "$index": 11,
+    "ResultCode": 10011,
+    "ResultHpPresent": -0.2,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 5,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 12,
+    "ResultCode": 10012,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": -0.1,
+    "ResultGold": 0,
+    "ResultRandomCard": 5,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 13,
+    "ResultCode": 10013,
+    "ResultHpPresent": -0.1,
+    "ResultHpMaximum": 0,
+    "ResultGold": 20,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 14,
+    "ResultCode": 10014,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 15,
+    "ResultCode": 10015,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0.16,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 5,
+    "": ""
+  },
+  {
+    "$index": 16,
+    "ResultCode": 10016,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 0,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  },
+  {
+    "$index": 17,
+    "ResultCode": 10017,
+    "ResultHpPresent": 0,
+    "ResultHpMaximum": 0,
+    "ResultGold": 0,
+    "ResultRandomCard": 4,
+    "ResultRangeCard": 0,
+    "ResultRemove": 0,
+    "": ""
+  }
+]

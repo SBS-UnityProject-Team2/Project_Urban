@@ -28,6 +28,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public Deck Deck => deck;
     public Hand Hand => hand;
 
+
     public int CurrentHandCount => hand.CurHand.Count();
 
 
