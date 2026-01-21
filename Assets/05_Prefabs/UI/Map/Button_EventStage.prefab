@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8923056590531618506}
   - component: {fileID: 3211011300769510581}
   - component: {fileID: 2567723145571745296}
-  - component: {fileID: 7297974781157322925}
+  - component: {fileID: 6096207874060896057}
   m_Layer: 5
   m_Name: Button_EventStage
   m_TagString: Untagged
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ButtonEvent, Assembly-CSharp
-        m_MethodName: OnClickStore
+      - m_Target: {fileID: 6096207874060896057}
+        m_TargetAssemblyTypeName: EventButton, Assembly-CSharp
+        m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7297974781157322925
+--- !u!114 &6096207874060896057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

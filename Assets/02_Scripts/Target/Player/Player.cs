@@ -22,6 +22,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public CostController Cost { get; private set; }
     public UnityEvent OnUseCard { get; } = new();
+    public CoinController Coin { get; private set; }    //외부에서 코인 컨트롤러 접근용
 
     public int CurrentHandCount => hand.transform.childCount;   // 현재 핸드에 있는 카드 수 확인용
 
@@ -47,6 +48,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
         Health = GameManager.Instance.PlayerHealth;
         Cost = new CostController(maxCost);
+        Coin = new CoinController();
 
         // 죽으면 종료처리
         OnDead.AddListener(HandleDead);
@@ -274,6 +276,8 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         if (drawCount < 0)
             drawCount = 0;
     }
+
+    
 
 
 

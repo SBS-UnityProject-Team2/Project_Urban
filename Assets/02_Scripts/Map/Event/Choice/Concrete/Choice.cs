@@ -11,4 +11,5 @@ abstract public class Choice : ScriptableObject
     public string desc;
     
     virtual public bool CanSelect() => true;
-}    
+    abstract public void ApplyChoice(Player player);
+}  

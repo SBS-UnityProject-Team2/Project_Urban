@@ -1,0 +1,182 @@
+[
+  {
+    "$index": 0,
+    "ChoiceCode": 1000,
+    "CascadeEvent": 10,
+    "ChoiceName": "왼쪽 손을 선택한다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n카드 [소이탄], [전자기장], [개화] 중 1개 선택 획득",
+    "ResultCode": 10000,
+    "ScriptCode": 11000
+  },
+  {
+    "$index": 1,
+    "ChoiceCode": 1001,
+    "CascadeEvent": 10,
+    "ChoiceName": "오른쪽 손을 선택한다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력[h] 피해\n카드 [사격], [비열한 공격], [기습] 중 1개 선택 획득",
+    "ResultCode": 10001,
+    "ScriptCode": 11001
+  },
+  {
+    "$index": 2,
+    "ChoiceCode": 1002,
+    "CascadeEvent": 10,
+    "ChoiceName": "양쪽 손을 선택한다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "없음",
+    "ResultCode": 10002,
+    "ScriptCode": 11002
+  },
+  {
+    "$index": 3,
+    "ChoiceCode": 1003,
+    "CascadeEvent": 11,
+    "ChoiceName": "말을 들어본다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 회복",
+    "ResultCode": 10003,
+    "ScriptCode": 11003
+  },
+  {
+    "$index": 4,
+    "ChoiceCode": 1004,
+    "CascadeEvent": 11,
+    "ChoiceName": "혹시 모르니 죽인다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "금액 [c] 획득",
+    "ResultCode": 10004,
+    "ScriptCode": 11004
+  },
+  {
+    "$index": 5,
+    "ChoiceCode": 1005,
+    "CascadeEvent": 11,
+    "ChoiceName": "무시하고 지나친다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n카드 [더미] 획득",
+    "ResultCode": 10005,
+    "ScriptCode": 11005
+  },
+  {
+    "$index": 6,
+    "ChoiceCode": 1006,
+    "CascadeEvent": 12,
+    "ChoiceName": "쓸 만한 게 있나 분해해본다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "[정화] 속성 카드  1개 획득",
+    "ResultCode": 10006,
+    "ScriptCode": 11006
+  },
+  {
+    "$index": 7,
+    "ChoiceCode": 1007,
+    "CascadeEvent": 12,
+    "ChoiceName": "무시하고 지나친다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "없음",
+    "ResultCode": 10007,
+    "ScriptCode": 11007
+  },
+  {
+    "$index": 8,
+    "ChoiceCode": 1008,
+    "CascadeEvent": 12,
+    "ChoiceName": "회수하여 부랑자촌에 판매한다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n금액 [c] 획득",
+    "ResultCode": 10008,
+    "ScriptCode": 11008
+  },
+  {
+    "$index": 9,
+    "ChoiceCode": 1009,
+    "CascadeEvent": 13,
+    "ChoiceName": "나서서 강신회의 편을 든다.",
+    "ChoiceCondition": "덱에 사이킥 속성의 카드가 1장 이상",
+    "ChoiceResult": "[정화] 속성 카드  1개 획득\n[사이킥] 속성 카드 1개 랜덤 제거",
+    "ResultCode": 10009,
+    "ScriptCode": 11009
+  },
+  {
+    "$index": 10,
+    "ChoiceCode": 1010,
+    "CascadeEvent": 13,
+    "ChoiceName": "나서서 복스 겔리다의 편을 든다.",
+    "ChoiceCondition": "덱에 정화 속성의 카드가 1장 이상",
+    "ChoiceResult": "[사이킥] 속성 카드 1개 획득\n[정화] 속성 카드 1개 랜덤 제거",
+    "ResultCode": 10010,
+    "ScriptCode": 11010
+  },
+  {
+    "$index": 11,
+    "ChoiceCode": 1011,
+    "CascadeEvent": 13,
+    "ChoiceName": "숨어서 두 사람의 동태를 살핀다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n[생체] 속성 카드 1개 획득",
+    "ResultCode": 10011,
+    "ScriptCode": 11011
+  },
+  {
+    "$index": 12,
+    "ChoiceCode": 1012,
+    "CascadeEvent": 14,
+    "ChoiceName": "다가가서 말을 건다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n[생체] 속성 카드 1개 획득",
+    "ResultCode": 10012,
+    "ScriptCode": 11012
+  },
+  {
+    "$index": 13,
+    "ChoiceCode": 1013,
+    "CascadeEvent": 14,
+    "ChoiceName": "혹시 모르니 공격 태세를 갖춘다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 피해\n금액 [c] 획득",
+    "ResultCode": 10013,
+    "ScriptCode": 11013
+  },
+  {
+    "$index": 14,
+    "ChoiceCode": 1014,
+    "CascadeEvent": 14,
+    "ChoiceName": "무시하고 지나친다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "없음",
+    "ResultCode": 10014,
+    "ScriptCode": 11014
+  },
+  {
+    "$index": 15,
+    "ChoiceCode": 1015,
+    "CascadeEvent": 15,
+    "ChoiceName": "마셔본다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "체력 [h] 회복\n카드 1개 랜덤 제거",
+    "ResultCode": 10015,
+    "ScriptCode": 11015
+  },
+  {
+    "$index": 16,
+    "ChoiceCode": 1016,
+    "CascadeEvent": 15,
+    "ChoiceName": "일단 주머니에 넣어둔다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "없음",
+    "ResultCode": 10016,
+    "ScriptCode": 11016
+  },
+  {
+    "$index": 17,
+    "ChoiceCode": 1017,
+    "CascadeEvent": 15,
+    "ChoiceName": "바닥에 던져 깨뜨린다.",
+    "ChoiceCondition": "None",
+    "ChoiceResult": "[사이킥] 속성 카드 1개 획득",
+    "ResultCode": 10017,
+    "ScriptCode": 11017
+  }
+]
