@@ -60,7 +60,5 @@ public class HealingPopupUI : MonoBehaviour
 
         // 6. 팝업 텍스트 갱신 (150 > 500 형태)
         UpdateStatusText(true, beforeHp);        
-    }
-
-    
+    }    
 }

@@ -98,8 +98,8 @@ public class EventButtonUI : MonoBehaviour
         {
             int finalGold = CalculateGoldChange(myRewardData.ResultGold);
 
-            if (finalGold > 0) player.Coin.IncreaseCoin(finalGold);
-            else player.Coin.DecreaseCoin(Mathf.Abs(finalGold));
+            if (finalGold > 0) GameManager.Instance.AddCoin(finalGold);
+            else GameManager.Instance.UseCoin(Mathf.Abs(finalGold));
 
             Debug.Log($"[Reward] 골드 변동: {finalGold} (기준: {myRewardData.ResultGold})");
         }

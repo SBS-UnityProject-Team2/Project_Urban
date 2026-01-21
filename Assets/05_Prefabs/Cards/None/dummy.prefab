@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 3362647646868778303}
   - component: {fileID: 4865769701541936390}
   m_Layer: 6
-  m_Name: Dummy
+  m_Name: dummy
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8d4609d66935b1c4ba31a385c9409b81, type: 3}
-  m_Color: {r: 0.48235294, g: 0.47592562, b: 0.47592562, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

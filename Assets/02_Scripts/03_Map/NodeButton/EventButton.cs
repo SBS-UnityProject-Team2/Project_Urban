@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems; // UI 클릭 감지용
 
-public class EventButton : MonoBehaviour
+public class EventButton : NodeButton
 {
-    public void OnButtonClick()
+    public override void OnClick()
     {
         TriggerEvent();
     }
@@ -14,6 +14,5 @@ public class EventButton : MonoBehaviour
         
         // 만들어둔 EventManager의 랜덤 이벤트 함수 호출
         EventManager.Instance.StartRandomEvent();
-        
     }
 }
