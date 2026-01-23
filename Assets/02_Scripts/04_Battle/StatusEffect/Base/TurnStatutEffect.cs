@@ -4,7 +4,7 @@ abstract public class TurnStatusEffect : StatusEffect
     protected int remainingTurn;
     public override int StatusNumber => remainingTurn;
 
-    public TurnStatusEffect(Target target)
+    public TurnStatusEffect(Target target) : base()
     {
         owner = target;
     }

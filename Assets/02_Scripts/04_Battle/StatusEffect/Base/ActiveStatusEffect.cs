@@ -2,7 +2,7 @@ abstract public class ActiveStatusEffect : StatusEffect
 {
     protected readonly Target owner;
 
-    public ActiveStatusEffect(Target target)
+    public ActiveStatusEffect(Target target) : base()
     {
         owner = target;
     }

@@ -9,10 +9,13 @@ public class StatusEffectUI : MonoBehaviour
     [SerializeField] private TMP_Text effectName;
     [SerializeField] private TMP_Text effectStack;
 
-    public void Init(Sprite icon, string name, int stack)
+    public void Init(StatusEffect statusEffect)
     {
-        effectIcon.sprite = icon;
-        effectName.text = name;
+        StatusEffectDataEntry dataEntry = statusEffect.Date;
+        int stack = statusEffect.StatusNumber;
+
+        effectIcon.sprite = dataEntry.buffIcon;
+        effectName.text = dataEntry.koreanName;
         effectStack.text = stack == 0 ? "∞" : stack.ToString();
     }
 

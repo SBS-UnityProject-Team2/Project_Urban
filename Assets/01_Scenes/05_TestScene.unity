@@ -2627,6 +2627,9 @@ MonoBehaviour:
   spacing: 1.5
   cardSpawnPoint: {fileID: 692212273}
   cardDespawnPoint: {fileID: 494478004}
+  OnUpdateHand:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &533671314 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7590396706262493751, guid: 6db62076a32d40d4c8448a8446470b6f, type: 3}
@@ -3164,6 +3167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763903713}
+  - component: {fileID: 763903714}
   m_Layer: 0
   m_Name: ===CardSystem===
   m_TagString: Untagged
@@ -3184,11 +3188,27 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1189652795}
   - {fileID: 506069451}
   - {fileID: 494478004}
   - {fileID: 692212273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763903714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745188506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856f893667be7ab40ab3f3010837fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardSystem
+  deck: {fileID: 1189652794}
+  hand: {fileID: 506069452}
+  discardPanelUI: {fileID: 983716710}
 --- !u!1 &811990446
 GameObject:
   m_ObjectHideFlags: 0
@@ -5046,6 +5066,50 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1189652793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189652795}
+  - component: {fileID: 1189652794}
+  m_Layer: 0
+  m_Name: Deck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1189652794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189652793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ebf2e86bed1b64f83c0deb912ae744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Deck
+--- !u!4 &1189652795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189652793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 763903713}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197804735
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,10 +7875,8 @@ MonoBehaviour:
       m_Calls: []
   maxCost: 10
   drawCount: 0
-  nextTurnDrawBonus: 0
-  hand: {fileID: 506069452}
+  cardSystem: {fileID: 763903714}
   costView: {fileID: 3106057965538273753}
-  discardPanelUI: {fileID: 983716710}
 --- !u!4 &2039570483
 Transform:
   m_ObjectHideFlags: 0

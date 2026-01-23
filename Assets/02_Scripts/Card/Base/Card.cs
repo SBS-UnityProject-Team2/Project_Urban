@@ -3,7 +3,9 @@ using System.Collections;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
+[Flags]
 public enum CardType
 {
     Attack,  // 공격

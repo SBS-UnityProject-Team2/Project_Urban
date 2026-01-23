@@ -90,6 +90,7 @@ public class DiscardPanelUI : MonoBehaviour
     private void Reset()
     {
         selectedCardMap.Clear();
+        OnConfirm.RemoveAllListeners();
 
         foreach (Transform child in content)
             Destroy(child.gameObject);

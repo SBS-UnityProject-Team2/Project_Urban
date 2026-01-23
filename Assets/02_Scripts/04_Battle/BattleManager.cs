@@ -39,8 +39,8 @@ public class BattleManager : SceneSingleton<BattleManager>
         isPlayerTurn = false;
 
         // 코인 전달
-        GameManager.Instance.AddCoin(earnedCoin);
-        GameManager.Instance.PlayerHealth.ResetProtect();
+        PlayerManager.Instance.Coin.Increase(earnedCoin);
+        PlayerManager.Instance.Health.ResetProtect();
     }
         
     private void StartPlayerTurn()

@@ -21,8 +21,7 @@ public class HealingPopupUI : MonoBehaviour
     // 팝업 열릴 때 현재 상태 보여주기용 함수
     private void UpdateStatusText(bool isHealed, int beforeHp = 0)
     {
-        var playerHp = GameManager.Instance.PlayerHealth;
-        if (playerHp == null || statusText == null) return;
+        HealthController playerHp = PlayerManager.Instance.Health;
 
         int current = playerHp.CurrentHp;
         int max = playerHp.MaxHp;
@@ -43,7 +42,7 @@ public class HealingPopupUI : MonoBehaviour
     public void OnClickFullHeal()
     {
         // 1. 플레이어 HP 컨트롤러 가져오기
-        var playerHp = GameManager.Instance.PlayerHealth;
+        HealthController playerHp = PlayerManager.Instance.Health;
 
         // 2. 회복 전 체력 저장
         int beforeHp = playerHp.CurrentHp;

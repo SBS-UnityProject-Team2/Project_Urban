@@ -13,7 +13,10 @@ public class Hand : MonoBehaviour
     [SerializeField] private Transform cardDespawnPoint;        // 카드가 소멸할 위치
 
     private readonly List<Card> curHand = new();
+
     public IEnumerable<Card> CurHand => curHand;
+    public int CurHandCount => curHand.Count;
+    public int CurHandLeftCount => maxCardCount - curHand.Count;
 
     public UnityEvent OnUpdateHand = new();
 
@@ -24,20 +27,30 @@ public class Hand : MonoBehaviour
 
     public void AddCard(Card card)     
     {   
+        InternalAddCard(card);
+
+        Align();
+        OnUpdateHand?.Invoke();
+    }
+
+    public void AddCards(IEnumerable<Card> cards)
+    {
+        foreach (Card card in cards)
+            InternalAddCard(card);
+
+        Align();
+        OnUpdateHand?.Invoke();
+    }
+
+    private void InternalAddCard(Card card)
+    {
         curHand.Add(card);
         card.transform.position = cardSpawnPoint.position;
         card.gameObject.SetActive(true);
-        
-        Align();
-
-        OnUpdateHand?.Invoke();
     }
 
     public bool RemoveCard(Card card)
     {
-        if (!curHand.Contains(card))
-            return false;
-
         curHand.Remove(card);
 
         DestroyCard(card);

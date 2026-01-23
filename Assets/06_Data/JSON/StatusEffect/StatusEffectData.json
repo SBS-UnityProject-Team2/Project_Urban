@@ -1,0 +1,202 @@
+{
+  "statusEffects": [
+    {
+      "effectName": "Reinforce",
+      "koreanName": "증강",
+      "description": "캐릭터의 공격 수치에 부여된 값 만큼 추가한다.",
+      "buffIcon": "sword1"
+    },
+    {
+      "effectName": "Armor",
+      "koreanName": "장갑",
+      "description": "방어를 얻을 때 부여된 값 만큼 추가하여 얻는다.",
+      "buffIcon": "armor"
+    },
+    {
+      "effectName": "Blur",
+      "koreanName": "눈속임",
+      "description": "지정 횟수 만큼 캐릭터가 받는 피해를 무효화한다.",
+      "buffIcon": "user"
+    },
+    {
+      "effectName": "Refined",
+      "koreanName": "정련됨",
+      "description": "지정 턴 동안 캐릭터의 방어속성을 파괴 속성으로 변경한다.",
+      "buffIcon": "metal"
+    },
+    {
+      "effectName": "LoadedIncendiary",
+      "koreanName": "소이탄 장전",
+      "description": "이번 턴 동안 캐릭터의 공격에 파괴 속성 데미지를 지정 수치만큼 추가한다.",
+      "buffIcon": "meteor"
+    },
+    {
+      "effectName": "Searing",
+      "koreanName": "이글거림",
+      "description": "이번 전투에서 캐릭터가 체력을 잃을 때 마다 지정 수치 만큼 드로우 한다.",
+      "buffIcon": "fire2"
+    },
+    {
+      "effectName": "KineticVeil",
+      "koreanName": "염력 장막",
+      "description": "지정 턴 동안 캐릭터의 방어속성을 사이킥 속성으로 변경한다.",
+      "buffIcon": "symbol"
+    },
+    {
+      "effectName": "ElectricVeil",
+      "koreanName": "전기 장막",
+      "description": "이번 전투에서 캐릭터의 턴이 종료될 때 지정 수치만큼의 사이킥 속성 피해를 적 전체에게 입힌다.",
+      "buffIcon": "bolt"
+    },
+    {
+      "effectName": "Acceleration",
+      "koreanName": "가속",
+      "description": "지정 턴 동안 1장을 더 드로우 하고 코스트를 1 회복한다.",
+      "buffIcon": "plus"
+    },
+    {
+      "effectName": "Nullification",
+      "koreanName": "무효화",
+      "description": "지정 턴 동안 캐릭터가 받는 피해를 무효화한다.",
+      "buffIcon": "divine"
+    },
+    {
+      "effectName": "BioActiveShell",
+      "koreanName": "생체 반응 장갑",
+      "description": "지정 턴 동안 캐릭터의 방어 속성을 생체 속성으로 변경한다.",
+      "buffIcon": "spa"
+    },
+    {
+      "effectName": "Regeneration",
+      "koreanName": "재생",
+      "description": "캐릭터의 턴이 종료될 때 지정 수치 만큼의 체력을 회복한 뒤 수치의 값을 1 깎는다.",
+      "buffIcon": "plant"
+    },
+    {
+      "effectName": "ResourceTrade",
+      "koreanName": "자원 교환",
+      "description": "이번 전투에서 매 턴 카드를 1장 버리고 체력, 코스트를 1 회복한다.",
+      "buffIcon": "directions"
+    },
+    {
+      "effectName": "Spike",
+      "koreanName": "가시",
+      "description": "이번 턴에 적에게 공격 받을 시 지정 값 만큼 공격한 적에게 데미지를 입힌다.",
+      "buffIcon": "zselect-icon"
+    },
+    {
+      "effectName": "ElasticVeil",
+      "koreanName": "탄성막",
+      "description": "이번 턴에 적에게 공격 받을 시 약화, 파갑 디버프를 지정 값 만큼 공격한 적에게 부여한다.",
+      "buffIcon": "arrows-expand"
+    },
+    {
+      "effectName": "Burst",
+      "koreanName": "버스트",
+      "description": "이번 턴, 다음 1회의 공격에 지정 값만큼의 추가 피해를 주고 해제된다.",
+      "buffIcon": "lightning"
+    },
+    {
+      "effectName": "Coating",
+      "koreanName": "코팅",
+      "description": "디버프를 받았을 시 해당 디버프를 무효로 하고 지정값에서 1을 깎는다.",
+      "buffIcon": "shield"
+    },
+    {
+      "effectName": "Weaken",
+      "koreanName": "약화",
+      "description": "지정 턴 동안 캐릭터의 공격력이 30% 감소한다.",
+      "buffIcon": ""
+    },
+    {
+      "effectName": "Broken",
+      "koreanName": "파갑",
+      "description": "지정 턴 동안 캐릭터는 피격 시 30% 피해를 더 받는다.",
+      "buffIcon": ""
+    },
+    {
+      "effectName": "Exhaust",
+      "koreanName": "탈력",
+      "description": "지정 턴 동안 캐릭터의 코스트 회복량이 1 감소한다.",
+      "buffIcon": "spiral"
+    },
+    {
+      "effectName": "Slow",
+      "koreanName": "둔화",
+      "description": "지정 턴 동안 캐릭터의 드로우가 1 감소한다.",
+      "buffIcon": "minus"
+    },
+    {
+      "effectName": "Bleed",
+      "koreanName": "출혈",
+      "description": "캐릭터의 턴이 종료될 때 지정된 수치 만큼 데미지를 입고 디버프를 해제한다.\n해당 디버프가 존재할 경우 체력 회복 시 해당 디버프의 값을 체력 회복보다 우선하여 차감한다.",
+      "buffIcon": "water-drop"
+    },
+    {
+      "effectName": "Burn",
+      "koreanName": "화상",
+      "description": "캐릭터의 턴이 종료될 때 지정된 수치 만큼 데미지를 입고 수치의 값을 1 깎는다.",
+      "buffIcon": "fire1"
+    },
+    {
+      "effectName": "Poisoned",
+      "koreanName": "중독",
+      "description": "지정 턴 동안 턴이 종료될 때 현재 체력의 20%만큼의 피해를 입는다.",
+      "buffIcon": "poison-bottle"
+    },
+    {
+      "effectName": "Branded",
+      "koreanName": "낙인찍힘",
+      "description": "이번 턴 캐릭터가 피격 시 지정된 수치만큼의 파괴 속성 데미지를 추가로 입는다.",
+      "buffIcon": "signboard"
+    },
+    {
+      "effectName": "Frozen",
+      "koreanName": "동결",
+      "description": "지정 턴 동안 캐릭터는 행동할 수 없다.",
+      "buffIcon": "iceberg2"
+    },
+    {
+      "effectName": "Anointed",
+      "koreanName": "기름부음",
+      "description": "지정 턴 동안 캐릭터는 파괴(불) 속성 공격에 50% 추가데미지를 받는다.",
+      "buffIcon": "potion2"
+    },
+    {
+      "effectName": "Delirium",
+      "koreanName": "섬망",
+      "description": "지정 턴 동안 캐릭터는 사이킥(냉기) 속성 공격에 50% 추가데미지를 받는다.",
+      "buffIcon": "void"
+    },
+    {
+      "effectName": "Infested",
+      "koreanName": "감염",
+      "description": "지정 턴 동안 캐릭터는 생체 속성 공격에 50% 추가데미지를 받는다.",
+      "buffIcon": "virus"
+    },
+    {
+      "effectName": "Scarred",
+      "koreanName": "상처",
+      "description": "캐릭터는 공격 받을 때 지정 수치 만큼의 추가데미지를 입는다.",
+      "buffIcon": "bone"
+    },
+    {
+      "effectName": "Dizzy",
+      "koreanName": "현기증",
+      "description": "지정 턴 동안 카드의 비용이 1 증가한다.",
+      "buffIcon": "dark"
+    },
+    {
+      "effectName": "Summoned",
+      "koreanName": "소환됨",
+      "description": "해당 디버프가 부여된 개체만 존재할 경우 사망한다.",
+      "buffIcon": "sorcery"
+    },
+    {
+      "effectName": "FocusStance",
+      "koreanName": "집중 자세",
+      "description": "이번 턴에 방어도를 모두 잃을 시 버스트 버프를 잃습니다.",
+      "buffIcon": "target"
+    }
+  ]
+}

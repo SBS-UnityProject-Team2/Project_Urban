@@ -6,7 +6,7 @@ public class DistortedSlay : Attack
 
     public override int Use(Player player, Target target)
     {
-        int additionalHits = player.Deck.UsedCardCount;
+        int additionalHits = player.CardSystem.Deck.UsedCardCount;
 
         // 기본 타수 1회 추가
         for (int i = 0; i < additionalHits + 1; i++)

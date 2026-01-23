@@ -61,11 +61,6 @@ public class DeckManager : Singleton<DeckManager>
         cardList.Remove(card);
     }
 
-    public Deck GetDeck(Hand hand)
-    {
-        return new(cardList, hand);
-    }
-
     private void SortCardList()
     {
         cardList.Sort(CardListSortCompare);
