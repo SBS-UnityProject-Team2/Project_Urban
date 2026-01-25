@@ -7,14 +7,14 @@ public class CoinController
 
     public UnityEvent<int> OnUpdateCoin { get; } = new();
 
-    public void IncreaseCoin(int amount)
+    public void Increase(int amount)
     {
         curCoin += amount;
 
         OnUpdateCoin?.Invoke(curCoin);
     }
 
-    public void DecreaseCoin(int amount)
+    public void Decrease(int amount)
     {
         curCoin -= amount;
 

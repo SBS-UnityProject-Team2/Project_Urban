@@ -10,7 +10,7 @@ public class HealthController
     public int MaxHp => maxHp;
     public int Protect => protect; 
 
-    public UnityEvent<int,int, int> OnUpdate { get; } = new();
+    public UnityEvent<int, int, int> OnUpdate { get; } = new();
 
     public HealthController(int maxHp)
     {

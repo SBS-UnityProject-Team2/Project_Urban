@@ -10,8 +10,8 @@ public class TopBar : MonoBehaviour
 
     private void Awake()
     {
-        healthView.Bind(GameManager.Instance.PlayerHealth);
-        coinView.Bind(GameManager.Instance.Coin);
+        healthView.Bind(PlayerManager.Instance.Health);
+        coinView.Bind(PlayerManager.Instance.Coin);
         toMainButton.onClick.AddListener(() => GameManager.Instance.GameOver());
     }
 }

@@ -16,6 +16,8 @@ public enum StatusEffectName
     ResourceTrade,
     Spike,
     ElasticVeil,
+    Burst,
+    Coating,
 
     // Debuff
     Weaken = 100,
@@ -31,5 +33,7 @@ public enum StatusEffectName
     Delirium,
     Infested,
     Scarred,
-    Dizzy
+    Dizzy,
+    Summoned,
+    FocusStance
 }

@@ -26,7 +26,7 @@ public class FailUI : MonoBehaviour
 
     public void LoadMainScene()
     {
-        BattleManager.Instance.Player.Hand.RemoveAll();
+        BattleManager.Instance.Player.CardSystem.DiscardAll();
         GameManager.Instance.GameOver();
     }
 }

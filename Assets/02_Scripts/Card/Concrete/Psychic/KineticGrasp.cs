@@ -11,13 +11,13 @@ public class KineticGrasp : Attack
     {
         base.OnEnable();
 
-        BattleManager.Instance.Player.Hand.OnUpdateHand.AddListener(UpdateCurrentCost);
+        // BattleManager.Instance.Player.Hand.OnUpdateHand.AddListener(UpdateCurrentCost);
         UpdateCurrentCost();
     }
 
     private void OnDisable()
     {
-       BattleManager.Instance.Player.Hand.OnUpdateHand.RemoveListener(UpdateCurrentCost);
+       // BattleManager.Instance.Player.Hand.OnUpdateHand.RemoveListener(UpdateCurrentCost);
     }
 
     private void UpdateCurrentCost()

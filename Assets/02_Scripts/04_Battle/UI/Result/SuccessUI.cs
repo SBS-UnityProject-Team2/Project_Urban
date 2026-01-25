@@ -39,7 +39,7 @@ public class SuccessUI : MonoBehaviour
 
     public void LoadMapScene()
     {
-        BattleManager.Instance.Player.Hand.RemoveAll();
+        BattleManager.Instance.Player.CardSystem.DiscardAll();
         SceneManager.LoadScene(Scene.Map);
     }
 }

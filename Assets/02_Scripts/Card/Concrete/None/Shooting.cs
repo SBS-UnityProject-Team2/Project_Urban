@@ -6,7 +6,7 @@ public class Shooting : Attack
 
     public override int Use(Player player, Target target)
     {
-        Card lastCard = player.Deck.GetLastUsedCard();
+        Card lastCard = player.CardSystem.Deck.GetLastUsedCard();
         
         Element attackElement = Element.None;
 

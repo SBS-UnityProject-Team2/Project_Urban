@@ -14,7 +14,6 @@ abstract public class Enemy : Target
     [SerializeField] protected int score;
     [SerializeField] protected int maxHp;
 
-
     [Header("Pattern Settings")]
     [SerializeField] private List<ActionType> actionPattern = new();
     [SerializeField] private List<EnemyAction> enemyActions = new();

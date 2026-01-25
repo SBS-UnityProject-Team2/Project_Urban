@@ -20,7 +20,7 @@ public class StatusView : MonoBehaviour
     private void CreateStatusEffect(StatusEffect statusEffect)
     {
         StatusEffectUI statusEffectUI = Instantiate(statusEffectUIPrefab, content);
-        statusEffectUI.Init(null, statusEffect.Name.ToString(), statusEffect.StatusNumber);
+        statusEffectUI.Init(statusEffect);
     }
 
     public void Bind(Status status)

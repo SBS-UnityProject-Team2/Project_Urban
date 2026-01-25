@@ -18,7 +18,7 @@ public class DisplayCardList : MonoBehaviour
     [SerializeField] private string extinctCardListTitle = "소멸된 카드 목록";
 
     private Deck deck;
-    public Deck Deck => deck ??= BattleManager.Instance.Player.Deck;
+    public Deck Deck => deck = deck != null ? deck : BattleManager.Instance.Player.CardSystem.Deck;
 
     public void ClosePanel()
     {

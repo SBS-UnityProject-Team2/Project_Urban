@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 using UnityEngine.Events;
 using System.Linq;
 
@@ -9,44 +8,49 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 {
     [Header("Player Settings")]
     [SerializeField] private int maxCost;
-    [SerializeField] private int drawCount = 6; //시작할때 카드 6장 드로우
-    [SerializeField] private int nextTurnDrawBonus = 0; // 다음턴에 부여될  추가드로우 수
-    [SerializeField] private Hand hand;
+    [SerializeField] private int drawCount = 6; 
+    [SerializeField] private CardSystem cardSystem;
 
     [Header("Player View")]
     [SerializeField] protected CostView costView;
 
-    [Header("UI Reference")]
-    [SerializeField] private DiscardPanelUI discardPanelUI;
-
     private PlayerInput playerInput;
-    private Deck deck;
-    private Card selectedCard;
-    private bool isDiscardMode = false;              // 카드 버리기 로직용
+    private PlayerStateMachine stateMachine;
+    private int nextTurnDrawBonus = 0; 
 
     public CostController Cost { get; private set; }
-    public Deck Deck => deck;
-    public Hand Hand => hand;
-
-
-    public int CurrentHandCount => hand.CurHand.Count();
-
+    public PlayerStateMachine StateMachine => stateMachine;
+    public CardSystem CardSystem => cardSystem;
+    public int CurrentHandCount => cardSystem.Hand.CurHand.Count();
 
     protected override void Awake()
     {
         base.Awake();
+        cardSystem.Init();
 
-        playerInput = GetComponent<PlayerInput>();
+        InitViews();
+        InitEvent();
+        
+        stateMachine = new PlayerStateMachine(this);
+        stateMachine.ChangeState<IdleState>();
+    }
 
-        deck = DeckManager.Instance.GetDeck(hand);
+    private void InitViews()
+    {
+        Health = PlayerManager.Instance.Health;
+        healthView.Bind(Health);
 
-        Health = GameManager.Instance.PlayerHealth;
-        Cost = new CostController(maxCost);;
+        Cost = new CostController(maxCost);
+        costView.Bind(Cost);
+    }
 
+    private void InitEvent()
+    {
         OnDead.AddListener(HandleDead);
         OnTurnStart.AddListener(HandleTurnStart);
         OnTurnEnd.AddListener(HandleTurnEnd);
 
+        playerInput = GetComponent<PlayerInput>();
         playerInput.actions["RightClick"].started += OnRightClick;
     }
 
@@ -57,13 +61,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     private void OnRightClick(InputAction.CallbackContext context)
     {
-        DeselectCard();
-    }
-
-    private void Start()
-    {
-        healthView.Bind(Health);
-        costView.Bind(Cost);
+        stateMachine.ChangeState<IdleState>();
     }
 
     public void HandleTurnStart()
@@ -76,17 +74,18 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
         int totalDraw = drawCount + nextTurnDrawBonus;
 
-        deck.Draw(totalDraw);
+        cardSystem.Draw(totalDraw);
         Cost.Recovery();
+        Health.ResetProtect();
 
-        nextTurnDrawBonus = 0;  //추가드로우 후 드로우보너스 초기화(1턴만인경우)
-        DeselectCard();
+        nextTurnDrawBonus = 0;
+        stateMachine.ChangeState<IdleState>();
     }
 
     public void HandleTurnEnd()
     {
-        DeselectCard();
-        deck.DiscardAll();
+        stateMachine.ChangeState<IdleState>();
+        cardSystem.DiscardAll();
     }
 
     private void HandleDead(Target target)
@@ -96,35 +95,26 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void DrawCard(int amount = 1)
     {
-        deck.Draw(amount);
+        cardSystem.Draw(amount);
     }
 
-    public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete = null)    // 자원교환 버프에서 호출용
+    public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete = null)
     {
-        isDiscardMode = true;
-        DeselectCard();
+        stateMachine.ChangeToDiscard(cardSystem.DiscardPanelUI);
 
-        discardPanelUI.OpenPanel(minCount, maxCount);
-        discardPanelUI.OnConfirm.AddListener(discardList =>
+        cardSystem.OpenDiscardPanel(minCount, maxCount, count =>
         {
-            foreach (Card card in discardList)
-                hand.RemoveCard(card);
-            
-            onComplete?.Invoke(discardList.Count);
-            discardPanelUI.OnConfirm.RemoveAllListeners();
-            discardPanelUI.ClosePanel();
-
-            isDiscardMode = false;
+            onComplete?.Invoke(count);
+            stateMachine.ChangeState<IdleState>();
         });
     }
 
-    // 다음턴 (1턴만) 추가드로우 보너스
     public void AddNextTurnDrawCount(int amount)
     {
         nextTurnDrawBonus += amount;
     }
 
-    private bool IsEnable()
+    public bool IsEnable()
     {
         if (BattleManager.Instance.IsBattleEnded) return false;
         if (BattleManager.Instance.IsBattlePause) return false;
@@ -133,119 +123,47 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         return true;
     }
 
-    // ICardEventHandler 구현
+    // ICardEventHandler 구현 - 현재 상태에 위임
     public void OnCardEnter(Card card)
     {
-        if (!IsEnable()) return;
-        if (selectedCard != null) return;  // 카드가 선택되어 있으면 호버 안 함
-
-        card.Select();
+        stateMachine.CurrentState?.OnCardEnter(this, card);
     }
 
     public void OnCardExit(Card card)
     {
-        if (!IsEnable()) return;
-        if (selectedCard != null) return;  // 카드가 선택되어 있으면 언호버 안 함
-
-        card.UnSelect();
+        stateMachine.CurrentState?.OnCardExit(this, card);
     }
 
     public void OnCardClick(Card card)
     {
-        if (!IsEnable()) return;
-
-        if (isDiscardMode)
-        {
-            discardPanelUI.AddCard(card);
-            card.UnSelect();
-
-            return;
-        }
-
-        if (selectedCard == card)
-        {
-            TryUseCardOnSelf(card);
-            return;
-        }
-
-        if (selectedCard != null)
-            selectedCard.UnSelect();
-
-        selectedCard = card;
-        selectedCard.Select();
+        stateMachine.CurrentState?.OnCardClick(this, card);
     }
 
-    // IEnemyEventHandler 구현
+    // IEnemyEventHandler 구현 - 현재 상태에 위임
     public void OnEnemyEnter(Enemy enemy)
     {
-        if (!IsEnable()) return;
-
-        // 카드가 선택되어 있고, 공격/디버프 카드일 때만 호버
-        if (selectedCard != null &&
-            (selectedCard.Type == CardType.Attack || selectedCard.Type == CardType.Debuff))
-        {
-            enemy.Hover();
-        }
+        stateMachine.CurrentState?.OnEnemyEnter(this, enemy);
     }
 
     public void OnEnemyExit(Enemy enemy)
     {
-        if (!IsEnable()) return;
-        enemy.UnHover();
+        stateMachine.CurrentState?.OnEnemyExit(this, enemy);
     }
 
     public void OnEnemyClick(Enemy enemy)
     {
-        if (!IsEnable()) return;
-        if (selectedCard == null) return;
-
-        if (selectedCard.Type != CardType.Attack && selectedCard.Type != CardType.Debuff)
-            return;
-
-        if (selectedCard.Cost > Cost.CurrentCost)
-        {
-            Debug.Log($"코스트 부족: {selectedCard.Cost}/{Cost.CurrentCost}");
-            return;
-        }
-
-        UseCard(selectedCard, enemy);
+        stateMachine.CurrentState?.OnEnemyClick(this, enemy);
     }
 
-    public void DeselectCard()
-    {
-        if (selectedCard != null)
-            selectedCard.UnSelect();
-
-        selectedCard = null;
-    }
-
-    private void TryUseCardOnSelf(Card card)
-    {
-        if (card.Type != CardType.Defense && card.Type != CardType.BuffCard)
-            return;
-
-        if (card.Cost > Cost.CurrentCost)
-        {
-            Debug.Log($"코스트 부족: {card.Cost}/{Cost.CurrentCost}");
-            return;
-        }
-
-        UseCard(card, this);
-    }
-
-
-    private void UseCard(Card card, Target target)
+    public void UseCard(Card card, Target target)
     {
         int cost = card.Use(this, target);
 
         Cost.Decrease(cost);
-        deck.Discard(card);
+        cardSystem.Discard(card);
 
         if (card.Type == CardType.Attack)
             OnAttack?.Invoke(this, target);
-
-        selectedCard.UnSelect();
-        selectedCard = null;
     }
 
     public void IncreaseDrawCount(int amount = 1)
@@ -262,7 +180,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     }
 
     #region Test Methods
-    // 버프 테스트 메서드들
     public void TestReinforce()
     {
         int amount = Random.Range(1, 5);
@@ -333,7 +250,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Debug.Log($"Spike 버프 활성화: {count}");
     }
 
-    // 디버프 테스트 메서드들
     public void TestWeaken()
     {
         int amount = Random.Range(1, 5);
@@ -389,15 +305,10 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         status.Anointed.Apply(turns);
         Debug.Log($"Anointed 디버프 적용: {turns}턴");
     }
+
     public void DiscardSelectedCard()
     {
-        string cardName = selectedCard.Name.ToString();
-
-        // 2. 선택된 카드를 덱의 Discard 함수로 전달
-        deck.Discard(selectedCard);
-
-        // 3. 선택 변수 초기화
-        selectedCard = null;
+        // 상태 패턴으로 변경되어 이 메서드는 더 이상 사용되지 않음
     }
 
     public void TestDelirium()
@@ -421,7 +332,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Debug.Log($"Scarred 디버프 활성화: {count}");
     }
 
-    // Attack 테스트
     public void TestIncreaseAttack()
     {
         int amount = Random.Range(1, 5);
@@ -436,5 +346,4 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Debug.Log($"Attack 감소: {amount}");
     }
     #endregion
-
 }

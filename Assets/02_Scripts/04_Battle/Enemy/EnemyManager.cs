@@ -4,20 +4,33 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ActionIcon
+{
+    public ActionType type;
+    public Sprite sprite;
+}
+
 public class EnemyManager : SceneSingleton<EnemyManager>
 {
     static readonly float variationCoefficient = 0.2f;
-
+    [Header("Enemy Spawn Settings")]
     [SerializeField] private int enemyCount;
     [SerializeField] private float enemySpacing = 3.5f;
-    [SerializeField] private List<Enemy> enemyPrefabs = new();
 
-    public List<Enemy> EnemyList => enemies;    // 광역디버프 카드에서 현재 살아있는 적 리스트 확인용
+    [Header("Enemy Resource Settings")]
+    [SerializeField] private List<Enemy> enemyPrefabs = new();
+    [SerializeField] private List<ActionIcon> actionIconList;
 
     private readonly List<Enemy> enemies = new();
+    private readonly Dictionary<ActionType, Sprite> actionIconMap = new();
+    
+    public List<Enemy> EnemyList => enemies;    
 
     private void Start()
     {
+        InitActionIconMap();
+
         int score = GameManager.Instance.GetEnemyScore();
 
         if (GameManager.Instance.IsNormal)
@@ -26,6 +39,12 @@ public class EnemyManager : SceneSingleton<EnemyManager>
             CreateEliteEnemy(score);
 
         AlignEnemies();
+    }
+
+    private void InitActionIconMap()
+    {
+        foreach (ActionIcon actionIcon in actionIconList)
+            actionIconMap[actionIcon.type] = actionIcon.sprite;
     }
 
     private Enemy CreateEnemy(List<Enemy> enemies)
@@ -115,6 +134,11 @@ public class EnemyManager : SceneSingleton<EnemyManager>
     private int CalcCoin(Enemy enemy)
     {
         return (int)(10.0f * (1.0f + enemy.RewardCoin) * (1.0f + Random.Range(variationCoefficient * -1.0f, variationCoefficient)));
+    }
+
+    public Sprite GetActionIcon(ActionType actionType)
+    {
+        return actionIconMap[actionType];
     }
 
     public void ExecuteEnemyAction(UnityAction completeRoutine = null)
