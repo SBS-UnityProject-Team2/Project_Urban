@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// [Model] 선택 결과에 따른 보상 수치와 결과 스크립트를 관리합니다.
-/// </summary>
 [CreateAssetMenu(fileName = "EventResultData", menuName = "Event/EventResultData")]
 public class EventResult : ScriptableObject
 {
-    [Header("1. JSON Source")]
+    [Header("JSON File")]
     public TextAsset rewardTableJson;
     public TextAsset resultScriptTableJson;
 
-    [Header("2. Data Lists")]
+    [Header("Card Pool Settings (카드 풀 관리)")]
+    [Tooltip("카드 풀 배열: ResultRangeCard 값에 따라 3장씩 분류")]
+    [SerializeField] private List<RangeCardPool> rangeCardPools = new List<RangeCardPool>();
+
+    [Header("Data Lists")]
     [SerializeField] private List<ResultInfo> rewardList = new List<ResultInfo>();
     [SerializeField] private List<ResultScriptInfo> resultScriptList = new List<ResultScriptInfo>();
 
@@ -33,30 +34,67 @@ public class EventResult : ScriptableObject
     {
         rewardList = new List<ResultInfo>(JsonHelper.FromJson<ResultInfo>(rewardTableJson.text));
         resultScriptList = new List<ResultScriptInfo>(JsonHelper.FromJson<ResultScriptInfo>(resultScriptTableJson.text));
-        
-        Debug.Log($"[EventResult] 보상/결과 데이터 갱신 완료");
+        Debug.Log("[EventResult] 데이터 임포트 완료");
     }
 
-    public ResultInfo GetReward(int resultCode) => rewardMap.TryGetValue(resultCode, out var data) ? data : null;
-    public ResultScriptInfo GetResultScript(int scriptCode) => resultScriptMap.TryGetValue(scriptCode, out var data) ? data : null;
+    public ResultInfo GetReward(int code) => rewardMap.TryGetValue(code, out var data) ? data : null;
+    public ResultScriptInfo GetScript(int code) => resultScriptMap.TryGetValue(code, out var data) ? data : null;
+
+    /// <summary>
+    /// ResultRangeCard 값으로 카드 풀 조회 (1-based index)
+    /// </summary>
+    public RangeCardPool GetCardPool(int poolIndex)
+    {
+        if (poolIndex <= 0 || poolIndex > rangeCardPools.Count)
+            return null;
+        
+        return rangeCardPools[poolIndex - 1]; // 1-based -> 0-based
+    }
+
+    [Serializable]
+    public class RangeCardPool
+    {
+        [Tooltip("카드 풀 이름 (ex: Choice01 카드 풀)")]
+        public string poolName;
+        
+        [Tooltip("플레이어가 선택할 3장의 카드")]
+        public CardName poolCard1;
+        public CardName poolCard2;
+        public CardName poolCard3;
+
+        public List<CardName> GetCardList()
+        {
+            List<CardName> cards = new List<CardName>();
+            if (poolCard1 != (CardName)0) cards.Add(poolCard1);
+            if (poolCard2 != (CardName)0) cards.Add(poolCard2);
+            if (poolCard3 != (CardName)0) cards.Add(poolCard3);
+            return cards;
+        }
+
+        public bool IsValid()
+        {
+            return poolCard1 != (CardName)0 && poolCard2 != (CardName)0 && poolCard3 != (CardName)0;
+        }
+    }
 
     [Serializable]
     public class ResultInfo
     {
         public int ResultCode;
-        public float ResultHpPresent; // 현재 체력 % 변동
-        public float ResultHpMaximum; // 최대 체력 % 변동
-        public int ResultGold;        // 골드 변동
-        public int ResultRandomCard;  // 랜덤 카드 풀 ID
-        public int ResultRangeCard;   // 속성 카드 풀 ID
-        public int ResultRemove;      // 카드 제거 여부
+        public float ResultHpPresent;
+        public float ResultHpMaximum;
+        public int ResultGold;
+        public int ResultRandomCard;  // 랜덤 카드 획듍 (Element 값)
+        public int ResultRangeCard;   // 카드 풀 인덱스 (1부터 시작)
+        public int ResultRemove;      // 카드 제거 (Element 값)
     }
 
     [Serializable]
     public class ResultScriptInfo
     {
         public int ScriptCode;
-        public string ResultScript; // 결과 상황 설명
-        public string Dialogue;     // 결과 NPC 대사
+        public string ResultScript;
+        public string Dialogue;
+        public string EndScript;
     }
 }

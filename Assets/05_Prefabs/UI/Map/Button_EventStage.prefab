@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6096207874060896057}
         m_TargetAssemblyTypeName: EventButton, Assembly-CSharp
-        m_MethodName: OnButtonClick
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40030c04b0090f489f6b87420cad3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventButton
+  eventScriptSO: {fileID: 11400000, guid: 16d59365e61f84c49894f3e75ed13aed, type: 2}
