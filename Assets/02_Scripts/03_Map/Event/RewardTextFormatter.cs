@@ -91,7 +91,7 @@ public static class RewardTextFormatter
     /// </summary>
     private static int CalculateHpChange(EventResult.ResultInfo rewardData)
     {
-        HealthController health = GameManager.Instance.PlayerHealth;
+        HealthController health = PlayerManager.Instance.Health;
         float val = (health.CurrentHp * rewardData.ResultHpPresent) +
                     (health.MaxHp * rewardData.ResultHpMaximum);
         int amount = (int)val;

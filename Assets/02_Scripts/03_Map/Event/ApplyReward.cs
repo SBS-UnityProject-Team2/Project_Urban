@@ -26,7 +26,7 @@ public static class ApplyReward
 
     private static void ApplyHpFromData(EventResult.ResultInfo rewardData)
     {
-        HealthController health = GameManager.Instance.PlayerHealth;
+        HealthController health = PlayerManager.Instance.Health;
         int beforeHp = health.CurrentHp;
         float val = (health.CurrentHp * rewardData.ResultHpPresent) +
                     (health.MaxHp * rewardData.ResultHpMaximum);
@@ -43,8 +43,8 @@ public static class ApplyReward
         float variance = rewardData.ResultGold * 0.2f;
         int finalGold = (int)Random.Range(rewardData.ResultGold - variance, rewardData.ResultGold + variance);
 
-        if (finalGold > 0) GameManager.Instance.AddCoin(finalGold);
-        else if (finalGold < 0) GameManager.Instance.UseCoin(Mathf.Abs(finalGold));
+        if (finalGold > 0) PlayerManager.Instance.Coin.Increase(finalGold);
+        else if (finalGold < 0) PlayerManager.Instance.Coin.Decrease(Mathf.Abs(finalGold));
     }
 
     private static void ApplyCardFromData(EventResult.ResultInfo rewardData)
