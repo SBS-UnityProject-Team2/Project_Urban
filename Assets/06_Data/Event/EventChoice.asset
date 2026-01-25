@@ -15,122 +15,138 @@ MonoBehaviour:
   choiceTableJson: {fileID: 4900000, guid: 46aea5396ab6b104ea97640974240394, type: 3}
   choiceList:
   - ChoiceCode: 1000
+    CascadeEvent: 10
     ChoiceName: "\uC67C\uCABD \uC190\uC744 \uC120\uD0DD\uD55C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n\uCE74\uB4DC [\uC18C\uC774\uD0C4],
       [\uC804\uC790\uAE30\uC7A5], [\uAC1C\uD654] \uC911 1\uAC1C \uC120\uD0DD \uD68D\uB4DD"
     ResultCode: 10000
     ScriptCode: 11000
-    ChoiceCondition: None
   - ChoiceCode: 1001
+    CascadeEvent: 10
     ChoiceName: "\uC624\uB978\uCABD \uC190\uC744 \uC120\uD0DD\uD55C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825[h] \uD53C\uD574\n\uCE74\uB4DC [\uC0AC\uACA9], [\uBE44\uC5F4\uD55C
       \uACF5\uACA9], [\uAE30\uC2B5] \uC911 1\uAC1C \uC120\uD0DD \uD68D\uB4DD"
     ResultCode: 10001
     ScriptCode: 11001
-    ChoiceCondition: None
   - ChoiceCode: 1002
+    CascadeEvent: 10
     ChoiceName: "\uC591\uCABD \uC190\uC744 \uC120\uD0DD\uD55C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uC5C6\uC74C"
     ResultCode: 10002
     ScriptCode: 11002
-    ChoiceCondition: None
   - ChoiceCode: 1003
+    CascadeEvent: 11
     ChoiceName: "\uB9D0\uC744 \uB4E4\uC5B4\uBCF8\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD68C\uBCF5"
     ResultCode: 10003
     ScriptCode: 11003
-    ChoiceCondition: None
   - ChoiceCode: 1004
+    CascadeEvent: 11
     ChoiceName: "\uD639\uC2DC \uBAA8\uB974\uB2C8 \uC8FD\uC778\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uAE08\uC561 [c] \uD68D\uB4DD"
     ResultCode: 10004
     ScriptCode: 11004
-    ChoiceCondition: None
   - ChoiceCode: 1005
+    CascadeEvent: 11
     ChoiceName: "\uBB34\uC2DC\uD558\uACE0 \uC9C0\uB098\uCE5C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n\uCE74\uB4DC [\uB354\uBBF8] \uD68D\uB4DD"
     ResultCode: 10005
     ScriptCode: 11005
-    ChoiceCondition: None
   - ChoiceCode: 1006
+    CascadeEvent: 12
     ChoiceName: "\uC4F8 \uB9CC\uD55C \uAC8C \uC788\uB098 \uBD84\uD574\uD574\uBCF8\uB2E4."
-    ChoiceResult: "[\uC815\uD654] \uC18D\uC131 \uCE74\uB4DC  1\uAC1C \uD68D\uB4DD"
+    ChoiceCondition: 0
+    ChoiceResult: "[\uD30C\uAD34] \uC18D\uC131 \uCE74\uB4DC  1\uAC1C \uD68D\uB4DD"
     ResultCode: 10006
     ScriptCode: 11006
-    ChoiceCondition: None
   - ChoiceCode: 1007
+    CascadeEvent: 12
     ChoiceName: "\uBB34\uC2DC\uD558\uACE0 \uC9C0\uB098\uCE5C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uC5C6\uC74C"
     ResultCode: 10007
     ScriptCode: 11007
-    ChoiceCondition: None
   - ChoiceCode: 1008
+    CascadeEvent: 12
     ChoiceName: "\uD68C\uC218\uD558\uC5EC \uBD80\uB791\uC790\uCD0C\uC5D0 \uD310\uB9E4\uD55C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n\uAE08\uC561 [c] \uD68D\uB4DD"
     ResultCode: 10008
     ScriptCode: 11008
-    ChoiceCondition: None
   - ChoiceCode: 1009
+    CascadeEvent: 13
     ChoiceName: "\uB098\uC11C\uC11C \uAC15\uC2E0\uD68C\uC758 \uD3B8\uC744 \uB4E0\uB2E4."
-    ChoiceResult: "[\uC815\uD654] \uC18D\uC131 \uCE74\uB4DC  1\uAC1C \uD68D\uB4DD\n[\uC0AC\uC774\uD0A5]
+    ChoiceCondition: 3
+    ChoiceResult: "[\uD30C\uAD34] \uC18D\uC131 \uCE74\uB4DC  1\uAC1C \uD68D\uB4DD\n[\uC0AC\uC774\uD0A5]
       \uC18D\uC131 \uCE74\uB4DC 1\uAC1C \uB79C\uB364 \uC81C\uAC70"
     ResultCode: 10009
     ScriptCode: 11009
-    ChoiceCondition: "\uB371\uC5D0 \uC0AC\uC774\uD0A5 \uC18D\uC131\uC758 \uCE74\uB4DC\uAC00
-      1\uC7A5 \uC774\uC0C1"
   - ChoiceCode: 1010
+    CascadeEvent: 13
     ChoiceName: "\uB098\uC11C\uC11C \uBCF5\uC2A4 \uAC94\uB9AC\uB2E4\uC758 \uD3B8\uC744
       \uB4E0\uB2E4."
-    ChoiceResult: "[\uC0AC\uC774\uD0A5] \uC18D\uC131 \uCE74\uB4DC 1\uAC1C \uD68D\uB4DD\n[\uC815\uD654]
+    ChoiceCondition: 2
+    ChoiceResult: "[\uC0AC\uC774\uD0A5] \uC18D\uC131 \uCE74\uB4DC 1\uAC1C \uD68D\uB4DD\n[\uD30C\uAD34]
       \uC18D\uC131 \uCE74\uB4DC 1\uAC1C \uB79C\uB364 \uC81C\uAC70"
     ResultCode: 10010
     ScriptCode: 11010
-    ChoiceCondition: "\uB371\uC5D0 \uC815\uD654 \uC18D\uC131\uC758 \uCE74\uB4DC\uAC00
-      1\uC7A5 \uC774\uC0C1"
   - ChoiceCode: 1011
+    CascadeEvent: 13
     ChoiceName: "\uC228\uC5B4\uC11C \uB450 \uC0AC\uB78C\uC758 \uB3D9\uD0DC\uB97C
       \uC0B4\uD540\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n[\uC0DD\uCCB4] \uC18D\uC131 \uCE74\uB4DC
       1\uAC1C \uD68D\uB4DD"
     ResultCode: 10011
     ScriptCode: 11011
-    ChoiceCondition: None
   - ChoiceCode: 1012
+    CascadeEvent: 14
     ChoiceName: "\uB2E4\uAC00\uAC00\uC11C \uB9D0\uC744 \uAC74\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n[\uC0DD\uCCB4] \uC18D\uC131 \uCE74\uB4DC
       1\uAC1C \uD68D\uB4DD"
     ResultCode: 10012
     ScriptCode: 11012
-    ChoiceCondition: None
   - ChoiceCode: 1013
+    CascadeEvent: 14
     ChoiceName: "\uD639\uC2DC \uBAA8\uB974\uB2C8 \uACF5\uACA9 \uD0DC\uC138\uB97C
       \uAC16\uCD98\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD53C\uD574\n\uAE08\uC561 [c] \uD68D\uB4DD"
     ResultCode: 10013
     ScriptCode: 11013
-    ChoiceCondition: None
   - ChoiceCode: 1014
+    CascadeEvent: 14
     ChoiceName: "\uBB34\uC2DC\uD558\uACE0 \uC9C0\uB098\uCE5C\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uC5C6\uC74C"
     ResultCode: 10014
     ScriptCode: 11014
-    ChoiceCondition: None
   - ChoiceCode: 1015
+    CascadeEvent: 15
     ChoiceName: "\uB9C8\uC154\uBCF8\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uCCB4\uB825 [h] \uD68C\uBCF5\n\uCE74\uB4DC 1\uAC1C \uB79C\uB364
       \uC81C\uAC70"
     ResultCode: 10015
     ScriptCode: 11015
-    ChoiceCondition: None
   - ChoiceCode: 1016
+    CascadeEvent: 15
     ChoiceName: "\uC77C\uB2E8 \uC8FC\uBA38\uB2C8\uC5D0 \uB123\uC5B4\uB454\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "\uC5C6\uC74C"
     ResultCode: 10016
     ScriptCode: 11016
-    ChoiceCondition: None
   - ChoiceCode: 1017
+    CascadeEvent: 15
     ChoiceName: "\uBC14\uB2E5\uC5D0 \uB358\uC838 \uAE68\uB728\uB9B0\uB2E4."
+    ChoiceCondition: 0
     ChoiceResult: "[\uC0AC\uC774\uD0A5] \uC18D\uC131 \uCE74\uB4DC 1\uAC1C \uD68D\uB4DD"
     ResultCode: 10017
     ScriptCode: 11017
-    ChoiceCondition: None
