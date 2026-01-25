@@ -9,13 +9,17 @@ public class StatusEffectUI : MonoBehaviour
     [SerializeField] private TMP_Text effectName;
     [SerializeField] private TMP_Text effectStack;
 
+    [Header("Setting")]
+    [SerializeField] private bool isPlayer; 
+
     public void Init(StatusEffect statusEffect)
     {
         StatusEffectDataEntry dataEntry = statusEffect.Date;
         int stack = statusEffect.StatusNumber;
 
+        if (isPlayer) effectName.text = dataEntry.koreanName;
+        
         effectIcon.sprite = dataEntry.buffIcon;
-        effectName.text = dataEntry.koreanName;
         effectStack.text = stack == 0 ? "∞" : stack.ToString();
     }
 

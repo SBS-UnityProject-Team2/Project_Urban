@@ -4,7 +4,7 @@
       "effectName": "Reinforce",
       "koreanName": "증강",
       "description": "캐릭터의 공격 수치에 부여된 값 만큼 추가한다.",
-      "buffIcon": "sword1"
+      "buffIcon": "sword"
     },
     {
       "effectName": "Armor",
@@ -106,13 +106,13 @@
       "effectName": "Weaken",
       "koreanName": "약화",
       "description": "지정 턴 동안 캐릭터의 공격력이 30% 감소한다.",
-      "buffIcon": ""
+      "buffIcon": "broken-sword"
     },
     {
       "effectName": "Broken",
       "koreanName": "파갑",
       "description": "지정 턴 동안 캐릭터는 피격 시 30% 피해를 더 받는다.",
-      "buffIcon": ""
+      "buffIcon": "broken-shield"
     },
     {
       "effectName": "Exhaust",
@@ -136,7 +136,7 @@
       "effectName": "Burn",
       "koreanName": "화상",
       "description": "캐릭터의 턴이 종료될 때 지정된 수치 만큼 데미지를 입고 수치의 값을 1 깎는다.",
-      "buffIcon": "fire1"
+      "buffIcon": "fire"
     },
     {
       "effectName": "Poisoned",
@@ -190,7 +190,7 @@
       "effectName": "Summoned",
       "koreanName": "소환됨",
       "description": "해당 디버프가 부여된 개체만 존재할 경우 사망한다.",
-      "buffIcon": "sorcery"
+      "buffIcon": "sorcrery"
     },
     {
       "effectName": "FocusStance",

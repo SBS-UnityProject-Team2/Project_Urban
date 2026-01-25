@@ -8,7 +8,7 @@ public class A28_Gravity : EnemyAction
     [SerializeField] private int weakenPoint = 4;
     [SerializeField] private int slowPoint = 2;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Psychic;
 
     public override void Execute(Enemy enemy, Target target)

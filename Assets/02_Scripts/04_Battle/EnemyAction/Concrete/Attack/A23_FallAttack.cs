@@ -7,7 +7,7 @@ public class A23_FallAttack : EnemyAction
     [SerializeField] private int count = 1;
     [SerializeField] private int scarredPoint = 2;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Bio;
 
     public override void Execute(Enemy enemy, Target target)

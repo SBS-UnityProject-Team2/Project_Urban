@@ -7,7 +7,7 @@ public class A25_Hammering : EnemyAction
     [SerializeField] private int count = 1;
     [SerializeField] private int brokenPoint = 1;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Ruin;
 
     public override void Execute(Enemy enemy, Target target)

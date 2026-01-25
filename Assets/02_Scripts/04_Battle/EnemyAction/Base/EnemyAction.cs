@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
 
+[Flags]
 public enum ActionType
 {
-    Attack,  // 공격
-    Protect, // 방어
-    Buff,    // 버프
-    Debuff   // 디버프
+    Attack = 1,  // 공격
+    Protect = 1 << 1, // 방어
+    Buff = 1 << 2,    // 버프
+    Debuff = 1 << 3   // 디버프
 }
 
 

@@ -6,7 +6,7 @@ public class A05_BurntArm : EnemyAction
     [SerializeField] private int damage = 10;
     [SerializeField] private int reinforcePoint = 3;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Buff;
 
     public override Element Element => Element.Ruin;
 

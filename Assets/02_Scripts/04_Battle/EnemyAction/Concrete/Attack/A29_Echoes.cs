@@ -8,7 +8,7 @@ public class A29_Echoes : EnemyAction
     [SerializeField] private int exhaustPoint = 2;
     [SerializeField] private int dizzyPoint = 2;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Psychic;
 
     public override void Execute(Enemy enemy, Target target)

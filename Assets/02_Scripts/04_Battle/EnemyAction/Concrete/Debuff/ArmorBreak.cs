@@ -6,7 +6,7 @@ public class ArmorBreak : EnemyAction
     [SerializeField] private int brokenPoint;
     [SerializeField] private int armorPoint;
 
-    public override ActionType Type => ActionType.Debuff;
+    public override ActionType Type => ActionType.Debuff | ActionType.Buff;
     public override Element Element => Element.None;
 
     public override void Execute(Enemy enemy, Target target)

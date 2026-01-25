@@ -7,7 +7,7 @@ public class A19_Sludge : EnemyAction
     [SerializeField] private int count = 1;
     [SerializeField] private int weakenPoint = 3;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Bio;
 
     public override void Execute(Enemy enemy, Target target)

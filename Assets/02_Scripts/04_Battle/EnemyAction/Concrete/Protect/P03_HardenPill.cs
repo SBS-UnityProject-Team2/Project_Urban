@@ -6,7 +6,7 @@ public class P03_HardenPill : EnemyAction
     [SerializeField] private int protectPoint = 8;
     [SerializeField] private int armorPoint = 2;
 
-    public override ActionType Type => ActionType.Protect;
+    public override ActionType Type => ActionType.Protect | ActionType.Buff;
     public override Element Element => Element.None;
 
     public override void Execute(Enemy enemy, Target target)

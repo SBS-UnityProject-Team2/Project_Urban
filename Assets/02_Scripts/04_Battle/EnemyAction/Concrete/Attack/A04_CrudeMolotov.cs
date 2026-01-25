@@ -7,7 +7,7 @@ public class A04_CrudeMolotov : EnemyAction
     [SerializeField] private int count = 2;
     [SerializeField] private int burnPoint = 2;
 
-    public override ActionType Type => ActionType.Attack;
+    public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Ruin;
 
     public override void Execute(Enemy enemy, Target target)

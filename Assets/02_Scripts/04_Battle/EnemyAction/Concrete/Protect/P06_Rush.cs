@@ -6,7 +6,7 @@ public class P06_Rush : EnemyAction
     [SerializeField] private int protectPoint = 12;
     [SerializeField] private int reinforcePoint = 2;
 
-    public override ActionType Type => ActionType.Protect;
+    public override ActionType Type => ActionType.Protect | ActionType.Buff;
     public override Element Element => Element.None;
 
     public override void Execute(Enemy enemy, Target target)

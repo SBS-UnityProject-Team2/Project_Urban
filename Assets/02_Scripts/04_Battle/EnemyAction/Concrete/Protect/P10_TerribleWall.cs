@@ -6,7 +6,7 @@ public class P10_TerribleWall : EnemyAction
     [SerializeField] private int protectPoint = 10;
     [SerializeField] private int elasticVeilPoint = 1;
 
-    public override ActionType Type => ActionType.Protect;
+    public override ActionType Type => ActionType.Protect | ActionType.Buff;
     public override Element Element => Element.None;
 
     public override void Execute(Enemy enemy, Target target)
