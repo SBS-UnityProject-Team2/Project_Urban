@@ -320,4 +320,8 @@
         public int price;
         public int cost;
         [TextArea] public string description;
+        
+        // 이펙트 관련
+        public GameObject effectPrefab;           // 이펙트 프리팹
+        public Transform effectSpawnPosition;     // 이펙트 생성 위치
     }
