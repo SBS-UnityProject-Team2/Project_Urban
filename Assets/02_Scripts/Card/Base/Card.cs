@@ -25,6 +25,10 @@ abstract public class Card : MonoBehaviour
     [SerializeField] protected bool isExtinct; // 소멸 여부 
     [SerializeField] protected bool isSpecial; // 특수 카드 여부
 
+    [Header("Effect Settings")]
+    [SerializeField] protected GameObject effectPrefab;    // 이펙트 프리팹
+    [SerializeField] protected Transform effectSpawnPosition; // 이펙트 생성 위치
+
     [Header("UI Reference")]
     [SerializeField] TMP_Text cardTitle;
     [SerializeField] TMP_Text cardDesc;
@@ -53,6 +57,9 @@ abstract public class Card : MonoBehaviour
     public virtual bool IsExtinct => isExtinct;
     public virtual bool IsSpecial => isSpecial;
     public bool IsEnchanted { get; private set; }
+
+    public GameObject EffectPrefab => effectPrefab;
+    public Transform EffectSpawnPosition => effectSpawnPosition;
 
     public bool IsDiscardSelect
     {
@@ -119,6 +126,10 @@ abstract public class Card : MonoBehaviour
 
         initCost = cardDataEntry.cost;
         curCost = initCost;
+
+        // 이펙트 관련 데이터 로드
+        effectPrefab = cardDataEntry.effectPrefab;
+        effectSpawnPosition = cardDataEntry.effectSpawnPosition;
     }
 
 
