@@ -5,7 +5,7 @@ public class Embers : Attack
     public override int Use(Player player, Target target)
     {
         target.Damage(player, damage, Element.Ruin);
-        player.CardSystem.CopyCardToDeck(this);
+        player.Deck.Copy(this);
         
         return curCost;
     }

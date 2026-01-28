@@ -27,22 +27,21 @@ public class IdleState : IPlayerState
     {
         if (!player.IsEnable()) return;
 
-        // 카드 선택 -> CardSelected 상태로 전환
         player.StateMachine.ChangeToCardSelected(card);
     }
 
     public void OnEnemyEnter(Player player, Enemy enemy)
     {
-        // Idle 상태에서는 적 호버 없음
+        
     }
 
     public void OnEnemyExit(Player player, Enemy enemy)
     {
-        // Idle 상태에서는 적 언호버 없음
+        
     }
 
     public void OnEnemyClick(Player player, Enemy enemy)
     {
-        // Idle 상태에서는 적 클릭 무시
+        
     }
 }

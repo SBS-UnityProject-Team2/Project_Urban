@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using System.Linq;
 
 public class Deck : MonoBehaviour
-{
-    private readonly Hand hand;
+{   
+    [Header("Hand Reference")]
+    [SerializeField] private Hand hand;
 
-    // 이제 덱에서는 이름 + 강화 여부가 포함된 객체 목록으로 관리
     private readonly List<Card> unusedCardList = new();     // 뽑을 덱 
     private readonly List<Card> usedCardList = new();       // 사용한 카드 리스트 
     private readonly List<Card> extinctCardList = new();    // 소멸된 카드 리스트
-
-    // Property
-    public Hand Hand => hand;
+    private readonly List<Card> tempList = new();
 
     public IEnumerable<Card> UnusedCardList => unusedCardList;
     public IEnumerable<Card> UsedCardList => usedCardList;
@@ -20,6 +20,9 @@ public class Deck : MonoBehaviour
     public int UnusedCardCount => unusedCardList.Count;
     public int UsedCardCount => usedCardList.Count;
     public int ExtinctCardCount => extinctCardList.Count;
+    public int CurrentHandCount => hand.CurHand.Count();
+
+    public Hand Hand => hand;
 
     public void Init()
     {
@@ -31,61 +34,75 @@ public class Deck : MonoBehaviour
 
         Shuffle();
     }
-    
-    public void AddCard(Card card)
-    {
-        unusedCardList.Add(card);
-        
-        Shuffle();
+
+    public void Draw(int amount = 1)
+    {   
+        tempList.Clear();
+
+        for (int i = 0; i < amount; i++)
+        {
+            if (hand.IsHandFull()) break;
+
+            Card drawCard = unusedCardList[^1];
+
+            unusedCardList.RemoveAt(unusedCardList.Count - 1);
+            tempList.Add(drawCard);
+        }
+
+        hand.AddCards(tempList);
     }
 
-    public Card GetNextCard()
+    public void Use(Card card)
     {
-        if (unusedCardList.Count == 0) 
-            Shuffle();
-
-        Card card = unusedCardList[^1];
-        unusedCardList.RemoveAt(unusedCardList.Count - 1);
-            
-        return card; 
-    }
-
-    // 사용한 카드 버리기
-    public void Discard(Card usedCard)
-    {
-        // 1. 소멸(Extinct) 체크
-        if (usedCard.IsExtinct)
-            extinctCardList.Add(usedCard);
+        if (card.IsExtinct)
+            extinctCardList.Add(card);
         else
-            usedCardList.Add(usedCard);
+            usedCardList.Add(card);
+
+        hand.Remove(card);
     }
 
-    // 핸드에 있는 모든 카드 버리기
+    public void Discard(Card card)
+    {
+        usedCardList.Add(card);
+        hand.Remove(card);
+    }
+
     public void DiscardAll()
     {
         foreach (Card card in hand.CurHand)
             usedCardList.Add(card);
+
+        hand.RemoveAll();
     }
+
+    public void Copy(Card card)
+    {
+        Card copy = Instantiate(card, transform);
+        hand.AddCard(copy);
+    }
+
+    
 
     // 버린 카드 더미에서 랜덤 뽑기 
-    public bool DrawRandomFromDiscard(out Card card)
-    {       
-        if (usedCardList.Count == 0 || hand.IsHandFull())
-        {
-            card = null;
+    // public bool DrawRandomFromDiscard(out Card card)
+    // {       
+    //     if (usedCardList.Count == 0 || hand.IsHandFull())
+    //     {
+    //         card = null;
 
-            return false;
-        }
+    //         return false;
+    //     }
 
-        int randomIndex = Random.Range(0, usedCardList.Count);
-        card = usedCardList[randomIndex];
+    //     int randomIndex = Random.Range(0, usedCardList.Count);
+    //     card = usedCardList[randomIndex];
 
-        (usedCardList[randomIndex], usedCardList[^1]) = (usedCardList[^1], usedCardList[randomIndex]);
-        usedCardList.RemoveAt(usedCardList.Count - 1);
-        hand.AddCard(card);
+    //     (usedCardList[randomIndex], usedCardList[^1]) = (usedCardList[^1], usedCardList[randomIndex]);
+    //     usedCardList.RemoveAt(usedCardList.Count - 1);
+    //     hand.AddCard(card);
 
-        return true;
-    }
+    //     return true;
+    // }
 
     // 가장 최근에 사용한 카드 정보 확인
     public Card GetLastUsedCard()

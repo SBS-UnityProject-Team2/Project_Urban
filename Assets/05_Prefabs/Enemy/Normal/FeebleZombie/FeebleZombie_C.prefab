@@ -170,8 +170,8 @@ MonoBehaviour:
   selectedArrow: {fileID: 898606208095318924}
   nextActionText: {fileID: 5734162663947854088}
   score: 2
-  maxHp: 50
-  actionPattern: 0200000000000000
+  maxHp: 1
+  actionPattern: 04000000010000000100000002000000
   enemyActions:
   - {fileID: 11400000, guid: 14b00dba748400a48a90cff96a819b67, type: 2}
   - {fileID: 11400000, guid: b03fc0d73376d5149a80ba7ae8dc4a38, type: 2}

@@ -1,61 +1,155 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-// 1. 이벤트 테이블 (EventTable.json)
 [Serializable]
-public class EventData
+public class JsonEventWrapper
 {
-    public int EventCode;       // 이벤트 ID
-    public int Stage;           // 등장 스테이지
-    public string EventName;    // 이름
-    public int EventScript;     // 상황 설명 스크립트 ID
-    public int EventChoice1;    // 선택지 1 ID
-    public int EventChoice2;    // 선택지 2 ID
-    public int EventChoice3;    // 선택지 3 ID
+    public List<JsonEventInfo> eventInfos;
+    public List<JsonEventScript> eventScripts;
+    public List<JsonEventChoice> eventChoices;
+    public List<JsonEventReward> eventRewards;
+    public List<JsonEventResult> eventResults;
+    public List<JsonRangeCardPool> rangeCardPools;
 }
 
-// 2. 이벤트 스크립트 (EventScript.json)
+#region EventInfo
 [Serializable]
-public class EventScriptData
+public class JsonEventInfo
 {
-    public int ScriptCode;
-    public int EventCode;
-    public string EventScript;  // 상황 설명
-    public string Dialogue;     // NPC 대사
-    public string Illustration; // 이미지 파일명
+    public int eventCode;
+    public int stage;
+    public string eventName;
+    public int scriptCode;
+    public int choiceCode1;
+    public int choiceCode2;
+    public int choiceCode3;
 }
 
-// 3. 선택지 (EventChoice.json)
 [Serializable]
-public class EventChoiceData
+public class EventInfo
 {
-    public int ChoiceCode;
-    public int CascadeEvent;
-    public string ChoiceName;      // 선택지 버튼 텍스트
-    public string ChoiceCondition; // 활성화 조건
-    public string ChoiceResult;    // 예상 결과 텍스트 (UI 표시용)
-    public int ResultCode;         // 결과 데이터 ID
-    public int ScriptCode;         // 결과 스크립트 ID (ResultScriptTable 참조)
+    public int eventCode;
+    public int stage;
+    public string eventName;
+    public int scriptCode;
+    public int choiceCode1;
+    public int choiceCode2;
+    public int choiceCode3;
+    public bool isExecuted;
+}
+#endregion
+
+#region EventScript
+[Serializable]
+public class JsonEventScript
+{
+    public int scriptCode;
+    public int eventCode;
+    public string eventScript;
+    public string dialogue;
+    public string illustration;
 }
 
-// 4. 결과 데이터 (EventReward.json / EventResultEfTable)
 [Serializable]
-public class EventResultData
+public class EventScript
 {
-    public int ResultCode;
-    public float ResultHpPresent; // 현재 체력 비율 변화 (예: -0.1은 10% 감소)
-    public float ResultHpMaximum; // 최대 체력 비율 변화
-    public int ResultGold;        // 골드 변화 (정수)
-    public int ResultRandomCard;  // 랜덤 카드 풀 ID
-    public int ResultRangeCard;   // 범위 카드 풀 ID
-    public int ResultRemove;      // 카드 제거 여부 (Enum)
+    public int scriptCode;
+    public int eventCode;
+    public string eventScript;
+    public string dialogue;
+    public Sprite illustration;
+}
+#endregion
+
+#region EventChoice
+[Serializable]
+public class JsonEventChoice
+{
+    public int choiceCode;
+    public int eventCode;
+    public string choiceName;
+    public int choiceCondition;
+    public string choiceResult;
+    public int resultCode;
+    public int scriptCode;
 }
 
-// 5. 결과 스크립트 
 [Serializable]
-public class ResultScriptData
+public class EventChoice
 {
-    public int ScriptCode;
-    public string ResultScript; // 결과 설명
-    public string Dialogue;     // 결과 NPC 대사
-    public string EndScript;    // 최종 확인 텍스트
+    public int choiceCode;
+    public int eventCode;
+    public string choiceName;
+    public int choiceCondition;
+    public string choiceResult;
+    public int resultCode;
+    public int scriptCode;
 }
+#endregion
+
+#region EventReward
+[Serializable]
+public class JsonEventReward
+{
+    public int resultCode;
+    public float hpPresent;
+    public float hpMax;
+    public int gold;
+    public int randomCard;
+    public int rangeCard;
+    public int remove;
+}
+
+[Serializable]
+public class EventReward
+{
+    public int resultCode;
+    public float hpPresent;
+    public float hpMax;
+    public int gold;
+    public int randomCard;
+    public int rangeCard;
+    public int remove;
+}
+#endregion
+
+#region EventResult
+[Serializable]
+public class JsonEventResult
+{
+    public int scriptCode;
+    public string resultScript;
+    public string dialogue;
+    public string endScript;
+}
+
+[Serializable]
+public class EventResult
+{
+    public int scriptCode;
+    public string resultScript;
+    public string dialogue;
+    public string endScript;
+}
+#endregion
+
+#region RangeCardPool
+[Serializable]
+public class JsonRangeCardPool
+{
+    public int cardPoolCode;
+    public int card1;
+    public int card2;
+    public int card3;
+}
+
+[Serializable]
+public class RangeCardPool
+{
+    public int cardPoolCode;
+    public int card1;
+    public int card2;
+    public int card3;
+}
+#endregion

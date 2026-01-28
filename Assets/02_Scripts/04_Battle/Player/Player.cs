@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using System.Linq;
+using System.Collections;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : Target, ICardEventHandler, IEnemyEventHandler
@@ -9,10 +10,13 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     [Header("Player Settings")]
     [SerializeField] private int maxCost;
     [SerializeField] private int drawCount = 6; 
-    [SerializeField] private CardSystem cardSystem;
+    [SerializeField] private Deck deck;
 
     [Header("Player View")]
     [SerializeField] protected CostView costView;
+
+    [Header("UI Reference")]
+    [SerializeField] private DiscardPanelUI discardPanelUI;
 
     private PlayerInput playerInput;
     private PlayerStateMachine stateMachine;
@@ -20,13 +24,13 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public CostController Cost { get; private set; }
     public PlayerStateMachine StateMachine => stateMachine;
-    public CardSystem CardSystem => cardSystem;
-    public int CurrentHandCount => cardSystem.Hand.CurHand.Count();
+    public Deck Deck => deck;
+    public int CurrentHandCount => deck.CurrentHandCount;
 
     protected override void Awake()
     {
         base.Awake();
-        cardSystem.Init();
+        deck.Init();
 
         InitViews();
         InitEvent();
@@ -64,6 +68,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         stateMachine.ChangeState<IdleState>();
     }
 
+    private void StartPlayerCoroutine(IEnumerator routine)
+    {
+        StartCoroutine(routine);
+    }
+
     public void HandleTurnStart()
     {
         if (status.Frozen.IsActive)
@@ -74,7 +83,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
         int totalDraw = drawCount + nextTurnDrawBonus;
 
-        cardSystem.Draw(totalDraw);
+        deck.Draw(totalDraw);
         Cost.Recovery();
         Health.ResetProtect();
 
@@ -85,7 +94,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void HandleTurnEnd()
     {
         stateMachine.ChangeState<IdleState>();
-        cardSystem.DiscardAll();
+        deck.DiscardAll();
     }
 
     private void HandleDead(Target target)
@@ -95,18 +104,13 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void DrawCard(int amount = 1)
     {
-        cardSystem.Draw(amount);
+        deck.Draw(amount);
     }
 
-    public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete = null)
+    public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete)
     {
-        stateMachine.ChangeToDiscard(cardSystem.DiscardPanelUI);
-
-        cardSystem.OpenDiscardPanel(minCount, maxCount, count =>
-        {
-            onComplete?.Invoke(count);
-            stateMachine.ChangeState<IdleState>();
-        });
+        discardPanelUI.OpenPanel(minCount, maxCount);
+        stateMachine.ChangeToDiscard(discardPanelUI);
     }
 
     public void AddNextTurnDrawCount(int amount)
@@ -160,7 +164,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         int cost = card.Use(this, target);
 
         Cost.Decrease(cost);
-        cardSystem.Discard(card);
+        deck.Use(card);
 
         if (card.Type == CardType.Attack)
             OnAttack?.Invoke(this, target);
@@ -179,171 +183,25 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
             drawCount = 0;
     }
 
-    #region Test Methods
-    public void TestReinforce()
+    public IEnumerator PlayeEffect(EffectData effectData)
     {
-        int amount = Random.Range(1, 5);
-        status.Reinforce.IncreaseStack(amount);
-        Debug.Log($"Reinforce 버프 추가: {amount}");
-    }
+        for (int i = 0; i < effectData.route.GetLength(0); i++)
+        {
+            for (int j = 0; j < effectData.route.GetLength(1); j++)
+            {
+                // i = 0일때 이펙트 Prefab을 인스턴스화 및 위치 지정
+                effectData.route[i, j];  // 이펙트 이동
+            }
 
-    public void TestArmor()
-    {
-        int amount = Random.Range(5, 20);
-        status.Armor.IncreaseStack(amount);
-        Debug.Log($"Armor 버프 추가: {amount}");
-    }
+            yield return new WaitForSeconds(effectData.duration[i]);
+        }
 
-    public void TestDummy()
-    {
-        int amount = Random.Range(1, 3);
-        status.Blur.IncreaseStack(amount);
-        Debug.Log($"Dummy 버프 추가: {amount}");
+        // 이펙트 소멸
     }
+}
 
-    public void TestRefined()
-    {
-        int turns = Random.Range(1, 4);
-        Refined(turns);
-        Debug.Log($"Refined 버프 적용: {turns}턴");
-    }
-
-    public void TestIncendiary()
-    {
-        int count = Random.Range(5, 15);
-        LoadedIncendiary(count);
-        Debug.Log($"Incendiary 버프 활성화: {count}");
-    }
-
-    public void TestKineticVeil()
-    {
-        int turns = Random.Range(1, 3);
-        KineticVeil(turns);
-        Debug.Log($"KineticVeil 버프 적용: {turns}턴");
-    }
-
-    public void TestSuperConduct()
-    {
-        int turns = Random.Range(1, 3);
-        Nullification(turns);
-        Debug.Log($"SuperConduct 버프 적용: {turns}턴");
-    }
-
-    public void TestBioActiveShell()
-    {
-        int turns = Random.Range(1, 4);
-        status.BioActiveShell.Apply(turns);
-        Debug.Log($"BioActiveShell 버프 적용: {turns}턴");
-    }
-
-    public void TestRegeneration()
-    {
-        int turns = Random.Range(2, 5);
-        status.Regeneration.Apply(turns);
-        Debug.Log($"Regeneration 버프 적용: {turns}턴");
-    }
-
-    public void TestSpike()
-    {
-        int count = Random.Range(5, 20);
-        status.Spike.Active(count);
-        Debug.Log($"Spike 버프 활성화: {count}");
-    }
-
-    public void TestWeaken()
-    {
-        int amount = Random.Range(1, 5);
-        status.Weaken.Apply(amount);
-        Debug.Log($"Weaken 디버프 적용: {amount}");
-    }
-
-    public void TestBroken()
-    {
-        int turns = Random.Range(1, 3);
-        status.Broken.Apply(turns);
-        Debug.Log($"Broken 디버프 적용: {turns}턴");
-    }
-
-    public void TestBleed()
-    {
-        int amount = Random.Range(5, 15);
-        status.Bleed.IncreaseStack(amount);
-        Debug.Log($"Bleed 디버프 추가: {amount}");
-    }
-
-    public void TestBurn()
-    {
-        int turns = Random.Range(2, 5);
-        status.Burn.Apply(turns);
-        Debug.Log($"Burn 디버프 적용: {turns}턴");
-    }
-
-    public void TestPoisoned()
-    {
-        int turns = Random.Range(2, 5);
-        status.Poisoned.Apply(turns);
-        Debug.Log($"Poisoned 디버프 적용");
-    }
-
-    public void TestStigma()
-    {
-        int count = Random.Range(5, 15);
-        status.Branded.Active(count);
-        Debug.Log($"Stigma 디버프 활성화: {count}");
-    }
-
-    public void TestFrozen()
-    {
-        int turns = Random.Range(1, 3);
-        status.Frozen.Apply(turns);
-        Debug.Log($"Frozen 디버프 적용: {turns}턴");
-    }
-
-    public void TestAnointed()
-    {
-        int turns = Random.Range(1, 3);
-        status.Anointed.Apply(turns);
-        Debug.Log($"Anointed 디버프 적용: {turns}턴");
-    }
-
-    public void DiscardSelectedCard()
-    {
-        // 상태 패턴으로 변경되어 이 메서드는 더 이상 사용되지 않음
-    }
-
-    public void TestDelirium()
-    {
-        int turns = Random.Range(1, 4);
-        status.Delirium.Apply(turns);
-        Debug.Log($"Delirium 디버프 적용: {turns}턴");
-    }
-
-    public void TestInfested()
-    {
-        int turns = Random.Range(2, 5);
-        status.Infested.Apply(turns);
-        Debug.Log($"Infested 디버프 적용: {turns}턴");
-    }
-
-    public void TestScarred()
-    {
-        int count = Random.Range(1, 4);
-        status.Scarred.Active(count);
-        Debug.Log($"Scarred 디버프 활성화: {count}");
-    }
-
-    public void TestIncreaseAttack()
-    {
-        int amount = Random.Range(1, 5);
-        status.IncreaseAttack(amount);
-        Debug.Log($"Attack 증가: {amount}");
-    }
-
-    public void TestDecreaseAttack()
-    {
-        int amount = Random.Range(1, 3);
-        status.DecreaseAttack(amount);
-        Debug.Log($"Attack 감소: {amount}");
-    }
-    #endregion
+class EffectData
+{
+    public int[,] route = new int[,] { { 1, 3 }, { 2, 4 }, { 3, 9 } };
+    public float[] duration = new float[] { 0.2f, 0.3f, 0.6f };
 }

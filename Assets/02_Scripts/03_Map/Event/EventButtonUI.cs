@@ -1,174 +1,175 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using System.Text;
 
+[RequireComponent(typeof(Button))]
 public class EventButtonUI : MonoBehaviour
 {
-    public TMP_Text choiceTitleText;
-    public TMP_Text hoverRewardText;
-    public Button button;
-    public Image buttonImage; // 배경 이미지
+    [Header("UI Reference")]
+    [SerializeField] private TMP_Text choiceTitleText;
+    [SerializeField] private TMP_Text hoverRewardText;
+    [SerializeField] private Image buttonImage; // 배경 이미지
+    
+    // Component
+    private Button button;
 
-    private EventChoice.ChoiceInfo myData;
-    private EventUI eventUI; // EventUI 참조
+    // Data
+    private EventChoice eventChoice;
+    private EventReward eventReward;
+    private EventResult eventResult;
 
-    public void Setup(int choiceCode, EventUI ui)
+    private int earnHp;
+    private int earnCoin;
+
+    public void Init(int choiceCode)
     {
-        eventUI = ui;
+        button = GetComponent<Button>();
+        eventChoice = EventManager.Instance.GetEventChoice(choiceCode);
+        eventReward = EventManager.Instance.GetEventReward(eventChoice.resultCode);
+        eventResult = EventManager.Instance.GetEventResult(eventChoice.scriptCode);
 
-        // choiceCode가 0이면 비활성화
-        if (choiceCode == 0)
+        SetHpDelta(eventReward.hpPresent, eventReward.hpMax);
+        SetCoinDelta(eventReward.gold);
+
+        choiceTitleText.text = eventChoice.choiceName;
+        hoverRewardText.text = BuildResultString();
+
+        button.enabled = CheckCondition((ConditionType)eventChoice.choiceCondition);
+    }
+
+    private void SetHpDelta(float presentHpRatio, float maxHpRatio)
+    {
+        int curPlayerHp = PlayerManager.Instance.Health.CurrentHp;
+        int maxPlayerHp = PlayerManager.Instance.Health.MaxHp;
+
+        earnHp = (int)(curPlayerHp * presentHpRatio + maxPlayerHp * maxHpRatio);
+    }
+
+    private void SetCoinDelta(int coin)
+    {
+        if (coin == 0)
         {
-            gameObject.SetActive(false);
+            earnCoin = 0;
+            
             return;
         }
 
-        // EventManager에서 선택지 데이터 조회
-        myData = EventManager.Instance.GetChoiceInfo(choiceCode);
+        float coinDelta = coin * EventManager.Instance.CoinRatio;
 
-        // 버튼 활성화
-        gameObject.SetActive(true);
+        int minCoin = (int)(coin - coinDelta);
+        int maxCoin = (int)(coin + coinDelta);
 
-        // EventManager에서 보상 데이터 가져오기 (플레이스홀더 치환용)
-        var rewardData = EventManager.Instance.GetRewardInfo(myData.ResultCode);
-
-        // 1. 텍스트 설정 (플레이스홀더 치환)
-        choiceTitleText.text = RewardTextFormatter.FormatChoiceText(myData.ChoiceName, rewardData);
-        hoverRewardText.text = RewardTextFormatter.FormatChoiceText(myData.ChoiceResult, rewardData);
-
-        // 2. 버튼 스스로 조건 확인 (ConditionCheck 유틸리티 사용)
-        bool isSelectable = ConditionCheck.CheckCondition(myData.ConditionEnum);
-
-        // 3. 카드 제거 보상이 있다면 해당 Element 카드가 있는지 추가 확인
-        if (isSelectable && rewardData.ResultRemove > 0)
-        {
-            Element removeElement = (Element)rewardData.ResultRemove;
-            bool hasCardToRemove = DeckManager.Instance.CardList.Any(card => card.Element == removeElement);
-            
-            if (!hasCardToRemove)
-            {
-                isSelectable = false;
-            }
-        }
-
-        // 4. 활성화 상태 반영 (조건 불만족 시 비활성화)
-        button.interactable = isSelectable;
-
-        // 5. 시각적 처리 (회색/흰색)
-        buttonImage.color = isSelectable ? Color.white : Color.gray;
-        choiceTitleText.alpha = isSelectable ? 1.0f : 0.5f;
-
-        // 6. 클릭 이벤트 연결 (보상 적용 포함)
-        button.onClick.RemoveAllListeners();
-        if (isSelectable)
-            button.onClick.AddListener(() => OnButtonClicked());
+        earnCoin = Random.Range(minCoin, maxCoin + 1);
     }
 
-    /// <summary>
-    /// 버튼 클릭 시 보상 적용 후 결과 스크립트 표시
-    /// </summary>
-    private void OnButtonClicked()
+    private string BuildResultString()
     {
-        // 버튼 클릭 즉시 모든 선택지 버튼 비활성화
-        HideAllButtons();
-
-        var rewardData = EventManager.Instance.GetRewardInfo(myData.ResultCode);
-
-        // 카드 풀 선택 보상인지 확인 (ResultRangeCard는 카드 풀에서 선택)
-        bool hasCardPoolSelection = rewardData.ResultRangeCard > 0;
-
-        if (hasCardPoolSelection)
-        {
-            // 카드 풀 선택 보상: 선택 완료 후 결과 표시
-            ApplyRewardWithCardSelection(rewardData);
-        }
-        else
-        {
-            // 일반 보상 (랜덤 카드 포함): 즉시 적용 후 결과 표시
-            ApplyRewardToPlayer(rewardData);
-            ShowResultScript();
-        }
-    }
-
-    /// <summary>
-    /// 모든 버튼 비활성화 (선택 후)
-    /// </summary>
-    private void HideAllButtons()
-    { // Panel_Choice 자체를 비활성화하여 모든 버튼 완전히 숨김       
-        {
-            transform.parent.gameObject.SetActive(false);
-        }
-    }
-
-    /// <summary>
-    /// 결과 스크립트 표시
-    /// </summary>
-    private void ShowResultScript()
-    {
-        eventUI.ShowResultScript(myData.ScriptCode, myData.ResultCode, "");
-    }
-
-    private void ShowResultScriptWithCard(CardName selectedCard)
-    {
-        eventUI.ShowResultScript(myData.ScriptCode, myData.ResultCode, selectedCard.ToString());
-    }
-
-    /// <summary>
-    /// 이 버튼의 선택지에 해당하는 보상을 계산하고 적용 (일반 보상, 랜덤 카드 포함)
-    /// </summary>
-    private void ApplyRewardToPlayer(EventResult.ResultInfo rewardData)
-    {
-        // excludeCardSelection: false로 설정하여 ResultRandomCard 처리 포함
-        ApplyReward.ApplyRewardFromData(rewardData, excludeCardSelection: false);
+        StringBuilder stringBuilder = new();
         
-        // 보상 요약 로그
-        System.Text.StringBuilder rewardLog = new System.Text.StringBuilder("[EventButtonUI] 보상 적용 완료: ");
-        bool hasReward = false;
-        
-        if (rewardData.ResultHpPresent != 0 || rewardData.ResultHpMaximum != 0)
-        {
-            rewardLog.Append("HP 변화, ");
-            hasReward = true;
-        }
-        if (rewardData.ResultGold != 0)
-        {
-            rewardLog.Append($"골드 {(rewardData.ResultGold > 0 ? "+" : "")}{rewardData.ResultGold}, ");
-            hasReward = true;
-        }
-        // ResultRandomCard 로그는 AddRandomCard에서 정확한 카드명으로 표시
-        
-        if (!hasReward && rewardData.ResultRandomCard == 0)
-            rewardLog.Append("보상 없음");
-        else
-            rewardLog.Length -= 2; // 마지막 ", " 제거
+        if (earnHp != 0)
+            stringBuilder.Append($"체력 [{Mathf.Abs(earnHp)}] {(earnHp > 0 ? "회복" : "피해")}\n");
+
+        if (earnCoin != 0)
+            stringBuilder.Append($"금액 [{earnCoin}] {(earnCoin > 0 ? "획득" : "소실")}\n");
+
+        if (eventReward.randomCard != 0)
+            stringBuilder.Append($"[{GetCardPoolName(eventReward.randomCard)}] 속성 카드 1개 획득\n");
+
+        if (eventReward.rangeCard != 0)
+            stringBuilder.Append(BuildRangeCardString(eventReward.rangeCard));
+
+        if (eventReward.remove != 0)
+            stringBuilder.Append($"[{GetRemoveElementName(eventReward.remove)}] 속성 카드 1개 랜덤 제거");
+
+        if (stringBuilder.Length == 0)
+            stringBuilder.Append("없음");
+
+        return stringBuilder.ToString();
     }
 
-    /// <summary>
-    /// 카드 선택 보상 처리 (선택 완료 후 결과 표시)
-    /// </summary>
-    private void ApplyRewardWithCardSelection(EventResult.ResultInfo rewardData)
+    private string GetCardPoolName (int randomCardPoolCode)
     {
-        // HP/골드 보상 먼저 적용
-        ApplyReward.ApplyRewardFromData(rewardData, excludeCardSelection: true);
-        
-        CardData cardData = EventManager.Instance.GetCardData();
-
-        if (rewardData.ResultRangeCard > 0)
+        return randomCardPoolCode switch
         {
-            EventCardReward.ShowCardPoolSelectionUI(
-                rewardData.ResultRangeCard,
-                cardData,
-                onComplete: (selectedCard) => 
-                {
-                    ShowResultScriptWithCard(selectedCard);
-                }
-            );
-        }
-        else
-        {
-            ShowResultScript();
-        }
+            1 => "랜덤",
+            2 => "물리",
+            3 => "파괴",
+            4 => "사이킥",
+            5 => "생체",
+            _ => "",  
+        };   
     }
+
+    private string GetRemoveElementName(int removeCode)
+    {
+        return removeCode switch
+        {
+            1 => "물리",
+            2 => "파괴",
+            3 => "사이킥",
+            4 => "생체",
+            5 => "전체",
+            _ => "",  
+        };   
+    }
+
+    private string BuildRangeCardString(int rangeCardPoolCode)
+    {
+        StringBuilder stringBuilder = new();
+        stringBuilder.Append("카드 ");
+
+        RangeCardPool rangeCardPool = EventManager.Instance.GetRangeCardPool(rangeCardPoolCode);
+
+        CardDataEntry data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card1);
+        stringBuilder.Append($"[{data.koreanName}]");
+
+        if (rangeCardPool.card2 != 0)
+        {
+            data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card2);
+            stringBuilder.Append($", [{data.koreanName}]");
+        }
+
+        if (rangeCardPool.card3 != 0)
+        {
+            data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card3);
+            stringBuilder.Append($", [{data.koreanName}]");
+        }
+
+        stringBuilder.Append(" 중 1개 선택 획득\n");
+
+        return stringBuilder.ToString();
+    }
+
+    public static bool CheckCondition(ConditionType condition)
+    {
+        // 조건이 없으면 항상 활성화
+        if (condition == ConditionType.None) 
+            return true;
+
+        // 조건 Enum → Element 변환
+        Element requiredElement = condition switch
+        {
+            ConditionType.RequireNone => Element.None,
+            ConditionType.RequireRuin => Element.Ruin,
+            ConditionType.RequirePsychic => Element.Psychic,
+            ConditionType.RequireBio => Element.Bio,
+            _ => Element.None
+        };
+
+        // 덱에 필요한 속성 카드가 있는지 확인
+        return DeckManager.Instance.CardList.Any(card => card.Element == requiredElement);
+    }
+
+
+}
+
+public enum ConditionType
+{
+    None,
+    RequireNone,
+    RequireRuin,
+    RequirePsychic,
+    RequireBio
 }

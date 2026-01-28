@@ -49,7 +49,7 @@ public class Hand : MonoBehaviour
         card.gameObject.SetActive(true);
     }
 
-    public bool RemoveCard(Card card)
+    public bool Remove(Card card)
     {
         curHand.Remove(card);
 

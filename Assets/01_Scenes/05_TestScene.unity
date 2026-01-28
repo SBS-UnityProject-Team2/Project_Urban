@@ -5095,6 +5095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ebf2e86bed1b64f83c0deb912ae744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deck
+  hand: {fileID: 506069452}
 --- !u!4 &1189652795
 Transform:
   m_ObjectHideFlags: 0
@@ -5306,6 +5307,7 @@ MonoBehaviour:
   - {fileID: 3354438360438278702, guid: ed0c0b1f1c221ee46a724064661f27db, type: 3}
   - {fileID: 5649960004841327185, guid: d243c3455cedb114995b28adf6b125b2, type: 3}
   - {fileID: -1787494676650798344, guid: 02197e6877806304790e8d156f675fb9, type: 3}
+  actionIconList: []
 --- !u!1 &1225124764
 GameObject:
   m_ObjectHideFlags: 0
@@ -7875,8 +7877,9 @@ MonoBehaviour:
       m_Calls: []
   maxCost: 10
   drawCount: 0
-  cardSystem: {fileID: 763903714}
+  deck: {fileID: 1189652794}
   costView: {fileID: 3106057965538273753}
+  discardPanelUI: {fileID: 983716710}
 --- !u!4 &2039570483
 Transform:
   m_ObjectHideFlags: 0

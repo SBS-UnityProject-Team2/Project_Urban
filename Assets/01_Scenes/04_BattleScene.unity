@@ -1284,6 +1284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ebf2e86bed1b64f83c0deb912ae744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deck
+  hand: {fileID: 506069452}
+  discardPanelUI: {fileID: 32951677180751962}
 --- !u!1 &337073043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763903713}
-  - component: {fileID: 763903714}
   m_Layer: 0
   m_Name: ===CardSystem===
   m_TagString: Untagged
@@ -2546,21 +2547,6 @@ Transform:
   - {fileID: 639267992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &763903714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745188506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856f893667be7ab40ab3f3010837fb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardSystem
-  deck: {fileID: 299941731}
-  hand: {fileID: 506069452}
-  discardPanelUI: {fileID: 32951677180751962}
 --- !u!1 &811990446
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,6 +4266,7 @@ MonoBehaviour:
   - {fileID: 3354438360438278702, guid: ed0c0b1f1c221ee46a724064661f27db, type: 3}
   - {fileID: 5649960004841327185, guid: d243c3455cedb114995b28adf6b125b2, type: 3}
   - {fileID: -1787494676650798344, guid: 02197e6877806304790e8d156f675fb9, type: 3}
+  actionIconList: []
 --- !u!1 &1250263682
 GameObject:
   m_ObjectHideFlags: 0
@@ -5597,8 +5584,9 @@ MonoBehaviour:
       m_Calls: []
   maxCost: 10
   drawCount: 6
-  cardSystem: {fileID: 763903714}
+  deck: {fileID: 299941731}
   costView: {fileID: 3106057965538273753}
+  discardPanelUI: {fileID: 32951677180751962}
 --- !u!4 &2039570483
 Transform:
   m_ObjectHideFlags: 0

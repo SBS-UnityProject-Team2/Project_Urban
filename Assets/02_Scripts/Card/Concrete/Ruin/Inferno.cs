@@ -10,7 +10,7 @@ public class Inferno : Attack
     {
 
         // 2. 소멸된 카드 갯수 가져오기
-        int extinctCount = player.CardSystem.Deck.ExtinctCardCount;
+        int extinctCount = player.Deck.ExtinctCardCount;
 
         // 3. 데미지 계산
         int totalDamage = extinctCount * damagePerCount;

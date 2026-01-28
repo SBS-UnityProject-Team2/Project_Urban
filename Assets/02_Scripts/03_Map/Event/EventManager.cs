@@ -41,110 +41,31 @@ using System.Linq;
 public class EventManager : Singleton<EventManager>
 {
     [Header("Data Assets")]
-    [SerializeField] private EventScript eventScriptSO;
-    [SerializeField] private EventChoice eventChoiceSO;
-    [SerializeField] private EventResult eventResultSO;
+    [SerializeField] private EventData eventData;
 
-    [Header("UI Reference")]
-    [SerializeField] private EventUI eventUI;
-    [SerializeField] private GameObject eventPanel;
-    [SerializeField] private EventSelectCardReward cardRewardPanel; // 카드 선택 패널
-    [SerializeField] private CardData cardDataSO;
+    [Header("Event Value Settings")]
+    [SerializeField] private float coinRatio = 0.2f;
 
-    // =================================================================
-    // [초기화 & 참조 관리]
-    // =================================================================
+    public float CoinRatio => coinRatio;
 
-    public void SetUI(EventUI ui, GameObject panel)
+    public EventInfo GetRandomEvent()
     {
-        this.eventUI = ui;
-        this.eventPanel = panel;
-        this.eventPanel.SetActive(false);
-    }
-
-   private void EnsureUIReferences()
-    {
-        EventUI[] foundUIs = FindObjectsByType<EventUI>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        eventUI = foundUIs[0];
-        eventPanel = eventUI.gameObject;
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        var filteredList = eventData.EventInfos.Where(info => !info.isExecuted).ToList();
         
-        // [성능] Dictionary 캐싱으로 JSON 재파싱 방지
-        eventScriptSO.Initialize();
-        eventChoiceSO.Initialize();
-        eventResultSO.Initialize();
+        if (filteredList.Count == 0)    
+            Debug.Log("Event All End");
+
+        EventInfo eventInfo = filteredList[Random.Range(0, filteredList.Count())];
+        eventInfo.isExecuted = true;
+
+        return eventInfo;
     }
 
-    private void Start()
-    {
-    }
+    public EventInfo GetEventInfo(int eventCode) => eventData.GetEventInfo(eventCode);
+    public EventScript GetEventScript(int scriptCode) => eventData.GetEventScript(scriptCode);
+    public EventChoice GetEventChoice(int choiceCode) => eventData.GetEventChoice(choiceCode);
+    public EventReward GetEventReward(int resultCode) => eventData.GetEventReward(resultCode);
+    public EventResult GetEventResult(int scriptCode) => eventData.GetEventResult(scriptCode);
+    public RangeCardPool GetRangeCardPool(int poolCode) => eventData.GetRangeCardPool(poolCode);
 
-    // =================================================================
-    // [1. 이벤트 시작]
-    // =================================================================
-
-    public void StartRandomEvent()
-    {
-        List<int> keys = eventScriptSO.GetAllEventKeys();
-        int randomCode = keys[Random.Range(0, keys.Count)];
-        StartEvent(randomCode);
-    }
-
-    public void StartEvent(int eventCode)
-    {
-        // ★ 시작 전 무조건 참조 복구 시도
-        EnsureUIReferences();
-
-        StopAllCoroutines();
-
-        // 새로운 플로우: UI가 eventCode를 받아 스스로 조회/표시
-        if (!eventUI.enabled) eventUI.enabled = true;
-        eventUI.BeginEvent(eventCode);
-    }
-
-    // =================================================================
-    // [2. 선택지 표시] - EventUI가 버튼에 직접 할당하므로 더 이상 필요 없음
-    // =================================================================
-
-    // =================================================================
-    // [3. 조건 검증] - ConditionCheck 유틸리티로 위임
-    // =================================================================
-
-    public bool CheckCondition(ConditionType condition)
-    {
-        return ConditionCheck.CheckCondition(condition);
-    }
-
-    // =================================================================
-    // [4. 데이터 공급]
-
-            // =============================================================
-            // [Public Getters] : 데이터 공급 전용
-            // =============================================================
-            public EventScript.EventInfo GetEventInfo(int eventCode) => eventScriptSO?.GetEvent(eventCode);
-            public EventScript.ScriptInfo GetScriptInfo(int scriptCode) => eventScriptSO?.GetScript(scriptCode);
-            public List<int> GetAllEventKeys() => eventScriptSO != null ? eventScriptSO.GetAllEventKeys() : new List<int>();
-
-            public EventChoice.ChoiceInfo GetChoiceInfo(int choiceCode) => eventChoiceSO?.GetChoice(choiceCode);
-
-            public EventResult.ResultInfo GetRewardInfo(int resultCode) => eventResultSO?.GetReward(resultCode);
-            public EventResult.ResultScriptInfo GetResultScriptInfo(int scriptCode) => eventResultSO?.GetScript(scriptCode);
-    // =================================================================
-
-    private IEnumerator EndEventDelay()
-    {
-        yield return new WaitForSeconds(0.2f);
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-        eventPanel.SetActive(false);
-    }
-
-    // =================================================================
-    // [Public Getter for CardData]
-    // =================================================================
-    public CardData GetCardData() => cardDataSO;
-    public EventSelectCardReward GetCardRewardPanel() => cardRewardPanel;
 }
