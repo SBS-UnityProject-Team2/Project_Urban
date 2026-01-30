@@ -183,25 +183,61 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
             drawCount = 0;
     }
 
-    public IEnumerator PlayeEffect(EffectData effectData)
+    /// <summary>
+    /// 이펙트를 재생하는 코루틴
+    /// 이펙트 재생 중에는 카드 선택 불가 상태로 전환
+    /// </summary>
+    public IEnumerator PlayEffect(EffectType effectType)
     {
-        for (int i = 0; i < effectData.route.GetLength(0); i++)
+        EffectDataEntry effectData = EffectManager.Instance.GetEffectData(effectType);
+        
+        // 카드 선택 비활성화
+        foreach (Card card in deck.Hand.CurHand)
+            card.IsDiscardSelect = true;
+
+        int[,] pattern = effectData.effectPattern;
+        float[] duration = effectData.effectDuration;
+        
+        int rowCount = pattern.GetLength(0);
+        int colCount = pattern.GetLength(1);
+        
+        GameObject[] currentEffects = new GameObject[colCount];
+        int effectCount = 0;
+        GameObject prefab = EffectManager.Instance.GetEffectPrefab(effectType);
+
+        // 이펙트 생성 및 이동
+        for (int i = 0; i < rowCount; i++)
         {
-            for (int j = 0; j < effectData.route.GetLength(1); j++)
+            if (i == 0)
             {
-                // i = 0일때 이펙트 Prefab을 인스턴스화 및 위치 지정
-                effectData.route[i, j];  // 이펙트 이동
+                // 첫 번째 단계: 이펙트 생성
+                for (int j = 0; j < colCount; j++)
+                {
+                    currentEffects[j] = Instantiate(
+                        prefab,
+                        EffectManager.Instance.GetPositionByIndex(pattern[i, j]),
+                        Quaternion.identity
+                    );
+                }
+                effectCount = colCount;
+            }
+            else
+            {
+                // 다음 단계들: 이펙트 이동
+                for (int j = 0; j < effectCount; j++)
+                    currentEffects[j].transform.position = 
+                        EffectManager.Instance.GetPositionByIndex(pattern[i, j]);
             }
 
-            yield return new WaitForSeconds(effectData.duration[i]);
+            // 대기
+            if (i < duration.Length)
+                yield return new WaitForSeconds(duration[i]);
         }
 
         // 이펙트 소멸
-    }
-}
+        for (int i = 0; i < effectCount; i++) Destroy(currentEffects[i]);
 
-class EffectData
-{
-    public int[,] route = new int[,] { { 1, 3 }, { 2, 4 }, { 3, 9 } };
-    public float[] duration = new float[] { 0.2f, 0.3f, 0.6f };
+        // 카드 선택 활성화
+        foreach (Card card in deck.Hand.CurHand) card.IsDiscardSelect = false;
+    }
 }
