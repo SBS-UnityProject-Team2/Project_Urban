@@ -1,22 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public class Inferno : Attack
 {
-    [SerializeField] private int damagePerCount = 8; // 소멸 카드 1장당 데미지
+    [SerializeField] private int damagePerCount = 8;
 
     public override CardName Name => CardName.Inferno;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-
-        // 2. 소멸된 카드 갯수 가져오기
-        int extinctCount = player.Deck.ExtinctCardCount;
-
-        // 3. 데미지 계산
+        int extinctCount = user.Deck.ExtinctCardCount;
         int totalDamage = extinctCount * damagePerCount;
         
-        target.Damage(player, totalDamage, Element.Ruin);      
-
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, totalDamage, Element.Ruin);
     }
 }

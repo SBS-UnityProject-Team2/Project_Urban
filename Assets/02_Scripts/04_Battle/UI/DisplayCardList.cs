@@ -22,6 +22,7 @@ public class DisplayCardList : MonoBehaviour
 
     public void ClosePanel()
     {
+        Debug.Log("[DisplayCardList] ClosePanel()");
         gameObject.SetActive(false);
 
         foreach (Transform child in content)
@@ -53,6 +54,7 @@ public class DisplayCardList : MonoBehaviour
 
     private void RenderCardList(string title, IEnumerable<Card> cardList)
     {
+        Debug.Log($"[DisplayCardList] RenderCardList: {title}");
         foreach (Card card in cardList)
             CreateUICard(card.Data);
 

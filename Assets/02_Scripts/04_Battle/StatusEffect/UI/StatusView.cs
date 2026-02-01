@@ -41,6 +41,7 @@ public class StatusView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (descContent == null) return;
+        if (effects == null) return;
 
         foreach (var effect in effects.ToList())
             CreateDescPanel(effect.Date);

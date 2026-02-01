@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoltenArms : Attack 
@@ -6,11 +7,10 @@ public class MoltenArms : Attack
 
     public override CardName Name => CardName.MoltenArms;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {   
-        target.Damage(player, damage, Element.Ruin);
-        player.Burn(burnCount);
-
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, damage, Element.Ruin);
+        user.Burn(burnCount);
     }
 }

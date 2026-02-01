@@ -1,11 +1,12 @@
+using System.Collections;
+
 class Strike : Attack
 {
     public override CardName Name => CardName.Strike;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        target.Damage(player, damage);
-
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, damage);
     }
 }

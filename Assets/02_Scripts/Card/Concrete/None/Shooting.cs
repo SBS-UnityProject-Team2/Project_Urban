@@ -1,21 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class Shooting : Attack
 {
     public override CardName Name => CardName.Shooting;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        Card lastCard = player.Deck.GetLastUsedCard();
-        
+        Card lastCard = user.Deck.GetLastUsedCard();
         Element attackElement = Element.None;
 
-        // 카드가 있는지 확인
         if (lastCard != null)
             attackElement = lastCard.Element;
 
-        target.Damage(player, damage, attackElement);
-
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, damage, attackElement);
     }
 }

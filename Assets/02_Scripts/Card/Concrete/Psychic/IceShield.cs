@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class IceShield : Defense
@@ -5,12 +6,10 @@ public class IceShield : Defense
     [SerializeField] private int turn;
     public override CardName Name => CardName.IceShield;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        // 1. 방어도 추가
+        yield return PlayEffect(target);
         target.Protect(armor);
         target.KineticVeil(turn);
-        
-        return curCost;
     }
 }

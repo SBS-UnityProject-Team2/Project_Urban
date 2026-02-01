@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SurgingLife : BuffCard
@@ -5,9 +6,9 @@ public class SurgingLife : BuffCard
     [SerializeField] private int count = 5;
     public override CardName Name => CardName.SurgingLife;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
+        yield return PlayEffect(target);
         target.Regeneration(count);
-        return curCost;
     }
 }

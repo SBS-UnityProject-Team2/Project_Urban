@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,12 +7,10 @@ public class Assault : Attack
     public override CardName Name => CardName.Assault;
     [SerializeField] private int turn = 1;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     { 
-        target.Damage(player, damage); 
-        // 디버프 동결 2턴부여
+        yield return PlayEffect(target);
+        target.Damage(user, damage);
         target.Frozen(turn);
-
-        return curCost;
     }
 }

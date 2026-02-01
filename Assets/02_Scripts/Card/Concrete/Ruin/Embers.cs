@@ -1,12 +1,13 @@
+using System.Collections;
+
 public class Embers : Attack
 { 
     public override CardName Name => CardName.Embers;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        target.Damage(player, damage, Element.Ruin);
-        player.Deck.Copy(this);
-        
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, damage, Element.Ruin);
+        user.Deck.Copy(this);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ThornWhip : Attack 
@@ -5,11 +6,10 @@ public class ThornWhip : Attack
     [SerializeField] private int turn;
     public override CardName Name => CardName.ThornWhip;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     { 
-        // 적에게 데미지 입히기
-        target.Damage(player, damage, Element.Bio);
+        yield return PlayEffect(target);
+        target.Damage(user, damage, Element.Bio);
         target.Broken(turn);
-        return curCost;
     }
 }

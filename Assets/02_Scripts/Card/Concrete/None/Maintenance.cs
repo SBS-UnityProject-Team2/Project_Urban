@@ -1,15 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class Maintenance : BuffCard
 {
-    [SerializeField] private int drawCount = 2; // 드로우
+    [SerializeField] private int drawCount = 2;
 
     public override CardName Name => CardName.Maintenance;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        player.DrawCard(drawCount);
-
-        return curCost;
+        yield return PlayEffect(target);
+        user.DrawCard(drawCount);
     }
 }

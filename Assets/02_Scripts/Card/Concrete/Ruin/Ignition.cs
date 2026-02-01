@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using UnityEngine;
 
@@ -7,11 +8,10 @@ public class Ignition : Attack
 
     public override CardName Name => CardName.Ignition;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {   
-        target.Damage(player, damage, Element.Ruin);
+        yield return PlayEffect(target);
+        target.Damage(user, damage, Element.Ruin);
         target.Burn(burnCount);
-        
-        return curCost;
     }
 }

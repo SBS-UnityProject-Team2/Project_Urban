@@ -127,14 +127,11 @@ public class EffectData : ScriptableObject
 
     private int[,] ParseEffectPattern(string pattern)
     {
-        if (string.IsNullOrEmpty(pattern)) return new int[0, 0];
+        if (string.IsNullOrEmpty(pattern))
+            return new int[0, 0];
 
-        // "[0], [2]" 또는 "[4, 9]" 형식: 대괄호로 감싼 형식
         if (pattern.Contains("["))
-        {
             return ParseBracketedPattern(pattern);
-        }
-        // "5" 또는 "1,2,3" 형식: 직접 숫자
         else
         {
             string[] values = pattern.Split(',');
@@ -142,9 +139,7 @@ public class EffectData : ScriptableObject
             for (int i = 0; i < values.Length; i++)
             {
                 if (int.TryParse(values[i].Trim(), out int value))
-                {
                     result[0, i] = value;
-                }
             }
             return result;
         }
@@ -152,42 +147,37 @@ public class EffectData : ScriptableObject
 
     private int[,] ParseBracketedPattern(string pattern)
     {
-        // "[0], [2]" → [[0], [2]]
-        // "[4, 9]" → [[4, 9]]
-        // "[3], [4], [9]" → [[3], [4], [9]]
-        
         string[] rows = pattern.Split(new[] { "]," }, System.StringSplitOptions.None);
         if (rows.Length == 0) return new int[0, 0];
 
-        // 각 행에서 값 추출
         List<int[]> parsedRows = new();
         for (int i = 0; i < rows.Length; i++)
         {
             string row = rows[i].Replace("[", "").Replace("]", "").Trim();
+            if (string.IsNullOrEmpty(row))
+                continue;
+            
             string[] values = row.Split(',');
             int[] rowValues = new int[values.Length];
             for (int j = 0; j < values.Length; j++)
             {
                 if (int.TryParse(values[j].Trim(), out int value))
-                {
                     rowValues[j] = value;
-                }
             }
             parsedRows.Add(rowValues);
         }
 
-        if (parsedRows.Count == 0) return new int[0, 0];
+        if (parsedRows.Count == 0)
+            return new int[0, 0];
 
-        // 모든 행이 같은 길이라고 가정하고 2D 배열 생성
         int maxCols = parsedRows[0].Length;
         int[,] result = new int[parsedRows.Count, maxCols];
         for (int i = 0; i < parsedRows.Count; i++)
         {
             for (int j = 0; j < parsedRows[i].Length; j++)
-            {
                 result[i, j] = parsedRows[i][j];
-            }
         }
+        
         return result;
     }
 
@@ -254,49 +244,52 @@ public class JsonEffectData
     public int effectType;           // 이펙트 번호
     public string effectName;        // 이펙트 이름
     public string effectPath;        // "Slash.prefab" or "Effects/Slash"
-    public string effectPattern;     // "[1], [2]" 또는 "[4, 9]" 또는 "5"
-    public string effectDuration;    // "0.2, 0.3, 0.6" 또는 "1" 또는 "2.5"
+    public string effectPattern;     // "[3], [4], [9]" (프리펩 이동경로) 또는 "[4, 9]" (동시 생성) 또는 "5" (단일)
+    public string effectDuration;    // "0.2, 0.2, 0.6" 또는 "1" 또는 "2.5"
 }
 #endif
 
 [Serializable]
 public class SerializablePattern
 {
-    public List<int[]> rows = new();
+    public int[] data;      // Flat array로 저장
+    public int rowCount;
+    public int colCount;
     
     public int[,] ToArray()
     {
-        if (rows == null || rows.Count == 0) return new int[0, 0];
-        int rowCount = rows.Count;
-        int colCount = rows[0].Length;
+        if (data == null || data.Length == 0 || rowCount == 0 || colCount == 0)
+            return new int[0, 0];
+        
         int[,] result = new int[rowCount, colCount];
         for (int i = 0; i < rowCount; i++)
         {
             for (int j = 0; j < colCount; j++)
-            {
-                result[i, j] = rows[i][j];
-            }
+                result[i, j] = data[i * colCount + j];
         }
+        
         return result;
     }
     
     public static SerializablePattern FromArray(int[,] array)
     {
         SerializablePattern pattern = new();
-        if (array == null) return pattern;
+        if (array == null)
+            return pattern;
         
-        int rowCount = array.GetLength(0);
-        int colCount = array.GetLength(1);
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
         
-        for (int i = 0; i < rowCount; i++)
+        pattern.rowCount = rows;
+        pattern.colCount = cols;
+        pattern.data = new int[rows * cols];
+        
+        for (int i = 0; i < rows; i++)
         {
-            int[] row = new int[colCount];
-            for (int j = 0; j < colCount; j++)
-            {
-                row[j] = array[i, j];
-            }
-            pattern.rows.Add(row);
+            for (int j = 0; j < cols; j++)
+                pattern.data[i * cols + j] = array[i, j];
         }
+        
         return pattern;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AccelConcoction : BuffCard
@@ -6,11 +7,9 @@ public class AccelConcoction : BuffCard
 
     public override CardName Name => CardName.AccelConcoction;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {        
-        // Player에 만들어둔 함수 호출 (3턴 적용)
-        player.Acceleration(duration);        
-
-        return curCost;
+        yield return PlayEffect(target);
+        user.Acceleration(duration);
     }
 }

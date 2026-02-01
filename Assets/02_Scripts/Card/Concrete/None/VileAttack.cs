@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 class VileAttack : Attack
@@ -6,11 +7,10 @@ class VileAttack : Attack
 
     public override CardName Name => CardName.VileAttack;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        target.Damage(player, damage); 
+        yield return PlayEffect(target);
+        target.Damage(user, damage);
         target.Weaken(turn);
-
-        return curCost;
     }
 }

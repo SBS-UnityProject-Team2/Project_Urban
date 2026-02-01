@@ -21,7 +21,7 @@ public class BattleManager : SceneSingleton<BattleManager>
     public UnityEvent<bool> OnBattleEnd = new();
     
     private void Start()
-    {
+    {        
         OnBattleEnd.AddListener(HandleBattleEnd);
         InitializeBattle();
     }
@@ -68,12 +68,11 @@ public class BattleManager : SceneSingleton<BattleManager>
     {
         isBattlePause = true;
     }
-
+    
     public void Restart()
     {
         isBattlePause = false;
     }
-
     public void AddCoin(int amount)
     {
         earnedCoin += amount;

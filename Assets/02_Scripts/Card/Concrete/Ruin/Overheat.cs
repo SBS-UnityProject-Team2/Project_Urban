@@ -1,17 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class Overheat : BuffCard
 {
-    [SerializeField] private int costGain = 2;   // 회복할 코스트
-    [SerializeField] private int burnCount = 4; // 자신에게 부여할 화상 수치
+    [SerializeField] private int costGain = 2;
+    [SerializeField] private int burnCount = 4;
     
     public override CardName Name => CardName.Overheat;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        player.Cost.Increase(costGain);
-        player.Burn(burnCount);
-
-        return curCost;
+        yield return PlayEffect(target);
+        user.Cost.Increase(costGain);
+        user.Burn(burnCount);
     }
 }
