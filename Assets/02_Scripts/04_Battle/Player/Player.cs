@@ -161,9 +161,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void UseCard(Card card, Target target)
     {
-        // 이펙트를 먼저 출력
-        card.PlayEffect(target);
-        
         // 카드 효과 적용
         int cost = card.Use(this, target);
 

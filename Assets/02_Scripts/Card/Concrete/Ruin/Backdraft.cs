@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 public class Backdraft : Attack
 {
@@ -7,14 +7,26 @@ public class Backdraft : Attack
 
     public override CardName Name => CardName.Backdraft;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
         for (int i = 0; i < target.Status.Burn.Count; i++)
+        {
             EnemyManager.Instance.DamageAll(damage, Element.Ruin);
+            yield return PlayEffect(target);
+        }
 
         EnemyManager.Instance.ApplyAll(enemy => enemy.Burn(burnCount));
-        player.Burn(burnCount);
-
-        return curCost;
+        user.Burn(burnCount);
     }
+
+    // public override int Use(Player player, Target target)
+    // {
+    //     for (int i = 0; i < target.Status.Burn.Count; i++)
+    //         EnemyManager.Instance.DamageAll(damage, Element.Ruin);
+
+    //     EnemyManager.Instance.ApplyAll(enemy => enemy.Burn(burnCount));
+    //     player.Burn(burnCount);
+
+    //     return curCost;
+    // }
 }

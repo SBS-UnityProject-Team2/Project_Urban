@@ -64,7 +64,7 @@ abstract public class Card : MonoBehaviour
     /// <summary>
     /// 이펙트들을 생성하고 재생합니다. (여러 이펙트 동시 지원)
     /// </summary>
-    public void PlayEffect(Target target)
+    protected IEnumerator PlayEffect(Target target)
     {
         Debug.Log($"[Card.PlayEffect] 시작 - 카드: {cardData?.cardName}, effectTypes.Count: {effectTypes?.Count}");
         
@@ -127,8 +127,26 @@ abstract public class Card : MonoBehaviour
                 Debug.LogWarning("[Card.PlayEffect] effectDuration이 NULL!");
             }
             
+            /*
+                반복문 예시
+                pattern = [4, 9], [1, 3], [2, 5]일경우,
+
+                [1번 루프]
+                EffectControl effectControl = Instantiate(effectData.effectPrefab);
+                effectControl.Play(patternArray, effectData.effectDuration, target as Enemy, 0) <- idx 입력
+                -> 4, 1, 2로 이동하는 이펙트 [0, 0], [1, 0], [2, 0]
+
+                [2번 루프]
+                EffectControl effectControl = Instantiate(effectData.effectPrefab);
+                effectControl.Play(patternArray, effectData.effectDuration, target as Enemy, 1) <- idx 입력
+                -> 9, 3, 5로 이동하는 이펙트 [0, 1], [1, 1], [2, 1]
+
+                
+            */
             EffectControl effectControl = Instantiate(effectData.effectPrefab);
-            effectControl.Play(patternArray, effectData.effectDuration, target as Enemy);
+            effectControl.Play(patternArray, effectData.effectDuration, target as Enemy); 
+
+            yield return new WaitForSeconds(effectData.effectDuration 합계);
         }
     }
     // public Transform EffectSpawnPosition => effectSpawnPosition;
@@ -294,5 +312,22 @@ abstract public class Card : MonoBehaviour
 
     abstract public CardName Name { get; }
     abstract public CardType Type { get; }
-    abstract public int Use(Player user, Target target);
+
+    public int Use(Player user, Target target)
+    {
+        StartCoroutine(InternalUseRoutine(user, target));
+
+        return Cost;
+    }
+
+    private IEnumerator InternalUseRoutine(Player user, Target target)
+    {
+        BattleManager.Instance.Pause();
+
+        yield return UseRoutine(user, target);
+
+        BattleManager.Instance.Restart();
+    }
+
+    abstract protected IEnumerator UseRoutine(Player user, Target target);
 }

@@ -1,12 +1,23 @@
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
+
 
 public class EffectControl : MonoBehaviour
 {
+    static readonly float [] offset =
+    {
+        new Vector(-5.0f, 5.0f, 0),
+        new Vector(0, 5.0f, 0),
+        new Vector(5.0f, 5,0f, 0),
+    };
+
     private const float AUTO_DESTROY_DELAY = 0.5f;
 
-    public void Play(int[,] pattern, float[] duration, Enemy target)
+    public void Play(int[,] pattern, float[] duration, Enemy target, int idx)
     {
+        // 경로 [idx, 0], [idx, 1], [idx, 2]... 
+        // 경로 배열 int [] = {}
         Debug.Log($"[EffectControl.Play] 시작 - target: {target?.name}");
         
         // null 체크
@@ -62,39 +73,48 @@ public class EffectControl : MonoBehaviour
         StartCoroutine(PlayRoutine(pattern, duration, basePos, offsets));
     }
 
-    private IEnumerator PlayRoutine(int[,] pattern, float[] duration, Vector3 basePos, Vector3[] offsets)
+    public IEnumerator PlayRoutine(int[] path, float[] duration, Vector3 basePos, Vector3[] offsets)
     {
-        int rowCount = pattern.GetLength(0);
-        int colCount = pattern.GetLength(1);
+        // int rowCount = pattern.GetLength(0);
+        // int colCount = pattern.GetLength(1);
 
-        for (int i = 0; i < rowCount; i++)
+        for (int i = 0; i < path.Length; i++)
         {
-            // 자식이 있으면 자식들 이동, 없으면 자신 이동
-            if (transform.childCount > 0)
-            {
-                for (int j = 0; j < colCount; j++)
-                {
-                    if (j < transform.childCount)
-                    {
-                        int index = pattern[i, j];
-                        transform.GetChild(j).localPosition = offsets[index];
-                    }
-                }
-            }
-            else
-            {
-                if (colCount > 0)
-                {
-                    int index = pattern[i, 0];
-                    transform.position = basePos + offsets[index];
-                }
-            }
-
-            if (i < duration.Length)
-                yield return new WaitForSeconds(duration[i]);
+            // 이동 처리
+            transform.position = basePos + offset[path];
+            // 대기
+            yield return new WaitForSeconds(duration[i]);
         }
 
-        yield return new WaitForSeconds(AUTO_DESTROY_DELAY);
+        // for (int i = 0; i < rowCount; i++)
+        // {
+        //     // 자식이 있으면 자식들 이동, 없으면 자신 이동
+        //     if (transform.childCount > 0)
+        //     {
+        //         for (int j = 0; j < colCount; j++)
+        //         {
+        //             if (j < transform.childCount)
+        //             {
+        //                 int index = pattern[i, j];
+        //                 transform.GetChild(j).localPosition = offsets[index];
+        //             }
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (colCount > 0)
+        //         {
+        //             int index = pattern[i, 0];
+        //             transform.position = basePos + offsets[index];
+        //         }
+        //     }
+
+        //     if (i < duration.Length)
+        //         yield return new WaitForSeconds(duration[i]);
+        // }
+
+        // 필요없음
+        // yield return new WaitForSeconds(AUTO_DESTROY_DELAY);
         Destroy(gameObject);
     }
 
