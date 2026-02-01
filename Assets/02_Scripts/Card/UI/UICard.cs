@@ -14,7 +14,7 @@ public class UICard : MonoBehaviour
     
     public void SetCardDataEntry(CardDataEntry data)
     {
-        Debug.Log($"[UICard] SetCardDataEntry 시작: {data.koreanName} ({data.cardName})");
+        //Debug.Log($"[UICard] SetCardDataEntry 시작: {data.koreanName} ({data.cardName})");
         
         cardName = data.cardName;
         cardImage.sprite = data.cardSprite;
@@ -22,6 +22,6 @@ public class UICard : MonoBehaviour
         cardDesc.text = data.description;       
         cardCost.text = data.cost.ToString();
         
-        Debug.Log($"[UICard] 데이터 설정 완료 - Title: {cardTitle.text}, Cost: {cardCost.text}, Sprite: {(cardImage.sprite != null ? cardImage.sprite.name : "null")}");
+       // Debug.Log($"[UICard] 데이터 설정 완료 - Title: {cardTitle.text}, Cost: {cardCost.text}, Sprite: {(cardImage.sprite != null ? cardImage.sprite.name : "null")}");
     }
 }

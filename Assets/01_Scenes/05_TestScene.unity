@@ -3206,9 +3206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856f893667be7ab40ab3f3010837fb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardSystem
-  deck: {fileID: 1189652794}
-  hand: {fileID: 506069452}
-  discardPanelUI: {fileID: 983716710}
 --- !u!1 &811990446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7133,6 +7130,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693048166}
   m_CullTransparentMesh: 1
+--- !u!1 &1715489856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1715489858}
+  - component: {fileID: 1715489857}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1715489857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715489856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4325345060d0bc34c81431ed8adb6c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  effectData: {fileID: 11400000, guid: 656e4aba11510f042ae64eb17c1acce2, type: 2}
+--- !u!4 &1715489858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715489856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791753600
 GameObject:
   m_ObjectHideFlags: 0
@@ -10727,3 +10769,4 @@ SceneRoots:
   - {fileID: 1547858874}
   - {fileID: 362605297}
   - {fileID: 2039570483}
+  - {fileID: 1715489858}

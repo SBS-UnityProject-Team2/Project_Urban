@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
@@ -26,8 +27,8 @@ abstract public class Card : MonoBehaviour
     [SerializeField] protected bool isSpecial; // 특수 카드 여부
 
     [Header("Effect Settings")]
-    [SerializeField] protected GameObject effectPrefab;    // 이펙트 프리팹
-    [SerializeField] protected Transform effectSpawnPosition; // 이펙트 생성 위치
+    [SerializeField] protected List<EffectType> effectTypes = new();    // 여러 이펙트 타입 번호 지원
+    //[SerializeField] protected Transform effectSpawnPosition; // 이펙트 생성 위치
 
     [Header("UI Reference")]
     [SerializeField] TMP_Text cardTitle;
@@ -58,8 +59,79 @@ abstract public class Card : MonoBehaviour
     public virtual bool IsSpecial => isSpecial;
     public bool IsEnchanted { get; private set; }
 
-    public GameObject EffectPrefab => effectPrefab;
-    public Transform EffectSpawnPosition => effectSpawnPosition;
+    public List<EffectType> EffectTypes => effectTypes;
+    
+    /// <summary>
+    /// 이펙트들을 생성하고 재생합니다. (여러 이펙트 동시 지원)
+    /// </summary>
+    public void PlayEffect(Target target)
+    {
+        Debug.Log($"[Card.PlayEffect] 시작 - 카드: {cardData?.cardName}, effectTypes.Count: {effectTypes?.Count}");
+        
+        if (effectTypes == null || effectTypes.Count == 0)
+        {
+           //Debug.LogWarning($"[Card.PlayEffect] effectTypes가 비어있음");
+            return;
+        }
+        
+        foreach (EffectType effectType in effectTypes)
+        {
+            Debug.Log($"[Card.PlayEffect] effectType: {effectType}");
+            
+            if (EffectManager.Instance == null)
+            {
+                Debug.LogError("[Card.PlayEffect] EffectManager.Instance가 NULL입니다!");
+                continue;
+            }
+            
+            EffectDataEntry effectData = EffectManager.Instance.GetEffectData(effectType);
+            if (effectData == null)
+            {
+                Debug.LogWarning($"[Card.PlayEffect] effectData가 NULL - effectType: {effectType}");
+                continue;
+            }
+            
+            if (effectData.effectPrefab == null)
+            {
+                Debug.LogWarning($"[Card.PlayEffect] effectPrefab이 NULL - effectType: {effectType}");
+                continue;
+            }
+            
+            Debug.Log($"[Card.PlayEffect] 이펙트 생성 시작 - Prefab: {effectData.effectPrefab.name}");
+            
+            int[,] patternArray = effectData.effectPattern?.ToArray();
+            if (patternArray != null)
+            {
+                Debug.Log($"[Card.PlayEffect] effectPattern 크기: {patternArray.GetLength(0)}행 x {patternArray.GetLength(1)}열");
+                for (int i = 0; i < patternArray.GetLength(0); i++)
+                {
+                    string row = "";
+                    for (int j = 0; j < patternArray.GetLength(1); j++)
+                    {
+                        row += patternArray[i, j] + " ";
+                    }
+                    Debug.Log($"[Card.PlayEffect] 패턴[{i}행]: {row}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[Card.PlayEffect] effectPattern이 NULL!");
+            }
+            
+            if (effectData.effectDuration != null)
+            {
+                Debug.Log($"[Card.PlayEffect] effectDuration: [{string.Join(", ", effectData.effectDuration)}]");
+            }
+            else
+            {
+                Debug.LogWarning("[Card.PlayEffect] effectDuration이 NULL!");
+            }
+            
+            EffectControl effectControl = Instantiate(effectData.effectPrefab);
+            effectControl.Play(patternArray, effectData.effectDuration, target as Enemy);
+        }
+    }
+    // public Transform EffectSpawnPosition => effectSpawnPosition;
 
     public bool IsDiscardSelect
     {
@@ -127,9 +199,9 @@ abstract public class Card : MonoBehaviour
         initCost = cardDataEntry.cost;
         curCost = initCost;
 
-        // 이펙트 관련 데이터 로드
-        effectPrefab = cardDataEntry.effectPrefab;
-        effectSpawnPosition = cardDataEntry.effectSpawnPosition;
+        // 이펙트 타입 로드 (여러 타입 지원)
+        effectTypes = new List<EffectType>(cardDataEntry.effectTypes);
+        
     }
 
 
