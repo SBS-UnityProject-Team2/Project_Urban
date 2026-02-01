@@ -154,7 +154,7 @@ MonoBehaviour:
   element: 100
   damageModifier: 0.3
   healthView: {fileID: 8228438191578878440}
-  statusView: {fileID: 3717428310257886355}
+  statusView: {fileID: 1037510537398756160}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7364824574065589506, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7409127296539475192, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -287,9 +291,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
---- !u!114 &3717428310257886355 stripped
+--- !u!114 &1037510537398756160 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8710319411703026339, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 5438008594360006192}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -297,7 +301,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
+  m_EditorClassIdentifier: Assembly-CSharp::StatusView
 --- !u!114 &4219762549148550431 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}

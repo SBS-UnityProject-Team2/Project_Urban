@@ -54,7 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 0}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!114 &1893694565551999877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
-  statusEffectListText: {fileID: 0}
+  content: {fileID: 0}
+  statusEffectUIPrefab: {fileID: 0}
 --- !u!114 &1016877738788149522
 MonoBehaviour:
   m_ObjectHideFlags: 0

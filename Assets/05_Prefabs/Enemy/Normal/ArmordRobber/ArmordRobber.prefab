@@ -154,7 +154,7 @@ MonoBehaviour:
   element: 0
   damageModifier: 0.3
   healthView: {fileID: 986008482243637732}
-  statusView: {fileID: 5478836581757387935}
+  statusView: {fileID: 8213356101850547020}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -170,7 +170,7 @@ MonoBehaviour:
   selectedArrow: {fileID: 502847596610025367}
   nextActionText: {fileID: 4976990113579492627}
   score: 3
-  maxHp: 1
+  maxHp: 50
   actionPattern: 02000000010000000400000001000000
   enemyActions:
   - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7364824574065589506, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7409127296539475192, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -326,9 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextActionView
---- !u!114 &5478836581757387935 stripped
+--- !u!114 &8213356101850547020 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8710319411703026339, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 3812852942469273148}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -336,4 +340,4 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
+  m_EditorClassIdentifier: Assembly-CSharp::StatusView

@@ -18,7 +18,6 @@ public class EventButtonUI : MonoBehaviour
     // Data
     private EventChoice eventChoice;
     private EventReward eventReward;
-    private EventResult eventResult;
 
     private int earnHp;
     private int earnCoin;
@@ -27,8 +26,7 @@ public class EventButtonUI : MonoBehaviour
     {
         button = GetComponent<Button>();
         eventChoice = EventManager.Instance.GetEventChoice(choiceCode);
-        eventReward = EventManager.Instance.GetEventReward(eventChoice.resultCode);
-        eventResult = EventManager.Instance.GetEventResult(eventChoice.scriptCode);
+        eventReward = EventManager.Instance.GetEventReward(eventChoice.rewardCode);
 
         SetHpDelta(eventReward.hpPresent, eventReward.hpMax);
         SetCoinDelta(eventReward.gold);
@@ -77,8 +75,8 @@ public class EventButtonUI : MonoBehaviour
         if (eventReward.randomCard != 0)
             stringBuilder.Append($"[{GetCardPoolName(eventReward.randomCard)}] 속성 카드 1개 획득\n");
 
-        if (eventReward.rangeCard != 0)
-            stringBuilder.Append(BuildRangeCardString(eventReward.rangeCard));
+        if (eventReward.selectCards != null)
+            stringBuilder.Append(BuildRangeCardString(eventReward.selectCards));
 
         if (eventReward.remove != 0)
             stringBuilder.Append($"[{GetRemoveElementName(eventReward.remove)}] 속성 카드 1개 랜덤 제거");
@@ -115,26 +113,18 @@ public class EventButtonUI : MonoBehaviour
         };   
     }
 
-    private string BuildRangeCardString(int rangeCardPoolCode)
+    private string BuildRangeCardString(CardName [] selectCards)
     {
         StringBuilder stringBuilder = new();
         stringBuilder.Append("카드 ");
 
-        RangeCardPool rangeCardPool = EventManager.Instance.GetRangeCardPool(rangeCardPoolCode);
-
-        CardDataEntry data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card1);
-        stringBuilder.Append($"[{data.koreanName}]");
-
-        if (rangeCardPool.card2 != 0)
+        for (int i = 0; i < selectCards.Length; i++)
         {
-            data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card2);
-            stringBuilder.Append($", [{data.koreanName}]");
-        }
+            CardDataEntry data = CardManager.Instance.GetCardData(selectCards[i]);
+            stringBuilder.Append($"[{data.koreanName}]");
 
-        if (rangeCardPool.card3 != 0)
-        {
-            data = CardManager.Instance.GetCardData((CardName)rangeCardPool.card3);
-            stringBuilder.Append($", [{data.koreanName}]");
+            if (i < selectCards.Length - 1)
+                stringBuilder.Append(", ");
         }
 
         stringBuilder.Append(" 중 1개 선택 획득\n");
@@ -142,7 +132,7 @@ public class EventButtonUI : MonoBehaviour
         return stringBuilder.ToString();
     }
 
-    public static bool CheckCondition(ConditionType condition)
+    private bool CheckCondition(ConditionType condition)
     {
         // 조건이 없으면 항상 활성화
         if (condition == ConditionType.None) 
@@ -161,8 +151,6 @@ public class EventButtonUI : MonoBehaviour
         // 덱에 필요한 속성 카드가 있는지 확인
         return DeckManager.Instance.CardList.Any(card => card.Element == requiredElement);
     }
-
-
 }
 
 public enum ConditionType
@@ -172,4 +160,11 @@ public enum ConditionType
     RequireRuin,
     RequirePsychic,
     RequireBio
+}
+
+public class EventResult
+{
+    public int earnHp;
+    public int earnCoin;
+    public CardName [] selectCards;
 }

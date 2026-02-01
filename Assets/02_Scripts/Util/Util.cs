@@ -1,3 +1,5 @@
+using System.Linq;
+
 static class Util
 {
     static public Element GetElement(CardName name)
@@ -14,5 +16,21 @@ static class Util
             return Element.Ruin;
 
         return Element.None;
+    }
+
+    static public int [] ParseIntArray(string intArrayString)
+    {   
+        if (intArrayString == string.Empty)
+            return null;
+
+        return intArrayString.Split(',').Select(numString => int.Parse(numString)).ToArray();
+    }
+
+    static public CardName [] ParseCardNameArray(string intArrayString)
+    {
+        if (intArrayString == string.Empty)
+            return null;
+
+        return intArrayString.Split(',').Select(numString => (CardName)int.Parse(numString)).ToArray();
     }
 }
