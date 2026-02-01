@@ -1,0 +1,204 @@
+[
+  {
+    "effectType": 0,
+    "effectName": "StormSlashHit",
+    "effectPath": "Slash Hit/StormSlashHit",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 1,
+    "effectName": "StormSlash",
+    "effectPath": "Slash/StormSlash",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 2
+  },
+  {
+    "effectType": 2,
+    "effectName": "FireSlashHit",
+    "effectPath": "Slash Hit/FireSlashHit",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 3,
+    "effectName": "FireFlame",
+    "effectPath": "Flames/FireFlame",
+    "effectPattern": [
+      4,
+      9
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 4,
+    "effectName": "FireMeshGlow",
+    "effectPath": "MeshGlow/FireMeshGlow",
+    "effectPattern": "[0], [2]",
+    "effectDuration": 0.6
+  },
+  {
+    "effectType": 5,
+    "effectName": "FirePillarBlast",
+    "effectPath": "PillarBlast/FirePillarBlast",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 2.5
+  },
+  {
+    "effectType": 6,
+    "effectName": "FireSphereBlast",
+    "effectPath": "SphereBlast/FireSphereBlast",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 3
+  },
+  {
+    "effectType": 7,
+    "effectName": "FireWall",
+    "effectPath": "Walls/Straight Wall/FireWall",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 8,
+    "effectName": "FrostSlashHit",
+    "effectPath": "Slash Hit/FrostSlashHit",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 9,
+    "effectName": "FrostSphereBlast",
+    "effectPath": "SphereBlast/FrostSphereBlast",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 3
+  },
+  {
+    "effectType": 10,
+    "effectName": "AuraRing",
+    "effectPath": "Aura/AuraRing/AuraRingLightning",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 11,
+    "effectName": "AuraCircling",
+    "effectPath": "Aura/AuraCircling/AuraCirclingLightning",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 12,
+    "effectName": "LifeSlashHit",
+    "effectPath": "Slash Hit/LifeSlashHit",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 13,
+    "effectName": "EarthBeamImpact",
+    "effectPath": "Beams/Setup/Impact/EarthBeamImpact",
+    "effectPattern": [
+      2
+    ],
+    "effectDuration": 0.4
+  },
+  {
+    "effectType": 14,
+    "effectName": "AreaDamageEarth",
+    "effectPath": "AreaDamage/AreaDamageEarth",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 1.4
+  },
+  {
+    "effectType": 15,
+    "effectName": "LifeSpray",
+    "effectPath": "Sprays/LifeSpray",
+    "effectPattern": "[5], [12]",
+    "effectDuration": "0.4, 1"
+  },
+  {
+    "effectType": 16,
+    "effectName": "LifeBeamImpact",
+    "effectPath": "Beams/Setup/Impact/LifeBeamImpact",
+    "effectPattern": "[3], [4], [9]",
+    "effectDuration": "0.2, 0.2, 0.6"
+  },
+  {
+    "effectType": 17,
+    "effectName": "EarthSphereBlast",
+    "effectPath": "SphereBlast/EarthSphereBlast",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 3
+  },
+  {
+    "effectType": 18,
+    "effectName": "CurseLife",
+    "effectPath": "Curse/CurseLife",
+    "effectPattern": [
+      10
+    ],
+    "effectDuration": 3
+  },
+  {
+    "effectType": 19,
+    "effectName": "FireFlame",
+    "effectPath": "Flames/FireFlame",
+    "effectPattern": [
+      5
+    ],
+    "effectDuration": 1
+  },
+  {
+    "effectType": 20,
+    "effectName": "FrostWallCircle",
+    "effectPath": "Walls/Circular Wall/FrostWallCircle",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 1.7
+  },
+  {
+    "effectType": 21,
+    "effectName": "InfernoFireMeshGlow",
+    "effectPath": "MeshGlow/FireMeshGlow",
+    "effectPattern": [
+      0
+    ],
+    "effectDuration": 0.6
+  },
+  {
+    "effectType": 22,
+    "effectName": "InfernoFirePillarBlast",
+    "effectPath": "PillarBlast/FirePillarBlast",
+    "effectPattern": [
+      11
+    ],
+    "effectDuration": 2.5
+  }
+]

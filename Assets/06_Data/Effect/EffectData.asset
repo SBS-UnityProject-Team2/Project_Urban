@@ -13,4 +13,122 @@ MonoBehaviour:
   m_Name: EffectData
   m_EditorClassIdentifier: Assembly-CSharp::EffectData
   effectPrefabBasePath: 05_Prefabs/Effects
-  effects: []
+  effects:
+  - effectType: 0
+    effectName: StormSlashHit
+    effectPrefab: {fileID: 7677055882014457737, guid: f888710c8331bb240bf86cc7e7447474, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 1
+    effectName: StormSlash
+    effectPrefab: {fileID: -883524405182900057, guid: d3ef805b2bcd402439e136fa0f6c5fd6, type: 3}
+    effectDuration:
+    - 2
+  - effectType: 2
+    effectName: FireSlashHit
+    effectPrefab: {fileID: 4822882072279750455, guid: 5626201343e2a1649887d852fa2563ac, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 3
+    effectName: FireFlame
+    effectPrefab: {fileID: 4802788726751084797, guid: 924091e63f966244595e8c098330d190, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 4
+    effectName: FireMeshGlow
+    effectPrefab: {fileID: 8386181901064025179, guid: 2a2da0520fc521e448f63d0a0d864983, type: 3}
+    effectDuration:
+    - 0.6
+  - effectType: 5
+    effectName: FirePillarBlast
+    effectPrefab: {fileID: -317468646063173795, guid: 5ec92e385d8734f429dfc7b8d574d834, type: 3}
+    effectDuration:
+    - 2.5
+  - effectType: 6
+    effectName: FireSphereBlast
+    effectPrefab: {fileID: 244369788022003839, guid: 1d0157ee4a539554bb153ccf85b3818e, type: 3}
+    effectDuration:
+    - 3
+  - effectType: 7
+    effectName: FireWall
+    effectPrefab: {fileID: 841081724120761992, guid: 8a8b900d16b388e459de4c1e82885dd6, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 8
+    effectName: FrostSlashHit
+    effectPrefab: {fileID: 4148515352329320307, guid: 92fb3ac9322fb4246a971f981f5467a1, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 9
+    effectName: FrostSphereBlast
+    effectPrefab: {fileID: 8322450621403980283, guid: 1834ca1d4be1a6f46b39acfaebb29059, type: 3}
+    effectDuration:
+    - 3
+  - effectType: 10
+    effectName: AuraRing
+    effectPrefab: {fileID: -3790565379388387400, guid: 6233d2e380e7f8144b86b2433af066a0, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 11
+    effectName: AuraCircling
+    effectPrefab: {fileID: 1169453391898762860, guid: 4edd7c3e2ee8a2b42919cebd6dce37c7, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 12
+    effectName: LifeSlashHit
+    effectPrefab: {fileID: 3602564770672511084, guid: 26f60700aa916e24a9052aa5f4188e4d, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 13
+    effectName: EarthBeamImpact
+    effectPrefab: {fileID: 6850960951228282560, guid: a1a55cd007d607c4488f7ef0da217e8c, type: 3}
+    effectDuration:
+    - 0.4
+  - effectType: 14
+    effectName: AreaDamageEarth
+    effectPrefab: {fileID: 272587180542818969, guid: 8849b7be82af85044a6462a396d13232, type: 3}
+    effectDuration:
+    - 1.4
+  - effectType: 15
+    effectName: LifeSpray
+    effectPrefab: {fileID: 1321249839588222332, guid: 358a4ce50d0de7146894d1d35fee668a, type: 3}
+    effectDuration:
+    - 0.4
+    - 1
+  - effectType: 16
+    effectName: LifeBeamImpact
+    effectPrefab: {fileID: 5395945424337081622, guid: c926a323b12dfde40b320496c78762f9, type: 3}
+    effectDuration:
+    - 0.2
+    - 0.2
+    - 0.6
+  - effectType: 17
+    effectName: EarthSphereBlast
+    effectPrefab: {fileID: -8337862247629746162, guid: bf0a4941d2f6ddb48b7cd6407cfec21c, type: 3}
+    effectDuration:
+    - 3
+  - effectType: 18
+    effectName: CurseLife
+    effectPrefab: {fileID: 7514608986274876065, guid: bf542154a0c704f46a7391f4e329b5da, type: 3}
+    effectDuration:
+    - 3
+  - effectType: 19
+    effectName: FireFlame
+    effectPrefab: {fileID: 4802788726751084797, guid: 924091e63f966244595e8c098330d190, type: 3}
+    effectDuration:
+    - 1
+  - effectType: 20
+    effectName: FrostWallCircle
+    effectPrefab: {fileID: 2342843749845641219, guid: 4fdae756e6ebdd34ea5b0bf16c579f9f, type: 3}
+    effectDuration:
+    - 1.7
+  - effectType: 21
+    effectName: InfernoFireMeshGlow
+    effectPrefab: {fileID: 8386181901064025179, guid: 2a2da0520fc521e448f63d0a0d864983, type: 3}
+    effectDuration:
+    - 0.6
+  - effectType: 22
+    effectName: InfernoFirePillarBlast
+    effectPrefab: {fileID: -317468646063173795, guid: 5ec92e385d8734f429dfc7b8d574d834, type: 3}
+    effectDuration:
+    - 2.5
