@@ -9,8 +9,6 @@ public class JsonEventWrapper
     public List<JsonEventScript> eventScripts;
     public List<JsonEventChoice> eventChoices;
     public List<JsonEventReward> eventRewards;
-    public List<JsonEventResult> eventResults;
-    public List<JsonRangeCardPool> rangeCardPools;
 }
 
 #region EventInfo
@@ -21,9 +19,7 @@ public class JsonEventInfo
     public int stage;
     public string eventName;
     public int scriptCode;
-    public int choiceCode1;
-    public int choiceCode2;
-    public int choiceCode3;
+    public string choiceCodes;
 }
 
 [Serializable]
@@ -33,9 +29,7 @@ public class EventInfo
     public int stage;
     public string eventName;
     public int scriptCode;
-    public int choiceCode1;
-    public int choiceCode2;
-    public int choiceCode3;
+    public int [] choiceCodes;
     public bool isExecuted;
 }
 #endregion
@@ -46,8 +40,8 @@ public class JsonEventScript
 {
     public int scriptCode;
     public int eventCode;
-    public string eventScript;
-    public string dialogue;
+    public string playerScript;
+    public string npcDialogue;
     public string illustration;
 }
 
@@ -56,8 +50,8 @@ public class EventScript
 {
     public int scriptCode;
     public int eventCode;
-    public string eventScript;
-    public string dialogue;
+    public string [] playerScript;
+    public string [] npcDialogue;
     public Sprite illustration;
 }
 #endregion
@@ -70,8 +64,8 @@ public class JsonEventChoice
     public int eventCode;
     public string choiceName;
     public int choiceCondition;
-    public string choiceResult;
-    public int resultCode;
+    public string choiceReward;
+    public int rewardCode;
     public int scriptCode;
 }
 
@@ -82,8 +76,8 @@ public class EventChoice
     public int eventCode;
     public string choiceName;
     public int choiceCondition;
-    public string choiceResult;
-    public int resultCode;
+    public string choiceReward;
+    public int rewardCode;
     public int scriptCode;
 }
 #endregion
@@ -97,7 +91,7 @@ public class JsonEventReward
     public float hpMax;
     public int gold;
     public int randomCard;
-    public int rangeCard;
+    public string selectCards;
     public int remove;
 }
 
@@ -109,47 +103,7 @@ public class EventReward
     public float hpMax;
     public int gold;
     public int randomCard;
-    public int rangeCard;
+    public CardName[] selectCards;
     public int remove;
-}
-#endregion
-
-#region EventResult
-[Serializable]
-public class JsonEventResult
-{
-    public int scriptCode;
-    public string resultScript;
-    public string dialogue;
-    public string endScript;
-}
-
-[Serializable]
-public class EventResult
-{
-    public int scriptCode;
-    public string resultScript;
-    public string dialogue;
-    public string endScript;
-}
-#endregion
-
-#region RangeCardPool
-[Serializable]
-public class JsonRangeCardPool
-{
-    public int cardPoolCode;
-    public int card1;
-    public int card2;
-    public int card3;
-}
-
-[Serializable]
-public class RangeCardPool
-{
-    public int cardPoolCode;
-    public int card1;
-    public int card2;
-    public int card3;
 }
 #endregion

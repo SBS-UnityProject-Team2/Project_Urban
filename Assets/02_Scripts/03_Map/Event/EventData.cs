@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,27 +16,29 @@ public class EventData : ScriptableObject
     [SerializeField] private List<EventScript> eventScripts;
     [SerializeField] private List<EventChoice> eventChoices;
     [SerializeField] private List<EventReward> eventRewards;
-    [SerializeField] private List<EventResult> eventResults;
-    [SerializeField] private List<RangeCardPool> rangeCardPools;
 
     private readonly Dictionary<int, EventInfo> eventInfoMap = new();
     private readonly Dictionary<int, EventScript> eventScriptMap = new();
     private readonly Dictionary<int, EventChoice> eventChoiceMap = new();
     private readonly Dictionary<int, EventReward> eventRewardMap = new();
-    private readonly Dictionary<int, EventResult> eventResultMap = new();
-    private readonly Dictionary<int, RangeCardPool> rangeCardPoolMap = new();
 
     public int TotalEventCount => eventInfos.Count;
     public List<EventInfo> EventInfos => eventInfos;
 
     private void OnEnable()
     {
+        ResetData();
+
         InitEventInfoMap();
         InitEventScriptMap();
         InitEventChoiceMap();
         InitEventRewardMap();
-        InitEventResultMap();
-        InitRangeCardPoolMap();
+    }
+
+    private void ResetData()
+    {
+        foreach (EventInfo eventInfo in eventInfos)
+            eventInfo.isExecuted = false;
     }
 
     private void InitEventInfoMap()
@@ -66,19 +69,6 @@ public class EventData : ScriptableObject
             eventRewardMap[reward.resultCode] = reward;
     }
 
-    private void InitEventResultMap()
-    {
-        eventResultMap.Clear();
-        foreach (EventResult result in eventResults)
-            eventResultMap[result.scriptCode] = result;
-    }
-
-    private void InitRangeCardPoolMap()
-    {
-        rangeCardPoolMap.Clear();
-        foreach (RangeCardPool pool in rangeCardPools)
-            rangeCardPoolMap[pool.cardPoolCode] = pool;
-    }
 
     public EventInfo GetEventInfo(int eventCode)
     {
@@ -100,15 +90,6 @@ public class EventData : ScriptableObject
         return eventRewardMap.TryGetValue(resultCode, out var reward) ? reward : null;
     }
 
-    public EventResult GetEventResult(int scriptCode)
-    {
-        return eventResultMap.TryGetValue(scriptCode, out var result) ? result : null;
-    }
-
-    public RangeCardPool GetRangeCardPool(int poolCode)
-    {
-        return rangeCardPoolMap.TryGetValue(poolCode, out var pool) ? pool : null;
-    }
 
     [ContextMenu("Import From JSON")]
     public void ImportFromJson()
@@ -116,25 +97,16 @@ public class EventData : ScriptableObject
         string jsonPath = EditorUtility.OpenFilePanel("Select EventData JSON", Application.dataPath, "json");
         if (string.IsNullOrEmpty(jsonPath)) return;
 
-        try
-        {
-            string jsonText = File.ReadAllText(jsonPath);
-            JsonEventWrapper wrapper = JsonUtility.FromJson<JsonEventWrapper>(jsonText);
+        string jsonText = File.ReadAllText(jsonPath);
+        JsonEventWrapper wrapper = JsonUtility.FromJson<JsonEventWrapper>(jsonText);
 
-            LoadEventInfos(wrapper.eventInfos);
-            LoadEventScripts(wrapper.eventScripts);
-            LoadEventChoices(wrapper.eventChoices);
-            LoadEventRewards(wrapper.eventRewards);
-            LoadEventResults(wrapper.eventResults);
-            LoadRangeCardPools(wrapper.rangeCardPools);
+        LoadEventInfos(wrapper.eventInfos);
+        LoadEventScripts(wrapper.eventScripts);
+        LoadEventChoices(wrapper.eventChoices);
+        LoadEventRewards(wrapper.eventRewards);
 
-            AssetDatabase.SaveAssets();
-            Debug.Log("Successfully imported EventData from JSON.");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to import EventData JSON: {e.Message}");
-        }
+        AssetDatabase.SaveAssets();
+        Debug.Log("Successfully imported EventData from JSON.");
     }
 
     private void LoadEventInfos(List<JsonEventInfo> jsonEventList)
@@ -148,9 +120,7 @@ public class EventData : ScriptableObject
                 stage = jsonEvent.stage,
                 eventName = jsonEvent.eventName,
                 scriptCode = jsonEvent.scriptCode,
-                choiceCode1 = jsonEvent.choiceCode1,
-                choiceCode2 = jsonEvent.choiceCode2,
-                choiceCode3 = jsonEvent.choiceCode3,
+                choiceCodes = Util.ParseIntArray(jsonEvent.choiceCodes),
                 isExecuted = false
             };
 
@@ -169,8 +139,8 @@ public class EventData : ScriptableObject
             {
                 scriptCode = jsonScript.scriptCode,
                 eventCode = jsonScript.eventCode,
-                eventScript = jsonScript.eventScript,
-                dialogue = jsonScript.dialogue,
+                playerScript = jsonScript.playerScript?.Split('\n'),
+                npcDialogue = jsonScript.npcDialogue?.Split('\n'),
                 illustration = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath)
             };
 
@@ -189,8 +159,8 @@ public class EventData : ScriptableObject
                 eventCode = jsonChoice.eventCode,
                 choiceName = jsonChoice.choiceName,
                 choiceCondition = jsonChoice.choiceCondition,
-                choiceResult = jsonChoice.choiceResult,
-                resultCode = jsonChoice.resultCode,
+                choiceReward = jsonChoice.choiceReward,
+                rewardCode = jsonChoice.rewardCode,
                 scriptCode = jsonChoice.scriptCode,
             };
 
@@ -210,7 +180,7 @@ public class EventData : ScriptableObject
                 hpMax = jsonReward.hpMax,
                 gold = jsonReward.gold,
                 randomCard = jsonReward.randomCard,
-                rangeCard = jsonReward.rangeCard,
+                selectCards = Util.ParseIntArray(jsonReward.selectCards).Select(code => (CardName)code).ToArray(),
                 remove = jsonReward.remove,
             };
 
@@ -218,46 +188,12 @@ public class EventData : ScriptableObject
         }
     }
 
-    private void LoadEventResults(List<JsonEventResult> jsonResultList)
-    {
-        eventResults.Clear();
-        foreach (JsonEventResult jsonResult in jsonResultList)
-        {
-            EventResult eventResult = new()
-            {
-                scriptCode = jsonResult.scriptCode,
-                resultScript = jsonResult.resultScript,
-                dialogue = jsonResult.dialogue,
-                endScript = jsonResult.endScript,
-            };
-
-            eventResults.Add(eventResult);
-        }
-    }
-
-    private void LoadRangeCardPools(List<JsonRangeCardPool> jsonPoolList)
-    {
-        rangeCardPools.Clear();
-        foreach (JsonRangeCardPool jsonPool in jsonPoolList)
-        {
-            RangeCardPool pool = new()
-            {
-                cardPoolCode = jsonPool.cardPoolCode,
-                card1 = jsonPool.card1,
-                card2 = jsonPool.card2,
-                card3 = jsonPool.card3,
-            };
-
-            rangeCardPools.Add(pool);
-        }
-    }
-
     private string GetAssetPath(string basePath, string fileName, string extension)
-        {
-            string  relativePath = Path.Combine(basePath, fileName + extension);
-        
-            return Path.Combine("Assets", relativePath).Replace("\\", "/");
-        }
+    {
+        string relativePath = Path.Combine(basePath, fileName + extension);
+
+        return Path.Combine("Assets", relativePath).Replace("\\", "/");
+    }
 }
 
 

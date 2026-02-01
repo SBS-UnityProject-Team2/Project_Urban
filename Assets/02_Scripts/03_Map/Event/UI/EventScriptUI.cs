@@ -14,7 +14,6 @@ public class EventScriptUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float typingSpeed = 0.03f;
 
-    private EventScript eventScript;
     private WaitForSeconds typingWait;
     private bool isSkip;
 
@@ -29,60 +28,67 @@ public class EventScriptUI : MonoBehaviour
             isSkip = true;
     }
 
-    public void Init(int scriptCode)
+    public void Init()
     {
-        eventScript = EventManager.Instance.GetEventScript(scriptCode);
-        
         isSkip = false;
         eventScriptText.text = string.Empty;
         npcDialogueText.text = string.Empty;
     }
 
-    public void StartScript(UnityAction onComplete = null)
+    public void StartEventScript(int scriptCode, UnityAction onComplete = null)
     {
-        StartCoroutine(PrintAllScriptRoutine(onComplete));
+        EventScript eventScript = EventManager.Instance.GetEventScript(scriptCode);
+        StartCoroutine(EventScriptRoutine(eventScript, onComplete));
     }
 
-    private IEnumerator PrintAllScriptRoutine(UnityAction onComplete = null)
+
+    private IEnumerator EventScriptRoutine(EventScript eventScript, UnityAction onComplete = null)
     {
-        yield return PrintScriptRoutine(eventScript.eventScript, eventScriptText);
-        yield return PrintScriptRoutine(eventScript.dialogue, npcDialogueText);
+        yield return PrintScriptRoutine(eventScript.playerScript, eventScriptText);
+
+        yield return new WaitUntil(IsAdvanceInputPressed);
+        yield return null;
+
+        yield return PrintScriptRoutine(eventScript.npcDialogue, npcDialogueText);
 
         onComplete?.Invoke();
     }
 
-    private IEnumerator PrintScriptRoutine(string script, TMP_Text textUI)
+    private IEnumerator PrintScriptRoutine(string[] scripts, TMP_Text textUI)
     {
-        string [] splitString = script.Split('\n');
-        int length = splitString.Length;
+        int length = scripts.Length;
 
         for (int i = 0; i < length; i++)
         {
-            char [] charArray = splitString[i].ToCharArray();
-            int charCount = splitString[i].Length;
+            char[] charArray = scripts[i].ToCharArray();
+            int charCount = scripts[i].Length;
 
-            for (int j = 0; j < charCount; j++)
+            int idx = 0;
+            while (idx < charCount)
             {
-                if (isSkip)
+                 if (isSkip)
                 {
                     textUI.SetCharArray(charArray, 0, charCount);
 
                     break;
                 }
 
-                textUI.SetCharArray(charArray, 0, j);   
+                textUI.SetCharArray(charArray, 0, idx);
+                idx = GetNextIndex(charArray, idx);
 
                 yield return typingWait;
             }
 
             yield return null;
-            isSkip = false;
-            
+
             if (i < length - 1)
             {
-                textUI.text = string.Empty;
                 yield return new WaitUntil(IsAdvanceInputPressed);
+                textUI.text = string.Empty;
+                yield return null;
             }
+
+            isSkip = false;
         }
     }
 
@@ -90,5 +96,16 @@ public class EventScriptUI : MonoBehaviour
     private bool IsAdvanceInputPressed()
     {
         return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space);
+    }
+
+    private int GetNextIndex(char[] charArray, int startIdx)
+    {
+        if (charArray[startIdx] == '<')
+        {
+            for (int i = startIdx + 1; i < charArray.Length; i++)
+                if (charArray[i] == '>') return i + 1;
+        }
+
+        return startIdx + 1;
     }
 }

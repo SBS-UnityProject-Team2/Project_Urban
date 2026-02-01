@@ -1,0 +1,537 @@
+{
+    "eventInfos": [
+        {
+            "eventCode ": 10,
+            "stage": 1,
+            "eventName": "불길한 사내",
+            "scriptCode": 100,
+            "choiceCodes": "1000, 1001, 1002"
+        },
+        {
+            "eventCode ": 11,
+            "stage": 1,
+            "eventName": "사제의 유언",
+            "scriptCode": 101,
+            "choiceCodes": "1003, 1004, 1005"
+        },
+        {
+            "eventCode ": 12,
+            "stage": 1,
+            "eventName": "버려진 기계팔",
+            "scriptCode": 102,
+            "choiceCodes": "1006, 1007, 1008"
+        },
+        {
+            "eventCode ": 13,
+            "stage": 1,
+            "eventName": "갈등",
+            "scriptCode": 103,
+            "choiceCodes": "1009, 1010, 1011"
+        },
+        {
+            "eventCode ": 14,
+            "stage": 1,
+            "eventName": "알던 사이",
+            "scriptCode": 104,
+            "choiceCodes": "1012, 1013, 1014"
+        },
+        {
+            "eventCode ": 15,
+            "stage": 1,
+            "eventName": "기이한 약",
+            "scriptCode": 105,
+            "choiceCodes": "1015, 1016, 107"
+        }
+    ],
+    "eventScripts": [
+        {
+            "scriptCode": 100,
+            "eventCode": 10,
+            "playerScript": "로브를 걸친 사람이 절뚝거리며 다가와 말을 걸어온다. \n한번도 본 적 없는 인상인데… \n미심쩍지만 거래에 응하는 것도 나쁘지 않을 것 같다는 생각이 들었다.",
+            "npcDialogue": "\"잠깐, 자네…… 나와 거래 하나 하지 않겠는가...\"",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 101,
+            "eventCode": 11,
+            "playerScript": "죽음의 냄새가 드리운 인간… 전쟁을 오래 겪었다 보니 바로 알 수 있다. \n그런 그가 바닥에 주저앉아 말을 걸어온다. \n걸친 옷의 형태로 보아 복스 겔리다의 신도인 듯한데, \n섣불리 다가갔다가 화를 당할지도 모른다는 생각이 든다. \n그래도 이야기를 들어보는 게 좋을까?",
+            "npcDialogue": "\"그대, 시간이 있다면… 내가 하는 말을… 듣고 가라…\"",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 102,
+            "eventCode": 12,
+            "playerScript": "바닥에 기계 팔이 덩그러니 버려져 있다. \n내가 기계 팔을 얻기 전이라면 바로 착용했겠지만 지금의 내게는 필요하지 않다. \n다른 사람이 이 모습을 봤다면 주저없이 내 뺨을 후려갈기고 기계 팔을 차지하려 들겠지. \n다행히 주변에는 아무도 없다.",
+            "illustration": "MechanicArm"
+        },
+        {
+            "scriptCode": 103,
+            "eventCode": 13,
+            "playerScript": "멀리서 두 사람이 싸우고 있다. \n목적지로 가기 위해서는 이 길을 지나가야 하는데, 말을 걸지 않고서야 무리일 것 같다. \n어쩐지 말다툼이 심해지는 것 같기도 한데.",
+            "npcDialogue": "<color=#F54E3B>겁쟁이마냥 뒤에 숨어 머리나 굴리는 주제에 으스대지마라!<\/color> \n<color=#F54E3B>네놈들 복스 겔리다 패거리는 한 주먹도 안 되니!<\/color>\n<color=#3FA4F2> 우습군요.<\/color> \n<color=#3FA4F2> 우리의 위대한 지식 없이는 눈먼 멧돼지마냥 날뛰는게 전부인 멍청이 집단이.<\/color>",
+            "illustration": "PowerDevotee"
+        },
+        {
+            "scriptCode": 104,
+            "eventCode": 14,
+            "playerScript": "전쟁 중 같은 부대에서 지냈던 자를 우연히 조우했다. \n약 6년 전의 일, 그렇게 오래되었음에도 서로를 단번에 알아본 듯 시선을 피하지 않았다. \n다만 얼핏 본 그의 상태가 심상치 않았다. \n마치, 더 이상 인간이 아닌 듯한 낯빛. 정말 나를 알아본 게 맞나?",
+            "npcDialogue": "\".......\"",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 105,
+            "eventCode": 15,
+            "playerScript": "폐허가 된 세계의 길바닥에 전혀 어울리지 않는 기묘하고 아름다운 물약이 떨어져 있다. \n유리병임에도 깨지기는커녕 실금조차 없이 깨끗하니 수상하기 짝이없다. \n하지만 이런 험지에서 물자는 귀한 법, \n활용할 방법만 안다면 유용하게 쓸 수 있지 않을까... \n병을 들어 액체를 흔들어보니 은은한 푸른 빛을 내고 있었다.",
+            "illustration": "Potion"
+        },
+        {
+            "scriptCode": 106,
+            "eventCode": 10,
+            "playerScript": "정체를 알 수 없는 힘에 공격당했다. 동시에 그 힘이 그대로 나에게 스며들었다. \n그는 여전히 불길한 미소로 가볍게 손짓하고는 멀어졌다.",
+            "npcDialogue": "응당 거래는 주고받는 것이지…\n잘 쓰게. 다음에 또 보자고.",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 107,
+            "eventCode": 10,
+            "playerScript": "그는 손을 내밀었다. \n나는 무의식적으로 그의 손에 돈주머니를 쥐어주었다.\n그는 웃으며 무기를 하나 내 손에 쥐어주었다.  \n그는 여전히 불길한 미소로 가볍게 손짓하고는 멀어졌다.",
+            "npcDialogue": "응당 거래는 주고받는 것이지…\n잘 쓰게. 다음에 또 보자고.",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 108,
+            "eventCode": 10,
+            "playerScript": "그는 무기든 힘이든 내가 알아서 얻으란 말만 남기고 사라져버렸다. \n그의 말투에서 약간의 분노가 느껴졌지만, 이 일을 계속 생각하기에는 아직 갈 길이 멀다.",
+            "npcDialogue": "… 자네는 욕심이 과하군",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 109,
+            "eventCode": 11,
+            "playerScript": "그는 더 이상 숨을 내뱉기조차 힘든지, \n내게 회복 물약을 건네고서 영원한 잠에 들었다.",
+            "npcDialogue": "들어주어서 고맙다…이것을 가져가라...\n세상이 굶주려 가는 것, 그것을 넘어 폐허가 되어버린 건 우연이 아니다. \n…본거지를 찾아가라. 당신이라면 파헤칠 수 있을지도 모르지.",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 110,
+            "eventCode": 11,
+            "playerScript": "진작 힘이 다한 신도는 반항 한 번 못 하고 숨을 거두었다. \n그가 가지고 있는 것이라고는 약간의 돈뿐이었다. 챙겨두는 게 좋겠다.",
+            "npcDialogue": "윽...... ",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 111,
+            "eventCode": 11,
+            "playerScript": "금방 죽을 테니 무시하자고 생각했으나, 위 말과 함께 그가 습격했다. \n등을 가격한 차갑고 쓰라린 감각에 반격하고자 곧바로 뒤돌아봤을 때, 흔적조차 보이지 않았다. \n그가 있던 자리에는 해진 인형 하나가 남아있을 뿐이었다.",
+            "npcDialogue": "들은 체도...안하는 군... 그럼... 실례하겠네...",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 112,
+            "eventCode": 12,
+            "playerScript": "마침 기계 팔이 어떻게 강력한 힘을 가지는지 의아했던 참이었다. \n분해할 도구가 없기에 하는 수 없이 기계 팔을 힘껏 내리쳤다. \n쾅!!\n굉음과 함께 부서진 기계 팔 내부에서 쓸 만한 부품 하나가 눈에 띈다.",
+            "illustration": "MechanicArm"
+        },
+        {
+            "scriptCode": 113,
+            "eventCode": 12,
+            "playerScript": "지금의 기계 팔을 착용하고서 처음 느꼈던 감정이 떠오른다. \n감염자에게서 기계 팔을 떼어내 착용했다는 사실을 인지했을 때의… 두려움. \n건드리고 싶지도 않다는 생각에 애써 무시하고 마저 나아가기로 했다.",
+            "illustration": "MechanicArm"
+        },
+        {
+            "scriptCode": 114,
+            "eventCode": 12,
+            "playerScript": "기계 팔을 비싸게 팔 수 있지 않을까 싶어, 들고 암시장으로 향했다.\n암상인은 터무니없이 적은 금액을 제시했고, \n나는 반발했으나 즉시 그가 고용한 용병에게 제압당했다.\n아무래도 이 이상 돈을 받는 건 어렵겠지... 하는 수 없이 거래를 받아들였다.",
+            "npcDialogue": "어디 가서 이 이상 부르는 집은 없을 거요. \n신원 보장도 안되는 걸 거래하려 든 건데 그 정도는 감수해야지...\n클클클... 잘 생각했소. 여기 받아가시오.",
+            "illustration": "MechanicArm"
+        },
+        {
+            "scriptCode": 115,
+            "eventCode": 13,
+            "playerScript": "복스 겔리다의 신도는 혀를 차고는 먼저 사라졌다. \n강신회의 신도는 호탕하게 웃고는 나에게 그대로 기름을 들이부었다.\n뜨거움도 잠시 따뜻해지며 힘이 스며듦과 동시에 무언가 잃은 듯한 느낌이 들었다.",
+            "npcDialogue": "<color=#F54E3B>후하하하! 누군지는 모르겠지만 보는 눈이 있구만!<\/color>\n<color=#3FA4F2>우자의 식견이로군요. 안타까울 따름입니다.<\/color> ",
+            "illustration": "PowerDevotee"
+        },
+        {
+            "scriptCode": 116,
+            "eventCode": 13,
+            "playerScript": "강신회의 신도는 하찮다는 듯 어깨를 으쓱이며 반대 방향으로 걸어나갔다.\n복스 겔리다 신도는 미소지으며 내게 약품을 하나 건네주었다.\n약품을 마시자 몸에 냉기가 감돌며 새로운 힘이 피어났다. 무언가 잃은 듯한 느낌과 함께.",
+            "npcDialogue": "<color=#3FA4F2> 잘 아시는군요. 이름 모를 나그네여.<\/color> \n<color=#F54E3B>힘이야말로 모든 것임을 모르는군. 나약한 것들...<\/color>",
+            "illustration": "PowerDevotee"
+        },
+        {
+            "scriptCode": 117,
+            "eventCode": 13,
+            "playerScript": "―퍽. \n좀 더 자세히 듣기 위해 몸을 움직이려던 찰나 \n뒤통수에 묵직한 충격이 느껴짐과 동시에 시야가 꺼졌다. \n정신을 차렸을 때 두 사람은 이미 사라지고 없었다.\n여기서 더 얻을 정보는 없다. 왠지 모를 불쾌감을 뒤로 한 채 일단 자리를 떴다.",
+            "npcDialogue": "<color=#F54E3B>입만 살았군. 약해빠진 것들이란...<\/color> \n<color=#3FA4F2> 우리 복스 겔리다는 당신네들과는 다릅니다. \n지금도 위대한 목적을 향해 가고 있지요<\/color>\n<color=#F54E3B>위대한 목적? 하! 그래서 지금 네 놈이 길을 가로막고 \n      이렇게 지껄이는 것도 위대한 목적을 위해서인가? \"<\/color>\n<color=#3FA4F2> 일개 하급 신자가 무엇을 알겠습니까. 다만, \n그쪽이나 저나 본당으로 가는 길은 허락되지 않았지요. \n그 이유는 알고 계십니까?<\/color>",
+            "illustration": "PowerDevotee"
+        },
+        {
+            "scriptCode": 118,
+            "eventCode": 14,
+            "playerScript": "그는 이미 감염되어 있었다. \n다가오지 말라는 말을 듣고서 급하게 방어 태세를 갖추었으나 때는 늦었다. \n갑작스럽게 달려든 그가 내 어깨를 물어 뜯었다. \n쓰라린 고통과 함께 무언가가 자라나는 느낌이 든다.",
+            "npcDialogue": "그으윽, 윽, 오...오지… 마……!",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 119,
+            "eventCode": 14,
+            "playerScript": "그는 이미 감염되어 있었다. \n일찍이 공격 태세를 갖춘 덕분에 공격해오는 그를 막을 수 있었다. \n내가 할 수 있는건 그저 목숨을 끊어주는 것 뿐... 부디 편히 영면하기를...\n그 자가 있던 곳에서 주인 잃은 돈을 발견했다. 챙겨두는 편이 좋겠다.",
+            "npcDialogue": "그어어어...",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 120,
+            "eventCode": 14,
+            "playerScript": "등 뒤에서 인간의 목소리와 인간의 목소리가 아닌 것이 섞여 들려온다. \n다가가지 않기를 잘했다는 생각이 들었다.\n그의 마지막 말이 뇌리에 새겨질 것만 같지만, 걸음을 멈추지는 않기로 했다.",
+            "npcDialogue": "그어... 아파... 살고... 싶...",
+            "illustration": "Npc"
+        },
+        {
+            "scriptCode": 121,
+            "eventCode": 15,
+            "playerScript": "물약을 들이키자마자 일순간 세상이 부서지듯 시야가 뒤틀렸다. \n어지러움과 동시에 느껴지는 건 황홀한 쾌락… 어쩐지 기운이 난다. \n방금 무언가를 잃어버린 것 같지만, 당장은 신경 쓰이지 않는다.",
+            "illustration": "Potion"
+        },
+        {
+            "scriptCode": 122,
+            "eventCode": 15,
+            "playerScript": "얼마나 더 걸었을까. 갑작스러운 갈증에 조금 전에 챙긴 그 푸른 물약이라도 마실까 싶었으나… \n아무리 주머니를 뒤져도 온데간데없다. 떨어뜨렸다면 분명 소리가 들렸을 텐데. \n마치 무언가에 홀린 기분이지만, 딱 그뿐이다. 갈증을 안은 채로, 마저 나아가는 수밖에.",
+            "illustration": "Potion"
+        },
+        {
+            "scriptCode": 123,
+            "eventCode": 15,
+            "playerScript": "수상한 느낌이 아무래도 정답이었던 것 같다. \n깨진 유리병에서 새어나온 물약이 서서히 하나의 지점으로 뭉치더니 거대한 연기가 되어 나를 감쌌다. \n연기가 사라지자 정신이 맑아지는 감각이 느껴진다.",
+            "illustration": "Potion"
+        }
+    ],
+    "eventChoices": [
+        {
+            "choiceCode": 1000,
+            "eventCode": 10,
+            "choiceName": "왼쪽 손을 선택한다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n카드 [소이탄], [전자기장], [개화] 중 1개 선택 획득",
+            "rewardCode": 10000,
+            "scriptCode": 106
+        },
+        {
+            "choiceCode": 1001,
+            "eventCode": 10,
+            "choiceName": "오른쪽 손을 선택한다.",
+            "choiceCondition": 0,
+            "choiceReward": "금액 [c] 손실\n카드 [사격], [비열한 공격], [기습] 중 1개 선택 획득",
+            "rewardCode": 10001,
+            "scriptCode": 107
+        },
+        {
+            "choiceCode": 1002,
+            "eventCode": 10,
+            "choiceName": "양쪽 손을 선택한다.",
+            "choiceCondition": 0,
+            "choiceReward": "없음",
+            "rewardCode": 10002,
+            "scriptCode": 108
+        },
+        {
+            "choiceCode": 1003,
+            "eventCode": 11,
+            "choiceName": "말을 들어본다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 회복",
+            "rewardCode": 10003,
+            "scriptCode": 109
+        },
+        {
+            "choiceCode": 1004,
+            "eventCode": 11,
+            "choiceName": "혹시 모르니 죽인다.",
+            "choiceCondition": 0,
+            "choiceReward": "금액 [c] 획득",
+            "rewardCode": 10004,
+            "scriptCode": 110
+        },
+        {
+            "choiceCode": 1005,
+            "eventCode": 11,
+            "choiceName": "무시하고 지나친다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n카드 [더미] 획득",
+            "rewardCode": 10005,
+            "scriptCode": 111
+        },
+        {
+            "choiceCode": 1006,
+            "eventCode": 12,
+            "choiceName": "쓸 만한 게 있나 분해해본다.",
+            "choiceCondition": 0,
+            "choiceReward": "[파괴] 속성 카드  1개 획득",
+            "rewardCode": 10006,
+            "scriptCode": 112
+        },
+        {
+            "choiceCode": 1007,
+            "eventCode": 12,
+            "choiceName": "무시하고 지나친다.",
+            "choiceCondition": 0,
+            "choiceReward": "없음",
+            "rewardCode": 10007,
+            "scriptCode": 113
+        },
+        {
+            "choiceCode": 1008,
+            "eventCode": 12,
+            "choiceName": "회수하여 부랑자촌에 판매한다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n금액 [c] 획득",
+            "rewardCode": 10008,
+            "scriptCode": 114
+        },
+        {
+            "choiceCode": 1009,
+            "eventCode": 13,
+            "choiceName": "나서서 강신회의 편을 든다.",
+            "choiceCondition": 3,
+            "choiceReward": "[파괴] 속성 카드  1개 획득\n[사이킥] 속성 카드 1개 랜덤 제거",
+            "rewardCode": 10009,
+            "scriptCode": 115
+        },
+        {
+            "choiceCode": 1010,
+            "eventCode": 13,
+            "choiceName": "나서서 복스 겔리다의 편을 든다.",
+            "choiceCondition": 2,
+            "choiceReward": "[사이킥] 속성 카드 1개 획득\n[파괴] 속성 카드 1개 랜덤 제거",
+            "rewardCode": 10010,
+            "scriptCode": 116
+        },
+        {
+            "choiceCode": 1011,
+            "eventCode": 13,
+            "choiceName": "숨어서 두 사람의 동태를 살핀다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n[생체] 속성 카드 1개 획득",
+            "rewardCode": 10011,
+            "scriptCode": 117
+        },
+        {
+            "choiceCode": 1012,
+            "eventCode": 14,
+            "choiceName": "다가가서 말을 건다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n[생체] 속성 카드 1개 획득",
+            "rewardCode": 10012,
+            "scriptCode": 118
+        },
+        {
+            "choiceCode": 1013,
+            "eventCode": 14,
+            "choiceName": "혹시 모르니 공격 태세를 갖춘다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 피해\n금액 [c] 획득",
+            "rewardCode": 10013,
+            "scriptCode": 119
+        },
+        {
+            "choiceCode": 1014,
+            "eventCode": 14,
+            "choiceName": "무시하고 지나친다.",
+            "choiceCondition": 0,
+            "choiceReward": "없음",
+            "rewardCode": 10014,
+            "scriptCode": 120
+        },
+        {
+            "choiceCode": 1015,
+            "eventCode": 15,
+            "choiceName": "마셔본다.",
+            "choiceCondition": 0,
+            "choiceReward": "체력 [h] 회복\n카드 1개 랜덤 제거",
+            "rewardCode": 10015,
+            "scriptCode": 121
+        },
+        {
+            "choiceCode": 1016,
+            "eventCode": 15,
+            "choiceName": "일단 주머니에 넣어둔다.",
+            "choiceCondition": 0,
+            "choiceReward": "없음",
+            "rewardCode": 10016,
+            "scriptCode": 122
+        },
+        {
+            "choiceCode": 1017,
+            "eventCode": 15,
+            "choiceName": "바닥에 던져 깨뜨린다.",
+            "choiceCondition": 0,
+            "choiceReward": "[사이킥] 속성 카드 1개 획득",
+            "rewardCode": 10017,
+            "scriptCode": 123
+        }
+    ],
+    "eventRewards": [
+        {
+            "rewardCode": 10000,
+            "hpPresent": -0.1,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "2007, 3006, 4007",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10001,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": -18,
+            "randomCard": 0,
+            "selectCards": "1001, 1003, 1004",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10002,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10003,
+            "hpPresent": 0,
+            "hpMax": 0.13,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10004,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 18,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10005,
+            "hpPresent": -0.1,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "1008",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10006,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "2002, 2008, 2012",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10007,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10008,
+            "hpPresent": -0.1,
+            "hpMax": 0,
+            "gold": 32,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10009,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 3,
+            "selectCards": "",
+            "remove": 2
+        },
+        {
+            "rewardCode": 10010,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 4,
+            "selectCards": "",
+            "remove": 3
+        },
+        {
+            "rewardCode": 10011,
+            "hpPresent": -0.2,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 5,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10012,
+            "hpPresent": 0,
+            "hpMax": -0.1,
+            "gold": 0,
+            "randomCard": 5,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10013,
+            "hpPresent": -0.1,
+            "hpMax": 0,
+            "gold": 20,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10014,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10015,
+            "hpPresent": 0,
+            "hpMax": 0.16,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 5
+        },
+        {
+            "rewardCode": 10016,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10017,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 3,
+            "selectCards": "",
+            "remove": 0
+        }
+    ]
+}

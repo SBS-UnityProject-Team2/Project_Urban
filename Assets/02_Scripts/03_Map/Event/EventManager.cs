@@ -51,11 +51,11 @@ public class EventManager : Singleton<EventManager>
     public EventInfo GetRandomEvent()
     {
         var filteredList = eventData.EventInfos.Where(info => !info.isExecuted).ToList();
-        
+
         if (filteredList.Count == 0)    
             Debug.Log("Event All End");
 
-        EventInfo eventInfo = filteredList[Random.Range(0, filteredList.Count())];
+        EventInfo eventInfo = filteredList[Random.Range(0, filteredList.Count)];
         eventInfo.isExecuted = true;
 
         return eventInfo;
@@ -65,7 +65,5 @@ public class EventManager : Singleton<EventManager>
     public EventScript GetEventScript(int scriptCode) => eventData.GetEventScript(scriptCode);
     public EventChoice GetEventChoice(int choiceCode) => eventData.GetEventChoice(choiceCode);
     public EventReward GetEventReward(int resultCode) => eventData.GetEventReward(resultCode);
-    public EventResult GetEventResult(int scriptCode) => eventData.GetEventResult(scriptCode);
-    public RangeCardPool GetRangeCardPool(int poolCode) => eventData.GetRangeCardPool(poolCode);
 
 }

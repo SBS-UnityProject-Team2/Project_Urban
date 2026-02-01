@@ -34,9 +34,9 @@ public class EventUI : MonoBehaviour
 
         currentEvent = EventManager.Instance.GetRandomEvent();
        
-        scriptUI.Init(currentEvent.scriptCode);
-        buttonsUI.Init(currentEvent.choiceCode1, currentEvent.choiceCode2, currentEvent.choiceCode3);
+        scriptUI.Init();
+        buttonsUI.Init(currentEvent.choiceCodes, scriptCode => scriptUI.StartEventScript(scriptCode));
 
-        scriptUI.StartScript(() => buttonsUI.gameObject.SetActive(true));
+        scriptUI.StartEventScript(currentEvent.scriptCode, () => buttonsUI.gameObject.SetActive(true));
     }
 }

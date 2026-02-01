@@ -154,7 +154,7 @@ MonoBehaviour:
   element: 0
   damageModifier: 0.3
   healthView: {fileID: 4295513656600534293}
-  statusView: {fileID: 8807641481171200110}
+  statusView: {fileID: 5172393308180328381}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7364824574065589506, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -306,6 +310,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fb4b2f62a299643afe91e1faa6ac89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthView
+--- !u!114 &5172393308180328381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 205549404592798413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusView
 --- !u!114 &8296309700260891106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
@@ -317,14 +332,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextActionView
---- !u!114 &8807641481171200110 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8710319411703026339, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 205549404592798413}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView

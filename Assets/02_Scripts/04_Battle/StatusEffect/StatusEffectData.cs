@@ -53,6 +53,7 @@ public class StatusEffectData : ScriptableObject
                     buffIcon = AssetDatabase.LoadAssetAtPath<Sprite>(iconPath)  
                 };
 
+                ColorUtility.TryParseHtmlString(jsonEffect.color, out dataEntry.color);
                 statusEffects.Add(dataEntry);
             }            
         }
@@ -84,6 +85,7 @@ public class JsonStatusEffectData
     public string koreanName;
     public string description;
     public string buffIcon;
+    public string color;
 }
 
 [Serializable]
@@ -93,4 +95,5 @@ public class StatusEffectDataEntry
     public string koreanName;
     public string description;
     public Sprite buffIcon;
+    public Color color;
 }

@@ -154,7 +154,7 @@ MonoBehaviour:
   element: 0
   damageModifier: 0.3
   healthView: {fileID: 517075931043821055}
-  statusView: {fileID: 5083077970150719620}
+  statusView: {fileID: 8897344262840305495}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -170,7 +170,7 @@ MonoBehaviour:
   selectedArrow: {fileID: 898606208095318924}
   nextActionText: {fileID: 5734162663947854088}
   score: 2
-  maxHp: 1
+  maxHp: 50
   actionPattern: 04000000010000000100000002000000
   enemyActions:
   - {fileID: 11400000, guid: 14b00dba748400a48a90cff96a819b67, type: 2}
@@ -276,6 +276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7364824574065589506, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7409127296539475192, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -312,17 +316,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 4497966969001939495}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5083077970150719620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8710319411703026339, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 4497966969001939495}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
 --- !u!114 &5734162663947854088 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
@@ -334,3 +327,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextActionView
+--- !u!114 &8897344262840305495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 4497966969001939495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusView

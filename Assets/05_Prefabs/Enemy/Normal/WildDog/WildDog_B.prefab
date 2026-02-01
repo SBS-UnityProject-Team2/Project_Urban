@@ -108,7 +108,7 @@ MonoBehaviour:
   element: 0
   damageModifier: 0.3
   healthView: {fileID: 7787114744297251408}
-  statusView: {fileID: 3294064476293994283}
+  statusView: {fileID: 0}
   OnTurnStart:
     m_PersistentCalls:
       m_Calls: []
@@ -124,7 +124,7 @@ MonoBehaviour:
   selectedArrow: {fileID: 7441103125067686947}
   nextActionText: {fileID: 2643525862487848615}
   score: 1
-  maxHp: 1
+  maxHp: 50
   actionPattern: 0100000003000000
   enemyActions:
   - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
@@ -297,17 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextActionView
---- !u!114 &3294064476293994283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8710319411703026339, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 6149554701370328456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
 --- !u!224 &6289654640347625746 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
