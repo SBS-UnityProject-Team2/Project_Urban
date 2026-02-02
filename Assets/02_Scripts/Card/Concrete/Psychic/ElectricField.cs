@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ElectricField : BuffCard
@@ -6,11 +7,9 @@ public class ElectricField : BuffCard
 
     public override CardName Name => CardName.ElectricField;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        // 1. Player에 만들어둔 활성화 함수 호출
-        player.ElectricVeil(damage); 
-
-        return curCost;
+        yield return PlayEffect(target);
+        user.ElectricVeil(damage);
     }
 }

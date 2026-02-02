@@ -66,91 +66,48 @@ abstract public class Card : MonoBehaviour
     /// </summary>
     protected IEnumerator PlayEffect(Target target)
     {
-        Debug.Log($"[Card.PlayEffect] 시작 - 카드: {cardData?.cardName}, effectTypes.Count: {effectTypes?.Count}");
-        
         if (effectTypes == null || effectTypes.Count == 0)
-        {
-           //Debug.LogWarning($"[Card.PlayEffect] effectTypes가 비어있음");
-            return;
-        }
-        
+            yield break;
+
+        Enemy targetEnemy = target as Enemy;
+        if (targetEnemy == null)
+            yield break;
+
+        float maxDuration = 0f;
+
+        // 모든 effectType을 동시에 시작
         foreach (EffectType effectType in effectTypes)
         {
-            Debug.Log($"[Card.PlayEffect] effectType: {effectType}");
-            
-            if (EffectManager.Instance == null)
-            {
-                Debug.LogError("[Card.PlayEffect] EffectManager.Instance가 NULL입니다!");
-                continue;
-            }
-            
             EffectDataEntry effectData = EffectManager.Instance.GetEffectData(effectType);
             if (effectData == null)
-            {
-                Debug.LogWarning($"[Card.PlayEffect] effectData가 NULL - effectType: {effectType}");
                 continue;
-            }
-            
-            if (effectData.effectPrefab == null)
-            {
-                Debug.LogWarning($"[Card.PlayEffect] effectPrefab이 NULL - effectType: {effectType}");
-                continue;
-            }
-            
-            Debug.Log($"[Card.PlayEffect] 이펙트 생성 시작 - Prefab: {effectData.effectPrefab.name}");
-            
-            int[,] patternArray = effectData.effectPattern?.ToArray();
-            if (patternArray != null)
-            {
-                Debug.Log($"[Card.PlayEffect] effectPattern 크기: {patternArray.GetLength(0)}행 x {patternArray.GetLength(1)}열");
-                for (int i = 0; i < patternArray.GetLength(0); i++)
-                {
-                    string row = "";
-                    for (int j = 0; j < patternArray.GetLength(1); j++)
-                    {
-                        row += patternArray[i, j] + " ";
-                    }
-                    Debug.Log($"[Card.PlayEffect] 패턴[{i}행]: {row}");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("[Card.PlayEffect] effectPattern이 NULL!");
-            }
-            
-            if (effectData.effectDuration != null)
-            {
-                Debug.Log($"[Card.PlayEffect] effectDuration: [{string.Join(", ", effectData.effectDuration)}]");
-            }
-            else
-            {
-                Debug.LogWarning("[Card.PlayEffect] effectDuration이 NULL!");
-            }
-            
-            /*
-                반복문 예시
-                pattern = [4, 9], [1, 3], [2, 5]일경우,
 
-                [1번 루프]
+            int[,] patternArray = effectData.effectPattern.ToArray();
+            int colCount = patternArray.GetLength(1);
+            
+            // 이 effectType의 총 duration 계산
+            float totalDuration = 0f;
+            for (int i = 0; i < effectData.effectDuration.Length; i++)
+            {
+                totalDuration += effectData.effectDuration[i];
+            }
+            
+            // 가장 오래 걸리는 duration 기억
+            if (totalDuration > maxDuration)
+                maxDuration = totalDuration;
+            
+            // 각 column마다 EffectControl 생성 (모두 동시에 시작)
+            for (int colIdx = 0; colIdx < colCount; colIdx++)
+            {
                 EffectControl effectControl = Instantiate(effectData.effectPrefab);
-                effectControl.Play(patternArray, effectData.effectDuration, target as Enemy, 0) <- idx 입력
-                -> 4, 1, 2로 이동하는 이펙트 [0, 0], [1, 0], [2, 0]
-
-                [2번 루프]
-                EffectControl effectControl = Instantiate(effectData.effectPrefab);
-                effectControl.Play(patternArray, effectData.effectDuration, target as Enemy, 1) <- idx 입력
-                -> 9, 3, 5로 이동하는 이펙트 [0, 1], [1, 1], [2, 1]
-
-                
-            */
-            EffectControl effectControl = Instantiate(effectData.effectPrefab);
-            effectControl.Play(patternArray, effectData.effectDuration, target as Enemy); 
-
-            yield return new WaitForSeconds(effectData.effectDuration 합계);
+                effectControl.Play(patternArray, effectData.effectDuration, targetEnemy, colIdx);
+            }
         }
-    }
-    // public Transform EffectSpawnPosition => effectSpawnPosition;
 
+        // 모든 이펙트 중 가장 오래 걸리는 것까지 대기
+        if (maxDuration > 0f)
+            yield return new WaitForSeconds(maxDuration);
+    }
     public bool IsDiscardSelect
     {
         get => isDiscardSelect;
@@ -239,6 +196,7 @@ abstract public class Card : MonoBehaviour
     private void OnMouseDown()
     {
         if (moveCoroutine != null || isDiscardSelect) return;
+        Debug.Log($"[Card.OnMouseDown] Clicked card: {Name}");
         BattleManager.Instance.Player.OnCardClick(this);
     }
 
@@ -315,18 +273,21 @@ abstract public class Card : MonoBehaviour
 
     public int Use(Player user, Target target)
     {
-        StartCoroutine(InternalUseRoutine(user, target));
-
+        user.StartCoroutine(InternalUseRoutine(user, target));
         return Cost;
     }
 
     private IEnumerator InternalUseRoutine(Player user, Target target)
     {
         BattleManager.Instance.Pause();
-
-        yield return UseRoutine(user, target);
-
-        BattleManager.Instance.Restart();
+        try
+        {
+            yield return UseRoutine(user, target);
+        }
+        finally
+        {
+            BattleManager.Instance.Restart();
+        }
     }
 
     abstract protected IEnumerator UseRoutine(Player user, Target target);

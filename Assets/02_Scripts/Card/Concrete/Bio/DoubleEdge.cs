@@ -1,15 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class DoubleEdge : Attack
-{    [SerializeField] private int selfDamage;   // 반동 데미지
+{    
+    [SerializeField] private int selfDamage;
 
     public override CardName Name => CardName.DoubleEdge;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        target.Damage(player, damage, Element.Bio);
-        player.Damage(player, selfDamage, Element.Bio);
-
-        return curCost;
+        yield return PlayEffect(target);
+        target.Damage(user, damage, Element.Bio);
+        user.Damage(user, selfDamage, Element.Bio);
     }
 }

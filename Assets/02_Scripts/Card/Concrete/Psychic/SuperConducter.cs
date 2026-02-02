@@ -1,16 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class SuperConducter : BuffCard
 {     
     public override CardName Name => CardName.SuperConducter;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-
+        yield return PlayEffect(target);
         target.Nullification(turns);
-        player.Frozen(turns);
-        player.KineticVeil(turns);
-        
-        return curCost;
+        user.Frozen(turns);
+        user.KineticVeil(turns);
     }
 }

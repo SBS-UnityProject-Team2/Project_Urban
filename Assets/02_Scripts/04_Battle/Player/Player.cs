@@ -120,9 +120,12 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public bool IsEnable()
     {
-        if (BattleManager.Instance.IsBattleEnded) return false;
-        if (BattleManager.Instance.IsBattlePause) return false;
-        if (!BattleManager.Instance.IsPlayerTurn) return false;
+        if (BattleManager.Instance.IsBattleEnded)
+            return false;
+        if (BattleManager.Instance.IsBattlePause)
+            return false;
+        if (!BattleManager.Instance.IsPlayerTurn)
+            return false;
 
         return true;
     }
@@ -140,6 +143,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void OnCardClick(Card card)
     {
+        Debug.Log($"[Player.OnCardClick] Received click: {card.Name}");
         stateMachine.CurrentState?.OnCardClick(this, card);
     }
 

@@ -1,28 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnergyNeedle : Attack
 {
-    [SerializeField] private int costGain = 1;   // 기본 코스트회복량
+    [SerializeField] private int costGain = 1;
 
     public override CardName Name => CardName.EnergyNeedle;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        // 1. 적에게 데미지 입히기
-        target.Damage(player, damage, Element.Psychic);
-
-        // 2. 코스트 회복량 계산
+        yield return PlayEffect(target);
+        
+        target.Damage(user, damage, Element.Psychic);
+        
         int finalGain = costGain;
-
-        // 현재코스트 0인지 확인
-        if (player.Cost.CurrentCost - curCost == 0)
+        if (user.Cost.CurrentCost - curCost == 0)
         {
-            finalGain += 1; // 조건 만족 시 1 추가
+            finalGain += 1;
         }
-
-        // 3. 코스트 회복 적용
-        player.Cost.Increase(finalGain);
-
-        return curCost;
+        
+        user.Cost.Increase(finalGain);
     }
 }

@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+
 public class CellChange : BuffCard
 {
     [SerializeField] private int maxDiscard = 2; 
@@ -7,10 +9,9 @@ public class CellChange : BuffCard
 
     public override CardName Name => CardName.CellChange;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        player.DiscardCard(maxDiscard, maxDiscard, _ => player.DrawCard(drawCount));
-
-        return curCost;
+        yield return PlayEffect(target);
+        user.DiscardCard(maxDiscard, maxDiscard, _ => user.DrawCard(drawCount));
     }
 }

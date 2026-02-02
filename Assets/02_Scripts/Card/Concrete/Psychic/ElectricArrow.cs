@@ -1,28 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class ElectricArrow : Attack
 {
-    [SerializeField] private int drawCount = 1;       // 기본 드로우 수
+    [SerializeField] private int drawCount = 1;
 
     public override CardName Name => CardName.ElectricArrow;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        // 1. 적에게 데미지 주기
-        target.Damage(player, damage, Element.Psychic);
-
-        // 2. 드로우 로직 수행
+        yield return PlayEffect(target);
+        
+        target.Damage(user, damage, Element.Psychic);
+        
         int finalDrawCount = drawCount;
-
-        // 적이 빙결(Frozen) 상태인지 확인
         if (target.Status.Frozen.IsActive)
         {
-            finalDrawCount++; // 1 추가
+            finalDrawCount++;
         }
-
-        // 계산된 수만큼 드로우
-        player.DrawCard(finalDrawCount);
-
-        return curCost;
+        
+        user.DrawCard(finalDrawCount);
     }
 }

@@ -1,21 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 public class Plague : Attack
 {
-    [SerializeField] private int damagePerCard = 6; // 버린 카드 1장당 입힐 데미지
+    [SerializeField] private int damagePerCard = 6;
     [SerializeField] private int minDiscard = 0;
-    [SerializeField] private int maxDiscard = 3;    // 최대 버릴 수 있는 카드 수
+    [SerializeField] private int maxDiscard = 3;
 
     public override CardName Name => CardName.Plague;
 
-    public override int Use(Player player, Target target)
+    protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        player.DiscardCard(minDiscard, maxDiscard, count =>
+        yield return PlayEffect(target);
+        
+        user.DiscardCard(minDiscard, maxDiscard, count =>
         {
             int totalDamage = count * damagePerCard;
-            target.Damage(player, totalDamage, Element.Bio);
+            target.Damage(user, totalDamage, Element.Bio);
         });
-
-        return curCost;
     }
 }
