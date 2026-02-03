@@ -4757,6 +4757,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatusView
   content: {fileID: 5429065977907728772}
   statusEffectUIPrefab: {fileID: 4910157300566933677, guid: 75cfa60f6c8551541aaf4d7a7a9cbd79, type: 3}
+  descContent: {fileID: 0}
+  descPanelPrefab: {fileID: 0}
 --- !u!1 &1463789807
 GameObject:
   m_ObjectHideFlags: 0

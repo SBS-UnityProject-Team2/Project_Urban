@@ -10,13 +10,13 @@ public class Plague : Attack
     public override CardName Name => CardName.Plague;
 
     protected override IEnumerator UseRoutine(Player user, Target target)
-    {
+    {       
         yield return PlayEffect(target);
-        
         user.DiscardCard(minDiscard, maxDiscard, count =>
         {
             int totalDamage = count * damagePerCard;
             target.Damage(user, totalDamage, Element.Bio);
         });
+        
     }
 }

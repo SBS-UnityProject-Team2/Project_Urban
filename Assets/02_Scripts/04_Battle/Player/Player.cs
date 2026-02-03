@@ -110,6 +110,10 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete)
     {
         discardPanelUI.OpenPanel(minCount, maxCount);
+        discardPanelUI.OnConfirm.AddListener(cards =>
+        {
+            onComplete?.Invoke(cards.Count);
+        });
         stateMachine.ChangeToDiscard(discardPanelUI);
     }
 

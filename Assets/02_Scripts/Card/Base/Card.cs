@@ -66,6 +66,7 @@ abstract public class Card : MonoBehaviour
     /// </summary>
     protected IEnumerator PlayEffect(Target target)
     {
+        if (Debug.isDebugBuild)
         if (effectTypes == null || effectTypes.Count == 0)
             yield break;
 
@@ -73,28 +74,21 @@ abstract public class Card : MonoBehaviour
         if (targetEnemy == null)
             yield break;
 
-        float maxDuration = 0f;
+        float playDelay = cardData?.effectDelay ?? 0f;
 
-        // 모든 effectType을 동시에 시작
-        foreach (EffectType effectType in effectTypes)
+        // effectType 순서대로 실행 (딜레이가 0이면 사실상 동시에 시작)
+        for (int effectIndex = 0; effectIndex < effectTypes.Count; effectIndex++)
         {
+            if (playDelay > 0f && effectIndex > 0)
+                yield return new WaitForSeconds(playDelay);
+
+            EffectType effectType = effectTypes[effectIndex];
             EffectDataEntry effectData = EffectManager.Instance.GetEffectData(effectType);
             if (effectData == null)
                 continue;
 
-            int[,] patternArray = effectData.effectPattern.ToArray();
+            int[,] patternArray = effectData.effectPattern;
             int colCount = patternArray.GetLength(1);
-            
-            // 이 effectType의 총 duration 계산
-            float totalDuration = 0f;
-            for (int i = 0; i < effectData.effectDuration.Length; i++)
-            {
-                totalDuration += effectData.effectDuration[i];
-            }
-            
-            // 가장 오래 걸리는 duration 기억
-            if (totalDuration > maxDuration)
-                maxDuration = totalDuration;
             
             // 각 column마다 EffectControl 생성 (모두 동시에 시작)
             for (int colIdx = 0; colIdx < colCount; colIdx++)
@@ -102,11 +96,18 @@ abstract public class Card : MonoBehaviour
                 EffectControl effectControl = Instantiate(effectData.effectPrefab);
                 effectControl.Play(patternArray, effectData.effectDuration, targetEnemy, colIdx);
             }
+            
+            // 이펙트 재생 시간만큼 대기
+            float totalEffectTime = 0f;
+            if (effectData.effectDuration != null && effectData.effectDuration.Length > 0)
+            {
+                foreach (float duration in effectData.effectDuration)
+                    totalEffectTime += duration;
+            }
+            
+            if (totalEffectTime > 0f)
+                yield return new WaitForSeconds(totalEffectTime);
         }
-
-        // 모든 이펙트 중 가장 오래 걸리는 것까지 대기
-        if (maxDuration > 0f)
-            yield return new WaitForSeconds(maxDuration);
     }
     public bool IsDiscardSelect
     {

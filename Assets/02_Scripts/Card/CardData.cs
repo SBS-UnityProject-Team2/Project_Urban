@@ -156,6 +156,7 @@
                         price = jsonCard.price,
                         cost = jsonCard.cost,
                         isMachineArmActive = jsonCard.machineArm,
+                        effectDelay = jsonCard.effectDelay,
                     };
 
                     // EffectType 할당 (쉼표로 구분된 여러 타입 지원)
@@ -234,6 +235,7 @@
                             price = jsonCard.price,
                             cost = jsonCard.cost,
                             isMachineArmActive = jsonCard.machineArm,
+                            effectDelay = jsonCard.effectDelay, 
                         };
 
                         // EffectType 할당 (쉼표로 구분된 여러 타입 지원)
@@ -336,6 +338,7 @@
         public string cardCost;
         public bool machineArm;
         public string effectType;              // 이펙트 타입 번호 ("21" 또는 "1,8" 형식)
+        public float effectDelay;
     }
     #endif
 
@@ -356,4 +359,5 @@
         // 이펙트 관련
         public List<EffectType> effectTypes = new();  // 여러 이펙트 타입 지원
         public bool isMachineArmActive;            // 기계팔 이펙트 사용 여부
+        public float effectDelay;                  // 이펙트 재생 딜레이
     }

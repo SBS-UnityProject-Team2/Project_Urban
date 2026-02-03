@@ -9,24 +9,20 @@ public class Backdraft : Attack
 
     protected override IEnumerator UseRoutine(Player user, Target target)
     {
-        for (int i = 0; i < target.Status.Burn.Count; i++)
+        // 기본 1회: 이펙트 + 전체 데미지
+        //yield return PlayEffect(target);
+        //EnemyManager.Instance.DamageAll(damage, Element.Ruin);
+        
+        // 타겟의 Burn 수만큼 추가 반복
+        int repeatCount = target.Status.Burn.Count;
+        for (int i = 0; i < repeatCount + 1; i++)
         {
-            EnemyManager.Instance.DamageAll(damage, Element.Ruin);
             yield return PlayEffect(target);
+            EnemyManager.Instance.DamageAll(damage, Element.Ruin);
         }
 
-        EnemyManager.Instance.ApplyAll(enemy => enemy.Burn(burnCount));
+        // 자신과 타겟에게 화상 부여
         user.Burn(burnCount);
+        target.Burn(burnCount);
     }
-
-    // public override int Use(Player player, Target target)
-    // {
-    //     for (int i = 0; i < target.Status.Burn.Count; i++)
-    //         EnemyManager.Instance.DamageAll(damage, Element.Ruin);
-
-    //     EnemyManager.Instance.ApplyAll(enemy => enemy.Burn(burnCount));
-    //     player.Burn(burnCount);
-
-    //     return curCost;
-    // }
 }
