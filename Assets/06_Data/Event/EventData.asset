@@ -317,9 +317,8 @@ MonoBehaviour:
     npcDialogue:
     - "<color=#F54E3B>\uC785\uB9CC \uC0B4\uC558\uAD70. \uC57D\uD574\uBE60\uC9C4 \uAC83\uB4E4\uC774\uB780...</color>"
     - "<color=#3FA4F2>\uC6B0\uB9AC \uBCF5\uC2A4 \uAC94\uB9AC\uB2E4\uB294 \uB2F9\uC2E0\uB124\uB4E4\uACFC\uB294
-      \uB2E4\uB985\uB2C8\uB2E4. "
-    - "\uC9C0\uAE08\uB3C4 \uC704\uB300\uD55C \uBAA9\uC801\uC744 \uD5A5\uD574 \uAC00\uACE0
-      \uC788\uC9C0\uC694</color>"
+      \uB2E4\uB985\uB2C8\uB2E4. \uC9C0\uAE08\uB3C4 \uC704\uB300\uD55C \uBAA9\uC801\uC744
+      \uD5A5\uD574 \uAC00\uACE0 \uC788\uC9C0\uC694</color>"
     - "<color=#F54E3B>\uC704\uB300\uD55C \uBAA9\uC801? \uD558! \uADF8\uB798\uC11C
       \uC9C0\uAE08 \uB124 \uB188\uC774 \uAE38\uC744 \uAC00\uB85C\uB9C9\uACE0 \uC774\uB807\uAC8C
       \uC9C0\uAEC4\uC774\uB294 \uAC83\uB3C4 \uC704\uB300\uD55C \uBAA9\uC801\uC744
@@ -620,9 +619,9 @@ MonoBehaviour:
     hpPresent: 0
     hpMax: 0
     gold: 0
-    randomCard: 2
+    randomCard: 3
     selectCards: 
-    remove: 3
+    remove: 2
   - rewardCode: 10011
     hpPresent: -0.2
     hpMax: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P04_RegenCell", menuName = "Enemy/Actions/Protect/P04_RegenCell")]
+[CreateAssetMenu(fileName = "P04_RegenCell", menuName = "Enemy/Actions/Protect/P04_RegenCell", order = 4)]
 public class P04_RegenCell : EnemyAction
 {
     [SerializeField] private int protectPoint = 7;

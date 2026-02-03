@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
-  - component: {fileID: 44064602579077910}
   - component: {fileID: 40858045324469971}
+  - component: {fileID: 6757366120112470130}
   m_Layer: 7
   m_Name: Straggler_B
   m_TagString: Enemy
@@ -93,44 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &44064602579077910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856355108988666343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187aaf5b1ab96244fbfd83989d0a92c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Straggler
-  element: 0
-  damageModifier: 0.3
-  healthView: {fileID: 186204281352239796}
-  statusView: {fileID: 9133640244314867740}
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  selectedArrow: {fileID: 702842512860396743}
-  nextActionText: {fileID: 5344458363051060803}
-  score: 2
-  maxHp: 50
-  actionPattern: 02000000040000000100000001000000
-  enemyActions:
-  - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
-  - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
-  - {fileID: 11400000, guid: 9dd2391e30e3b5e4bb5e02b5e514855b, type: 2}
-  - {fileID: 11400000, guid: 73aec0e9f4503cb4aa6a874201c81380, type: 2}
 --- !u!61 &40858045324469971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,6 +139,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
+--- !u!114 &6757366120112470130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856355108988666343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 1000
+  damageModifier: 0.3
+  healthView: {fileID: 186204281352239796}
+  statusView: {fileID: 9133640244314867740}
+  OnTurnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  selectedArrow: {fileID: 702842512860396743}
+  nextActionView: {fileID: 8866773205609946996}
+  score: 2
+  maxHp: 51
+  enemyActions:
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: 9dd2391e30e3b5e4bb5e02b5e514855b, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: faab6781efc4cbe41930bf48d9aa39d0, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
+      - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
+      - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &4310929181121731948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,9 +324,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 4310929181121731948}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5344458363051060803 stripped
+--- !u!114 &8866773205609946996 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 4310929181121731948}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

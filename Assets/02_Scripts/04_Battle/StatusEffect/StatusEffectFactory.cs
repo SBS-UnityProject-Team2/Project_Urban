@@ -21,6 +21,7 @@ public static class StatusEffectFactory
             StatusEffectName.BioActiveShell => new BioActiveShell(owner),
             StatusEffectName.Regeneration => new Regeneration(owner),
             StatusEffectName.Spike => new Spike(owner),
+            StatusEffectName.Burst => new Burst(owner),
 
             // Buff - Only Player
             StatusEffectName.Acceleration => owner is Player player ? new Acceleration(player) : null,

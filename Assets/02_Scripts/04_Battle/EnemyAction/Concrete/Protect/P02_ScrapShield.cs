@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P02_ScrapShield", menuName = "Enemy/Actions/Protect/P02_ScrapShield")]
+[CreateAssetMenu(fileName = "P02_ScrapShield", menuName = "Enemy/Actions/Protect/P02_ScrapShield", order = 2)]
 public class P02_ScrapShield : EnemyAction
 {
     [SerializeField] private int protectPoint = 15;

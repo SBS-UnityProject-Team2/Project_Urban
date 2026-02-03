@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
   - component: {fileID: 5314808454944908567}
-  - component: {fileID: 6521158542269013999}
+  - component: {fileID: 674088960981387615}
   m_Layer: 7
   m_Name: ArmordRobber
   m_TagString: Enemy
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
---- !u!114 &6521158542269013999
+--- !u!114 &674088960981387615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856355108988666343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2460a1399efb848439ebe7bdfd52e02d, type: 3}
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ArmedRobber
-  element: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 1000
   damageModifier: 0.3
   healthView: {fileID: 986008482243637732}
   statusView: {fileID: 8213356101850547020}
@@ -168,17 +168,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   selectedArrow: {fileID: 502847596610025367}
-  nextActionText: {fileID: 4976990113579492627}
+  nextActionView: {fileID: 8374335701878723620}
   score: 3
-  maxHp: 50
-  actionPattern: 02000000010000000400000001000000
+  maxHp: 70
   enemyActions:
-  - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
-  - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
-  - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
-  - {fileID: 11400000, guid: a99fcc3a442735140af550e7a39080a3, type: 2}
-  - {fileID: 11400000, guid: 73aec0e9f4503cb4aa6a874201c81380, type: 2}
-  - {fileID: 11400000, guid: 2a88a8bed673e7841ad7c6a73c052bd6, type: 2}
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: a99fcc3a442735140af550e7a39080a3, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
+      - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: faab6781efc4cbe41930bf48d9aa39d0, type: 2}
+      - {fileID: 11400000, guid: 28ba019a5af19f249901e1ceaee9a1fc, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
+      - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &3812852942469273148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319,17 +327,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 3812852942469273148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4976990113579492627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 3812852942469273148}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
 --- !u!114 &8213356101850547020 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
@@ -341,3 +338,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusView
+--- !u!114 &8374335701878723620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 3812852942469273148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextActionView

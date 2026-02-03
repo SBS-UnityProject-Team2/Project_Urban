@@ -37,6 +37,7 @@ public class Status
     public ResourceTrade ResourceTrade => GetEffect<ResourceTrade>(StatusEffectName.ResourceTrade);
     public Spike Spike => GetEffect<Spike>(StatusEffectName.Spike);
     public ElasticVeil ElasticVeil => GetEffect<ElasticVeil>(StatusEffectName.ElasticVeil);
+    public Burst Burst => GetEffect<Burst>(StatusEffectName.Burst);
 
     // Debuff
     public Weaken Weaken => GetEffect<Weaken>(StatusEffectName.Weaken);

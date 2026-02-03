@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A19_Sludge", menuName = "Enemy/Actions/Attack/A19_Sludge")]
-public class A19_Sludge : EnemyAction
+[CreateAssetMenu(fileName = "A19_Sludge", menuName = "Enemy/Actions/Attack/A19_Sludge", order = 19)]
+public class A19_Sludge : AttackAction
 {
     [SerializeField] private int damage = 6;
     [SerializeField] private int count = 1;
@@ -9,6 +9,8 @@ public class A19_Sludge : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Bio;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

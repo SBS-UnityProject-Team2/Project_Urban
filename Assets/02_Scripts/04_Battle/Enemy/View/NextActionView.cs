@@ -1,18 +1,26 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(TMP_Text))]
 public class NextActionView : MonoBehaviour
 {
-    private TMP_Text nextActionText;
+    [SerializeField] private Image iconImage; 
+    [SerializeField] private TMP_Text damageText;
 
-    private void Awake()
+    public void UpdateNextAction(EnemyAction enemyAction)
     {
-        nextActionText = GetComponent<TMP_Text>();
-    }
+        iconImage.sprite = EnemyManager.Instance.GetActionIcon(enemyAction.Type);
 
-    public void SetNextActionText(string text)
-    {
-        nextActionText.text = text;
+        if ((enemyAction.Type & ActionType.Attack) != 0)
+        {
+            AttackAction attackAction = enemyAction as AttackAction;
+
+            damageText.gameObject.SetActive(true);
+            damageText.text = $"{attackAction.Damage} X {attackAction.Count}";
+        }
+        else
+        {
+            damageText.gameObject.SetActive(false); 
+        }
     }
 }

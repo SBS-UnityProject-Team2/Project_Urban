@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
-  - component: {fileID: 4908663920435200096}
   - component: {fileID: 5314808454944908567}
+  - component: {fileID: 7997027298868307000}
   m_Layer: 7
   m_Name: WildDog_B
   m_TagString: Enemy
@@ -93,44 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4908663920435200096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856355108988666343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e30bc2746509144987832ab6d40b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WildDog
-  element: 0
-  damageModifier: 0.3
-  healthView: {fileID: 7787114744297251408}
-  statusView: {fileID: 0}
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  selectedArrow: {fileID: 7441103125067686947}
-  nextActionText: {fileID: 2643525862487848615}
-  score: 1
-  maxHp: 50
-  actionPattern: 0100000003000000
-  enemyActions:
-  - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
-  - {fileID: 11400000, guid: 39b6d2351998b414d91bd491d6ee1ca3, type: 2}
-  - {fileID: 11400000, guid: 6866a875844c6bd499f43dd57687febe, type: 2}
-  - {fileID: 11400000, guid: cc4a2b97abe7fdc48a79850901115422, type: 2}
 --- !u!61 &5314808454944908567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,6 +139,46 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
+--- !u!114 &7997027298868307000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856355108988666343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 1000
+  damageModifier: 0.3
+  healthView: {fileID: 7787114744297251408}
+  statusView: {fileID: 1172573334940602616}
+  OnTurnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  selectedArrow: {fileID: 7441103125067686947}
+  nextActionView: {fileID: 1552052008691058576}
+  score: 1
+  maxHp: 18
+  enemyActions:
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: acf8696fb6707754c97628778a4f8b89, type: 2}
+      - {fileID: 11400000, guid: 39b6d2351998b414d91bd491d6ee1ca3, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 6866a875844c6bd499f43dd57687febe, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &6149554701370328456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7364824574065589506, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7409127296539475192, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -286,9 +292,20 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
---- !u!114 &2643525862487848615 stripped
+--- !u!114 &1172573334940602616 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 6149554701370328456}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusView
+--- !u!114 &1552052008691058576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 6149554701370328456}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

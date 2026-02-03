@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A28_Gravity", menuName = "Enemy/Actions/Attack/A28_Gravity")]
-public class A28_Gravity : EnemyAction
+[CreateAssetMenu(fileName = "A28_Gravity", menuName = "Enemy/Actions/Attack/A28_Gravity", order = 28)]
+public class A28_Gravity : AttackAction
 {
     [SerializeField] private int damage = 6;
     [SerializeField] private int count = 1;
@@ -10,6 +10,8 @@ public class A28_Gravity : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Psychic;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

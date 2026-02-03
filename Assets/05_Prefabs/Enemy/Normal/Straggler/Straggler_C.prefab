@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
-  - component: {fileID: 44064602579077910}
   - component: {fileID: 40858045324469971}
+  - component: {fileID: 9134445370993534649}
   m_Layer: 7
   m_Name: Straggler_C
   m_TagString: Enemy
@@ -93,44 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &44064602579077910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856355108988666343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187aaf5b1ab96244fbfd83989d0a92c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Straggler
-  element: 0
-  damageModifier: 0.3
-  healthView: {fileID: 8673798607949474890}
-  statusView: {fileID: 291387376849821410}
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnAttack:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  selectedArrow: {fileID: 8289716948529654329}
-  nextActionText: {fileID: 3522191761301911741}
-  score: 2
-  maxHp: 50
-  actionPattern: 01000000010000000400000002000000
-  enemyActions:
-  - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
-  - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
-  - {fileID: 11400000, guid: 9dd2391e30e3b5e4bb5e02b5e514855b, type: 2}
-  - {fileID: 11400000, guid: 73aec0e9f4503cb4aa6a874201c81380, type: 2}
 --- !u!61 &40858045324469971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,6 +139,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
+--- !u!114 &9134445370993534649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856355108988666343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 1000
+  damageModifier: 0.3
+  healthView: {fileID: 8673798607949474890}
+  statusView: {fileID: 291387376849821410}
+  OnTurnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTurnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  selectedArrow: {fileID: 8289716948529654329}
+  nextActionView: {fileID: 128099078497503626}
+  score: 2
+  maxHp: 53
+  enemyActions:
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: faab6781efc4cbe41930bf48d9aa39d0, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 9dd2391e30e3b5e4bb5e02b5e514855b, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &4690918001016523666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -290,6 +297,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+--- !u!114 &128099078497503626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 4690918001016523666}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
 --- !u!114 &291387376849821410 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
@@ -301,17 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusView
---- !u!114 &3522191761301911741 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 4690918001016523666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
 --- !u!224 &4830024737698543368 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}

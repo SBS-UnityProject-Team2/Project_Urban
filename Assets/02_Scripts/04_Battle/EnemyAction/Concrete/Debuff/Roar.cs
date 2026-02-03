@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "D0_Roar", menuName = "Enemy/Actions/Debuff/D0_Roar")]
+[CreateAssetMenu(fileName = "D2_Roar", menuName = "Enemy/Actions/Debuff/D2_Roar", order = 2)]
 public class Roar : EnemyAction
 {
     [SerializeField] private int weakenPoint;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P08_DefensiveVapor", menuName = "Enemy/Actions/Protect/P08_DefensiveVapor")]
+[CreateAssetMenu(fileName = "P08_DefensiveVapor", menuName = "Enemy/Actions/Protect/P08_DefensiveVapor", order = 8)]
 public class P08_DefensiveVapor : EnemyAction
 {
     [SerializeField] private int protectPoint = 10;

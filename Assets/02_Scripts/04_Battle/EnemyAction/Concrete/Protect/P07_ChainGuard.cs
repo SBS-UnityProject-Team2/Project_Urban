@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P07_ChainGuard", menuName = "Enemy/Actions/Protect/P07_ChainGuard")]
+[CreateAssetMenu(fileName = "P07_ChainGuard", menuName = "Enemy/Actions/Protect/P07_ChainGuard", order = 7)]
 public class P07_ChainGuard : EnemyAction
 {
     [SerializeField] private int protectPoint = 14;

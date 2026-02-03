@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P05_Barrier", menuName = "Enemy/Actions/Protect/P05_Barrier")]
+[CreateAssetMenu(fileName = "P05_Barrier", menuName = "Enemy/Actions/Protect/P05_Barrier", order = 5)]
 public class P05_Barrier : EnemyAction
 {
     [SerializeField] private int protectPoint = 12;

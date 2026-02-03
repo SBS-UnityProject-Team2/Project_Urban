@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
   - component: {fileID: 40858045324469971}
-  - component: {fileID: 5649960004841327185}
+  - component: {fileID: 575432376302017856}
   m_Layer: 7
   m_Name: PowerDevotee
   m_TagString: Enemy
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
---- !u!114 &5649960004841327185
+--- !u!114 &575432376302017856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856355108988666343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdbabcb135f4dde45b5ce80341ec2400, type: 3}
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PowerDevotee
-  element: 100
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 2000
   damageModifier: 0.3
   healthView: {fileID: 8228438191578878440}
   statusView: {fileID: 1037510537398756160}
@@ -168,16 +168,32 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   selectedArrow: {fileID: 8747169927740200859}
-  nextActionText: {fileID: 4219762549148550431}
+  nextActionView: {fileID: 840436444667065384}
   score: 5
-  maxHp: 20
-  actionPattern: 0800000001000000010000000200000004000000010000000100000002000000
+  maxHp: 109
   enemyActions:
-  - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
-  - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
-  - {fileID: 11400000, guid: dd74ee94e9ce7004ebb7ab1cd5b869ce, type: 2}
-  - {fileID: 11400000, guid: 6b6416c55583d8b42b5618e540fc914e, type: 2}
-  - {fileID: 11400000, guid: d0475a32435983743a0a601b9a2ec1d9, type: 2}
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: d0475a32435983743a0a601b9a2ec1d9, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: dd74ee94e9ce7004ebb7ab1cd5b869ce, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 96da8de88e69a5546aabf509778ac31c, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
+      - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: dd74ee94e9ce7004ebb7ab1cd5b869ce, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &5438008594360006192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,6 +307,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+--- !u!114 &840436444667065384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 5438008594360006192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
 --- !u!114 &1037510537398756160 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4977122275724219760, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
@@ -302,17 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusView
---- !u!114 &4219762549148550431 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
-  m_PrefabInstance: {fileID: 5438008594360006192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c34bb2aa454e274d9358af93fdf3461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
 --- !u!224 &5289896642782481066 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}

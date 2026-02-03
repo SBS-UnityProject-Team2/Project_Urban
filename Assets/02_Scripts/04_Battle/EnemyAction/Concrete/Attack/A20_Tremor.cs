@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A20_Tremor", menuName = "Enemy/Actions/Attack/A20_Tremor")]
-public class A20_Tremor : EnemyAction
+[CreateAssetMenu(fileName = "A20_Tremor", menuName = "Enemy/Actions/Attack/A20_Tremor", order = 20)]
+public class A20_Tremor : AttackAction
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private int count = 1;
@@ -9,6 +9,8 @@ public class A20_Tremor : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.None;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

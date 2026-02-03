@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P03_HardenPill", menuName = "Enemy/Actions/Protect/P03_HardenPill")]
+[CreateAssetMenu(fileName = "P03_HardenPill", menuName = "Enemy/Actions/Protect/P03_HardenPill", order = 3)]
 public class P03_HardenPill : EnemyAction
 {
     [SerializeField] private int protectPoint = 8;

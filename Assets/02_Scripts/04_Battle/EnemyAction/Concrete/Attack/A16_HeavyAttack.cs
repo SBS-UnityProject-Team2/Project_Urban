@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A16_HeavyAttack", menuName = "Enemy/Actions/Attack/A16_HeavyAttack")]
-public class A16_HeavyAttack : EnemyAction
+[CreateAssetMenu(fileName = "A16_HeavyAttack", menuName = "Enemy/Actions/Attack/A16_HeavyAttack", order = 16)]
+public class A16_HeavyAttack : AttackAction
 {
     [SerializeField] private int damage = 22;
     [SerializeField] private int count = 1;
@@ -9,6 +9,8 @@ public class A16_HeavyAttack : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Ruin;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

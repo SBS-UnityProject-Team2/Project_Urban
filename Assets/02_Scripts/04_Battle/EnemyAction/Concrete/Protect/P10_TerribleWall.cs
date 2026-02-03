@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P10_TerribleWall", menuName = "Enemy/Actions/Protect/P10_TerribleWall")]
+[CreateAssetMenu(fileName = "P10_TerribleWall", menuName = "Enemy/Actions/Protect/P10_TerribleWall", order = 10)]
 public class P10_TerribleWall : EnemyAction
 {
     [SerializeField] private int protectPoint = 10;

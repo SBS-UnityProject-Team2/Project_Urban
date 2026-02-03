@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A29_Echoes", menuName = "Enemy/Actions/Attack/A29_Echoes")]
-public class A29_Echoes : EnemyAction
+[CreateAssetMenu(fileName = "A29_Echoes", menuName = "Enemy/Actions/Attack/A29_Echoes", order = 29)]
+public class A29_Echoes : AttackAction
 {
     [SerializeField] private int damage = 8;
     [SerializeField] private int count = 1;
@@ -10,6 +10,8 @@ public class A29_Echoes : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Psychic;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "A15_Swing", menuName = "Enemy/Actions/Attack/A15_Swing")]
-public class A15_Swing : EnemyAction
+[CreateAssetMenu(fileName = "A15_Swing", menuName = "Enemy/Actions/Attack/A15_Swing", order = 15)]
+public class A15_Swing : AttackAction
 {
     [SerializeField] private int damage = 15;
     [SerializeField] private int count = 1;
@@ -9,6 +9,8 @@ public class A15_Swing : EnemyAction
 
     public override ActionType Type => ActionType.Attack | ActionType.Debuff;
     public override Element Element => Element.Ruin;
+    public override int Damage => damage;
+    public override int Count => count;
 
     public override void Execute(Enemy enemy, Target target)
     {   

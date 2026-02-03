@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4690104006554611462}
   - component: {fileID: 5588093005596654495}
   - component: {fileID: 40858045324469971}
-  - component: {fileID: 3354438360438278702}
+  - component: {fileID: 9020367955565262627}
   m_Layer: 7
   m_Name: FrozenPriest
   m_TagString: Enemy
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 15, y: 15}
   m_EdgeRadius: 0
---- !u!114 &3354438360438278702
+--- !u!114 &9020367955565262627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856355108988666343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee00471077932144eb9b0e017aa882ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 70df47b7c00fcdf4b8beb9312bedff37, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FrozenPriest
-  element: 200
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  element: 3000
   damageModifier: 0.3
   healthView: {fileID: 5772019272044092478}
   statusView: {fileID: 3192742434770792086}
@@ -168,16 +168,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   selectedArrow: {fileID: 6579526742138657357}
-  nextActionText: {fileID: 1775693326998800585}
+  nextActionView: {fileID: 2991173539561257470}
   score: 5
-  maxHp: 20
-  actionPattern: 02000000080000000100000002000000040000000100000001000000
+  maxHp: 87
   enemyActions:
-  - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
-  - {fileID: 11400000, guid: 61a8b2f9c4411554d9c4aedfd995fb63, type: 2}
-  - {fileID: 11400000, guid: dd74ee94e9ce7004ebb7ab1cd5b869ce, type: 2}
-  - {fileID: 11400000, guid: 6b6416c55583d8b42b5618e540fc914e, type: 2}
-  - {fileID: 11400000, guid: d0475a32435983743a0a601b9a2ec1d9, type: 2}
+  - actionLists:
+    - enemyActions:
+      - {fileID: 11400000, guid: dc73411a7f7693043ad2b2fa3505b5ea, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: d0475a32435983743a0a601b9a2ec1d9, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: b6c74b8636b601d41aa52135d3e78355, type: 2}
+      - {fileID: 11400000, guid: 70bac9fbc5d5df741bb347e531573ae5, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: dc73411a7f7693043ad2b2fa3505b5ea, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: 28ba019a5af19f249901e1ceaee9a1fc, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: b6c74b8636b601d41aa52135d3e78355, type: 2}
+      - {fileID: 11400000, guid: 70bac9fbc5d5df741bb347e531573ae5, type: 2}
+    - enemyActions:
+      - {fileID: 11400000, guid: b6c74b8636b601d41aa52135d3e78355, type: 2}
+      - {fileID: 11400000, guid: 70bac9fbc5d5df741bb347e531573ae5, type: 2}
+  phaseChangeHp: 0
 --- !u!1001 &7592132201193274342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,9 +304,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
---- !u!114 &1775693326998800585 stripped
+--- !u!114 &2991173539561257470 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8212361952641839919, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4674283961574572568, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 7592132201193274342}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

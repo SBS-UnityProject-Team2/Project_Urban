@@ -1,1 +1,0 @@
-public class WildDog : Enemy {}

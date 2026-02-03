@@ -332,4 +332,9 @@ abstract public class Target : MonoBehaviour
     {
         status.Dizzy.Apply(turn);
     }
+
+    public void Burst(int count)
+    {
+        status.Burst.Active(count);
+    }
 }

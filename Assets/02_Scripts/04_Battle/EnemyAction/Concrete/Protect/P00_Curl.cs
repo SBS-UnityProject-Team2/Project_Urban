@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "P00_Curl", menuName = "Enemy/Actions/Protect/P00_Curl")]
+[CreateAssetMenu(fileName = "P00_Curl", menuName = "Enemy/Actions/Protect/P00_Curl", order = 0)]
 public class P00_Curl : EnemyAction
 {
     [SerializeField] private int protectPoint = 7;

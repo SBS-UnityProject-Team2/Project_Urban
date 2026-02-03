@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "D1_ArmorBreak", menuName = "Enemy/Actions/Debuff/D1_ArmorBreak")]
+[CreateAssetMenu(fileName = "D1_ArmorBreak", menuName = "Enemy/Actions/Debuff/D1_ArmorBreak", order = 1)]
 public class ArmorBreak : EnemyAction
 {
     [SerializeField] private int brokenPoint;

@@ -1,24 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-abstract public class Enemy : Target
+[Serializable]
+public class PatternList
+{
+    public List<ActionList> actionLists;
+}
+
+[Serializable]
+public class ActionList
+{
+    public List<EnemyAction> enemyActions;
+}
+
+public class Enemy : Target
 {   
     [Header("UI Settings")]
     [SerializeField] protected Image selectedArrow;
-    [SerializeField] protected NextActionView nextActionText;
+    [SerializeField] protected NextActionView nextActionView;
 
     [Header("Enemy Settings")]
     [SerializeField] protected int score;
     [SerializeField] protected int maxHp;
 
     [Header("Pattern Settings")]
-    [SerializeField] private List<ActionType> actionPattern = new();
-    [SerializeField] private List<EnemyAction> enemyActions = new();
+    [SerializeField] private List<PatternList> enemyActions = new();
+    [SerializeField] private int phaseChangeHp;
 
-    private readonly Dictionary<ActionType, List<EnemyAction>> actionMap = new();
     private int actionIdx = 0;
     private EnemyAction enemyAction;
     private Coroutine moveCoroutine;
@@ -27,18 +39,12 @@ abstract public class Enemy : Target
     public float RewardCoin => score * 0.1f;
     public int Score => score;
 
+    private int phase = 0;
+    private List<ActionList> curPattern;
+
     protected override void Awake()
     {   
         base.Awake();
-
-        // Action Pattern 초기화
-        foreach(EnemyAction action in enemyActions)
-        {
-            if (!actionMap.ContainsKey(action.Type))
-                actionMap[action.Type] = new List<EnemyAction>();
-
-            actionMap[action.Type].Add(action);
-        }
 
         Health = new HealthController(maxHp);
         OnTurnStart.AddListener(() => Health.ResetProtect());
@@ -52,26 +58,35 @@ abstract public class Enemy : Target
         healthView.Bind(Health);
         selectedArrow.enabled = false;
 
+        curPattern = enemyActions[phase].actionLists;
+
         SetNextEnemyAction();
     }
 
     protected void SetNextEnemyAction()
     {   
-        List<EnemyAction> actions = actionMap[actionPattern[actionIdx]];
-        enemyAction = actions[Random.Range(0, actions.Count)];
+        if (Health.CurrentHp <= phaseChangeHp)
+        {
+            phase++;
+            curPattern = enemyActions[phase].actionLists;
+        }
 
-        // UI 표시
-        nextActionText.SetNextActionText(enemyAction.ToString());
-        
-        actionIdx = (actionIdx + 1) % actionPattern.Count;
+        ActionList actionList = curPattern[actionIdx];
+        enemyAction = actionList.enemyActions[UnityEngine.Random.Range(0, actionList.enemyActions.Count)];
+        actionIdx = (actionIdx + 1) % curPattern.Count;
+
+        nextActionView.UpdateNextAction(enemyAction);
     }
 
     public void Action()
     {
-        if (enemyAction.Type == ActionType.Attack || enemyAction.Type == ActionType.Debuff)
-            enemyAction.Execute(this, BattleManager.Instance.Player);
-        else   
-            enemyAction.Execute(this, this);
+        bool isPlayerTarget = (enemyAction.Type & (ActionType.Attack | ActionType.Debuff)) != 0;
+        Target target = isPlayerTarget ? BattleManager.Instance.Player : this;
+
+        enemyAction.Execute(this, target);
+
+        if ((enemyAction.Type & ActionType.Attack) != 0)
+            OnAttack?.Invoke(this, target);
 
         SetNextEnemyAction();
     }
