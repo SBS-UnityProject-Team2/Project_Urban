@@ -1,7 +1,10 @@
 using System.Collections;
+using UnityEngine;
+
 
 public class KineticGrasp : Attack
 {
+    [SerializeField] GameObject HandKineticGrasp;
     public override CardName Name => CardName.KineticGrasp;
 
     protected override void Start()
@@ -30,7 +33,12 @@ public class KineticGrasp : Attack
 
     protected override IEnumerator UseRoutine(Player user, Target target)
     {
+        Transform handSpawnPoint = GameObject.Find("Panel_MachineArm").transform;
+        GameObject handEffect = Instantiate(HandKineticGrasp, handSpawnPoint.position, handSpawnPoint.rotation);
         yield return PlayEffect(target);
         target.Damage(user, damage, Element.Psychic);
+        
+        Destroy(handEffect);
     }
+    
 }

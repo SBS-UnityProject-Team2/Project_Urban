@@ -531,12 +531,14 @@ MonoBehaviour:
   initCost: 2
   isExtinct: 0
   isSpecial: 1
+  effectTypes: 
   cardTitle: {fileID: 2654786389302699832}
   cardDesc: {fileID: 2597096315428668656}
   cardCost: {fileID: 4010305996885519440}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 6
+  HandDistortedSlay: {fileID: 6997137609151331951, guid: 43475122e55cf84479a355c28af1ec2f, type: 3}
 --- !u!1 &7758189160335067560
 GameObject:
   m_ObjectHideFlags: 0
