@@ -29,7 +29,7 @@ public class EventInfo
     public int stage;
     public string eventName;
     public int scriptCode;
-    public int [] choiceCodes;
+    public int[] choiceCodes;
     public bool isExecuted;
 }
 #endregion
@@ -50,8 +50,8 @@ public class EventScript
 {
     public int scriptCode;
     public int eventCode;
-    public string [] playerScript;
-    public string [] npcDialogue;
+    public string[] playerScript;
+    public string[] npcDialogue;
     public Sprite illustration;
 }
 #endregion
@@ -86,7 +86,7 @@ public class EventChoice
 [Serializable]
 public class JsonEventReward
 {
-    public int resultCode;
+    public int rewardCode;
     public float hpPresent;
     public float hpMax;
     public int gold;
@@ -98,7 +98,7 @@ public class JsonEventReward
 [Serializable]
 public class EventReward
 {
-    public int resultCode;
+    public int rewardCode;
     public float hpPresent;
     public float hpMax;
     public int gold;
@@ -106,4 +106,19 @@ public class EventReward
     public CardName[] selectCards;
     public int remove;
 }
+#endregion
+
+#region Data
+public class EventRewardData
+{
+    public int earnHp;
+    public int earnCoin;
+    public int randomCard;
+    public CardName[] cards;
+    public int removeCard;
+    public int scriptCode;
+}
+
+
+
 #endregion

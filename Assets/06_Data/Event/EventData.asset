@@ -48,7 +48,7 @@ MonoBehaviour:
     stage: 1
     eventName: "\uAE30\uC774\uD55C \uC57D"
     scriptCode: 105
-    choiceCodes: f7030000f80300006b000000
+    choiceCodes: f7030000f8030000f9030000
     isExecuted: 0
   eventScripts:
   - scriptCode: 100
@@ -63,7 +63,7 @@ MonoBehaviour:
     npcDialogue:
     - "\"\uC7A0\uAE50, \uC790\uB124\u2026\u2026 \uB098\uC640 \uAC70\uB798 \uD558\uB098
       \uD558\uC9C0 \uC54A\uACA0\uB294\uAC00...\""
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 101
     eventCode: 11
     playerScript:
@@ -81,7 +81,7 @@ MonoBehaviour:
     npcDialogue:
     - "\"\uADF8\uB300, \uC2DC\uAC04\uC774 \uC788\uB2E4\uBA74\u2026 \uB0B4\uAC00 \uD558\uB294
       \uB9D0\uC744\u2026 \uB4E3\uACE0 \uAC00\uB77C\u2026\""
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 102
     eventCode: 12
     playerScript:
@@ -129,7 +129,7 @@ MonoBehaviour:
       \uB0AF\uBE5B. \uC815\uB9D0 \uB098\uB97C \uC54C\uC544\uBCF8 \uAC8C \uB9DE\uB098?"
     npcDialogue:
     - '"......."'
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 105
     eventCode: 15
     playerScript:
@@ -158,7 +158,7 @@ MonoBehaviour:
     npcDialogue:
     - "\uC751\uB2F9 \uAC70\uB798\uB294 \uC8FC\uACE0\uBC1B\uB294 \uAC83\uC774\uC9C0\u2026"
     - "\uC798 \uC4F0\uAC8C. \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uC790\uACE0."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 107
     eventCode: 10
     playerScript:
@@ -172,7 +172,7 @@ MonoBehaviour:
     npcDialogue:
     - "\uC751\uB2F9 \uAC70\uB798\uB294 \uC8FC\uACE0\uBC1B\uB294 \uAC83\uC774\uC9C0\u2026"
     - "\uC798 \uC4F0\uAC8C. \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uC790\uACE0."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 108
     eventCode: 10
     playerScript:
@@ -183,7 +183,7 @@ MonoBehaviour:
       \uC544\uC9C1 \uAC08 \uAE38\uC774 \uBA40\uB2E4."
     npcDialogue:
     - "\u2026 \uC790\uB124\uB294 \uC695\uC2EC\uC774 \uACFC\uD558\uAD70"
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 109
     eventCode: 11
     playerScript:
@@ -199,7 +199,7 @@ MonoBehaviour:
       \uC544\uB2C8\uB2E4. "
     - "\u2026\uBCF8\uAC70\uC9C0\uB97C \uCC3E\uC544\uAC00\uB77C. \uB2F9\uC2E0\uC774\uB77C\uBA74
       \uD30C\uD5E4\uCE60 \uC218 \uC788\uC744\uC9C0\uB3C4 \uBAA8\uB974\uC9C0."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 110
     eventCode: 11
     playerScript:
@@ -210,7 +210,7 @@ MonoBehaviour:
       \uAC8C \uC88B\uACA0\uB2E4."
     npcDialogue:
     - "\uC73D...... "
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 111
     eventCode: 11
     playerScript:
@@ -223,7 +223,7 @@ MonoBehaviour:
       \uD558\uB098\uAC00 \uB0A8\uC544\uC788\uC744 \uBFD0\uC774\uC5C8\uB2E4."
     npcDialogue:
     - "\uB4E4\uC740 \uCCB4\uB3C4...\uC548\uD558\uB294 \uAD70... \uADF8\uB7FC... \uC2E4\uB840\uD558\uACA0\uB124..."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 112
     eventCode: 12
     playerScript:
@@ -296,8 +296,8 @@ MonoBehaviour:
       \uC0C8\uB85C\uC6B4 \uD798\uC774 \uD53C\uC5B4\uB0AC\uB2E4. \uBB34\uC5B8\uAC00
       \uC783\uC740 \uB4EF\uD55C \uB290\uB08C\uACFC \uD568\uAED8."
     npcDialogue:
-    - "<color=#3FA4F2> \uC798 \uC544\uC2DC\uB294\uAD70\uC694. \uC774\uB984 \uBAA8\uB97C
-      \uB098\uADF8\uB124\uC5EC.</color> "
+    - "<color=#3FA4F2>\uC798 \uC544\uC2DC\uB294\uAD70\uC694. \uC774\uB984 \uBAA8\uB97C
+      \uB098\uADF8\uB124\uC5EC.</color>"
     - "<color=#F54E3B>\uD798\uC774\uC57C\uB9D0\uB85C \uBAA8\uB4E0 \uAC83\uC784\uC744
       \uBAA8\uB974\uB294\uAD70. \uB098\uC57D\uD55C \uAC83\uB4E4...</color>"
     illustration: {fileID: 0}
@@ -315,20 +315,19 @@ MonoBehaviour:
       \uBAA8\uB97C \uBD88\uCF8C\uAC10\uC744 \uB4A4\uB85C \uD55C \uCC44 \uC77C\uB2E8
       \uC790\uB9AC\uB97C \uB5B4\uB2E4."
     npcDialogue:
-    - "<color=#F54E3B>\uC785\uB9CC \uC0B4\uC558\uAD70. \uC57D\uD574\uBE60\uC9C4 \uAC83\uB4E4\uC774\uB780...</color> "
-    - "<color=#3FA4F2> \uC6B0\uB9AC \uBCF5\uC2A4 \uAC94\uB9AC\uB2E4\uB294 \uB2F9\uC2E0\uB124\uB4E4\uACFC\uB294
+    - "<color=#F54E3B>\uC785\uB9CC \uC0B4\uC558\uAD70. \uC57D\uD574\uBE60\uC9C4 \uAC83\uB4E4\uC774\uB780...</color>"
+    - "<color=#3FA4F2>\uC6B0\uB9AC \uBCF5\uC2A4 \uAC94\uB9AC\uB2E4\uB294 \uB2F9\uC2E0\uB124\uB4E4\uACFC\uB294
       \uB2E4\uB985\uB2C8\uB2E4. "
     - "\uC9C0\uAE08\uB3C4 \uC704\uB300\uD55C \uBAA9\uC801\uC744 \uD5A5\uD574 \uAC00\uACE0
       \uC788\uC9C0\uC694</color>"
     - "<color=#F54E3B>\uC704\uB300\uD55C \uBAA9\uC801? \uD558! \uADF8\uB798\uC11C
-      \uC9C0\uAE08 \uB124 \uB188\uC774 \uAE38\uC744 \uAC00\uB85C\uB9C9\uACE0 "
-    - "      \uC774\uB807\uAC8C \uC9C0\uAEC4\uC774\uB294 \uAC83\uB3C4 \uC704\uB300\uD55C
-      \uBAA9\uC801\uC744 \uC704\uD574\uC11C\uC778\uAC00? \"</color>"
-    - "<color=#3FA4F2> \uC77C\uAC1C \uD558\uAE09 \uC2E0\uC790\uAC00 \uBB34\uC5C7\uC744
-      \uC54C\uACA0\uC2B5\uB2C8\uAE4C. \uB2E4\uB9CC, "
-    - "\uADF8\uCABD\uC774\uB098 \uC800\uB098 \uBCF8\uB2F9\uC73C\uB85C \uAC00\uB294
-      \uAE38\uC740 \uD5C8\uB77D\uB418\uC9C0 \uC54A\uC558\uC9C0\uC694. "
-    - "\uADF8 \uC774\uC720\uB294 \uC54C\uACE0 \uACC4\uC2ED\uB2C8\uAE4C?</color>"
+      \uC9C0\uAE08 \uB124 \uB188\uC774 \uAE38\uC744 \uAC00\uB85C\uB9C9\uACE0 \uC774\uB807\uAC8C
+      \uC9C0\uAEC4\uC774\uB294 \uAC83\uB3C4 \uC704\uB300\uD55C \uBAA9\uC801\uC744
+      \uC704\uD574\uC11C\uC778\uAC00?</color>"
+    - "<color=#3FA4F2>\uC77C\uAC1C \uD558\uAE09 \uC2E0\uC790\uAC00 \uBB34\uC5C7\uC744
+      \uC54C\uACA0\uC2B5\uB2C8\uAE4C. \uB2E4\uB9CC, \uADF8\uCABD\uC774\uB098 \uC800\uB098
+      \uBCF8\uB2F9\uC73C\uB85C \uAC00\uB294 \uAE38\uC740 \uD5C8\uB77D\uB418\uC9C0
+      \uC54A\uC558\uC9C0\uC694. \uADF8 \uC774\uC720\uB294 \uC54C\uACE0 \uACC4\uC2ED\uB2C8\uAE4C?</color>"
     illustration: {fileID: 0}
   - scriptCode: 118
     eventCode: 14
@@ -343,7 +342,7 @@ MonoBehaviour:
       \uC790\uB77C\uB098\uB294 \uB290\uB08C\uC774 \uB4E0\uB2E4."
     npcDialogue:
     - "\uADF8\uC73C\uC73D, \uC73D, \uC624...\uC624\uC9C0\u2026 \uB9C8\u2026\u2026!"
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 119
     eventCode: 14
     playerScript:
@@ -357,7 +356,7 @@ MonoBehaviour:
       \uC88B\uACA0\uB2E4."
     npcDialogue:
     - "\uADF8\uC5B4\uC5B4\uC5B4..."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 120
     eventCode: 14
     playerScript:
@@ -370,7 +369,7 @@ MonoBehaviour:
       \uC54A\uAE30\uB85C \uD588\uB2E4."
     npcDialogue:
     - "\uADF8\uC5B4... \uC544\uD30C... \uC0B4\uACE0... \uC2F6..."
-    illustration: {fileID: 21300000, guid: 37ae475f7aa876b4db69d602640711ad, type: 3}
+    illustration: {fileID: 21300000, guid: 5971fda131ef51c488d0c33fbf56438b, type: 3}
   - scriptCode: 121
     eventCode: 15
     playerScript:
@@ -547,126 +546,126 @@ MonoBehaviour:
     rewardCode: 10017
     scriptCode: 123
   eventRewards:
-  - resultCode: 0
+  - rewardCode: 10000
     hpPresent: -0.1
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: d7070000be0b0000a70f0000
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10001
     hpPresent: 0
     hpMax: 0
     gold: -18
     randomCard: 0
     selectCards: e9030000eb030000ec030000
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10002
     hpPresent: 0
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10003
     hpPresent: 0
     hpMax: 0.13
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10004
     hpPresent: 0
     hpMax: 0
     gold: 18
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10005
     hpPresent: -0.1
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: f0030000
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10006
     hpPresent: 0
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: d2070000d8070000dc070000
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10007
     hpPresent: 0
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10008
     hpPresent: -0.1
     hpMax: 0
     gold: 32
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10009
     hpPresent: 0
     hpMax: 0
     gold: 0
-    randomCard: 3
+    randomCard: 2
     selectCards: 
-    remove: 2
-  - resultCode: 0
+    remove: 3
+  - rewardCode: 10010
     hpPresent: 0
+    hpMax: 0
+    gold: 0
+    randomCard: 2
+    selectCards: 
+    remove: 3
+  - rewardCode: 10011
+    hpPresent: -0.2
     hpMax: 0
     gold: 0
     randomCard: 4
     selectCards: 
-    remove: 3
-  - resultCode: 0
-    hpPresent: -0.2
-    hpMax: 0
-    gold: 0
-    randomCard: 5
-    selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10012
     hpPresent: 0
     hpMax: -0.1
     gold: 0
-    randomCard: 5
+    randomCard: 4
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10013
     hpPresent: -0.1
     hpMax: 0
     gold: 20
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10014
     hpPresent: 0
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10015
     hpPresent: 0
     hpMax: 0.16
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 5
-  - resultCode: 0
+  - rewardCode: 10016
     hpPresent: 0
     hpMax: 0
     gold: 0
     randomCard: 0
     selectCards: 
     remove: 0
-  - resultCode: 0
+  - rewardCode: 10017
     hpPresent: 0
     hpMax: 0
     gold: 0
