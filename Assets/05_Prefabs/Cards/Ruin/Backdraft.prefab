@@ -531,6 +531,7 @@ MonoBehaviour:
   initCost: 3
   isExtinct: 0
   isSpecial: 1
+  effectTypes: 
   cardTitle: {fileID: 8848045993063123046}
   cardDesc: {fileID: 7481433080428554963}
   cardCost: {fileID: 7236364188855510272}
@@ -538,6 +539,7 @@ MonoBehaviour:
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 6
   burnCount: 5
+  HandBackdraft: {fileID: 6997137609151331951, guid: f6eb3a4d2ae547346a45d1178d972264, type: 3}
 --- !u!1 &7372374631495351571
 GameObject:
   m_ObjectHideFlags: 0

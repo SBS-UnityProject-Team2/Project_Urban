@@ -395,12 +395,14 @@ MonoBehaviour:
   initCost: 4
   isExtinct: 0
   isSpecial: 0
+  effectTypes: 
   cardTitle: {fileID: 5130317781085875830}
   cardDesc: {fileID: 1196711842195997585}
   cardCost: {fileID: 1185629912615928016}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 24
+  HandKineticGrasp: {fileID: 6997137609151331951, guid: e47a98c36a26ce3459c5941a4f0d9da9, type: 3}
 --- !u!1 &7605677265237259364
 GameObject:
   m_ObjectHideFlags: 0

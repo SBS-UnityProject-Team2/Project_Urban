@@ -531,12 +531,14 @@ MonoBehaviour:
   initCost: 3
   isExtinct: 0
   isSpecial: 1
+  effectTypes: 
   cardTitle: {fileID: 3233429475745401682}
   cardDesc: {fileID: 110227493543166221}
   cardCost: {fileID: 4023570426349622508}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
   damage: 8
+  HandInferno: {fileID: 6997137609151331951, guid: a6321fcb6d9b8ab4c8539188c5423554, type: 3}
   damagePerCount: 8
 --- !u!1 &7424576288830946065
 GameObject:
