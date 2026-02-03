@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -69,5 +70,15 @@ public class DeckManager : Singleton<DeckManager>
     public int CardListSortCompare(Card card1, Card card2)
     {
         return ((int)card1.Name).CompareTo((int)card2.Name);
+    }
+
+    public Card GetRandomCard(Element element)
+    {   
+        if (element == Element.All)
+            return cardList[Random.Range(0, cardList.Count)];
+
+        List<Card> filteredList = cardList.Where(card => card.Element == element).ToList();
+
+        return filteredList[Random.Range(0, filteredList.Count)];
     }
 }

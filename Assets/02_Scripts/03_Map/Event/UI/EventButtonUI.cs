@@ -3,14 +3,14 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System.Text;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Button))]
 public class EventButtonUI : MonoBehaviour
 {
     [Header("UI Reference")]
-    [SerializeField] private TMP_Text choiceTitleText;
-    [SerializeField] private TMP_Text hoverRewardText;
-    [SerializeField] private Image buttonImage; // 배경 이미지
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text rewardText;
     
     // Component
     private Button button;
@@ -22,19 +22,42 @@ public class EventButtonUI : MonoBehaviour
     private int earnHp;
     private int earnCoin;
 
-    public void Init(int choiceCode)
+    public void Init()
     {
         button = GetComponent<Button>();
+        button.onClick.RemoveAllListeners();
+    }
+
+    public void SetChoice(int choiceCode, UnityAction<EventRewardData> handleClick)
+    {
         eventChoice = EventManager.Instance.GetEventChoice(choiceCode);
         eventReward = EventManager.Instance.GetEventReward(eventChoice.rewardCode);
 
         SetHpDelta(eventReward.hpPresent, eventReward.hpMax);
         SetCoinDelta(eventReward.gold);
 
-        choiceTitleText.text = eventChoice.choiceName;
-        hoverRewardText.text = BuildResultString();
+        titleText.text = eventChoice.choiceName;
+        rewardText.text = BuildResultString();
 
-        button.enabled = CheckCondition((ConditionType)eventChoice.choiceCondition);
+        button.enabled = CheckCondition(eventChoice.choiceCondition);
+        button.onClick.AddListener(() =>
+        {
+            PlayerManager.Instance.Health.IncreaseHp(earnHp);
+            handleClick?.Invoke(GetRewardData());
+        });
+    }
+
+    private EventRewardData GetRewardData()
+    {
+        return new()
+        {
+            earnHp = earnHp,
+            earnCoin = earnCoin,
+            randomCard = eventReward.randomCard,
+            removeCard = eventReward.remove,
+            cards = eventReward.selectCards,
+            scriptCode = eventChoice.scriptCode
+        };
     }
 
     private void SetHpDelta(float presentHpRatio, float maxHpRatio)
@@ -73,9 +96,9 @@ public class EventButtonUI : MonoBehaviour
             stringBuilder.Append($"금액 [{earnCoin}] {(earnCoin > 0 ? "획득" : "소실")}\n");
 
         if (eventReward.randomCard != 0)
-            stringBuilder.Append($"[{GetCardPoolName(eventReward.randomCard)}] 속성 카드 1개 획득\n");
+            stringBuilder.Append($"[{GetCardPoolName(eventReward.randomCard)}] 속성 카드 1개 랜덤 획득\n");
 
-        if (eventReward.selectCards != null)
+        if (eventReward.selectCards.Length != 0)
             stringBuilder.Append(BuildRangeCardString(eventReward.selectCards));
 
         if (eventReward.remove != 0)
@@ -91,11 +114,11 @@ public class EventButtonUI : MonoBehaviour
     {
         return randomCardPoolCode switch
         {
-            1 => "랜덤",
-            2 => "물리",
-            3 => "파괴",
-            4 => "사이킥",
-            5 => "생체",
+            1 => "물리",
+            2 => "파괴",
+            3 => "사이킥",
+            4 => "생체",
+            5 => "전체",
             _ => "",  
         };   
     }
@@ -132,39 +155,13 @@ public class EventButtonUI : MonoBehaviour
         return stringBuilder.ToString();
     }
 
-    private bool CheckCondition(ConditionType condition)
+    private bool CheckCondition(int condition)
     {
-        // 조건이 없으면 항상 활성화
-        if (condition == ConditionType.None) 
+        if (condition == 0) 
             return true;
 
-        // 조건 Enum → Element 변환
-        Element requiredElement = condition switch
-        {
-            ConditionType.RequireNone => Element.None,
-            ConditionType.RequireRuin => Element.Ruin,
-            ConditionType.RequirePsychic => Element.Psychic,
-            ConditionType.RequireBio => Element.Bio,
-            _ => Element.None
-        };
+        Element element = (Element)(condition * 1000);
 
-        // 덱에 필요한 속성 카드가 있는지 확인
-        return DeckManager.Instance.CardList.Any(card => card.Element == requiredElement);
+        return DeckManager.Instance.CardList.Any(card => card.Element == element);
     }
-}
-
-public enum ConditionType
-{
-    None,
-    RequireNone,
-    RequireRuin,
-    RequirePsychic,
-    RequireBio
-}
-
-public class EventResult
-{
-    public int earnHp;
-    public int earnCoin;
-    public CardName [] selectCards;
 }

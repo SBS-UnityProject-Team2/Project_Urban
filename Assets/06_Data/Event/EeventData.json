@@ -40,7 +40,7 @@
             "stage": 1,
             "eventName": "기이한 약",
             "scriptCode": 105,
-            "choiceCodes": "1015, 1016, 107"
+            "choiceCodes": "1015, 1016, 1017"
         }
     ],
     "eventScripts": [
@@ -149,21 +149,21 @@
             "scriptCode": 115,
             "eventCode": 13,
             "playerScript": "복스 겔리다의 신도는 혀를 차고는 먼저 사라졌다. \n강신회의 신도는 호탕하게 웃고는 나에게 그대로 기름을 들이부었다.\n뜨거움도 잠시 따뜻해지며 힘이 스며듦과 동시에 무언가 잃은 듯한 느낌이 들었다.",
-            "npcDialogue": "<color=#F54E3B>후하하하! 누군지는 모르겠지만 보는 눈이 있구만!<\/color>\n<color=#3FA4F2>우자의 식견이로군요. 안타까울 따름입니다.<\/color> ",
+            "npcDialogue": "<color=#F54E3B>후하하하! 누군지는 모르겠지만 보는 눈이 있구만!</color>\n<color=#3FA4F2>우자의 식견이로군요. 안타까울 따름입니다.</color> ",
             "illustration": "PowerDevotee"
         },
         {
             "scriptCode": 116,
             "eventCode": 13,
             "playerScript": "강신회의 신도는 하찮다는 듯 어깨를 으쓱이며 반대 방향으로 걸어나갔다.\n복스 겔리다 신도는 미소지으며 내게 약품을 하나 건네주었다.\n약품을 마시자 몸에 냉기가 감돌며 새로운 힘이 피어났다. 무언가 잃은 듯한 느낌과 함께.",
-            "npcDialogue": "<color=#3FA4F2> 잘 아시는군요. 이름 모를 나그네여.<\/color> \n<color=#F54E3B>힘이야말로 모든 것임을 모르는군. 나약한 것들...<\/color>",
+            "npcDialogue": "<color=#3FA4F2>잘 아시는군요. 이름 모를 나그네여.</color>\n<color=#F54E3B>힘이야말로 모든 것임을 모르는군. 나약한 것들...</color>",
             "illustration": "PowerDevotee"
         },
         {
             "scriptCode": 117,
             "eventCode": 13,
             "playerScript": "―퍽. \n좀 더 자세히 듣기 위해 몸을 움직이려던 찰나 \n뒤통수에 묵직한 충격이 느껴짐과 동시에 시야가 꺼졌다. \n정신을 차렸을 때 두 사람은 이미 사라지고 없었다.\n여기서 더 얻을 정보는 없다. 왠지 모를 불쾌감을 뒤로 한 채 일단 자리를 떴다.",
-            "npcDialogue": "<color=#F54E3B>입만 살았군. 약해빠진 것들이란...<\/color> \n<color=#3FA4F2> 우리 복스 겔리다는 당신네들과는 다릅니다. \n지금도 위대한 목적을 향해 가고 있지요<\/color>\n<color=#F54E3B>위대한 목적? 하! 그래서 지금 네 놈이 길을 가로막고 \n      이렇게 지껄이는 것도 위대한 목적을 위해서인가? \"<\/color>\n<color=#3FA4F2> 일개 하급 신자가 무엇을 알겠습니까. 다만, \n그쪽이나 저나 본당으로 가는 길은 허락되지 않았지요. \n그 이유는 알고 계십니까?<\/color>",
+            "npcDialogue": "<color=#F54E3B>입만 살았군. 약해빠진 것들이란...</color>\n<color=#3FA4F2>우리 복스 겔리다는 당신네들과는 다릅니다. 지금도 위대한 목적을 향해 가고 있지요</color>\n<color=#F54E3B>위대한 목적? 하! 그래서 지금 네 놈이 길을 가로막고 이렇게 지껄이는 것도 위대한 목적을 위해서인가?</color>\n<color=#3FA4F2>일개 하급 신자가 무엇을 알겠습니까. 다만, 그쪽이나 저나 본당으로 가는 길은 허락되지 않았지요. 그 이유는 알고 계십니까?</color>",
             "illustration": "PowerDevotee"
         },
         {
@@ -457,25 +457,25 @@
             "hpPresent": 0,
             "hpMax": 0,
             "gold": 0,
-            "randomCard": 3,
+            "randomCard": 2,
             "selectCards": "",
-            "remove": 2
+            "remove": 3
         },
         {
             "rewardCode": 10010,
             "hpPresent": 0,
             "hpMax": 0,
             "gold": 0,
-            "randomCard": 4,
+            "randomCard": 3,
             "selectCards": "",
-            "remove": 3
+            "remove": 2
         },
         {
             "rewardCode": 10011,
             "hpPresent": -0.2,
             "hpMax": 0,
             "gold": 0,
-            "randomCard": 5,
+            "randomCard": 4,
             "selectCards": "",
             "remove": 0
         },
@@ -484,7 +484,7 @@
             "hpPresent": 0,
             "hpMax": -0.1,
             "gold": 0,
-            "randomCard": 5,
+            "randomCard": 4,
             "selectCards": "",
             "remove": 0
         },

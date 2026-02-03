@@ -66,7 +66,7 @@ public class EventData : ScriptableObject
     {
         eventRewardMap.Clear();
         foreach (EventReward reward in eventRewards)
-            eventRewardMap[reward.resultCode] = reward;
+            eventRewardMap[reward.rewardCode] = reward;
     }
 
 
@@ -175,12 +175,12 @@ public class EventData : ScriptableObject
         {
             EventReward eventReward = new()
             {
-                resultCode = jsonReward.resultCode,
+                rewardCode = jsonReward.rewardCode,
                 hpPresent = jsonReward.hpPresent,
                 hpMax = jsonReward.hpMax,
                 gold = jsonReward.gold,
                 randomCard = jsonReward.randomCard,
-                selectCards = Util.ParseIntArray(jsonReward.selectCards).Select(code => (CardName)code).ToArray(),
+                selectCards = Util.ParseIntArray(jsonReward.selectCards)?.Select(code => (CardName)code).ToArray(),
                 remove = jsonReward.remove,
             };
 
