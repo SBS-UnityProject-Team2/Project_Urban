@@ -1,42 +1,54 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// ╔════════════════════════════════════════════════════════════════════╗
-/// ║                    EVENT UI (컨트롤러 계층)                          ║
-/// ╚════════════════════════════════════════════════════════════════════╝
-/// 
-/// 📋 역할:
-///   • 이벤트 데이터 조회 및 전달
-///   • Panel_Script와 Panel_Choice에 데이터 분배
-///   • 이벤트 흐름 제어 (시작 → 스크립트 표시 → 선택지 표시 → 종료)
-/// 
-/// 🔄 새로운 구조:
-///   EventUI (데이터 중계만)
-///   ├─ Panel_Script (EventScriptText) - 스크립트/대사/일러스트 출력
-///   └─ Panel_Choice (Button1, 2, 3) - 선택지 처리
-/// </summary>
 public class EventUI : MonoBehaviour
 {
-    [Header("Panel References")]
-    [SerializeField] private EventScriptUI scriptUI;  // Panel_Script
-    [SerializeField] private EventButtonsUI buttonsUI;
-
-    [Header("Event Root")]
-    [SerializeField] private GameObject eventPanelRoot;
+    [Header("UI References")]
+    [SerializeField] private EventScriptUI eventScriptUI;
+    [SerializeField] private EventButtonsUI eventButtonsUI;
+    [SerializeField] private EventRewardUI eventRewardUI;
+    [SerializeField] private Button exitButton;
 
     private EventInfo currentEvent;
 
+    private void Awake()
+    {
+        exitButton.onClick.AddListener(ButtonEvent.Instance.OnClickEventExit);    
+    }
+
     private void OnEnable()
-    {   
-        buttonsUI.gameObject.SetActive(false);
+    {
+        eventScriptUI.Init();
+        eventButtonsUI.Init();
+        eventRewardUI.Init();
+        exitButton.gameObject.SetActive(false);
 
         currentEvent = EventManager.Instance.GetRandomEvent();
-       
-        scriptUI.Init();
-        buttonsUI.Init(currentEvent.choiceCodes, scriptCode => scriptUI.StartEventScript(scriptCode));
 
-        scriptUI.StartEventScript(currentEvent.scriptCode, () => buttonsUI.gameObject.SetActive(true));
+        eventScriptUI.gameObject.SetActive(true);
+        eventScriptUI.StartEventScript(currentEvent.scriptCode, HandleEndEventScript);
+    }
+
+    // 이벤트 스크립트 재생이 끝나고 선택지 버튼 활성화
+    private void HandleEndEventScript()
+    {
+        eventButtonsUI.gameObject.SetActive(true);
+        eventButtonsUI.SetChoices(currentEvent.choiceCodes, HandleClickChoiceButton);
+    }
+
+    // 선택지 버튼 클릭 시, 보상 팝업 노출
+    private void HandleClickChoiceButton(EventRewardData rewardData)
+    {
+        eventRewardUI.gameObject.SetActive(true);
+        eventRewardUI.SetReward(rewardData, HandleClickConfirm);
+    }
+
+    // 보상 팝업 확인 버튼 클릭 시, 팝업을 닫고 EndScript 출력
+    private void HandleClickConfirm(int scriptCode, string resultString)
+    {
+        eventButtonsUI.gameObject.SetActive(false);
+        eventRewardUI.gameObject.SetActive(false);
+    
+        eventScriptUI.StartEndScript(scriptCode, resultString, () => exitButton.gameObject.SetActive(true));
     }
 }

@@ -24,7 +24,13 @@ public class CardManager : Singleton<CardManager>
     public CardDataEntry GetCardData(CardName name) => cardData.GetCardData(name);
     public CardDataEntry GetEnchantedCardData(CardName name) => cardData.GetEnchantedCardData(name);
     public List<CardDataEntry> GetCardsByElement(Element element) => cardData.GetCardsByElement(element);
-
     public List<CardName> GetAllCardNames() => cardData.GetAllCardNames();
     public List<CardDataEntry> GetAllCardData() => cardData.GetAllCardData();
+
+    public CardName GetRandomCard(Element element)
+    {
+        List<CardDataEntry> dataEntries = GetCardsByElement(element);
+
+        return dataEntries[Random.Range(0, dataEntries.Count)].cardName;
+    }
 }

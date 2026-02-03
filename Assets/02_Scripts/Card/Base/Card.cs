@@ -141,7 +141,7 @@ abstract public class Card : MonoBehaviour
     }
 
     protected virtual void Start()
-    {
+    {   
         Player player = BattleManager.Instance.Player;
         player.OnTurnStart.AddListener(HandleTurnStart);
     }
@@ -281,14 +281,10 @@ abstract public class Card : MonoBehaviour
     private IEnumerator InternalUseRoutine(Player user, Target target)
     {
         BattleManager.Instance.Pause();
-        try
-        {
-            yield return UseRoutine(user, target);
-        }
-        finally
-        {
-            BattleManager.Instance.Restart();
-        }
+
+        yield return UseRoutine(user, target);
+
+        BattleManager.Instance.Restart();
     }
 
     abstract protected IEnumerator UseRoutine(Player user, Target target);
