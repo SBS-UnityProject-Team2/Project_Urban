@@ -108,7 +108,7 @@
     "effectType": 15,
     "effectName": "LifeSpray",
     "effectPath": "Sprays/LifeSpray",
-    "effectPattern": "[[5], [12]]",
+    "effectPattern": "[[5]]",
     "effectDuration": "0.4, 1"
   },
   {
@@ -116,7 +116,7 @@
     "effectName": "LifeBeamImpact",
     "effectPath": "Beams/Setup/Impact/LifeBeamImpact",
     "effectPattern": "[[3], [4], [9]]",
-    "effectDuration": "0.2, 0.2, 0.6"
+    "effectDuration": "0.2, 0.2"
   },
   {
     "effectType": 17,
@@ -141,8 +141,8 @@
   },
   {
     "effectType": 20,
-    "effectName": "FrostWallCircle",
-    "effectPath": "Walls/Circular Wall/FrostWallCircle",
+    "effectName": "FrostWall",
+    "effectPath": "Walls/Circular Wall/FrostWall",
     "effectPattern": "[11]",
     "effectDuration": "1.7"
   },
@@ -150,7 +150,7 @@
     "effectType": 21,
     "effectName": "InfernoFireMeshGlow",
     "effectPath": "MeshGlow/FireMeshGlow",
-    "effectPattern": "[0]",
+    "effectPattern": "[0],[2]",
     "effectDuration": "0.6"
   },
   {

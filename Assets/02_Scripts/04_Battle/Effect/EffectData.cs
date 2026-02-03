@@ -30,6 +30,12 @@ public class EffectData : ScriptableObject
 
         foreach (EffectDataEntry entry in effects)
         {
+            // 인스펙터용 SerializablePattern을 실제 사용할 int[,]로 변환
+            if (entry.effectPatternSerialized != null)
+            {
+                entry.effectPattern = entry.effectPatternSerialized.ToArray();
+            }
+            
             effectTypeMap[entry.effectType] = entry;
         }
     }
@@ -42,16 +48,6 @@ public class EffectData : ScriptableObject
     public EffectDataEntry GetEffectData(EffectType effectType)
     {
         return effectTypeMap[effectType];
-    }
-
-    public List<EffectDataEntry> GetAllEffectData()
-    {
-        return new List<EffectDataEntry>(effects);
-    }
-
-    public IEnumerable<EffectDataEntry> GetAllEffects()
-    {
-        return effects;
     }
 
 #if UNITY_EDITOR
@@ -89,11 +85,14 @@ public class EffectData : ScriptableObject
                 
                 EffectType parsedEffectType = (EffectType)jsonEffect.effectType;
 
+                int[,] parsedPattern = ParseEffectPattern(jsonEffect.effectPattern);
+                
                 EffectDataEntry entry = new()
                 {
                     effectType = parsedEffectType,
                     effectName = jsonEffect.effectName ?? string.Empty,
-                    effectPattern = SerializablePattern.FromArray(ParseEffectPattern(jsonEffect.effectPattern)),
+                    effectPattern = parsedPattern,  // 실제 로직용
+                    effectPatternSerialized = SerializablePattern.FromArray(parsedPattern),  // 인스펙터 표시용
                     effectDuration = ParseEffectDuration(jsonEffect.effectDuration),
                 };
 
@@ -300,8 +299,41 @@ public class EffectDataEntry
     public EffectType effectType;
     public string effectName;
     public EffectControl effectPrefab;
-    public SerializablePattern effectPattern;
+    
+    // 실제 로직에서 사용할 이중배열 (직렬화 안 됨)
+    [System.NonSerialized]
+    public int[,] effectPattern;
+    
+    // 인스펙터 표시용 (직렬화됨)
+    public SerializablePattern effectPatternSerialized;
+    
     public float[] effectDuration;
+    
+    // 인스펙터에서 패턴 확인용 프로퍼티
+    public string PatternDisplay
+    {
+        get
+        {
+            if (effectPatternSerialized == null || effectPatternSerialized.data == null)
+                return "Empty";
+            
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            for (int i = 0; i < effectPatternSerialized.rowCount; i++)
+            {
+                sb.Append("[");
+                for (int j = 0; j < effectPatternSerialized.colCount; j++)
+                {
+                    sb.Append(effectPatternSerialized.data[i * effectPatternSerialized.colCount + j]);
+                    if (j < effectPatternSerialized.colCount - 1)
+                        sb.Append(", ");
+                }
+                sb.Append("]");
+                if (i < effectPatternSerialized.rowCount - 1)
+                    sb.Append(", ");
+            }
+            return sb.ToString();
+        }
+    }
 }
 
 // EffectType enum 정의

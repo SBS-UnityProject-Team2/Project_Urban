@@ -8,58 +8,71 @@ public class EffectControl : MonoBehaviour
     private static readonly Vector3[] FixedOffset = new Vector3[12]
     {
         new Vector3(0f, 1.8f, 0f),      // 0번: 머리 위
-        new Vector3(-1.5f, 1.5f, 0f),   // 1번: 좌상단
+        new Vector3(-0.8f, 1.5f, 0f),   // 1번: 좌상단
         new Vector3(0f, 1.5f, 0f),      // 2번: 상단 중앙
-        new Vector3(1.5f, 1.5f, 0f),    // 3번: 우상단
-        new Vector3(-1.5f, 0f, 0f),     // 4번: 좌중앙
+        new Vector3(0.8f, 1.5f, 0f),    // 3번: 우상단
+        new Vector3(-0.8f, 0f, 0f),     // 4번: 좌중앙
         new Vector3(0f, 0f, 0f),        // 5번: 정중앙 
-        new Vector3(1.5f, 0f, 0f),      // 6번: 우중앙
-        new Vector3(-1.5f, -1.5f, 0f),  // 7번: 좌하단
+        new Vector3(0.8f, 0f, 0f),      // 6번: 우중앙
+        new Vector3(-0.8f, -1.5f, 0f),  // 7번: 좌하단
         new Vector3(0f, -1.5f, 0f),     // 8번: 하단 중앙
-        new Vector3(1.5f, -1.5f, 0f),   // 9번: 우하단
-        new Vector3(0f, 1.8f, 0f),      // 10번: 머리와 상단 중간
+        new Vector3(0.8f, -1.5f, 0f),   // 9번: 우하단
+        new Vector3(0f, 0.8f, 0f),      // 10번: 머리와 상단 중간
         new Vector3(0f, 0.3f, 0f)      // 11번: 발밑
     };
 
-    private const float SMOOTH_MOVE_DURATION = 0.15f;
-
     public void Play(int[,] pattern, float[] duration, Enemy target, int idx)
     {
-        Vector3 targetBasePos = target.transform.position;
-        int initialPositionIndex = pattern[0, idx];
-        Vector3 initialPos = targetBasePos + FixedOffset[initialPositionIndex];
-        initialPos.z = targetBasePos.z - 0.1f;
-        transform.position = initialPos;
-
-        StartCoroutine(PlayRoutine(pattern, duration, targetBasePos, idx));
+        StartCoroutine(PlayRoutine(pattern, duration, target, idx));
     }
 
-    public IEnumerator PlayRoutine(int[,] pattern, float[] duration, Vector3 targetBasePos, int idx)
+    public IEnumerator PlayRoutine(int[,] pattern, float[] duration, Enemy target, int idx)
     {
+        Vector3 targetBasePos = target.transform.position;
         int rowCount = pattern.GetLength(0);
 
-        for (int i = 0; i < rowCount; i++)
+        // 0번 인덱스 위치로 즉시 설정
+        int initialPositionIndex = pattern[0, idx];
+        transform.position = CalculatePosition(initialPositionIndex, targetBasePos);
+
+        // 패턴이 1칸이면 duration[0]만큼 유지 후 소멸
+        if (rowCount <= 1)
         {
-            int positionIndex = pattern[i, idx];
-
-            Vector3 targetPos;
-            if (positionIndex == 10)
-                targetPos = new Vector3(0f, 6.0f, targetBasePos.z - 0.1f);
-            else if (positionIndex == 11)
-                targetPos = new Vector3(0f, 0.3f, targetBasePos.z - 0.1f);
-            else
-            {
-                targetPos = targetBasePos + FixedOffset[positionIndex];
-                targetPos.z = targetBasePos.z - 0.1f;
-            }
-
-            yield return StartCoroutine(SmoothMove(targetPos, SMOOTH_MOVE_DURATION));
-
-            if (i < duration.Length)
-                yield return new WaitForSeconds(duration[i]);
+            yield return new WaitForSeconds(duration[0]);
+            Destroy(gameObject);
+            yield break;
         }
 
+        // 1번 인덱스부터 이동 시작 (이동 시간은 duration 사용)
+        for (int i = 1; i < rowCount; i++)
+        {
+            int positionIndex = pattern[i, idx];
+            Vector3 targetPos = CalculatePosition(positionIndex, targetBasePos);
+
+            int durationIndex = Mathf.Min(i - 1, duration.Length - 1);
+            float moveDuration = duration[durationIndex];
+
+            yield return StartCoroutine(SmoothMove(targetPos, moveDuration));
+        }
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// 위치 인덱스를 기반으로 실제 월드 좌표를 계산
+    /// </summary>
+    private Vector3 CalculatePosition(int positionIndex, Vector3 targetBasePos)
+    {
+        Vector3 position;
+        if (positionIndex == 10)
+            position = new Vector3(0f, 6.0f, targetBasePos.z - 0.1f);
+        else if (positionIndex == 11)
+            position = new Vector3(0f, 0.3f, targetBasePos.z - 0.1f);
+        else
+        {
+            position = targetBasePos + FixedOffset[positionIndex];
+            position.z = targetBasePos.z - 0.1f;
+        }
+        return position;
     }
 
     /// <summary>
@@ -67,6 +80,12 @@ public class EffectControl : MonoBehaviour
     /// </summary>
     private IEnumerator SmoothMove(Vector3 targetPos, float duration)
     {
+        if (duration <= 0f)
+        {
+            transform.position = targetPos;
+            yield break;
+        }
+
         Vector3 startPos = transform.position;
         float elapsed = 0f;
 

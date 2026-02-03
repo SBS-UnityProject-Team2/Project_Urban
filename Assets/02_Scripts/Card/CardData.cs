@@ -109,12 +109,52 @@ public class CardData : ScriptableObject
 
 #if UNITY_EDITOR
 
-    // 1. 일반 카드 임포트 (Import Standard Cards)
-    [ContextMenu("Import Standard Cards")]
-    public void ImportStandardFromJson()
-    {
-        string jsonPath = EditorUtility.OpenFilePanel("Select Standard Card Data JSON", Application.dataPath, "json");
-        if (string.IsNullOrEmpty(jsonPath)) return;
+                foreach (JsonCardData jsonCard in wrapper.cards)
+                {
+                    if (!Enum.TryParse(jsonCard.cardName, true, out CardName parsedCardName)) continue;
+                    if (!Enum.TryParse(jsonCard.element, true, out Element parsedElement)) continue;
+
+                    string processedDescription = jsonCard.description;
+                    if (!string.IsNullOrEmpty(processedDescription))
+                    {
+                        processedDescription = processedDescription.Replace("{value1}", jsonCard.value1.ToString());
+                        processedDescription = processedDescription.Replace("{value2}", jsonCard.value2.ToString());
+                    }
+
+                    CardDataEntry entry = new()
+                    {
+                        cardName = parsedCardName,
+                        koreanName = jsonCard.koreanName ?? string.Empty,
+                        element = parsedElement,
+                        isSpecial = jsonCard.isSpecial,
+                        isExtinct = jsonCard.isExtinct,
+                        description = processedDescription,
+                        price = jsonCard.price,
+                        cost = jsonCard.cost,
+                        isMachineArmActive = jsonCard.machineArm,
+                        effectDelay = jsonCard.effectDelay,
+                    };
+
+                    // EffectType 할당 (쉼표로 구분된 여러 타입 지원)
+                    entry.effectTypes = ParseEffectTypes(jsonCard.effectType.ToString());
+
+                    // Sprite 로드
+                    string spritePath = GetAssetPath(spriteBasePath, jsonCard.cardName, parsedElement, ".png");
+                    entry.cardSprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+                    
+                    // Prefab 로드
+                    string prefabPath = GetAssetPath(prefabBasePath, jsonCard.cardName, parsedElement, ".prefab");
+                    entry.cardPrefab = AssetDatabase.LoadAssetAtPath<Card>(prefabPath);
+
+                    // 프리팹 내부 코스트 업데이트
+                    SerializedObject so = new SerializedObject(entry.cardPrefab);
+                    SerializedProperty costProp = so.FindProperty("initCost");
+                    costProp.intValue = jsonCard.cost;
+                    so.ApplyModifiedProperties();
+
+
+                    cards.Add(entry);
+                }
 
         try
         {
@@ -145,36 +185,54 @@ public class CardData : ScriptableObject
 
                 CardDataEntry entry = new()
                 {
-                    cardName = parsedCardName,
-                    koreanName = jsonCard.koreanName ?? string.Empty,
-                    element = parsedElement,
-                    isSpecial = jsonCard.isSpecial,
-                    isExtinct = jsonCard.isExtinct,
-                    description = processedDescription,
-                    price = jsonCard.price,
-                    cost = jsonCard.cost,
-                    isMachineArmActive = jsonCard.machineArm,
-                };
+                    if (!Enum.TryParse(jsonCard.cardName, true, out CardName parsedCardName)) continue;
+                    if (!Enum.TryParse(jsonCard.element, true, out Element parsedElement)) continue;
 
-                // EffectType 할당 (쉼표로 구분된 여러 타입 지원)
-                entry.effectTypes = ParseEffectTypes(jsonCard.effectType.ToString());
+                        string processedDescription = jsonCard.description;
+                        processedDescription = processedDescription.Replace("{value1}", jsonCard.value1.ToString());
+                        processedDescription = processedDescription.Replace("{value2}", jsonCard.value2.ToString());
 
-                // Sprite 로드
-                string spritePath = GetAssetPath(spriteBasePath, jsonCard.cardName, parsedElement, ".png");
-                entry.cardSprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
+                        CardDataEntry entry = new()
+                        {
+                            cardName = parsedCardName,
+                            koreanName = jsonCard.koreanName ?? string.Empty,
+                            element = parsedElement,
+                            isSpecial = jsonCard.isSpecial,
+                            isExtinct = jsonCard.isExtinct,
+                            description = processedDescription,
+                            price = jsonCard.price,
+                            cost = jsonCard.cost,
+                            isMachineArmActive = jsonCard.machineArm,
+                            effectDelay = jsonCard.effectDelay, 
+                        };
 
-                // Prefab 로드
-                string prefabPath = GetAssetPath(prefabBasePath, jsonCard.cardName, parsedElement, ".prefab");
-                entry.cardPrefab = AssetDatabase.LoadAssetAtPath<Card>(prefabPath);
+                        // EffectType 할당 (쉼표로 구분된 여러 타입 지원)
+                        entry.effectTypes = ParseEffectTypes(jsonCard.effectType.ToString());
 
-                // 프리팹 내부 코스트 업데이트
-                SerializedObject so = new SerializedObject(entry.cardPrefab);
-                SerializedProperty costProp = so.FindProperty("initCost");
-                costProp.intValue = jsonCard.cost;
-                so.ApplyModifiedProperties();
+                        // 원본 리소스 복사
+                        if (cardNameMap.ContainsKey(parsedCardName))
+                        {
+                            CardDataEntry original = cardNameMap[parsedCardName];
+                            entry.cardSprite = original.cardSprite;
+                            entry.cardPrefab = original.cardPrefab;
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Original card not found: {parsedCardName} (Make sure Standard Cards are imported first!)");
+                        }
 
+                        enchantedCards.Add(entry);
+                    }
 
-                cards.Add(entry);
+                    EditorUtility.SetDirty(this);
+                AssetDatabase.SaveAssets();
+                BuildCardDataMap();
+
+                Debug.Log($"Successfully imported {enchantedCards.Count} ENCHANTED cards.");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Failed to import Enchanted JSON: {e.Message}");
             }
 
             EditorUtility.SetDirty(this);
@@ -277,81 +335,40 @@ public class CardData : ScriptableObject
             relativePath = Path.Combine(basePath, fileName + extension);
         }
 
-        return Path.Combine("Assets", relativePath).Replace("\\", "/");
+    [Serializable]
+    public class JsonCardData
+    {
+        public string cardName;
+        public string koreanName;
+        public string element;
+        public bool isSpecial;
+        public bool isExtinct;
+        public string description;   
+        public int price; 
+        public int value1; 
+        public int value2;
+        public int cost;
+        public string cardCost;
+        public bool machineArm;
+        public string effectType;              // 이펙트 타입 번호 ("21" 또는 "1,8" 형식)
+        public float effectDelay;
     }
 
     private List<EffectType> ParseEffectTypes(string effectTypeString)
     {
-        List<EffectType> result = new();
-        if (string.IsNullOrEmpty(effectTypeString)) return result;
-
-        // 쉼표로 구분된 숫자들을 파싱 (예: "21" 또는 "21,22")
-        string[] typeStrings = effectTypeString.Split(',');
-        foreach (string typeStr in typeStrings)
-        {
-            if (int.TryParse(typeStr.Trim(), out int typeValue))
-            {
-                if (System.Enum.IsDefined(typeof(EffectType), typeValue))
-                {
-                    result.Add((EffectType)typeValue);
-                }
-            }
-        }
-
-        return result;
+        public CardName cardName;
+        public string koreanName;
+        public Sprite cardSprite;
+        public Element element;
+        public bool isSpecial;
+        public bool isExtinct;
+        public Card cardPrefab;
+        public int price;
+        public int cost;
+        [TextArea] public string description;
+        
+        // 이펙트 관련
+        public List<EffectType> effectTypes = new();  // 여러 이펙트 타입 지원
+        public bool isMachineArmActive;            // 기계팔 이펙트 사용 여부
+        public float effectDelay;                  // 이펙트 재생 딜레이
     }
-#endif
-}
-
-// 기본 카드 JSON용
-#if UNITY_EDITOR
-[Serializable]
-public class JsonWrapper
-{
-    public List<JsonCardData> cards;
-}
-
-// 강화 카드 JSON용
-[Serializable]
-public class JsonEnchantWrapper
-{
-    public List<JsonCardData> enchantcards;
-}
-
-[Serializable]
-public class JsonCardData
-{
-    public string cardName;
-    public string koreanName;
-    public string element;
-    public bool isSpecial;
-    public bool isExtinct;
-    public string description;
-    public int price;
-    public int value1;
-    public int value2;
-    public int cost;
-    public string cardCost;
-    public bool machineArm;
-    public string effectType;              // 이펙트 타입 번호 ("21" 또는 "1,8" 형식)
-}
-#endif
-
-[Serializable]
-public class CardDataEntry
-{
-    public CardName cardName;
-    public string koreanName;
-    public Sprite cardSprite;
-    public Element element;
-    public bool isSpecial;
-    public bool isExtinct;
-    public Card cardPrefab;
-    public int price;
-    public int cost;
-    [TextArea] public string description;
-
-    // 이펙트 관련
-    public List<EffectType> effectTypes = new();  // 여러 이펙트 타입 지원
-    public bool isMachineArmActive;            // 기계팔 이펙트 사용 여부
-}
