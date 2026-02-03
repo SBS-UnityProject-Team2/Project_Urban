@@ -60,6 +60,7 @@ public class DeckManager : Singleton<DeckManager>
     public void RemoveCard(Card card)
     {
         cardList.Remove(card);
+        Destroy(card.gameObject);
     }
 
     private void SortCardList()

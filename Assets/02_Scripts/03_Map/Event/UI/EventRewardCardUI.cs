@@ -53,13 +53,11 @@ public class EventRewardCardUI : MonoBehaviour
 
     private IEnumerator AddCardRoutine()
     {
-        
+        yield return FadeRoutine(0.0f, 1.0f);
         yield return WaitForClick();
 
         Vector3 start = viewPoint.position;
         Vector3 end = deckPoint.position;
-
-        SetAlpha(1.0f);
 
         yield return MoveRoutine(start, end, Vector3.one, Vector3.zero);
 
