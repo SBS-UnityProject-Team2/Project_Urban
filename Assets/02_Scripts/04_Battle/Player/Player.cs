@@ -68,11 +68,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         stateMachine.ChangeState<IdleState>();
     }
 
-    private void StartPlayerCoroutine(IEnumerator routine)
-    {
-        StartCoroutine(routine);
-    }
-
     public void HandleTurnStart()
     {
         if (status.Frozen.IsActive)
@@ -109,6 +104,9 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete)
     {
+        if (minCount < deck.CurrentHandCount)   
+            return;
+
         discardPanelUI.OpenPanel(minCount, maxCount);
         discardPanelUI.OnConfirm.AddListener(cards =>
         {

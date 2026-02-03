@@ -41,7 +41,11 @@ public class Deck : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            if (hand.IsHandFull()) break;
+            if (hand.IsHandFull()) 
+                break;
+            
+            if (unusedCardList.Count == 0)
+                Shuffle();
 
             Card drawCard = unusedCardList[^1];
 
@@ -82,29 +86,7 @@ public class Deck : MonoBehaviour
         hand.AddCard(copy);
     }
 
-    
 
-    // 버린 카드 더미에서 랜덤 뽑기 
-    // public bool DrawRandomFromDiscard(out Card card)
-    // {       
-    //     if (usedCardList.Count == 0 || hand.IsHandFull())
-    //     {
-    //         card = null;
-
-    //         return false;
-    //     }
-
-    //     int randomIndex = Random.Range(0, usedCardList.Count);
-    //     card = usedCardList[randomIndex];
-
-    //     (usedCardList[randomIndex], usedCardList[^1]) = (usedCardList[^1], usedCardList[randomIndex]);
-    //     usedCardList.RemoveAt(usedCardList.Count - 1);
-    //     hand.AddCard(card);
-
-    //     return true;
-    // }
-
-    // 가장 최근에 사용한 카드 정보 확인
     public Card GetLastUsedCard()
     {
         if (usedCardList.Count > 0)

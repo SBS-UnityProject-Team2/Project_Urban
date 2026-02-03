@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class BlazeBarrier : Defense 
 {    
-    [SerializeField] private int turn;
+    [SerializeField] private int refinedPoint = 2;
     public override CardName Name => CardName.BlazeBarrier;
     
     protected override IEnumerator UseRoutine(Player user, Target target)
     {
         yield return PlayEffect(target);
-        target.Protect(armor);
-        target.Refined(turn);
+        target.Protect(protect);
+        target.Refined(refinedPoint);
     }
 }

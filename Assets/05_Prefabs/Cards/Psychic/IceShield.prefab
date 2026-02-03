@@ -459,12 +459,13 @@ MonoBehaviour:
   initCost: 2
   isExtinct: 0
   isSpecial: 0
+  effectTypes: 
   cardTitle: {fileID: 1767128997618045011}
   cardDesc: {fileID: 5748571358520734293}
   cardCost: {fileID: 5527292725631556990}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
-  armor: 10
+  protect: 10
   turn: 2
 --- !u!212 &5092977104102050904
 SpriteRenderer:

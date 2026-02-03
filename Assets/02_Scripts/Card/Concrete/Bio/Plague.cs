@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Plague : Attack
 {
-    [SerializeField] private int damagePerCard = 6;
     [SerializeField] private int minDiscard = 0;
     [SerializeField] private int maxDiscard = 3;
 
@@ -14,7 +13,7 @@ public class Plague : Attack
         yield return PlayEffect(target);
         user.DiscardCard(minDiscard, maxDiscard, count =>
         {
-            int totalDamage = count * damagePerCard;
+            int totalDamage = count * damage;
             target.Damage(user, totalDamage, Element.Bio);
         });
         

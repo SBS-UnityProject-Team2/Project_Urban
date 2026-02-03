@@ -11,7 +11,7 @@ public class Rollout : Defense
     protected override IEnumerator UseRoutine(Player user, Target target)
     {
         yield return PlayEffect(target);
-        target.Protect(armor);
+        target.Protect(protect);
         user.AddNextTurnDrawCount(drawBonus);
     }
 }

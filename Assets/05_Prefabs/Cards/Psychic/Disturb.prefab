@@ -531,12 +531,13 @@ MonoBehaviour:
   initCost: 1
   isExtinct: 0
   isSpecial: 0
+  effectTypes: 
   cardTitle: {fileID: 5130317781085875830}
   cardDesc: {fileID: 1196711842195997585}
   cardCost: {fileID: 7110877508641808747}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
-  turn: 2
+  brokenPoint: 2
 --- !u!1 &7605677265237259364
 GameObject:
   m_ObjectHideFlags: 0

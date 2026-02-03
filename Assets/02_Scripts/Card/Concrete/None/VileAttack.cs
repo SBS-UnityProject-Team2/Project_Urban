@@ -3,7 +3,7 @@ using UnityEngine;
 
 class VileAttack : Attack
 {
-    [SerializeField] private int turn;
+    [SerializeField] private int weakenPoint;
 
     public override CardName Name => CardName.VileAttack;
 
@@ -11,6 +11,6 @@ class VileAttack : Attack
     {
         yield return PlayEffect(target);
         target.Damage(user, damage);
-        target.Weaken(turn);
+        target.Weaken(weakenPoint);
     }
 }

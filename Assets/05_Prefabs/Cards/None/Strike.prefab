@@ -531,6 +531,7 @@ MonoBehaviour:
   initCost: 2
   isExtinct: 0
   isSpecial: 0
+  effectTypes: 
   cardTitle: {fileID: 8291934332962563233}
   cardDesc: {fileID: 2493825596561354744}
   cardCost: {fileID: 1924674567516155102}

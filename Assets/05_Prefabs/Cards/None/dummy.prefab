@@ -667,9 +667,10 @@ MonoBehaviour:
   initCost: 2
   isExtinct: 0
   isSpecial: 0
+  effectTypes: 
   cardTitle: {fileID: 8485551270251244324}
   cardDesc: {fileID: 1280594981490796624}
   cardCost: {fileID: 5212137241615220414}
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   unActiveColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
-  turns: 1
+  blurPoint: 1

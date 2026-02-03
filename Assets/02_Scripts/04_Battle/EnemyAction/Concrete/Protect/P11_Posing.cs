@@ -4,7 +4,6 @@ using UnityEngine;
 public class P11_Posing : EnemyAction
 {
     [SerializeField] private int protectPoint = 15;
-    [SerializeField] private int elasticVeilPoint = 1;
 
     public override ActionType Type => ActionType.Protect;
     public override Element Element => Element.None;

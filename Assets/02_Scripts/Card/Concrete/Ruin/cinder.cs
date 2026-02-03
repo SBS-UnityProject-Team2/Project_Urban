@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Cinder : BuffCard 
 {   
-    [SerializeField] private int count;
+    [SerializeField] private int searingPoint = 1;
     public override CardName Name => CardName.Cinder;
     
     protected override IEnumerator UseRoutine(Player user, Target target)
     {
         yield return PlayEffect(target);
-        target.Searing(count);
+        target.Searing(searingPoint);
     }
 }

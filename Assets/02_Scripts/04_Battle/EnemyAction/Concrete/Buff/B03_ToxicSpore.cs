@@ -21,7 +21,7 @@ public class B03_ToxicSpore : EnemyAction
 
     private void HandleAttack(Target attacker, Target target)
     {
-        attacker.DebuffDamage(damage);
+        target.DebuffDamage(damage);
         remainingTurn--;
 
         if (remainingTurn == 0)

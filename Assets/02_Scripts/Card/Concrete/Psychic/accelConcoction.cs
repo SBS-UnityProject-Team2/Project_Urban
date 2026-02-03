@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class AccelConcoction : BuffCard
 {
-    [SerializeField] private int duration;
+    [SerializeField] private int accelerationPoint = 3;
 
     public override CardName Name => CardName.AccelConcoction;
 
     protected override IEnumerator UseRoutine(Player user, Target target)
     {        
         yield return PlayEffect(target);
-        user.Acceleration(duration);
+        user.Acceleration(accelerationPoint);
     }
 }
