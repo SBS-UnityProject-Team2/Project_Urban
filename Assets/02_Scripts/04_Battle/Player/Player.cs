@@ -9,7 +9,7 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 {
     [Header("Player Settings")]
     [SerializeField] private int maxCost;
-    [SerializeField] private int drawCount = 6; 
+    [SerializeField] private int drawCount = 6;
     [SerializeField] private Deck deck;
 
     [Header("Player View")]
@@ -18,9 +18,17 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
     [Header("UI Reference")]
     [SerializeField] private DiscardPanelUI discardPanelUI;
 
+    [Header("Audio Clip")]
+    [SerializeField] private AudioClip noneClip;
+    [SerializeField] private AudioClip ruinClip;
+    [SerializeField] private AudioClip psychicClip;
+    [SerializeField] private AudioClip bioClip;
+
+
     private PlayerInput playerInput;
     private PlayerStateMachine stateMachine;
-    private int nextTurnDrawBonus = 0; 
+    private AudioSource audioSource;
+    private int nextTurnDrawBonus = 0;
 
     public CostController Cost { get; private set; }
     public PlayerStateMachine StateMachine => stateMachine;
@@ -34,9 +42,11 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
         InitViews();
         InitEvent();
-        
+
         stateMachine = new PlayerStateMachine(this);
         stateMachine.ChangeState<IdleState>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void InitViews()
@@ -104,9 +114,6 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
 
     public void DiscardCard(int minCount, int maxCount, UnityAction<int> onComplete)
     {
-        if (minCount < deck.CurrentHandCount)   
-            return;
-
         discardPanelUI.OpenPanel(minCount, maxCount);
         discardPanelUI.OnConfirm.AddListener(cards =>
         {
@@ -174,7 +181,29 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         deck.Use(card);
 
         if (card.Type == CardType.Attack)
+        {
+
+            switch (card.Element)
+            {
+                case Element.None:
+                    audioSource.PlayOneShot(noneClip);
+                    break;
+
+                case Element.Ruin:
+                    audioSource.PlayOneShot(ruinClip);
+                    break;
+
+                case Element.Psychic:
+                    audioSource.PlayOneShot(psychicClip);
+                    break;
+
+                case Element.Bio:
+                    audioSource.PlayOneShot(bioClip);
+                    break;
+            }
+
             OnAttack?.Invoke(this, target);
+        }
     }
 
     public void IncreaseDrawCount(int amount = 1)

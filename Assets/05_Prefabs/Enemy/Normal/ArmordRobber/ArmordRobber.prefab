@@ -186,7 +186,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 63c4e2d97092e4743b7db27ae632726e, type: 2}
       - {fileID: 11400000, guid: d3eac67e1df72a940947c57243a0422f, type: 2}
       - {fileID: 11400000, guid: 4e2649ca9e106904d99bb13ea726eaae, type: 2}
-  phaseChangeHp: 0
+  phaseChangeHp: -1
 --- !u!1001 &3812852942469273148
 PrefabInstance:
   m_ObjectHideFlags: 0

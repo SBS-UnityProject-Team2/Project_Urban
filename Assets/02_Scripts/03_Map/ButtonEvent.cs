@@ -52,8 +52,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     {
         GameManager.Instance.SetEnemyScore(5, 5);
         GameManager.Instance.IsNormal = false;
-        
+
         SceneManager.LoadScene(Scene.Battle);
+        BgmManager.Instance.PlayEliteSound();
     }
 
     public void OnClickBoss()
@@ -62,39 +63,50 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         GameManager.Instance.IsNormal = false;
 
         SceneManager.LoadScene(Scene.Battle);
+        BgmManager.Instance.PlayBossSound();
     }
 
     // 상점UI
     public void OnClickStore()
-    {        
+    {
         UI_Store.SetActive(true);
         UI_Map.SetActive(false);
+
+        BgmManager.Instance.PlayShopSound();
     }
 
     public void CloseStoreUI()
     {
         UI_Store.SetActive(false);
-        UI_Map.SetActive(true);   
+        UI_Map.SetActive(true);
+
+        BgmManager.Instance.PlayMapSound();
     }
 
     public void OnClickStoreExit()
     {
         UI_Store.SetActive(false);
         UI_Map.SetActive(true);
+
+        BgmManager.Instance.PlayMapSound();
     }
 
     // 쉼터UI
     public void OnClickShelter()
     {
-       UI_Shelter.SetActive(true);
-       UI_Map.SetActive(false);
-       UI_EnterShelter.SetActive(true);
+        UI_Shelter.SetActive(true);
+        UI_Map.SetActive(false);
+        UI_EnterShelter.SetActive(true);
+
+        BgmManager.Instance.PlayRestSound();
     }
 
     public void OnClickEnterShelter()
     {
         UI_EnterShelter.SetActive(false);
-        Panel_ShelterPopup.SetActive(true);        
+        Panel_ShelterPopup.SetActive(true);
+
+        BackgroundManager.Instance.SetRestBg();
     }
 
     public void OnClickShelterCardEnchant()
@@ -108,6 +120,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_EnterShelter.SetActive(true);
         UI_Shelter.SetActive(false);
         UI_Map.SetActive(true);
+
+        BackgroundManager.Instance.SetMapBg();
+        BgmManager.Instance.PlayMapSound();
     }
 
     public void ActiveMap()

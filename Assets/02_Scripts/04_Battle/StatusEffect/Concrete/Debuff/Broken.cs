@@ -24,7 +24,7 @@ public class Broken : TurnStatusEffect
     {   
         if (!IsActive) return 0;
 
-        return (int)(-damage * damageModifier);
+        return (int)(damage * damageModifier);
     }
 
     private void HandleTurnEnd()

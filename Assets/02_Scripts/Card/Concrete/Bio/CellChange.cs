@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CellChange : BuffCard
 {
     [SerializeField] private int maxDiscard = 2; 
-    [SerializeField] private int drawCount = 4;
+    [SerializeField] private int drawCount = 3;
 
     public override CardName Name => CardName.CellChange;
 

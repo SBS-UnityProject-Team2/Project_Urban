@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82f4610384adf04da10a1cb6993ec50, type: 3}
   m_Name: D0_Roar
   m_EditorClassIdentifier: Assembly-CSharp::Roar
-  remainingTurn: 2
+  weakenPoint: 2

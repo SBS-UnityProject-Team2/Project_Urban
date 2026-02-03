@@ -41,5 +41,6 @@ public class SuccessUI : MonoBehaviour
     {
         BattleManager.Instance.Player.Deck.DiscardAll();
         SceneManager.LoadScene(Scene.Map);
+        BgmManager.Instance.PlayMapSound();
     }
 }

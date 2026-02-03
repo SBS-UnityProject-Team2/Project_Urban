@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 575a9b0cf4921394cbd9afade3da540e, type: 3}
   m_Name: B00_Sharpening
   m_EditorClassIdentifier: Assembly-CSharp::B00_Sharpening
-  damage: 9
-  count: 1
+  burstPoint: 9

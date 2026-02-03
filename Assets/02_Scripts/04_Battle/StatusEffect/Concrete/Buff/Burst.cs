@@ -9,13 +9,15 @@ public class Burst : ActiveStatusEffect
     }
 
     public override int StatusNumber => count;
+    private int waitTurn = 0;
 
-    public override StatusEffectName Name => StatusEffectName.ElasticVeil;
+    public override StatusEffectName Name => StatusEffectName.Burst;
 
     public override void Active(int count)
     {
-        SetActive(true);
         this.count = count;
+        waitTurn = 1;
+        SetActive(true);
     }
 
     private void HandleAttack(Target attacker, Target target)
@@ -24,10 +26,16 @@ public class Burst : ActiveStatusEffect
 
         target.DebuffDamage(count);
         SetActive(false);
-    }   
+    }
 
     private void HandleTurnEnd()
     {
-        SetActive(false);
+        if (IsActive)
+        {
+            if (waitTurn == 0)
+                SetActive(false);
+
+            waitTurn--;
+        }
     }
 }

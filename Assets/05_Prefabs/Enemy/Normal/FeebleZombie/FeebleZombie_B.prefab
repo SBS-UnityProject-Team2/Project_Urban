@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06b0f2f9b85da684eab61be0d0f99675, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03ce8bb47833e404bab54b3fdea58f3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.7, y: 10.22}
+  m_Size: {x: 6.3333335, y: 11.355556}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -132,7 +132,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 6.3333335, y: 11.355556}
-    newSize: {x: 5.7, y: 10.22}
+    newSize: {x: 6.3333335, y: 11.355556}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 14b00dba748400a48a90cff96a819b67, type: 2}
     - enemyActions:
       - {fileID: 11400000, guid: b03fc0d73376d5149a80ba7ae8dc4a38, type: 2}
-  phaseChangeHp: 0
+  phaseChangeHp: -1
 --- !u!1001 &2645733188604286667
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -190,7 +190,7 @@ MonoBehaviour:
     - enemyActions:
       - {fileID: 11400000, guid: b6c74b8636b601d41aa52135d3e78355, type: 2}
       - {fileID: 11400000, guid: 70bac9fbc5d5df741bb347e531573ae5, type: 2}
-  phaseChangeHp: 0
+  phaseChangeHp: -1
 --- !u!1001 &7592132201193274342
 PrefabInstance:
   m_ObjectHideFlags: 0

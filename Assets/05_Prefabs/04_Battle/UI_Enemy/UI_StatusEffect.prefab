@@ -128,6 +128,7 @@ MonoBehaviour:
   effectIcon: {fileID: 2616780379953115232}
   effectName: {fileID: 0}
   effectStack: {fileID: 7936395581090986594}
+  descPanel: {fileID: 0}
   isPlayer: 0
 --- !u!1 &8373631411050949614
 GameObject:

@@ -26,6 +26,7 @@ public class UISelectElement : MonoBehaviour
         DeckManager.Instance.AddCards(elementCardMaps[element]);
 
         SceneManager.LoadScene(Scene.Map);
+        BgmManager.Instance.PlayMapSound();
     }
 
     public void OnClickFlame()

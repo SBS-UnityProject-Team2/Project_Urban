@@ -29,6 +29,7 @@ public class Deck : MonoBehaviour
         foreach (Card card in DeckManager.Instance.CardList)
         {
             Card copy = Instantiate(card, transform);
+            copy.Init(card.Data);
             unusedCardList.Add(copy);
         }
 

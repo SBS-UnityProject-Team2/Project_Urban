@@ -24,8 +24,8 @@ public class EnemyManager : SceneSingleton<EnemyManager>
 
     private readonly List<Enemy> enemies = new();
     private readonly Dictionary<ActionType, Sprite> actionIconMap = new();
-    
-    public List<Enemy> EnemyList => enemies;    
+
+    public List<Enemy> EnemyList => enemies;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class EnemyManager : SceneSingleton<EnemyManager>
         Enemy enemy = Instantiate(enemies[idx], transform);
         enemy.OnDead.AddListener(HandleEnemyDead);
 
-        return enemy; 
+        return enemy;
     }
 
     private void CreateNormalEnemies(int score)
@@ -112,23 +112,26 @@ public class EnemyManager : SceneSingleton<EnemyManager>
 
     private IEnumerator ExecuteEnemyActionRoutine(UnityAction completeRoutine)
     {
-        for (int i = 0 ; i < enemies.Count; i++)
-        {   
+        for (int i = 0; i < enemies.Count; i++)
+        {
             Enemy enemy = enemies[i];
 
             // Enemy Attack Animation 
             enemy.OnTurnStart?.Invoke();
             if (!enemy.Status.Frozen.IsActive)
+            {
                 enemy.Action();
-            enemy.OnTurnEnd?.Invoke();
 
-            // Enemy Anim
-            enemy.transform.localScale *= 1.2f;
-            yield return new WaitForSeconds(0.5f);
-            enemy.transform.localScale /= 1.2f;
+                // Enemy Anim
+                enemy.transform.localScale *= 1.2f;
+                yield return new WaitForSeconds(0.5f);
+                enemy.transform.localScale /= 1.2f;
+            }
+
+            enemy.OnTurnEnd?.Invoke();
         }
-        
-        completeRoutine?.Invoke();   
+
+        completeRoutine?.Invoke();
     }
 
     private int CalcCoin(Enemy enemy)
@@ -147,13 +150,13 @@ public class EnemyManager : SceneSingleton<EnemyManager>
     }
 
     public void DamageAll(int hitPoint, Element attackType = Element.None)
-    {        
+    {
         ApplyAll(enemy => enemy.Damage(BattleManager.Instance.Player, hitPoint, attackType));
     }
-    
+
     public void ApplyAll(UnityAction<Enemy> action)
     {
-        foreach(Enemy enemy in enemies)
-            action?.Invoke(enemy); 
+        foreach (Enemy enemy in enemies)
+            action?.Invoke(enemy);
     }
 }

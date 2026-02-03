@@ -18,7 +18,7 @@ public class ActionList
 }
 
 public class Enemy : Target
-{   
+{
     [Header("UI Settings")]
     [SerializeField] protected Image selectedArrow;
     [SerializeField] protected NextActionView nextActionView;
@@ -29,7 +29,7 @@ public class Enemy : Target
 
     [Header("Pattern Settings")]
     [SerializeField] private List<PatternList> enemyActions = new();
-    [SerializeField] private int phaseChangeHp;
+    [SerializeField] private int phaseChangeHp = -1;
 
     private int actionIdx = 0;
     private EnemyAction enemyAction;
@@ -43,7 +43,7 @@ public class Enemy : Target
     private List<ActionList> curPattern;
 
     protected override void Awake()
-    {   
+    {
         base.Awake();
 
         Health = new HealthController(maxHp);
@@ -51,26 +51,32 @@ public class Enemy : Target
     }
 
     private void Start()
-    {   
+    {
         // 핸들러 주입
         handler = BattleManager.Instance.Player;
-        
+
         healthView.Bind(Health);
         selectedArrow.enabled = false;
 
         curPattern = enemyActions[phase].actionLists;
 
+        OnDamaged.AddListener((_, __, ___) =>
+        {
+            if (Health.CurrentHp <= phaseChangeHp)
+            {
+                phase++;
+                curPattern = enemyActions[phase].actionLists;
+                actionIdx = 0;
+                
+                SetNextEnemyAction();
+            }
+        });
+
         SetNextEnemyAction();
     }
 
     protected void SetNextEnemyAction()
-    {   
-        if (Health.CurrentHp <= phaseChangeHp)
-        {
-            phase++;
-            curPattern = enemyActions[phase].actionLists;
-        }
-
+    {
         ActionList actionList = curPattern[actionIdx];
         enemyAction = actionList.enemyActions[UnityEngine.Random.Range(0, actionList.enemyActions.Count)];
         actionIdx = (actionIdx + 1) % curPattern.Count;
