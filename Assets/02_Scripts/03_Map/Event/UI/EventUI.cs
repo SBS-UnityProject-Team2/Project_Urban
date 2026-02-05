@@ -31,14 +31,19 @@ public class EventUI : MonoBehaviour
 
     private async void PlayEvent()
     {
+        // 스크립트 출력이 끝날때까지 대기
         await PlayEventScript();
 
+        // 유저가 선택지를 고를때까지 대기
         EventRewardData rewardData = await PlayEventChoice();
         
+        // 유저가 보상을 받을때까지 대기
         (int scriptCode, string resultString) = await PlayEventReward(rewardData);
         
+        // 스크립트 출력이 끝날때까지 대기
         await PlayEndScript(scriptCode, resultString);
 
+        // 나가기 버튼 활성화
         exitButton.gameObject.SetActive(true);
     }
 
