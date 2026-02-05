@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 public class EventUI : MonoBehaviour
 {
@@ -25,30 +26,48 @@ public class EventUI : MonoBehaviour
 
         currentEvent = EventManager.Instance.GetRandomEvent();
 
-        eventScriptUI.gameObject.SetActive(true);
-        eventScriptUI.StartEventScript(currentEvent.scriptCode, HandleEndEventScript);
+        PlayEvent();
     }
 
-    // 이벤트 스크립트 재생이 끝나고 선택지 버튼 활성화
-    private void HandleEndEventScript()
+    private async void PlayEvent()
+    {
+        await PlayEventScript();
+
+        EventRewardData rewardData = await PlayEventChoice();
+        
+        (int scriptCode, string resultString) = await PlayEventReward(rewardData);
+        
+        await PlayEndScript(scriptCode, resultString);
+
+        exitButton.gameObject.SetActive(true);
+    }
+
+    private async UniTask PlayEventScript()
+    {
+        eventScriptUI.gameObject.SetActive(true);
+        await eventScriptUI.StartEventScript(currentEvent.scriptCode);
+    }
+
+    private async UniTask<EventRewardData> PlayEventChoice()
     {
         eventButtonsUI.gameObject.SetActive(true);
-        eventButtonsUI.SetChoices(currentEvent.choiceCodes, HandleClickChoiceButton);
+        eventButtonsUI.SetChoices(currentEvent.choiceCodes);
+        
+        return await eventButtonsUI.GetRewardData();
     }
 
-    // 선택지 버튼 클릭 시, 보상 팝업 노출
-    private void HandleClickChoiceButton(EventRewardData rewardData)
+    private async UniTask<(int, string)> PlayEventReward(EventRewardData rewardData)
     {
         eventRewardUI.gameObject.SetActive(true);
-        eventRewardUI.SetReward(rewardData, HandleClickConfirm);
+        eventRewardUI.SetReward(rewardData);
+        return await eventRewardUI.GetResult();
     }
 
-    // 보상 팝업 확인 버튼 클릭 시, 팝업을 닫고 EndScript 출력
-    private void HandleClickConfirm(int scriptCode, string resultString)
+    private async UniTask PlayEndScript(int scriptCode, string resultString)
     {
         eventButtonsUI.gameObject.SetActive(false);
         eventRewardUI.gameObject.SetActive(false);
-    
-        eventScriptUI.StartEndScript(scriptCode, resultString, () => exitButton.gameObject.SetActive(true));
+
+        await eventScriptUI.StartEndScript(scriptCode, resultString);
     }
 }

@@ -12,6 +12,7 @@ public class BackgroundManager : SceneSingleton<BackgroundManager>
     private void Start()
     {
         image = GetComponent<Image>();
+        image.sprite = mapBackground;
     }
 
     public void SetMapBg()

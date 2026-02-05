@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine.Events;
 
@@ -97,7 +98,9 @@ public class Status
 
     public T GetEffect<T>(StatusEffectName name) where T : StatusEffect
     {
-        return GetEffect(name) as T;
+        T effect  = GetEffect(name) as T;
+
+        return effect;
     }
 
     public IEnumerable<StatusEffect> GetActiveEffects()

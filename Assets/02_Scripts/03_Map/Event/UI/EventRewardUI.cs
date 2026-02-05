@@ -1,4 +1,6 @@
 using System.Text;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,6 +21,7 @@ public class EventRewardUI : MonoBehaviour
 
     // EventResult에 데이터 전달용
     private readonly EventResultData resultData = new();
+    private readonly UniTaskCompletionSource<(int, string)> resultCompletionSource = new();
 
     private TMP_Text coinText;
     private TMP_Text randomCardText;
@@ -51,7 +54,7 @@ public class EventRewardUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetReward(EventRewardData eventRewardData, UnityAction<int, string> handleConfirm)
+    public void SetReward(EventRewardData eventRewardData)
     {
         resultData.earnHp = eventRewardData.earnHp;
 
@@ -67,7 +70,12 @@ public class EventRewardUI : MonoBehaviour
         if (eventRewardData.removeCard != 0)
             SetRemoveCardButton(eventRewardData.removeCard);
 
-        confirmButton.onClick.AddListener(() => handleConfirm(eventRewardData.scriptCode, BuildResultString()));
+        confirmButton.onClick.AddListener(() => resultCompletionSource.TrySetResult((eventRewardData.scriptCode, BuildResultString())));
+    }
+
+    public async UniTask<(int, string)> GetResult()
+    {
+        return await resultCompletionSource.Task;
     }
 
     // 코인 텍스트 변경, 클릭시 코인을 얻도록 세팅
@@ -91,10 +99,10 @@ public class EventRewardUI : MonoBehaviour
     {
         selectCardButton.onClick.AddListener(() =>
         {
-            ToggleSelectCard(true);
+            selectCardUI.gameObject.SetActive(true);
 
             selectCardUI.Init();
-            selectCardUI.SetSelectCards(cardNames, HandleSelectCard, () => ToggleSelectCard(false));
+            selectCardUI.SetSelectCards(cardNames, HandleSelectCard, () => selectCardUI.gameObject.SetActive(false));
         });
 
         selectCardButton.gameObject.SetActive(true);
@@ -104,15 +112,9 @@ public class EventRewardUI : MonoBehaviour
     {
         resultData.selectedCard = cardName;
         selectCardButton.gameObject.SetActive(false);
-
-        ToggleSelectCard(false);
+        selectCardUI.gameObject.SetActive(false);
     }
 
-    private void ToggleSelectCard(bool isOn)
-    {
-        selectCardUI.gameObject.SetActive(isOn);
-        // gameObject.SetActive(!isOn);
-    }
 
     // 전체 카드 목록에서 속성에 따른 랜덤 카드 가져와 획득
     private void SetRandomCardButton(int randomCard)

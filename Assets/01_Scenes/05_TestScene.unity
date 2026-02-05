@@ -3167,7 +3167,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763903713}
-  - component: {fileID: 763903714}
   m_Layer: 0
   m_Name: ===CardSystem===
   m_TagString: Untagged
@@ -3194,18 +3193,6 @@ Transform:
   - {fileID: 692212273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &763903714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745188506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856f893667be7ab40ab3f3010837fb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardSystem
 --- !u!1 &811990446
 GameObject:
   m_ObjectHideFlags: 0
@@ -8371,10 +8358,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   maxCost: 10
-  drawCount: 0
+  drawCount: 6
   deck: {fileID: 1189652794}
   costView: {fileID: 3106057965538273753}
   discardPanelUI: {fileID: 983716710}
+  noneClip: {fileID: 0}
+  ruinClip: {fileID: 0}
+  psychicClip: {fileID: 0}
+  bioClip: {fileID: 0}
 --- !u!4 &2039570483
 Transform:
   m_ObjectHideFlags: 0

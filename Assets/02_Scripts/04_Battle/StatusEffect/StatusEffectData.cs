@@ -22,6 +22,7 @@ public class StatusEffectData : ScriptableObject
         return effectMap[effectName];
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Import From Json")]
     public void ImportFromJson()
     {
@@ -70,6 +71,7 @@ public class StatusEffectData : ScriptableObject
 
         return Path.Combine("Assets", relativePath).Replace("\\", "/");
     }
+#endif
 }
 
 [Serializable]

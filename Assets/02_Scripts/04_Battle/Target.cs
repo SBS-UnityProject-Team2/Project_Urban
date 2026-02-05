@@ -225,7 +225,8 @@ abstract public class Target : MonoBehaviour
 
     public void ElectricVeil(int count)
     {
-        status.ElectricVeil.Active(count);
+        ElectricVeil electricVeil = status.ElectricVeil;
+        electricVeil.Active(count);
     }
 
     public void Acceleration(int turn)

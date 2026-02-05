@@ -90,7 +90,7 @@ public class EventData : ScriptableObject
         return eventRewardMap.TryGetValue(resultCode, out var reward) ? reward : null;
     }
 
-
+#if UNITY_EDITOR
     [ContextMenu("Import From JSON")]
     public void ImportFromJson()
     {
@@ -194,6 +194,7 @@ public class EventData : ScriptableObject
 
         return Path.Combine("Assets", relativePath).Replace("\\", "/");
     }
+#endif
 }
 
 

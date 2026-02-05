@@ -21,7 +21,8 @@ public class BgmManager : Singleton<BgmManager>
         audioSource.loop = true;
         defaultVolume = audioSource.volume;
         
-        PlayTitleSound();
+        audioSource.clip = titleSound;
+        audioSource.Play();
     }
 
     public void PlayTitleSound()

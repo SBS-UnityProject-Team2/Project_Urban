@@ -132,6 +132,8 @@ abstract public class Card : MonoBehaviour
         curCost = initCost;
         isDiscardSelect = false;
         transform.localScale = localScale;
+        sprite.color = activeColor;
+        
 
         if (moveCoroutine != null)
         {

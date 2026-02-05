@@ -180,9 +180,14 @@ public class Player : Target, ICardEventHandler, IEnemyEventHandler
         Cost.Decrease(cost);
         deck.Use(card);
 
+        if (card.Type == CardType.Attack || card.Type == CardType.Debuff)
+        {
+            Enemy enemy = target as Enemy;
+            enemy?.UnHover();
+        }
+
         if (card.Type == CardType.Attack)
         {
-
             switch (card.Element)
             {
                 case Element.None:
