@@ -1,0 +1,15 @@
+{
+    "actions": [
+        {
+            "id": 100001,
+            "seq": 1,
+            "condId": 0,
+            "conTarget": "None",
+            "operator": "None",
+            "condParam": "None",
+            "actId": 50001,
+            "actTarget": "TarEnemy",
+            "actValue": 5
+        }
+    ]
+}

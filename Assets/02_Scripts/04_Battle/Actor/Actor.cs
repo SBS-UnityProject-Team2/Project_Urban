@@ -6,15 +6,17 @@ public class Actor : MonoBehaviour
 {
     private UniTaskCompletionSource turnEndTcs;
 
-    public ActorEventBus eventBus = new();
-    public ActorActionBus actionBus = new();
-    public ActorStatus status = new();
+    private ActorEventBus eventBus = new();
+    private ActorStatus status = new();
+
+
+    public ActorEventBus EventBus => eventBus;
+    public ActorStatus Status => status; 
 
     readonly private ActorEventPayload actorEventPayload = new();
 
     private void Awake()
     {
-        actionBus.Bind(status, eventBus);
         actorEventPayload.source = this;
     }
     
@@ -23,7 +25,7 @@ public class Actor : MonoBehaviour
         turnEndTcs = new UniTaskCompletionSource();
 
         actorEventPayload.eventId = ActorEvent.TurnStart;
-        eventBus.Invoke(actorEventPayload);
+        eventBus.Dispatch(actorEventPayload);
     }
 
     public UniTask WaitForTurnEndAsync()
@@ -34,8 +36,13 @@ public class Actor : MonoBehaviour
     public void EndTurn()
     {
         actorEventPayload.eventId = ActorEvent.TurnEnd;
-        eventBus.Invoke(actorEventPayload);
+        eventBus.Dispatch(actorEventPayload);
 
         turnEndTcs?.TrySetResult();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        
     }
 }

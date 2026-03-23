@@ -1,6 +1,11 @@
 abstract public class StackStatusEffect : StatusEffect
 {
     protected int stack;
+
+    protected StackStatusEffect(Actor owner) : base(owner)
+    {
+    }
+
     public int Stack => stack;
     public override int StatusNumber => stack;
     

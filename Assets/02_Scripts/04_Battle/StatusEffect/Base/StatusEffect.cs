@@ -2,6 +2,8 @@ using UnityEngine.Events;
 
 public abstract class StatusEffect
 {
+    protected Actor owner;
+
     private bool isActive;
     private readonly StatusEffectDataEntry data;
     public bool IsActive => isActive;
@@ -11,9 +13,14 @@ public abstract class StatusEffect
 
     public StatusEffectDataEntry Date => data;
 
-    public StatusEffect()
+    public StatusEffect(Actor owner)
     {
+        this.owner = owner;
         // data = GameManager.Instance.GetEffectData(Name);
+    }
+
+    protected StatusEffect()
+    {
     }
 
     // 상태 변경 이벤트

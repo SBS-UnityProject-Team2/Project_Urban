@@ -59,7 +59,7 @@ public class ActorEventBus
         unityEvent.RemoveAllListeners();
     }
 
-    public void Invoke(ActorEventPayload actorEventPayload)
+    public void Dispatch(ActorEventPayload actorEventPayload)
     {
         UnityEvent<ActorEventPayload> unityEvent = TryGetEvent(actorEventPayload.eventId, true);
         unityEvent?.Invoke(actorEventPayload);
