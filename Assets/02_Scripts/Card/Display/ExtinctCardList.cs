@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ExtinctCardList : MonoBehaviour
 {
     [SerializeField] private CardDisplay cardDisplay;
-    [SerializeField] private Deck deck; 
+    //[SerializeField] private Deck deck; 
 
     private Button button;
 
@@ -24,7 +24,7 @@ public class ExtinctCardList : MonoBehaviour
     public void OnClick()
     {
         // Deck에서 extinctCardList 받아오기
-        cardDisplay.Display(deck.ExtinctCardList);
+        // cardDisplay.Display(deck.ExtinctCardList);
         
     }
 }

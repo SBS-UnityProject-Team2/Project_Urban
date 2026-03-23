@@ -842,7 +842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapVisualizer
   mapContentParent: {fileID: 1347666519}
   linePrefab: {fileID: 3194506190788764836, guid: ffa1f2a80aba5b74ea7c19498e894e6c, type: 3}
-  playerImagePrefab: {fileID: 3635762485152443206, guid: d46e2ddacdea1ac4da74eaf02fa880af, type: 3}
   mapScrollView: {fileID: 482763775}
   normalStagePrefab: {fileID: 6205098669559856584, guid: e4e1e537a481eea4a84bbb148535c532, type: 3}
   eliteStagePrefab: {fileID: 2856633294087563437, guid: ef9fe0c7a2f96b14591dd4fc04ec94a2, type: 3}
@@ -1607,10 +1606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3b6a5a1fa2cfe44a8e9b886ee29599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventUI
-  eventScriptUI: {fileID: 1439382492}
-  eventButtonsUI: {fileID: 919091284}
-  eventRewardUI: {fileID: 1830664601}
-  exitButton: {fileID: 436393739}
 --- !u!222 &156217302
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3641,17 +3636,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 24330398858038996, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
   m_PrefabInstance: {fileID: 328007236}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &328007238 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6225411347598948980, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
-  m_PrefabInstance: {fileID: 328007236}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
 --- !u!1 &349267843
 GameObject:
   m_ObjectHideFlags: 0
@@ -5662,14 +5646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1169ba4a7a1784498a25f4a25bf81ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonEvent
-  UI_Store: {fileID: 8925956247481935760}
-  UI_Shelter: {fileID: 1516415677630805077}
-  UI_Map: {fileID: 1311082075}
-  UI_EnterShelter: {fileID: 983073675}
-  Panel_ShelterPopup: {fileID: 464493211}
-  Panel_ShelterCardEnchantPopup: {fileID: 1379066882}
-  Panel_EnchantCardPopup: {fileID: 0}
-  UI_Event: {fileID: 156217299}
 --- !u!4 &468701847
 Transform:
   m_ObjectHideFlags: 0
@@ -6215,17 +6191,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 24330398858038996, guid: 889a4809f1d251d498344502c4a67589, type: 3}
   m_PrefabInstance: {fileID: 489003143}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &489003145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 705260050387000885, guid: 889a4809f1d251d498344502c4a67589, type: 3}
-  m_PrefabInstance: {fileID: 489003143}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
 --- !u!1 &511563803
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,10 +7627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
-  cardTitle: {fileID: 1513229376}
-  cardDesc: {fileID: 2117164714}
-  cardCost: {fileID: 30004667}
-  cardImage: {fileID: 656620139}
+  cardTitle: {fileID: 0}
+  cardDesc: {fileID: 0}
+  cardCost: {fileID: 0}
+  cardImage: {fileID: 0}
 --- !u!114 &656620142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7914,17 +7879,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 24330398858038996, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
   m_PrefabInstance: {fileID: 674146305}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &674146307 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6225411347598948980, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
-  m_PrefabInstance: {fileID: 674146305}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
 --- !u!1 &685054065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8449,8 +8403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a9df763f9dd1e4eb2e64eb3ae3e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptUI
-  textArea: {fileID: 1594671628}
-  typingSpeed: 0.03
 --- !u!1 &767833564
 GameObject:
   m_ObjectHideFlags: 0
@@ -8832,8 +8784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1f40666bed1044d9ed4a010190b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealingPopupUI
-  popupObject: {fileID: 180968744}
-  statusText: {fileID: 1567840740}
 --- !u!1 &805553714
 GameObject:
   m_ObjectHideFlags: 0
@@ -10506,10 +10456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d08730d2b6d7964eae138ddb1e0fe06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventButtonsUI
-  buttons:
-  - {fileID: 1730373429}
-  - {fileID: 1987733615}
-  - {fileID: 1838933248}
 --- !u!1 &920866865
 GameObject:
   m_ObjectHideFlags: 0
@@ -11264,8 +11210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3047d7bf313627146988c9e0bdcbfb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventManager
-  eventData: {fileID: 11400000, guid: 0047d1a47a70dcc4e945a2f564a15305, type: 2}
-  coinRatio: 0.2
 --- !u!1001 &966775353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11380,28 +11324,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 24330398858038996, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
   m_PrefabInstance: {fileID: 966775353}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &966775355 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6225411347598948980, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
-  m_PrefabInstance: {fileID: 966775353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
---- !u!114 &966775356 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7374973465773631952, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
-  m_PrefabInstance: {fileID: 966775353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &983073675
 GameObject:
   m_ObjectHideFlags: 0
@@ -11593,17 +11515,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 424533974198635376, guid: fb7be1d7e49c39d46a6f05c6bd02edd9, type: 3}
   m_PrefabInstance: {fileID: 1018490434}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1018490436 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7151586424157682173, guid: fb7be1d7e49c39d46a6f05c6bd02edd9, type: 3}
-  m_PrefabInstance: {fileID: 1018490434}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
 --- !u!1 &1024795835
 GameObject:
   m_ObjectHideFlags: 0
@@ -13648,10 +13559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341570eb73886e44f87591d764c4d745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoreCardRemovePanel
-  displayArea: {fileID: 2072367289}
-  cardPrefab: {fileID: 513533824014746170, guid: c52b96d2adf5de2488b1c03579fc9c67, type: 3}
-  RemoveCardPanel: {fileID: 1280654204}
-  removeConfirmPopup: {fileID: 6666305555755250591}
 --- !u!114 &1280654207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14756,17 +14663,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3166992934431129039, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
   m_PrefabInstance: {fileID: 1368224952}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1368224954 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8026629619791640077, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
-  m_PrefabInstance: {fileID: 1368224952}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49fb4b2f62a299643afe91e1faa6ac89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthView
 --- !u!1 &1379066882
 GameObject:
   m_ObjectHideFlags: 0
@@ -14873,10 +14769,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035a9dc0e8163cb4b882a71f838ec695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckEnchantPopup
-  BeforeCardUI: {fileID: 489003145}
-  AfterCardUI: {fileID: 1737512921}
-  AfterCardNameText: {fileID: 1737512922}
-  cardEnchantPanel: {fileID: 0}
 --- !u!225 &1379066887
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15505,11 +15397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59e9c200e44be042a4b17c4be54d994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventScriptUI
-  illustrationImage: {fileID: 511563805}
-  playerScript: {fileID: 1825455435}
-  npcScript: {fileID: 1742046487}
-  resultScript: {fileID: 759878826}
-  typingSpeed: 0.03
 --- !u!1 &1445018843
 GameObject:
   m_ObjectHideFlags: 0
@@ -16569,17 +16456,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1567840740 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1211895179876103750, guid: 1d08d5aa9b910a046b538134a374467e, type: 3}
-  m_PrefabInstance: {fileID: 2084182685143299880}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1581284406
 GameObject:
   m_ObjectHideFlags: 0
@@ -18900,8 +18776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560731af5ab306f41b2b23198dcaa260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventButtonUI
-  titleText: {fileID: 880774299}
-  rewardText: {fileID: 95303972}
 --- !u!1 &1733712870
 GameObject:
   m_ObjectHideFlags: 0
@@ -19086,28 +18960,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 24330398858038996, guid: 889a4809f1d251d498344502c4a67589, type: 3}
   m_PrefabInstance: {fileID: 1737512919}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1737512921 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 705260050387000885, guid: 889a4809f1d251d498344502c4a67589, type: 3}
-  m_PrefabInstance: {fileID: 1737512919}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
---- !u!114 &1737512922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7374973465773631952, guid: 889a4809f1d251d498344502c4a67589, type: 3}
-  m_PrefabInstance: {fileID: 1737512919}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1740042799
 GameObject:
   m_ObjectHideFlags: 0
@@ -19503,8 +19355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a9df763f9dd1e4eb2e64eb3ae3e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptUI
-  textArea: {fileID: 545937790}
-  typingSpeed: 0.03
 --- !u!1 &1750159502
 GameObject:
   m_ObjectHideFlags: 0
@@ -19667,11 +19517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e452f4f8accc1494d946a55e37a6485d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardMoveController
-  cardImage: {fileID: 1905386484}
-  viewPoint: {fileID: 1726342080}
-  deckPoint: {fileID: 1895515638}
-  moveDuration: 0.6
-  fadeDuration: 0.4
 --- !u!114 &1751817023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20897,8 +20742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ebf90ce7e182d44a76b6cb77c9aad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  mapBackground: {fileID: 21300000, guid: 56442d86a1c9a644cb33c6dd431e9844, type: 3}
-  restBackground: {fileID: 21300000, guid: 0357c48743dd2804c824d4be138e344e, type: 3}
 --- !u!1 &1792435143
 GameObject:
   m_ObjectHideFlags: 0
@@ -21082,10 +20925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
-  cardTitle: {fileID: 360065580}
-  cardDesc: {fileID: 1860320438}
-  cardCost: {fileID: 1464316111}
-  cardImage: {fileID: 1801638338}
+  cardTitle: {fileID: 0}
+  cardDesc: {fileID: 0}
+  cardCost: {fileID: 0}
+  cardImage: {fileID: 0}
 --- !u!114 &1801638341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21510,8 +21353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a9df763f9dd1e4eb2e64eb3ae3e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptUI
-  textArea: {fileID: 464751821}
-  typingSpeed: 0.03
 --- !u!1 &1830412467
 GameObject:
   m_ObjectHideFlags: 0
@@ -21602,13 +21443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a30e4453fe21843a51087a1d9e80d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventRewardUI
-  coinButton: {fileID: 2129565949}
-  selectCardButton: {fileID: 378785905}
-  randomCardButton: {fileID: 1638524218}
-  removeCardButton: {fileID: 1608168397}
-  confirmButton: {fileID: 282745780}
-  selectCardUI: {fileID: 1924581019}
-  rewardCardUI: {fileID: 1751817022}
 --- !u!114 &1830664602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21682,8 +21516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560731af5ab306f41b2b23198dcaa260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventButtonUI
-  titleText: {fileID: 1752817423}
-  rewardText: {fileID: 1760784167}
 --- !u!224 &1838933249
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23125,10 +22957,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
-  cardTitle: {fileID: 1041164847}
-  cardDesc: {fileID: 937265610}
-  cardCost: {fileID: 1597927929}
-  cardImage: {fileID: 1905386485}
+  cardTitle: {fileID: 0}
+  cardDesc: {fileID: 0}
+  cardCost: {fileID: 0}
+  cardImage: {fileID: 0}
 --- !u!114 &1905386485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23394,11 +23226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38afe8c7c2eecb74d8c1e81533c9449e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectCardUI
-  cards:
-  - {fileID: 2768305317548828495}
-  - {fileID: 656620141}
-  - {fileID: 1801638340}
-  skipButton: {fileID: 1714236313}
 --- !u!1 &1927416803
 GameObject:
   m_ObjectHideFlags: 0
@@ -24555,8 +24382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560731af5ab306f41b2b23198dcaa260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventButtonUI
-  titleText: {fileID: 799945460}
-  rewardText: {fileID: 1854125626}
 --- !u!1 &2025073807
 GameObject:
   m_ObjectHideFlags: 0
@@ -25050,10 +24875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfe62f20cad73d4c8dd4d80d596030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardEnchantPanel
-  displayArea: {fileID: 374730165}
-  cardPrefab: {fileID: 513533824014746170, guid: c52b96d2adf5de2488b1c03579fc9c67, type: 3}
-  EnchantCardPanel: {fileID: 2114412396}
-  deckEnchantPopup: {fileID: 8113308315743424853}
 --- !u!1 &2116276321
 GameObject:
   m_ObjectHideFlags: 0
@@ -25478,9 +25299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c444d4f779fa8dc4c9462642177a1267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopBar
-  healthView: {fileID: 1368224954}
-  coinView: {fileID: 805553719}
-  toMainButton: {fileID: 1403514914}
 --- !u!1 &2129565945
 GameObject:
   m_ObjectHideFlags: 0
@@ -27683,9 +27501,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7755870406956450304}
-  - component: {fileID: 7755870406956450305}
   - component: {fileID: 7755870406956450307}
   - component: {fileID: 7755870406956450306}
+  - component: {fileID: 7755870406956450308}
   m_Layer: 5
   m_Name: UI_StoreDisplay
   m_TagString: Untagged
@@ -28618,8 +28436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28460bf3e697a5549aa25f6f9612502e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuyCardPopup
-  questionText: {fileID: 4168122699658446424}
-  targetCardUI: {fileID: 1018490436}
+  questionText: {fileID: 0}
+  targetCardUI: {fileID: 0}
 --- !u!225 &2342553828530786628
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -29193,10 +29011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICard
-  cardTitle: {fileID: 1445018845}
-  cardDesc: {fileID: 481853584}
-  cardCost: {fileID: 1753765675}
-  cardImage: {fileID: 204397616250087793}
+  cardTitle: {fileID: 0}
+  cardDesc: {fileID: 0}
+  cardCost: {fileID: 0}
+  cardImage: {fileID: 0}
 --- !u!114 &2790588881355935054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33084,8 +32902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98d3587d2a2e26c4faea38368faa7ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoreCardRemovePopup
-  targetCardUI: {fileID: 674146307}
-  Panel_CardRemovePanel: {fileID: 1280654204}
 --- !u!222 &6682704252984325522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34406,22 +34222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 1000, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7755870406956450305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1551539186775228507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c30148bb81d654799ebba7bca97b7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StoreDisplay
-  displayArea: {fileID: 9035694916590338936}
-  targetCount: 6
-  cardPrefab: {fileID: 7652202008859183801, guid: b80c3a1e9f4a1834c85f548cae683f70, type: 3}
-  purchasePopup: {fileID: 2241512826654394255}
 --- !u!114 &7755870406956450306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34462,6 +34262,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &7755870406956450308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551539186775228507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c30148bb81d654799ebba7bca97b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoreDisplayUI
+  displayArea: {fileID: 9035694916590338936}
+  targetCount: 6
+  cardPrefab: {fileID: 7652202008859183801, guid: b80c3a1e9f4a1834c85f548cae683f70, type: 3}
+  purchasePopup: {fileID: 2241512826654394255}
 --- !u!114 &7762470164711787710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34856,10 +34672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035a9dc0e8163cb4b882a71f838ec695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnchantConfirmPopup
-  BeforeCardUI: {fileID: 328007238}
-  AfterCardUI: {fileID: 966775355}
-  AfterCardNameText: {fileID: 966775356}
-  cardEnchantPanel: {fileID: 2114412404}
 --- !u!224 &8131398400054405136
 RectTransform:
   m_ObjectHideFlags: 0
