@@ -19,18 +19,19 @@ public class CardDisplay : MonoBehaviour
 
     public void Display(List<Card> cards)
     {
-        CheckCount(cards.Count);
+        int cardCount = cards.Count;
+        CheckCount(cardCount);        
 
-        for (int i = 0; i < cards.Count; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             Card card = cards[i];
             CardDisplay display = spawnedDisplays[i];
-            display.gameObject.SetActive(true);
+            
             display.Bind(card.CardData);
         }
 
-        for (int i = cards.Count; i < spawnedDisplays.Count; i++)
-            spawnedDisplays[i].gameObject.SetActive(false);
+        for (int i = 0; i < spawnedDisplays.Count; i++)
+            spawnedDisplays[i].gameObject.SetActive(i<cardCount);
     }
 
     public void Bind(CardDataEntry data)

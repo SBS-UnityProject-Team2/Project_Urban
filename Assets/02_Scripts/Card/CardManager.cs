@@ -14,7 +14,7 @@ public class CardManager : Singleton<CardManager>
         card.Init(cardDataEntry);
 
         if (isEnchanted) 
-            card.Enhance();
+            //card.Enhance();       << 잠시 비활성화해놨음
 
         card.gameObject.SetActive(false);
         

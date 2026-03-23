@@ -55,7 +55,6 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         if (MapManager.Instance == null) return;
 
         ShowMap(MapManager.Instance.mapGrid);
-        ButtonEvent.Instance.ActiveMap();
     }
 
     // 맵 그리는 메인함수
@@ -105,6 +104,10 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         // 깔끔한 계층 구조를 위해 선은 뒤, 노드는 앞에 나오도록 컨테이너 분리
         if (lineContainer == null) CreateContainer("LineContainer", out lineContainer);
         if (nodeContainer == null) CreateContainer("NodeContainer", out nodeContainer);
+
+        // 렌더 순서 고정: 선 컨테이너는 뒤, 노드 컨테이너는 앞
+        lineContainer.SetAsFirstSibling();
+        nodeContainer.SetAsLastSibling();
     }
 
 
@@ -163,12 +166,16 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         if (nodePools.TryGetValue(node.nodeType, out Queue<GameObject> pool) && pool.Count > 0)
         {
             newObj = pool.Dequeue();
+            newObj.transform.SetParent(nodeContainer, false);
+            newObj.transform.SetAsLastSibling();
             newObj.SetActive(true);
         }
         else
         {
             newObj = Instantiate(prefab, nodeContainer);
         }
+
+        ApplyRenderOrder(newObj, 10);
 
         newObj.transform.localScale = Vector3.one;
 
@@ -198,12 +205,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         if (visualData.button != null)
         {
             visualData.button.onClick.RemoveAllListeners();
-        }
-
-        NodeButton nodeButton = newObj.GetComponent<NodeButton>();
-        if (nodeButton != null)
-        {
-            nodeButton.AddOnClickEvent(() => MapManager.Instance.OnNodeClicked(node));
+            visualData.button.onClick.AddListener(() => MapManager.Instance.OnNodeClicked(node));
         }
     }
 
@@ -233,7 +235,11 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
     {
         // 선도 마찬가지로 창고(Pool)에 남은 게 있다면 꺼내옴
         GameObject line = linePool.Count > 0 ? linePool.Dequeue() : Instantiate(linePrefab, lineContainer);
+        line.transform.SetParent(lineContainer, false);
+        line.transform.SetAsFirstSibling();
         line.SetActive(true);
+
+        ApplyRenderOrder(line, 0);
 
         RectTransform rect = line.GetComponent<RectTransform>();
         rect.pivot = new Vector2(0f, 0.5f); // 회전 기준점을 선의 왼쪽 끝으로 설정
@@ -442,6 +448,16 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         if (button != null)
         {
             button.interactable = isInteractable;
+        }
+    }
+
+    private static void ApplyRenderOrder(GameObject obj, int sortingOrder)
+    {
+        Canvas canvas = obj.GetComponent<Canvas>();
+        if (canvas != null)
+        {
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = sortingOrder;
         }
     }
 
