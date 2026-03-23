@@ -7,9 +7,12 @@ public class Card : MonoBehaviour
     private ActorActionPayload payload = new();
     private CardDataEntry cardData;
 
-    public void Init(CardName cardName)
+    public CardDataEntry CardData => cardData;
+    public CardName CardName => cardData != null ? cardData.cardName : default;
+
+    public void Init(CardDataEntry data)
     {
-        
+        cardData = data;
     }
 
     public void Use()
