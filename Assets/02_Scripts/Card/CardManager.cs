@@ -1,36 +1,29 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CardManager : Singleton<CardManager>
 {
     [Header("Data")]
     [SerializeField] private CardData cardData; 
+    [SerializeField] private ActionData actionData;
 
     public Card CreateCard(CardName cardName, Transform transform, bool isEnchanted)
     {
-        CardDataEntry cardDataEntry = GetCardData(cardName);
-        Card card = Instantiate(cardDataEntry.cardPrefab, transform);
-
-        card.Init(cardDataEntry);
-
-        if (isEnchanted) 
-            //card.Enhance();       << 잠시 비활성화해놨음
+        CardDataEntry cardDataEntry = cardData[cardName];
+        Card card = Instantiate(cardData.Prefab, transform);
 
         card.gameObject.SetActive(false);
         
         return card;
-    }
-    
-    public CardDataEntry GetCardData(CardName name) => cardData.GetCardData(name);
-    public CardDataEntry GetEnchantedCardData(CardName name) => cardData.GetEnchantedCardData(name);
-    public List<CardDataEntry> GetCardsByElement(Element element) => cardData.GetCardsByElement(element);
-    public List<CardName> GetAllCardNames() => cardData.GetAllCardNames();
-    public List<CardDataEntry> GetAllCardData() => cardData.GetAllCardData();
+    }    
 
-    public CardName GetRandomCard(Element element)
+    public CardDataEntry GetCardData(CardName cardName)
     {
-        List<CardDataEntry> dataEntries = GetCardsByElement(element);
+        return cardData[cardName];
+    }
 
-        return dataEntries[Random.Range(0, dataEntries.Count)].cardName;
+    public List<ActionDataEntry> GetActionData(int linkId)
+    {
+        return actionData[linkId];
     }
 }

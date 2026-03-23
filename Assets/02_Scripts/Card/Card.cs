@@ -4,36 +4,84 @@ using System.Collections.Generic;
 
 public class Card : MonoBehaviour
 {
-    private ActorActionPayload payload = new();
     private CardDataEntry cardData;
+    private List<ActionDataEntry> actionData;
+    private readonly ActionPayload payload = new();
 
     public CardDataEntry CardData => cardData;
-    public CardName CardName => cardData != null ? cardData.cardName : default;
 
-    public void Init(CardDataEntry data)
+    public void Init(CardName cardName)
     {
-        cardData = data;
+        cardData = CardManager.Instance.GetCardData(cardName);
+        actionData = CardManager.Instance.GetActionData(cardData.linkId);
     }
 
-    public void Use()
+    public Target GetTarget()
     {
-        // 등록된 카드 정보를 토대로 액션 및 이펙트 재생
+        return actionData[0].actTarget;
+    }
 
-        // 액션 정보 확인
-        // payload에 값채우고 ActionBus로 보내서 액션 동작시키기
+    public async void Use(Actor selectedActor)
+    {
+        foreach (ActionDataEntry action in actionData)
+        {
+            payload.Init();
+            payload.actionId = action.actId;
+            payload.source = Battle.Instance.Player;
+
+            // 타겟 지정 로직
+            switch (action.actTarget)
+            {
+                case Target.Self:
+                    payload.target.Add(payload.source);
+                    break;
+
+                case Target.Enemy:
+                    payload.target.Add(selectedActor);
+                    break;
+
+                case Target.EnemyRandom:
+                case Target.EnemyRandomEach:
+                {
+                    int count = Battle.Instance.Monsters.Count;
+                    payload.target.Add(Battle.Instance.Monsters[Random.Range(0, count)]);
+                    break;
+                }
+
+                case Target.EnemiesAll :
+                    payload.target.AddRange(Battle.Instance.Monsters);
+                    break;
+                
+
+                // 적 위치 관련된 부분은 몬스터 관리자 작성 후 추가하기
+                case Target.AdjacentEnemies :
+                {
+                    payload.target.Add(selectedActor);
+
+
+                    break;   
+                }
+            }
+
+            payload.Write(action.actValue);
+            // actParam처리하기
+
+            ActionBus.Dispatch(payload);
+            // 여기서 이펙트 작동시키기
+        }
     }
 
     private async UniTask PlayEffect
     (
-        Transform target, 
-        List<ParticleSystem> particles, 
-        List<Vector3List> offsets, 
+        Transform target,
+        List<ParticleSystem> particles,
+        List<Vector3List> offsets,
         List<float> durations
     )
     {
         List<UniTask> tasks = new();
         List<ParticleSystem> effects = new();
-        
+
         int idx = 0;
         foreach (ParticleSystem particlePrefab in particles)
         {
@@ -46,7 +94,7 @@ public class Card : MonoBehaviour
 
         await UniTask.WhenAll(tasks);
         tasks.Clear();
-        
+
         Vector3 originPost = target.transform.position;
         for (int i = 1; i < offsets.Count; i++)
         {

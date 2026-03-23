@@ -5,9 +5,12 @@ using UnityEngine.Events;
 public class Battle : SceneSingleton<Battle>
 {
     [SerializeField] private Actor player;
-    [SerializeField] private Actor[] monsters;
+    [SerializeField] private List<Actor> monsters;
 
     private readonly List<Actor> actors = new();
+
+    public Actor Player => player;
+    public List<Actor> Monsters => monsters;
 
     public UnityEvent OnBattleStart = new();
     public UnityEvent OnBattleEnd = new();
@@ -39,6 +42,6 @@ public class Battle : SceneSingleton<Battle>
             }
         }
 
-        OnBattleEnd?.Invoke();
+        // OnBattleEnd?.Invoke();
     } 
 }
