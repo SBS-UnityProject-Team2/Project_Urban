@@ -11,13 +11,13 @@ public class ActionPayload
 
     public ActorAction actionId;
     public Actor source;
-    public List<Actor> target = new();
+    public List<Actor> targets = new();
 
     public void Init()
     {
         actionId = ActorAction.None;
         source   = null;
-        target.Clear();
+        targets.Clear();
         writePos = 0;
         readPos  = 0;
     }

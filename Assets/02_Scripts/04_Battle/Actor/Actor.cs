@@ -1,30 +1,26 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEngine.UI;
 
 public class Actor : MonoBehaviour
 {
     private UniTaskCompletionSource turnEndTcs;
 
-    private ActorEventBus eventBus = new();
-    private ActorStatus status = new();
-
+    private readonly ActorEventBus eventBus = new();
+    private readonly ActorStatus status = new();
 
     public ActorEventBus EventBus => eventBus;
     public ActorStatus Status => status; 
 
     readonly private ActorEventPayload actorEventPayload = new();
-
-    private void Awake()
-    {
-        actorEventPayload.source = this;
-    }
     
     public void BeginTurn()
     {
         turnEndTcs = new UniTaskCompletionSource();
 
+        actorEventPayload.Init();
+        actorEventPayload.source = this;
         actorEventPayload.eventId = ActorEvent.TurnStart;
+
         eventBus.Dispatch(actorEventPayload);
     }
 
@@ -35,14 +31,11 @@ public class Actor : MonoBehaviour
 
     public void EndTurn()
     {
+        actorEventPayload.Init();
+        actorEventPayload.source = this;
         actorEventPayload.eventId = ActorEvent.TurnEnd;
-        eventBus.Dispatch(actorEventPayload);
-
-        turnEndTcs?.TrySetResult();
-    }
-
-    public void TakeDamage(int damage)
-    {
         
+        eventBus.Dispatch(actorEventPayload);
+        turnEndTcs?.TrySetResult();
     }
 }

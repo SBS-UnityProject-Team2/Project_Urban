@@ -33,30 +33,30 @@ public class Card : MonoBehaviour
             switch (action.actTarget)
             {
                 case Target.Self:
-                    payload.target.Add(payload.source);
+                    payload.targets.Add(payload.source);
                     break;
 
                 case Target.Enemy:
-                    payload.target.Add(selectedActor);
+                    payload.targets.Add(selectedActor);
                     break;
 
                 case Target.EnemyRandom:
                 case Target.EnemyRandomEach:
                 {
                     int count = Battle.Instance.Monsters.Count;
-                    payload.target.Add(Battle.Instance.Monsters[Random.Range(0, count)]);
+                    payload.targets.Add(Battle.Instance.Monsters[Random.Range(0, count)]);
                     break;
                 }
 
                 case Target.EnemiesAll :
-                    payload.target.AddRange(Battle.Instance.Monsters);
+                    payload.targets.AddRange(Battle.Instance.Monsters);
                     break;
                 
 
                 // 적 위치 관련된 부분은 몬스터 관리자 작성 후 추가하기
                 case Target.AdjacentEnemies :
                 {
-                    payload.target.Add(selectedActor);
+                    payload.targets.Add(selectedActor);
 
 
                     break;   
@@ -75,7 +75,7 @@ public class Card : MonoBehaviour
     (
         Transform target,
         List<ParticleSystem> particles,
-        List<Vector3List> offsets,
+        List<List<Vector3>> offsets,
         List<float> durations
     )
     {
@@ -88,7 +88,7 @@ public class Card : MonoBehaviour
             ParticleSystem effect = EffectHelper.CreateEffect(particlePrefab, target);
             effects.Add(effect);
 
-            UniTask task = EffectHelper.PlayEffect(effect, offsets[0].values[idx++], durations[0]);
+            UniTask task = EffectHelper.PlayEffect(effect, offsets[0][idx++], durations[0]);
             tasks.Add(task);
         }
 
@@ -98,9 +98,9 @@ public class Card : MonoBehaviour
         Vector3 originPost = target.transform.position;
         for (int i = 1; i < offsets.Count; i++)
         {
-            for (int j = 0; j < offsets[i].values.Count; j++)
+            for (int j = 0; j < offsets[i].Count; j++)
             {
-                UniTask task = EffectHelper.MoveEffect(effects[j], originPost + offsets[i].values[j], durations[i]);
+                UniTask task = EffectHelper.MoveEffect(effects[j], originPost + offsets[i][j], durations[i]);
                 tasks.Add(task);
             }
 

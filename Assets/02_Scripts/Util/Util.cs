@@ -3,27 +3,20 @@ using Cysharp.Threading.Tasks;
 
 static public class Util
 {
-    static public async UniTask<ParticleSystem> PlayEffect
-    (
-        ParticleSystem effectPrefab, 
-        Transform target, 
-        Vector3 offset, 
-        float duration, 
-        bool autoDestroy = true
-        )
+    static public async UniTask MoveTo(GameObject gameObject, Vector3 destination, float duration)
     {
-        ParticleSystem effect = Object.Instantiate(effectPrefab,offset, Quaternion.identity,target);
-        effect.Play();
+        float curTime = 0.0f;
+        Vector3 startPos = gameObject.transform.position;
 
-        await UniTask.WaitForSeconds(duration);
-
-        if (autoDestroy)
+        while (curTime < duration)
         {
-            Object.Destroy(effect.gameObject);
-            
-            return null;
-        }
+            float t = curTime / duration;
+            float smoothT = Mathf.Sin(t * Mathf.PI * 0.5f);
 
-        return effect;
+            gameObject.transform.position = Vector3.Lerp(startPos, destination, smoothT);
+            curTime += Time.deltaTime;
+
+            await UniTask.Yield();
+        }
     }
 } 

@@ -22,6 +22,16 @@ public class CardManager : Singleton<CardManager>
         return cardData[cardName];
     }
 
+    public List<CardName> GetAllCardNames()
+    {
+        return cardData.CardNames;
+    }
+
+    public Sprite GetCardImage(CardName cardName)
+    {
+        return cardData.GetCardImage(cardName);
+    }
+
     public List<ActionDataEntry> GetActionData(int linkId)
     {
         return actionData[linkId];

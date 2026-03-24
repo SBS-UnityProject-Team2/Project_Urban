@@ -37,7 +37,7 @@ public class CardDisplay : MonoBehaviour
     public void Bind(CardDataEntry data)
     {       
         cardName = data.cardName;
-        cardImage.sprite = data.cardSprite;
+        cardImage.sprite = CardManager.Instance.GetCardImage(cardName);
         cardTitle.text = data.koreanName;
         cardDesc.text = data.description;
         cardCost.text = data.cost.ToString();
