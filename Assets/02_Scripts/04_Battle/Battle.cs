@@ -16,7 +16,7 @@ public class Battle : SceneSingleton<Battle>
     public List<Actor> Monsters => monsters;
     public Deck Deck => deck;
     public Hand Hand => hand;
-    
+
     public int DrawCount
     {
         get => drawCount;
@@ -31,8 +31,7 @@ public class Battle : SceneSingleton<Battle>
         actors.Add(player);
         actors.AddRange(monsters);
 
-        
-
+        deck.Init(DeckManager.Instance.Deck, hand);
         // 배틀 시작 전 필요한 준비하기
         // 덱 초기화 등등
 

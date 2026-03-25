@@ -5,10 +5,21 @@
             "seq": 1,
             "condId": 0,
             "conTarget": "None",
-            "operator": "None",
+            "op": "None",
             "condParam": "None",
             "actId": 50001,
             "actTarget": "TarEnemy",
+            "actValue": 5
+        },
+        {
+            "id": 100101,
+            "seq": 1,
+            "condId": 0,
+            "conTarget": "None",
+            "op": "None",
+            "condParam": "None",
+            "actId": 50101,
+            "actTarget": "TarSelf",
             "actValue": 5
         }
     ]

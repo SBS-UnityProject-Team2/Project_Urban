@@ -10,7 +10,19 @@
       "cost": 1,
       "price": 0,
       "effectType": 0,
-      "actionId": 100001
+      "linkId": 100001
+    },
+    {
+      "cardName": "Guard",
+      "koreanName": "방어",
+      "element": "None",
+      "description" : "방어도를 얻습니다.",
+      "isExtinct": false,
+      "isSpecial": false,
+      "cost": 1,
+      "price": 0,
+      "effectType": 0,
+      "linkId": 100101
     }
   ]
 }

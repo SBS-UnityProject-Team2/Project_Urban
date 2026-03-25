@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
 
     public List<Card> CurHand => curHand;
 
-    public async void AddCards(List<Card> cards)
+    public async UniTask AddCards(List<Card> cards)
     {
         if (curHand.Count >= maxCardCount)
             return;
@@ -31,7 +31,7 @@ public class Hand : MonoBehaviour
         await Align();
     }
 
-    public async void AddCard(Card card)
+    public async UniTask AddCard(Card card)
     {
         if (curHand.Count >= maxCardCount)
             return;
@@ -43,7 +43,7 @@ public class Hand : MonoBehaviour
         await Align();
     }
 
-    public async void RemoveCard(Card card)
+    public async UniTask RemoveCard(Card card)
     {
         curHand.Remove(card);
 
@@ -55,10 +55,22 @@ public class Hand : MonoBehaviour
         card.gameObject.SetActive(false);
     }
 
-    public async void RemoveAllCards()
+    public async UniTask RemoveAllCards()
     {
+        List<UniTask> tasks = new();
+
         foreach (Card card in curHand)
-            RemoveCard(card);
+        {
+            UniTask moveTask = Util.MoveTo(card.gameObject, cardDespawnPoint.position, 0.25f);
+            tasks.Add(moveTask);
+        }
+
+        await UniTask.WhenAll(tasks);
+
+        foreach (Card card in curHand)
+            card.gameObject.SetActive(false);
+        
+        curHand.Clear();
     }
 
     private async UniTask Align()
@@ -74,6 +86,7 @@ public class Hand : MonoBehaviour
             int reverseIndex = curHand.Count - 1 - i;
             Vector3 cardPos = curHand[reverseIndex].transform.localPosition;
             cardPos.x = startX + (spacing * i);
+            cardPos.y = 0.0f;
             cardPos.z = -0.2f * i;
 
             UniTask task = Util.MoveTo(curHand[reverseIndex].gameObject, cardPos, 0.25f);

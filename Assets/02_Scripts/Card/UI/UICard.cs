@@ -17,7 +17,10 @@ public class UICard : MonoBehaviour
         //Debug.Log($"[UICard] SetCardDataEntry 시작: {data.koreanName} ({data.cardName})");
         
         cardName = data.cardName;
-        cardImage.sprite = CardManager.Instance.GetCardImage(cardName);
+
+        if (cardImage != null)
+            cardImage.sprite = CardManager.Instance.GetCardImage(cardName);
+            
         cardTitle.text = data.koreanName;
         cardDesc.text = data.description;       
         cardCost.text = data.cost.ToString();

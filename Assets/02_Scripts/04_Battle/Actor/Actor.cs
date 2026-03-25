@@ -12,6 +12,8 @@ public class Actor : MonoBehaviour
     public ActorStatus Status => status; 
 
     readonly private ActorEventPayload actorEventPayload = new();
+
+    bool isTurn = false;
     
     public void BeginTurn()
     {
@@ -22,6 +24,7 @@ public class Actor : MonoBehaviour
         actorEventPayload.eventId = ActorEvent.TurnStart;
 
         eventBus.Dispatch(actorEventPayload);
+        isTurn = true;
     }
 
     public UniTask WaitForTurnEndAsync()
@@ -31,11 +34,18 @@ public class Actor : MonoBehaviour
 
     public void EndTurn()
     {
+        if (isTurn)
+            EndTurnAsync().Forget();
+    }
+
+    private async UniTaskVoid EndTurnAsync()
+    {
         actorEventPayload.Init();
         actorEventPayload.source = this;
         actorEventPayload.eventId = ActorEvent.TurnEnd;
+        isTurn = false;
         
-        eventBus.Dispatch(actorEventPayload);
+        await eventBus.DispatchAsync(actorEventPayload);
         turnEndTcs?.TrySetResult();
     }
 }
