@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 [RequireComponent(typeof(Button))]
 public class ExtinctCardList : MonoBehaviour
-{
-    [SerializeField] private CardDisplay cardDisplay;
+{    
+    [SerializeField] private Transform panelContent;
     //[SerializeField] private Deck deck; 
 
     private Button button;
@@ -24,7 +25,9 @@ public class ExtinctCardList : MonoBehaviour
     public void OnClick()
     {
         // Deck에서 extinctCardList 받아오기
-        // cardDisplay.Display(deck.ExtinctCardList);
+        // List<CardName> nameList = deck.ExtinctCardList.Select(card => card.CardData.cardName).ToList();    
+    
+        // cardDisplay.Display(nameList, panelContent);
         
     }
 }
