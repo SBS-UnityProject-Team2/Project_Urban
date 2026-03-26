@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aced5f5b861efa84aaebcf8cde391c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  effectData: {fileID: 11400000, guid: 12cf3d22cdcb16648a4f9f7a543c4c4b, type: 2}
 --- !u!4 &110836245
 Transform:
   m_ObjectHideFlags: 0
@@ -2623,7 +2622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964830522}
-  - component: {fileID: 1964830521}
+  - component: {fileID: 1964830523}
   m_Layer: 0
   m_Name: DeckManager
   m_TagString: Untagged
@@ -2631,23 +2630,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1964830521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964830520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 339aa1f15bc7eec49851db1ef635ab46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  initialDeckRecipe:
-  - name: 1000
-    count: 5
-  - name: 1005
-    count: 5
 --- !u!4 &1964830522
 Transform:
   m_ObjectHideFlags: 0
@@ -2663,6 +2645,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1964830523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964830520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640f99a35674dcb41b5bc1a038bddf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeckManager
+  initialDeckRecipe: []
 --- !u!1 &1987620309
 GameObject:
   m_ObjectHideFlags: 0

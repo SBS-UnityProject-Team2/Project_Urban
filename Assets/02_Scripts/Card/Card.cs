@@ -2,23 +2,39 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 
-public class Card : MonoBehaviour
+/*
+    모듈 구분하기
+    1. 카드 조작 로직
+    2. 카드 동작 로직
+    3. 카드 UI 로직
+    4. 카드 이펙트 로직
+*/
+
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(UICard))]
+public class Card : MonoBehaviour, ICardView
 {
+    // UI 모듈
+    private UICard uICard;
+
+    private int instanceId;
     private CardDataEntry cardData;
     private List<ActionDataEntry> actionData;
     private readonly ActionPayload payload = new();
-
+    
     public CardDataEntry CardData => cardData;
 
-    public void Init(CardName cardName)
+    private void Awake()
     {
-        cardData = CardManager.Instance.GetCardData(cardName);
-        actionData = CardManager.Instance.GetActionData(cardData.linkId);
+        uICard = GetComponent<UICard>();
     }
 
-    public Target GetTarget()
+    public void SetCardDataEntry(int instanceId, CardDataEntry data)
     {
-        return actionData[0].actTarget;
+        this.instanceId = instanceId;
+        cardData = data;
+        uICard.SetCardDataEntry(data);
+        actionData = CardManager.Instance.GetActionData(cardData.linkId);
     }
 
     public async void Use(Actor selectedActor)
@@ -32,35 +48,35 @@ public class Card : MonoBehaviour
             // 타겟 지정 로직
             switch (action.actTarget)
             {
-                case Target.Self:
-                    payload.target.Add(payload.source);
+                case Target.TarSelf:
+                    payload.targets.Add(payload.source);
                     break;
 
-                case Target.Enemy:
-                    payload.target.Add(selectedActor);
+                case Target.TarEnemy:
+                    payload.targets.Add(selectedActor);
                     break;
 
-                case Target.EnemyRandom:
-                case Target.EnemyRandomEach:
-                {
-                    int count = Battle.Instance.Monsters.Count;
-                    payload.target.Add(Battle.Instance.Monsters[Random.Range(0, count)]);
-                    break;
-                }
+                case Target.TarEnemyRandom:
+                case Target.TarEnemyRandomEach:
+                    {
+                        int count = Battle.Instance.Monsters.Count;
+                        payload.targets.Add(Battle.Instance.Monsters[Random.Range(0, count)]);
+                        break;
+                    }
 
-                case Target.EnemiesAll :
-                    payload.target.AddRange(Battle.Instance.Monsters);
+                case Target.TarEnemiesAll:
+                    payload.targets.AddRange(Battle.Instance.Monsters);
                     break;
-                
+
 
                 // 적 위치 관련된 부분은 몬스터 관리자 작성 후 추가하기
-                case Target.AdjacentEnemies :
-                {
-                    payload.target.Add(selectedActor);
+                case Target.TarAdjacentEnemies:
+                    {
+                        payload.targets.Add(selectedActor);
 
 
-                    break;   
-                }
+                        break;
+                    }
             }
 
             payload.Write(action.actValue);
@@ -75,7 +91,7 @@ public class Card : MonoBehaviour
     (
         Transform target,
         List<ParticleSystem> particles,
-        List<Vector3List> offsets,
+        List<List<Vector3>> offsets,
         List<float> durations
     )
     {
@@ -88,7 +104,7 @@ public class Card : MonoBehaviour
             ParticleSystem effect = EffectHelper.CreateEffect(particlePrefab, target);
             effects.Add(effect);
 
-            UniTask task = EffectHelper.PlayEffect(effect, offsets[0].values[idx++], durations[0]);
+            UniTask task = EffectHelper.PlayEffect(effect, offsets[0][idx++], durations[0]);
             tasks.Add(task);
         }
 
@@ -98,9 +114,9 @@ public class Card : MonoBehaviour
         Vector3 originPost = target.transform.position;
         for (int i = 1; i < offsets.Count; i++)
         {
-            for (int j = 0; j < offsets[i].values.Count; j++)
+            for (int j = 0; j < offsets[i].Count; j++)
             {
-                UniTask task = EffectHelper.MoveEffect(effects[j], originPost + offsets[i].values[j], durations[i]);
+                UniTask task = EffectHelper.MoveEffect(effects[j], originPost + offsets[i][j], durations[i]);
                 tasks.Add(task);
             }
 
@@ -111,4 +127,5 @@ public class Card : MonoBehaviour
         foreach (ParticleSystem effect in effects)
             Destroy(effect.gameObject);
     }
+
 }

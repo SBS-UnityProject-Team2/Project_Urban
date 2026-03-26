@@ -4,13 +4,24 @@ using UnityEngine.Events;
 
 public class Battle : SceneSingleton<Battle>
 {
-    [SerializeField] private Actor player;
+    [SerializeField] private Player player;
     [SerializeField] private List<Actor> monsters;
+    [SerializeField] private Deck deck;
+    [SerializeField] private Hand hand;
+    [SerializeField] private int drawCount;
 
     private readonly List<Actor> actors = new();
 
-    public Actor Player => player;
+    public Player Player => player;
     public List<Actor> Monsters => monsters;
+    public Deck Deck => deck;
+    public Hand Hand => hand;
+
+    public int DrawCount
+    {
+        get => drawCount;
+        set => drawCount = value;
+    }
 
     public UnityEvent OnBattleStart = new();
     public UnityEvent OnBattleEnd = new();
@@ -20,6 +31,7 @@ public class Battle : SceneSingleton<Battle>
         actors.Add(player);
         actors.AddRange(monsters);
 
+        deck.Init(DeckManager.Instance.Deck, hand);
         // 배틀 시작 전 필요한 준비하기
         // 덱 초기화 등등
 

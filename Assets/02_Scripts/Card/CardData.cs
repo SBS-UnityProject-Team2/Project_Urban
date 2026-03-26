@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -23,6 +25,8 @@ public class CardData : ScriptableObject
     private readonly Dictionary<CardName, CardDataEntry> cardDataMap = new();
 
     public Card Prefab => cardPrefab;
+
+    public List<CardName> CardNames => cardDataMap.Keys.ToList();
 
     public CardDataEntry this[CardName cardName]
     {

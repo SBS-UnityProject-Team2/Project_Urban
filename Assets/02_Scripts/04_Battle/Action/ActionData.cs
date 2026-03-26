@@ -26,20 +26,20 @@ public class ActionData : ScriptableObject
     }
 
     private void BuildActionMap()
-    {   
+    {
         actionMap.Clear();
 
         foreach (ActionDataEntry actionData in entries)
         {
             if (!actionMap.ContainsKey(actionData.id))
                 actionMap[actionData.id] = new();
-            
+
             actionMap[actionData.id].Add(actionData);
         }
-        
+
         // 시퀀스 순서대로 정렬시켜주기
         foreach (List<ActionDataEntry> actions in actionMap.Values)
-            actions.Sort((action1, action2) => action1.seq.CompareTo(action2.seq)); 
+            actions.Sort((action1, action2) => action1.seq.CompareTo(action2.seq));
     }
 
 
@@ -51,47 +51,40 @@ public class ActionData : ScriptableObject
         if (string.IsNullOrEmpty(jsonPath))
             throw new ArgumentException($"Can no open {jsonPath}");
 
-        try
-        {
-            string jsonText = File.ReadAllText(jsonPath);
-            JsonActionWrapper jsonWrapper = JsonUtility.FromJson<JsonActionWrapper>(jsonText);
+        string jsonText = File.ReadAllText(jsonPath);
+        JsonActionWrapper jsonWrapper = JsonUtility.FromJson<JsonActionWrapper>(jsonText);
 
-            foreach (JsonActionData actionData in jsonWrapper.actions)
+        foreach (JsonActionData actionData in jsonWrapper.actions)
+        {
+            if (!Enum.TryParse(actionData.conTarget, true, out Target conTarget))
+                throw new ArgumentException($"{actionData.conTarget} can not parse conTarget");
+
+            if (!Enum.TryParse(actionData.op, true, out Operator op))
+                throw new ArgumentException($"{actionData.op} can not parse Operator");
+
+            if (!Enum.TryParse(actionData.actTarget, true, out Target actTarget))
+                throw new ArgumentException($"{actionData.actTarget} can not parse actTarget");
+
+            ActionDataEntry actionDataEntry = new()
             {
-                if (!Enum.TryParse(actionData.conTarget, true, out Target conTarget))
-                    throw new ArgumentException($"{actionData.op} can not parse Operator");
+                id = actionData.id,
+                seq = actionData.seq,
+                condId = actionData.condId,
+                conTarget = conTarget,
+                op = op,
+                actId = (ActorAction)actionData.actId,
+                actTarget = actTarget,
+                actValue = actionData.actValue
+            };
 
-                if (!Enum.TryParse(actionData.op, true, out Operator op))
-                    throw new ArgumentException($"{actionData.op} can not parse Operator");
-
-                if (!Enum.TryParse(actionData.actTarget, true, out Target actTarget))
-                    throw new ArgumentException($"{actionData.op} can not parse Operator");
-
-                ActionDataEntry actionDataEntry = new()
-                {
-                    id = actionData.id,
-                    seq = actionData.seq,
-                    condId = actionData.condId,
-                    conTarget = conTarget,
-                    op = op,
-                    actId = (ActorAction)actionData.actId,
-                    actTarget = actTarget,
-                    actValue = actionData.actValue  
-                };
-
-                entries.Add(actionDataEntry);
-            }
-
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssets();
-
-            BuildActionMap();
-            Debug.Log($"Successfully imported {entries.Count} actions.");
+            entries.Add(actionDataEntry);
         }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to import ActionData JSON: {e.Message}");
-        }
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+
+        BuildActionMap();
+        Debug.Log($"Successfully imported {entries.Count} actions.");
     }
 #endif
 }
