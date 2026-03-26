@@ -11,20 +11,28 @@ public class UICard : MonoBehaviour
     
     private CardName cardName;
     public CardName CardName => cardName;
+
+    public void SetCardName(CardName cardName)
+    {
+        this.cardName = cardName;
+
+        CardDataEntry data = CardManager.Instance.GetCardData(cardName);
+        Sprite cardSprite = CardManager.Instance.GetCardImage(cardName);
+        ApplyCardData(data, cardSprite);
+    }
     
     public void SetCardDataEntry(CardDataEntry data)
     {
-        //Debug.Log($"[UICard] SetCardDataEntry 시작: {data.koreanName} ({data.cardName})");
-        
         cardName = data.cardName;
+        Sprite cardSprite = CardManager.Instance.GetCardImage(data.cardName);
+        ApplyCardData(data, cardSprite);
+    }
 
-        if (cardImage != null)
-            cardImage.sprite = CardManager.Instance.GetCardImage(cardName);
-            
+    private void ApplyCardData(CardDataEntry data, Sprite cardSprite)
+    {
+        cardImage.sprite = cardSprite;
         cardTitle.text = data.koreanName;
-        cardDesc.text = data.description;       
+        cardDesc.text = data.description;
         cardCost.text = data.cost.ToString();
-        
-       // Debug.Log($"[UICard] 데이터 설정 완료 - Title: {cardTitle.text}, Cost: {cardCost.text}, Sprite: {(cardImage.sprite != null ? cardImage.sprite.name : "null")}");
     }
 }

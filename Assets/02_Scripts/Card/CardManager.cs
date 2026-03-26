@@ -31,6 +31,7 @@ public class CardManager : Singleton<CardManager>
     {
         return cardData.GetCardImage(cardName);
     }
+    
 
     public List<ActionDataEntry> GetActionData(int linkId)
     {

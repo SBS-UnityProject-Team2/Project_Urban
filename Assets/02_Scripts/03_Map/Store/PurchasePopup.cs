@@ -8,6 +8,12 @@ public class PurchasePopup : MonoBehaviour
     [SerializeField] private UICard targetCardUI;
 
     private StoreCardUI selectedCard;
+    private ModalWindowManager modalWindowManager;
+
+    private void Awake()
+    {
+        modalWindowManager = GetComponent<ModalWindowManager>();
+    }
 
     public void OpenPopup(StoreCardUI uIStoreCard, CardDataEntry cardData)
     {
@@ -16,7 +22,7 @@ public class PurchasePopup : MonoBehaviour
         targetCardUI.SetCardDataEntry(cardData); 
 
         gameObject.SetActive(true);
-        GetComponent<ModalWindowManager>().ModalWindowIn();
+        modalWindowManager.ModalWindowIn();
     }
 
     public void OnClickConfirm()
@@ -32,6 +38,6 @@ public class PurchasePopup : MonoBehaviour
 
     private void ClosePopup()
     {
-        GetComponent<ModalWindowManager>().ModalWindowOut();       
+        modalWindowManager.ModalWindowOut();       
     }   
 }

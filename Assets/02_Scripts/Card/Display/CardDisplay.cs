@@ -1,56 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [SerializeField] private CardDisplay cardDisplayPrefab;
-    [SerializeField] private Transform content;
-    [SerializeField] private TMP_Text cardTitle;
-    [SerializeField] private TMP_Text cardDesc;
-    [SerializeField] private TMP_Text cardCost;
-    [SerializeField] private Image cardImage;
+    [SerializeField] private UICard uiCardPrefab;      
+    private readonly List<UICard> spawnedCards = new();
 
-    private readonly List<CardDisplay> spawnedDisplays = new();
-    private CardName cardName;
-
-    public CardName CardName => cardName;
-
-    public void Display(List<Card> cards)
+    public void Display(List<CardName> cardNames, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
     {
-        int cardCount = cards.Count;
-        CheckCount(cardCount);        
+        int cardCount = cardNames.Count;
+        CheckCount(cardCount, targetContent);
 
         for (int i = 0; i < cardCount; i++)
         {
-            Card card = cards[i];
-            CardDisplay display = spawnedDisplays[i];
-            
-            display.Bind(card.CardData);
+            UICard spawnedCard = spawnedCards[i];
+            spawnedCard.transform.SetParent(targetContent, false);
+            spawnedCard.gameObject.SetActive(true);
+            spawnedCard.SetCardName(cardNames[i]);           
         }
 
-        for (int i = 0; i < spawnedDisplays.Count; i++)
-            spawnedDisplays[i].gameObject.SetActive(i<cardCount);
-    }
-
-    public void Bind(CardDataEntry data)
-    {       
-        cardName = data.cardName;
-        cardImage.sprite = CardManager.Instance.GetCardImage(cardName);
-        cardTitle.text = data.koreanName;
-        cardDesc.text = data.description;
-        cardCost.text = data.cost.ToString();
+        for (int i = cardCount; i < spawnedCards.Count; i++)
+            spawnedCards[i].gameObject.SetActive(false);
     }
 
     // 필요한 카드 프리펩 갯수만큼 만들어놓고 부족하면 추가생성, 남으면 비활성화로 대기
-    private void CheckCount(int neededCount)
+    private void CheckCount(int neededCount, Transform targetContent)
     {
-        for (int i = spawnedDisplays.Count; i < neededCount; i++)
+        for (int i = spawnedCards.Count; i < neededCount; i++)
         {
-            CardDisplay display = Instantiate(cardDisplayPrefab, content);
-            display.gameObject.SetActive(false);
-            spawnedDisplays.Add(display);
+            UICard spawnedCard = Instantiate(uiCardPrefab, targetContent);
+            spawnedCard.gameObject.SetActive(false);
+            spawnedCards.Add(spawnedCard);
         }
     }
 }

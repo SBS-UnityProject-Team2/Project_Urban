@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: af8aac63b10ab1144bb503e5a296a3b4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - uiCardPrefab: {fileID: 513533824014746170, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

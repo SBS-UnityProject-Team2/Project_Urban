@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -13,14 +12,21 @@ public class StoreCardUI : MonoBehaviour
     private bool isSoldOut;
     private Button button;
     private CardName cardName;
+    private CoinController subscribedCoin;
+    private PurchasePopup purchasePopup;
+    private CardDataEntry popupCardData;
 
     private void Awake()
     {
         button = GetComponent<Button>();
+        subscribedCoin = PlayerManager.Instance.Coin;
     }
 
     public void SetCardDataEntry(CardDataEntry cardDataEntry)
     {
+        isSoldOut = false;
+        button.interactable = true;
+
         uICard.SetCardDataEntry(cardDataEntry);
 
         price = cardDataEntry.price;
@@ -31,9 +37,16 @@ public class StoreCardUI : MonoBehaviour
 
         coin.OnUpdateCoin.RemoveListener(UpdatePriceText);
         coin.OnUpdateCoin.AddListener(UpdatePriceText);
+        subscribedCoin = coin;
             
         UpdatePriceText(coin.CurrentCoin);
     
+    }
+
+    private void OnDestroy()
+    {
+        subscribedCoin.OnUpdateCoin.RemoveListener(UpdatePriceText);
+        button.onClick.RemoveListener(OnClickOpenPopup);
     }
 
     private void UpdatePriceText(int curCoin)
@@ -64,11 +77,17 @@ public class StoreCardUI : MonoBehaviour
         // DeckManager.Instance.AddCard(cardName);      임시 비활성화(덱연결안됨)
     }
 
-    public void AddClickHandler(UnityAction handleClick)
+    public void BindPopup(PurchasePopup popup, CardDataEntry cardData)
     {
-        if(button == null) button = GetComponent<Button>();
-        
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(handleClick);
+        purchasePopup = popup;
+        popupCardData = cardData;
+
+        button.onClick.RemoveListener(OnClickOpenPopup);
+        button.onClick.AddListener(OnClickOpenPopup);
+    }
+
+    private void OnClickOpenPopup()
+    {
+        purchasePopup.OpenPopup(this, popupCardData);
     }
 }
