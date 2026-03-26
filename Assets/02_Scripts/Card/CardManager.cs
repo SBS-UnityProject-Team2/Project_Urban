@@ -7,15 +7,10 @@ public class CardManager : Singleton<CardManager>
     [SerializeField] private CardData cardData; 
     [SerializeField] private ActionData actionData;
 
-    public Card CreateCard(CardName cardName, Transform transform, bool isEnchanted)
+    public Card GetCardPrefab()
     {
-        CardDataEntry cardDataEntry = cardData[cardName];
-        Card card = Instantiate(cardData.Prefab, transform);
-
-        card.gameObject.SetActive(false);
-        
-        return card;
-    }    
+        return cardData.Prefab;
+    }
 
     public CardDataEntry GetCardData(CardName cardName)
     {

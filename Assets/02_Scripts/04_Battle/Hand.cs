@@ -51,8 +51,6 @@ public class Hand : MonoBehaviour
         UniTask alignTask = Align();
 
         await UniTask.WhenAll(moveTask, alignTask);
-
-        card.gameObject.SetActive(false);
     }
 
     public async UniTask RemoveAllCards()
@@ -66,10 +64,6 @@ public class Hand : MonoBehaviour
         }
 
         await UniTask.WhenAll(tasks);
-
-        foreach (Card card in curHand)
-            card.gameObject.SetActive(false);
-        
         curHand.Clear();
     }
 

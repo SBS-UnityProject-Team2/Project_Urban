@@ -15,11 +15,15 @@ public class DeckManager : Singleton<DeckManager>
             for (int i = 0; i < cardRecipe.count; i++)
                 deck.Add(new CardInstance(cardRecipe.name));
         }
+
+        Sort();
     }
 
     public void Add(CardName cardName)
     {
         deck.Add(new CardInstance(cardName));
+        
+        Sort();
     }
 
     public void Remove(int instanceId)
@@ -29,10 +33,10 @@ public class DeckManager : Singleton<DeckManager>
         deck.Remove(cardInstance);
         */
 
+        // 정렬 유지를 위해서 그 자리에서 지움
+        // 정렬을 하지 않아도 된다면 삭제할 객체를 맨 뒤 인덱스의 객체와 스왑한뒤 삭제한다
         int idx = deck.FindIndex(card => card.InstanceId == instanceId);
-
-        (deck[idx], deck[^1]) = (deck[^1], deck[idx]);
-        deck.RemoveAt(deck.Count - 1);
+        deck.RemoveAt(idx);
     }
 
     public void Enchant(int instanceId)

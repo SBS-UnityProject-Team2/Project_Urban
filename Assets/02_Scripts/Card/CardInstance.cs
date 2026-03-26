@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class CardInstance
@@ -11,6 +10,8 @@ public class CardInstance
     
     public CardName Name => name;
     public int InstanceId => instanceId;
+
+    // 나중에 캐시처리하기
     public CardDataEntry CardData => CardManager.Instance.GetCardData(name);
     
     public CardInstance(CardName cardName)
@@ -24,10 +25,10 @@ public class CardInstance
         isEnchanted = true;
     }
 
-    public T Instantiate<T>(T cardPrefab, Vector3 position, Transform parent) where T : Object, ICardView
+    public T Instantiate<T>(T cardPrefab, Vector3 position, Transform parent) where T : Object, ICardInstance
     {
         T cardView = Object.Instantiate(cardPrefab, position, Quaternion.identity, parent);
-        cardView.SetCardDataEntry(instanceId, CardData);
+        cardView.Init(this);
 
         return cardView;
     }

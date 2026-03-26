@@ -1,23 +1,26 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class Actor : MonoBehaviour
 {
     private UniTaskCompletionSource turnEndTcs;
+    private CancellationToken token;
+    protected CancellationTokenSource tokenSource;
 
     private readonly ActorEventBus eventBus = new();
     private readonly ActorStatus status = new();
 
     public ActorEventBus EventBus => eventBus;
-    public ActorStatus Status => status; 
+    public ActorStatus Status => status;
 
     readonly private ActorEventPayload actorEventPayload = new();
 
-    bool isTurn = false;
-    
+    private bool isTurn = false;
+
     public void BeginTurn()
     {
-        turnEndTcs = new UniTaskCompletionSource();
+        RefreshToken();
 
         actorEventPayload.Init();
         actorEventPayload.source = this;
@@ -27,9 +30,18 @@ public class Actor : MonoBehaviour
         isTurn = true;
     }
 
+    private void RefreshToken()
+    {
+        turnEndTcs = new();
+        tokenSource = new();
+
+        token = tokenSource.Token;
+        token.Register(() => turnEndTcs.TrySetCanceled(token));
+    }
+
     public UniTask WaitForTurnEndAsync()
     {
-        return turnEndTcs?.Task ?? UniTask.CompletedTask;
+        return turnEndTcs.Task;
     }
 
     public void EndTurn()
@@ -44,7 +56,7 @@ public class Actor : MonoBehaviour
         actorEventPayload.source = this;
         actorEventPayload.eventId = ActorEvent.TurnEnd;
         isTurn = false;
-        
+
         await eventBus.DispatchAsync(actorEventPayload);
         turnEndTcs?.TrySetResult();
     }

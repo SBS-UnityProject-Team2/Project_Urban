@@ -6,6 +6,7 @@ public class Player : Actor
     {
         EventBus.AddEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddAsyncEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
     private void HandleTurnStart(ActorEventPayload eventPayload)
@@ -16,5 +17,10 @@ public class Player : Actor
     private async UniTask HandleTurnEnd(ActorEventPayload eventPayload)
     {
         await Battle.Instance.Deck.DiscardAllCard();
+    }
+
+    private void HandleDead(ActorEventPayload eventPayload)
+    {
+        tokenSource.Cancel();
     }
 }

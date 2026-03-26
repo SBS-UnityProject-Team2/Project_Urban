@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2324527491614053935}
   - component: {fileID: 5118876081640354505}
   - component: {fileID: -3574608686869692921}
-  - component: {fileID: 9021327564213961854}
   - component: {fileID: 318462283492012030}
   - component: {fileID: 2592206397937631846}
+  - component: {fileID: 775217607919543698}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -107,22 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622735889479179458dba14899176547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Card
---- !u!114 &9021327564213961854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691134573167423411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5a60812136c44fb46d580e0bd0345, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICard
-  cardTitle: {fileID: 5391069173789204096}
-  cardDesc: {fileID: 720870070363394128}
-  cardCost: {fileID: 8592493839888877718}
-  cardImage: {fileID: 0}
 --- !u!114 &318462283492012030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +165,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.058, y: 2.73}
   m_EdgeRadius: 0
+--- !u!114 &775217607919543698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691134573167423411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bc03619ae82744889275063e3bb80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardView
+  textCardName: {fileID: 5391069173789204096}
+  textCardDesc: {fileID: 720870070363394128}
+  textCost: {fileID: 8592493839888877718}
 --- !u!1 &7786725635655764598
 GameObject:
   m_ObjectHideFlags: 0

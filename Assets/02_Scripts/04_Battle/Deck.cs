@@ -4,29 +4,19 @@ using Cysharp.Threading.Tasks;
 
 public class Deck : MonoBehaviour
 {
-    [Header("Prefab Setting")]
-    [SerializeField] private Card cardPrefab;
-
-    private readonly List<Card> unusedCardList = new();
-    private readonly List<Card> usedCardList = new();
-    private readonly List<Card> extinctCardList = new();
+    private readonly List<CardInstance> unusedCardList = new();
+    private readonly List<CardInstance> usedCardList = new();
+    private readonly List<CardInstance> extinctCardList = new();
     private Hand hand;
 
-    public List<Card> UnusedCardList => unusedCardList;
-    public List<Card> UsedCardList => usedCardList;
-    public List<Card> ExtinctCardList => extinctCardList;
+    public List<CardInstance> UnusedCardList => unusedCardList;
+    public List<CardInstance> UsedCardList => usedCardList;
+    public List<CardInstance> ExtinctCardList => extinctCardList;
     public Hand Hand => hand;
 
     public void Init(List<CardInstance> originDeck, Hand hand)
     {
-        foreach (CardInstance cardInstance in originDeck)
-        {
-            Card card = cardInstance.Instantiate(cardPrefab, Vector3.zero, hand.transform);
-            card.gameObject.SetActive(false);
-
-            unusedCardList.Add(card);
-        }
-
+        unusedCardList.AddRange(originDeck);
         this.hand = hand;
     }
 
@@ -49,24 +39,31 @@ public class Deck : MonoBehaviour
         if (unusedCardList.Count == 0)
             ReShuffle();
 
-        Card drawCard = unusedCardList[^1];
+        CardInstance drawCard = unusedCardList[^1];
         unusedCardList.RemoveAt(unusedCardList.Count - 1);
 
-        return drawCard;
+        return drawCard.Instantiate(CardManager.Instance.GetCardPrefab(), Vector3.zero, hand.transform);
     }
 
     public async void DiscardCard(Card card)
     {
-        usedCardList.Add(card);
         await hand.RemoveCard(card);
+
+        usedCardList.Add(card.CardInstance);
+        Destroy(card.gameObject);
     }
 
     public async UniTask DiscardAllCard()
     {
-        foreach (Card card in hand.CurHand)
-            usedCardList.Add(card);
+        List<Card> copy = new(hand.CurHand);
 
         await hand.RemoveAllCards();
+
+        foreach (Card card in copy)
+        {
+            usedCardList.Add(card.CardInstance);
+            Destroy(card.gameObject);
+        }
     }
 
     public async void UseCard(Card card)
@@ -74,9 +71,9 @@ public class Deck : MonoBehaviour
         await hand.RemoveCard(card);
 
         if (card.CardData.isExtinct)
-            extinctCardList.Add(card);
+            extinctCardList.Add(card.CardInstance);
         else
-            usedCardList.Add(card);
+            usedCardList.Add(card.CardInstance);
     }
 
     public void Shuffle()

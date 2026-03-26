@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICard : MonoBehaviour
+public class UICard : MonoBehaviour, ICardInstance
 {
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text cardDesc;
@@ -12,27 +12,13 @@ public class UICard : MonoBehaviour
     private CardName cardName;
     public CardName CardName => cardName;
 
-    public void SetCardName(CardName cardName)
+    public void Init(CardInstance cardInstance)
     {
-        this.cardName = cardName;
-
-        CardDataEntry data = CardManager.Instance.GetCardData(cardName);
-        Sprite cardSprite = CardManager.Instance.GetCardImage(cardName);
-        ApplyCardData(data, cardSprite);
-    }
-    
-    public void SetCardDataEntry(CardDataEntry data)
-    {
-        cardName = data.cardName;
-        Sprite cardSprite = CardManager.Instance.GetCardImage(data.cardName);
-        ApplyCardData(data, cardSprite);
-    }
-
-    private void ApplyCardData(CardDataEntry data, Sprite cardSprite)
-    {
-        cardImage.sprite = cardSprite;
-        cardTitle.text = data.koreanName;
-        cardDesc.text = data.description;
-        cardCost.text = data.cost.ToString();
+        CardDataEntry cardData = cardInstance.CardData;
+        
+        cardTitle.text = $"{cardData.koreanName}";
+        cardDesc.text = $"{cardData.description}";
+        cardCost.text = $"{cardData.cost}";
+        cardImage.sprite = CardManager.Instance.GetCardImage(cardInstance.Name);
     }
 }

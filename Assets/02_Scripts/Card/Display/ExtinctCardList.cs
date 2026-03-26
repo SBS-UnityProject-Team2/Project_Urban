@@ -24,10 +24,8 @@ public class ExtinctCardList : MonoBehaviour
 
     public void OnClick()
     {
-        // Deck에서 extinctCardList 받아오기
-        // List<CardName> nameList = deck.ExtinctCardList.Select(card => card.CardData.cardName).ToList();    
-    
-        // cardDisplay.Display(nameList, panelContent);
+        // Deck에서 extinctCardList 받아오기    
+        // cardDisplay.Display(Battle.Instance.Deck.ExtinctCardList, panelContent);
         
     }
 }

@@ -1,19 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using System;
 
 public class Battle : SceneSingleton<Battle>
 {
     [SerializeField] private Player player;
-    [SerializeField] private List<Actor> monsters;
+    [SerializeField] private List<Monster> monsters;
     [SerializeField] private Deck deck;
     [SerializeField] private Hand hand;
     [SerializeField] private int drawCount;
 
-    private readonly List<Actor> actors = new();
-
     public Player Player => player;
-    public List<Actor> Monsters => monsters;
+    public List<Monster> Monsters => monsters;
     public Deck Deck => deck;
     public Hand Hand => hand;
 
@@ -28,32 +27,39 @@ public class Battle : SceneSingleton<Battle>
 
     private void Start()
     {
-        actors.Add(player);
-        actors.AddRange(monsters);
-
         deck.Init(DeckManager.Instance.Deck, hand);
         // 배틀 시작 전 필요한 준비하기
         // 덱 초기화 등등
 
         StartBattleLoop();
-    } 
+    }
 
     async private void StartBattleLoop()
     {
-        OnBattleStart?.Invoke();
-        
-        while (true)
-        {
-            foreach (Actor actor in actors)
-            {
-                actor.BeginTurn();
-            
-                await actor.WaitForTurnEndAsync();
+        List<Actor> actors = new() { player };
+        actors.AddRange(monsters);
 
-                // 플레이어 사망, 적 전체 사망 시 루프 탈출
+        OnBattleStart?.Invoke();
+
+        // WaitForTurnEndAsync은 기본적으로 턴 종료 신호까지 대기한다.
+        // 만약 몬스터 전원 사망 혹은 플레이어 사망시, 대기를 취소한다.
+        // 대기 취소시, 예외가 발생한다.
+        // 즉, 예외를 배틀 종료 신호로 취급해 catch에서 배틀 종료 후 처리를 한다.
+        try
+        {
+            while (true)
+            {
+                foreach (Actor actor in actors)
+                {
+                    actor.BeginTurn();
+
+                    await actor.WaitForTurnEndAsync();
+                }
             }
         }
-
-        // OnBattleEnd?.Invoke();
-    } 
+        catch(OperationCanceledException)
+        {
+            OnBattleEnd?.Invoke();
+        }
+    }
 }
