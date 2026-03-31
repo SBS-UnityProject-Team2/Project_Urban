@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 4893525991572151084}
   - component: {fileID: 8516467958673473800}
   - component: {fileID: 8072072527958909925}
-  - component: {fileID: 4359479139596541800}
   - component: {fileID: 5702351136442081583}
   - component: {fileID: 3731727686331498561}
   m_Layer: 5
@@ -157,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2055342216356087850
 RectTransform:
   m_ObjectHideFlags: 0
@@ -240,20 +239,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1000
   m_TargetDisplay: 0
---- !u!114 &4359479139596541800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093867225904512067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f121c1893b2c994428907bceeaf231c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DeckCheckUI
-  displayArea: {fileID: 4880064084006078527}
-  cardPrefab: {fileID: 513533824014746170, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
 --- !u!225 &5702351136442081583
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -479,7 +464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4359479139596541800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DeckDisplayPanel, Assembly-CSharp
         m_MethodName: CloseDeckDisplay
         m_Mode: 1

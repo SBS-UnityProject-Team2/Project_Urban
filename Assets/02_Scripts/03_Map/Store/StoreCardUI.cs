@@ -13,39 +13,47 @@ public class StoreCardUI : MonoBehaviour
     private Button button;
     private CardName cardName;
     private CoinController subscribedCoin;
+    
     private PurchasePopup purchasePopup;
     private CardDataEntry popupCardData;
 
     private void Awake()
     {
         button = GetComponent<Button>();
-        subscribedCoin = PlayerManager.Instance.Coin;
+        button.onClick.RemoveListener(OnClickOpenPopup);
+        button.onClick.AddListener(OnClickOpenPopup);
     }
 
     public void SetCardDataEntry(CardDataEntry cardDataEntry)
     {
         isSoldOut = false;
         button.interactable = true;
-
-        uICard.SetCardDataEntry(cardDataEntry);
+        
+        uICard.Init(new CardInstance(cardDataEntry.cardName));
 
         price = cardDataEntry.price;
         cardName = cardDataEntry.cardName;
         priceText.text = $"{price}C";
+        popupCardData = cardDataEntry;
 
-        CoinController coin = PlayerManager.Instance.Coin;
+        CoinController coin = PlayerManager.Instance?.Coin ?? CoinController.Fallback;
 
-        coin.OnUpdateCoin.RemoveListener(UpdatePriceText);
+        subscribedCoin?.OnUpdateCoin.RemoveListener(UpdatePriceText);
+
         coin.OnUpdateCoin.AddListener(UpdatePriceText);
         subscribedCoin = coin;
-            
+
         UpdatePriceText(coin.CurrentCoin);
-    
+    }
+
+    public void BindPopup(PurchasePopup popup)
+    {
+        purchasePopup = popup;
     }
 
     private void OnDestroy()
     {
-        subscribedCoin.OnUpdateCoin.RemoveListener(UpdatePriceText);
+        subscribedCoin?.OnUpdateCoin.RemoveListener(UpdatePriceText);
         button.onClick.RemoveListener(OnClickOpenPopup);
     }
 
@@ -73,20 +81,12 @@ public class StoreCardUI : MonoBehaviour
         button.interactable = false;
         priceText.text = "Sold Out";    
 
-        PlayerManager.Instance.Coin.Increase(price);
-        // DeckManager.Instance.AddCard(cardName);      임시 비활성화(덱연결안됨)
+        CoinController coin = subscribedCoin ?? PlayerManager.Instance?.Coin ?? CoinController.Fallback;
+        coin.Decrease(price);
+        DeckManager.Instance.Add(cardName);
     }
 
-    public void BindPopup(PurchasePopup popup, CardDataEntry cardData)
-    {
-        purchasePopup = popup;
-        popupCardData = cardData;
-
-        button.onClick.RemoveListener(OnClickOpenPopup);
-        button.onClick.AddListener(OnClickOpenPopup);
-    }
-
-    private void OnClickOpenPopup()
+    public void OnClickOpenPopup()
     {
         purchasePopup.OpenPopup(this, popupCardData);
     }
