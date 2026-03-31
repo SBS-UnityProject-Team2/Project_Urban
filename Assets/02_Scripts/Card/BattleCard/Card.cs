@@ -5,11 +5,15 @@ using Cysharp.Threading.Tasks;
 [RequireComponent(typeof(CardView))]        // 카드 UI 담당
 [RequireComponent(typeof(CardAction))]      // 카드 동작담당
 [RequireComponent(typeof(CardController))]  // 카드 조작 담당
-[RequireComponent(typeof(CardEffect))]      // 카드 이펙트 담당
+[RequireComponent(typeof(CardEffect))]      // 카드 이펙트
 public class Card : MonoBehaviour, ICardInstance
 {
     // 데이터
     private CardInstance cardInstance;
+
+    // 코스트 상태 관리
+    private int originCost;
+    private int curCost;
 
     // 모듈
     private CardView cardIView;
@@ -19,6 +23,18 @@ public class Card : MonoBehaviour, ICardInstance
     
     public CardInstance CardInstance => cardInstance;
     public CardDataEntry CardData => cardInstance.CardData;
+
+    public int Cost
+    {
+        get => curCost;
+        set
+        {
+            curCost = value;
+
+            if (value < 0)
+                curCost = 0;
+        }
+    }
 
     private void Awake()
     {
@@ -36,6 +52,14 @@ public class Card : MonoBehaviour, ICardInstance
         cardAction.Init(cardInstance.CardData.linkId);
         cardEffect.Init(cardInstance.CardData.effectType);
         cardController.Init(Use);
+
+        originCost = cardInstance.CardData.cost;
+        curCost = originCost;
+    }
+
+    public void ResetCost()
+    {
+        curCost = originCost;
     }
 
     private async UniTask Use(Actor target)

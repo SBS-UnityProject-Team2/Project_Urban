@@ -1,30 +1,21 @@
-using UnityEngine.Events;
-
 public class ActorStatus
 {
     private Health health;
     private Cost cost;
     private Element element;
+    private StatusEffectList effectList;
 
     public Health Health => health;
     public Cost Cost => cost;
+    public Element Element => element;
+    public StatusEffectList EffectList => effectList;
 
-    public UnityEvent<Element> OnUpdateElement = new();
 
-    public Element Element 
-    {   
-        get => element; 
-        set 
-        {
-            element = value;
-            OnUpdateElement?.Invoke(element);
-        }
-    }
-
-    public void Init(int curHp, int maxHp, int initCost, Element initElement)
+    public void Init(Actor owner, int curHp, int maxHp, int initCost, ElementType initType)
     {
         health = new(curHp, maxHp);
         cost = new(initCost);
-        element = initElement;
+        element = new(initType);
+        effectList = new(owner);
     }
 }

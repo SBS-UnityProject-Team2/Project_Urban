@@ -10,12 +10,19 @@ public enum ActorEvent
     TurnEnd,
     InitDraw,
     Draw,
-    Action,
+    Action, // 카드 사용
     Attack,
     Protect,
-    Buff,
-    Debuff,
+    GiveEffect,
+    RemoveEffect,
+    ClearEffect,
+    UpdateCurHp,
+    UpdateMaxHp,
+    UpdateCurCost,
+    UpdateMaxCost,
+    UpdateElement,
     DamageTaken,
+    DamageIncoming ,
     AttackDamageTaken,
     EffectDamageTaken,
     Break,
@@ -24,12 +31,39 @@ public enum ActorEvent
 
 public class ActorEventBus
 {
-    readonly private Dictionary<ActorEvent, UnityEvent<ActorEventPayload>> eventMap = new();
-    readonly private Dictionary<ActorEvent, List<Func<ActorEventPayload, UniTask>>> asyncEventMap = new();
+    readonly private Dictionary<ActorEvent, UnityEvent<EventPayload>> eventMap = new();
+    readonly private Dictionary<ActorEvent, List<Func<EventPayload, UniTask>>> asyncEventMap = new();
 
-    private UnityEvent<ActorEventPayload> TryGetEvent(ActorEvent actorEvent, bool createIfMissing)
+    public ActorEventBus()
     {
-        if (!eventMap.TryGetValue(actorEvent, out  UnityEvent<ActorEventPayload> unityEvent))
+        DamageTakenPayload payload = new();
+
+        AddEventListener(ActorEvent.AttackDamageTaken, eventPayload =>
+        {
+            AttackDamageTakenPayload attackDamageTakenPayload = eventPayload as AttackDamageTakenPayload;
+
+            payload.source = attackDamageTakenPayload.source;
+            payload.target = attackDamageTakenPayload.target;
+            payload.damage = attackDamageTakenPayload.damage;
+
+            Dispatch(payload);
+        });
+
+        AddEventListener(ActorEvent.EffectDamageTaken, eventPayload =>
+        {
+            EffectDamageTakenPayload effectDamageTakenPayload = eventPayload as EffectDamageTakenPayload;
+
+            payload.source = effectDamageTakenPayload.source;
+            payload.target = effectDamageTakenPayload.target;
+            payload.damage = effectDamageTakenPayload.damage;
+
+            Dispatch(payload);
+        });
+    }
+
+    private UnityEvent<EventPayload> TryGetEvent(ActorEvent actorEvent, bool createIfMissing)
+    {
+        if (!eventMap.TryGetValue(actorEvent, out  UnityEvent<EventPayload> unityEvent))
         {
             if (!createIfMissing)
                 return null;
@@ -42,73 +76,59 @@ public class ActorEventBus
         return unityEvent;
     }
 
-    public void AddEventListener(ActorEvent actorEvent, UnityAction<ActorEventPayload> handler)
+    public void AddEventListener(ActorEvent actorEvent, UnityAction<EventPayload> handler)
     {
-        UnityEvent<ActorEventPayload> unityEvent = TryGetEvent(actorEvent, true);
+        UnityEvent<EventPayload> unityEvent = TryGetEvent(actorEvent, true);
         unityEvent.AddListener(handler);
     }
 
-    public void AddAsyncEventListener(ActorEvent actorEvent, Func<ActorEventPayload, UniTask> handler)
+    public void AddAsyncEventListener(ActorEvent actorEvent, Func<EventPayload, UniTask> handler)
     {
-        if (!asyncEventMap.TryGetValue(actorEvent, out List<Func<ActorEventPayload, UniTask>> handlers))
+        if (!asyncEventMap.TryGetValue(actorEvent, out List<Func<EventPayload, UniTask>> handlers))
         {
-            handlers = new List<Func<ActorEventPayload, UniTask>>();
+            handlers = new List<Func<EventPayload, UniTask>>();
             asyncEventMap[actorEvent] = handlers;
         }
 
         handlers.Add(handler);
     }
 
-    public void RemoveEventListener(ActorEvent actorEvent, UnityAction<ActorEventPayload> handler)
+    public void RemoveEventListener(ActorEvent actorEvent, UnityAction<EventPayload> handler)
     {
-        UnityEvent<ActorEventPayload> unityEvent = TryGetEvent(actorEvent, true);
+        UnityEvent<EventPayload> unityEvent = TryGetEvent(actorEvent, true);
         unityEvent.RemoveListener(handler);
     }
 
-    public void RemoveAsyncEventListener(ActorEvent actorEvent, Func<ActorEventPayload, UniTask> handler)
+    public void RemoveAsyncEventListener(ActorEvent actorEvent, Func<EventPayload, UniTask> handler)
     {
-        if (asyncEventMap.TryGetValue(actorEvent, out List<Func<ActorEventPayload, UniTask>> handlers))
+        if (asyncEventMap.TryGetValue(actorEvent, out List<Func<EventPayload, UniTask>> handlers))
             handlers.Remove(handler);
     }
 
     public void RemoveEventAllListeners(ActorEvent actorEvent)
     {
-        UnityEvent<ActorEventPayload> unityEvent = TryGetEvent(actorEvent, true);
+        UnityEvent<EventPayload> unityEvent = TryGetEvent(actorEvent, true);
         unityEvent.RemoveAllListeners();
 
-        if (asyncEventMap.TryGetValue(actorEvent, out List<Func<ActorEventPayload, UniTask>> handlers))
+        if (asyncEventMap.TryGetValue(actorEvent, out List<Func<EventPayload, UniTask>> handlers))
             handlers.Clear();
     }
 
-    public void Dispatch(ActorEventPayload actorEventPayload)
+    public void Dispatch(EventPayload EventPayload)
     {
-        UnityEvent<ActorEventPayload> unityEvent = TryGetEvent(actorEventPayload.eventId, true);
-        unityEvent?.Invoke(actorEventPayload);
+        UnityEvent<EventPayload> unityEvent = TryGetEvent(EventPayload.eventId, true);
+        unityEvent?.Invoke(EventPayload);
     }
 
-    public async UniTask DispatchAsync(ActorEventPayload actorEventPayload)
+    public async UniTask DispatchAsync(EventPayload EventPayload)
     {
-        Dispatch(actorEventPayload);
+        Dispatch(EventPayload);
 
-        if (!asyncEventMap.TryGetValue(actorEventPayload.eventId, out List<Func<ActorEventPayload, UniTask>> handlers))
+        if (!asyncEventMap.TryGetValue(EventPayload.eventId, out List<Func<EventPayload, UniTask>> handlers))
             return;
 
-        foreach (Func<ActorEventPayload, UniTask> handler in handlers)
-            await handler(actorEventPayload);
+        foreach (Func<EventPayload, UniTask> handler in handlers)
+            await handler(EventPayload);
     }
 }
 
-public class ActorEventPayload
-{
-    public ActorEvent eventId;
-    public Actor source;
-    public Actor target;
-    public int damage;
-    public int healPoint;
-
-
-    public void Init()
-    {
-        eventId = ActorEvent.None;
-    }
-}

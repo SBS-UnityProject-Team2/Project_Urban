@@ -2,3 +2,9 @@
 
 # CS0809: Obsolete member overrides non-obsolete member
 dotnet_diagnostic.CS0809.severity = none
+
+# IDE0051: Remove unused private members
+dotnet_diagnostic.IDE0051.severity = suggestion
+
+# IDE0051: Remove unused private members
+dotnet_diagnostic.IDE0051.severity = none

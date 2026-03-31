@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-
 public class Monster : Actor
 {
     private void Awake()
@@ -7,7 +5,7 @@ public class Monster : Actor
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
-    private void HandleDead(ActorEventPayload eventPayload)
+    private void HandleDead(EventPayload eventPayload)
     {
         tokenSource.Cancel();
     }

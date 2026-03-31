@@ -9,17 +9,28 @@ public class Player : Actor
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
-    private void HandleTurnStart(ActorEventPayload eventPayload)
+    private void HandleTurnStart(EventPayload eventPayload)
     {
         Battle.Instance.Deck.DrawCard(Battle.Instance.DrawCount);
+        Status.Cost.CurCost = Status.Cost.MaxCost + Battle.Instance.ExtraCost;
+
+        EventPayload payload = new()
+        {
+            eventId = ActorEvent.InitDraw,
+            source = this,
+            target = this,
+        };
+
+        EventBus.Dispatch(payload);
     }
 
-    private async UniTask HandleTurnEnd(ActorEventPayload eventPayload)
+    private async UniTask HandleTurnEnd(EventPayload eventPayload)
     {
+        // 방어도 0으로 만들기
         await Battle.Instance.Deck.DiscardAllCard();
     }
 
-    private void HandleDead(ActorEventPayload eventPayload)
+    private void HandleDead(EventPayload eventPayload)
     {
         tokenSource.Cancel();
     }

@@ -3,6 +3,7 @@ public enum StatusEffectName
     // Buff
     Reinforce,
     Armor,
+    Preparation,
     Blur,
     Refined,
     LoadedIncendiary,
@@ -18,9 +19,10 @@ public enum StatusEffectName
     ElasticVeil,
     Burst,
     Coating,
-
+    FrozenResistance,
+    
     // Debuff
-    Weaken = 100,
+    Weaken = 500,
     Broken,
     Exhaust,
     Slow,
@@ -28,6 +30,7 @@ public enum StatusEffectName
     Burn,
     Poisoned,
     Branded,
+    Frost,
     Frozen,
     Anointed,
     Delirium,

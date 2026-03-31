@@ -17,12 +17,12 @@ public class PurchasePopup : MonoBehaviour
 
     public void OpenPopup(StoreCardUI uIStoreCard, CardDataEntry cardData)
     {
-        selectedCard = uIStoreCard;
-        questionText.text = $"{cardData.koreanName} 구매하시겠습니까?";
-        targetCardUI.SetCardDataEntry(cardData); 
+        // selectedCard = uIStoreCard;
+        // questionText.text = $"{cardData.koreanName} 구매하시겠습니까?";
+        // targetCardUI.SetCardDataEntry(cardData); 
 
-        gameObject.SetActive(true);
-        modalWindowManager.ModalWindowIn();
+        // gameObject.SetActive(true);
+        // modalWindowManager.ModalWindowIn();
     }
 
     public void OnClickConfirm()

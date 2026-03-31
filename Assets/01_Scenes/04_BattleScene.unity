@@ -1359,7 +1359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78415197a14425943a69eab5470752fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deck
-  cardPrefab: {fileID: -3574608686869692921, guid: e9bb58ec3e549604199c56bfe68b3f0b, type: 3}
 --- !u!1 &337073043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,7 +1711,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -150, y: 50}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 121.76999, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &380910178
 MonoBehaviour:
@@ -3814,7 +3813,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60.884995, y: -25}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: 121.76999, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080403642
 MonoBehaviour:
@@ -6862,6 +6861,14 @@ PrefabInstance:
     - target: {fileID: 7806401554477882918, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026629619791640077, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
+      propertyPath: hpIcon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026629619791640077, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
+      propertyPath: ProtectIcon
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

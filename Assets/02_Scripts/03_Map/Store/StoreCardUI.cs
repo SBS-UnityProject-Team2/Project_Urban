@@ -27,7 +27,7 @@ public class StoreCardUI : MonoBehaviour
         isSoldOut = false;
         button.interactable = true;
 
-        uICard.SetCardDataEntry(cardDataEntry);
+        // uICard.SetCardDataEntry(cardDataEntry);
 
         price = cardDataEntry.price;
         cardName = cardDataEntry.cardName;

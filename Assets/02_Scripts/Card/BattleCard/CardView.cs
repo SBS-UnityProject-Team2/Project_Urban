@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-
-
 /* 
     기존 UICard 대체용 
     추가적으로 표기해야할 정보가 있다면 CardView를 상속받아 사용.
