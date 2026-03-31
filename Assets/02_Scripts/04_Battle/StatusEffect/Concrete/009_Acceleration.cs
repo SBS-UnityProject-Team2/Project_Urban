@@ -1,4 +1,4 @@
-public class Acceleration : DurationEffect, IDrawCountChange, ICostChange
+public class Acceleration : DurationEffect, IDrawCountChange, ICostRegenChange
 {
     public override StatusEffectName Name => StatusEffectName.Acceleration;
     

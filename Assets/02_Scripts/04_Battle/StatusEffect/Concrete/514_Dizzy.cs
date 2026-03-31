@@ -19,7 +19,7 @@ public class Dizzy : DurationEffect
 
             foreach (Card card in Battle.Instance.Deck.Hand.CurHand)
             {
-                payload.cardInstanceId = card.CardInstance.InstanceId;
+                payload.cardInstanceId = card.Id;
                 ActionBus.Dispatch(payload);
             }
         }
@@ -38,7 +38,7 @@ public class Dizzy : DurationEffect
 
         foreach (Card card in Battle.Instance.Deck.Hand.CurHand)
         {
-            payload.cardInstanceId = card.CardInstance.InstanceId;
+            payload.cardInstanceId = card.Id;
             ActionBus.Dispatch(payload);
         }
 

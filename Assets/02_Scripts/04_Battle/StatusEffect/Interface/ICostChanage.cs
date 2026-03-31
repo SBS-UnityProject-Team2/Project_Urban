@@ -1,4 +1,4 @@
-public interface ICostChange
+public interface ICostRegenChange
 {
     public int GetCostDelta();
 }

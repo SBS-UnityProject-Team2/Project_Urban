@@ -5,7 +5,7 @@ public class DeckCard
     static int id = 0;
 
     private readonly int cardId;
-    private CardName name;
+    private readonly CardName name;
     private bool isEnchanted = false;
     
     public CardName Name => name;

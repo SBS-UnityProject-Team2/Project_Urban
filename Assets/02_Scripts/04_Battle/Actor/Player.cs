@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 public class Player : Actor
@@ -11,22 +12,14 @@ public class Player : Actor
 
     private void HandleTurnStart(EventPayload eventPayload)
     {
-        Battle.Instance.Deck.DrawCard(Battle.Instance.DrawCount);
-        Status.Cost.CurCost = Status.Cost.MaxCost + Battle.Instance.ExtraCost;
-
-        EventPayload payload = new()
-        {
-            eventId = ActorEvent.InitDraw,
-            source = this,
-            target = this,
-        };
-
-        EventBus.Dispatch(payload);
+        InitDraw();
+        RegenCost();
     }
 
     private async UniTask HandleTurnEnd(EventPayload eventPayload)
     {
-        // 방어도 0으로 만들기
+        Status.Health.Block = 0;
+
         await Battle.Instance.Deck.DiscardAllCard();
     }
 
@@ -34,4 +27,30 @@ public class Player : Actor
     {
         tokenSource.Cancel();
     }
+
+    private void InitDraw()
+    {
+        int drawCount = Battle.Instance.DrawCount;
+        List<IDrawCountChange> drawCountChanges = Status.EffectList.GetActiveEffectWith<IDrawCountChange>();
+        drawCountChanges.ForEach(draw => drawCount += draw.GetDrawCountDelta());
+
+        Battle.Instance.Deck.DrawCard(drawCount);
+
+        InitDrawPayload payload = new()
+        {
+            source = this,
+            target = this,
+            drawCount = drawCount
+        };
+        DispatchEvent(payload);
+    }
+
+    private void RegenCost()
+    {
+        int regenCost = Status.Cost.MaxCost;
+        List<ICostRegenChange> costRegenChanges = Status.EffectList.GetActiveEffectWith<ICostRegenChange>();
+        costRegenChanges.ForEach(cost => regenCost += cost.GetCostDelta());
+
+        Status.Cost.CurCost = regenCost;
+    }   
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using System.Linq;
-using System.Threading.Tasks;
 
 public class Deck : MonoBehaviour
 {
@@ -101,6 +100,16 @@ public class Deck : MonoBehaviour
             Location.Hand => hand.GetCard(cardId),
             _ => null,
         };
+    }
+
+    public Card GetCard(int cardId)
+    {
+        foreach(Location location in System.Enum.GetValues(typeof(Location)))
+        {
+            return GetCard(location, cardId);
+        }
+
+        return null;
     }
 
     public async void CreateCard(DeckCard deckCard, Location destination)

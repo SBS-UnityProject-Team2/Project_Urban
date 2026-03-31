@@ -423,7 +423,7 @@ public static class ActionBus
         int costPoint = setCardCostPayload.costPoint;
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
-        card.Cost = costPoint;
+        card.SetCost(costPoint);
     }
 
     private static void AddCardCost(ActionPayload payload)
@@ -433,7 +433,7 @@ public static class ActionBus
         int costPoint = addCardCostPayload.costPoint;
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
-        card.Cost += costPoint;
+        card.AddCost(costPoint);
     }
 
     private static void ReduceCardCost(ActionPayload payload)
@@ -443,7 +443,7 @@ public static class ActionBus
         int costPoint = reduceCardCostPayload.costPoint;
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
-        card.Cost -= costPoint;
+        card.ReduceCost(costPoint);
     }
 
     private static void RandomizeCardCost(ActionPayload payload)
@@ -453,7 +453,7 @@ public static class ActionBus
         int maxCostPoint = randomizeCardCostPayload.maxCostPoint;
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
-        card.Cost = UnityEngine.Random.Range(0, maxCostPoint + 1);
+        card.SetCost(UnityEngine.Random.Range(0, maxCostPoint + 1));
     }
 
     private static void ResetCardCost(ActionPayload payload)
@@ -473,6 +473,8 @@ public static class ActionBus
         CreateCardPayload createCardPayload = payload as CreateCardPayload;
         CardName cardName = createCardPayload.cardName;
         Location to = createCardPayload.to;
+
+        Battle.Instance.Deck.CreateCard(cardName, to);
     }
 
     private static void CopyCard(ActionPayload payload)
@@ -480,18 +482,27 @@ public static class ActionBus
         CopyCardPayload copyCardPayload = payload as CopyCardPayload;
         CardName cardName = copyCardPayload.cardName;
         Location to = copyCardPayload.to;
+
+        Battle.Instance.Deck.CreateCard(cardName, to);
     }
 
     private static void TransformCard(ActionPayload payload)
     {
         TransformCardPayload transformCardPayload = payload as TransformCardPayload;
-        CardName before = transformCardPayload.before;
-        CardName after = transformCardPayload.after;
+        int cardId = transformCardPayload.cardId;
+        CardName to = transformCardPayload.to;
+
+        Card card = Battle.Instance.Deck.GetCard(cardId);
+        card.Transform(to);
     }
 
     private static void ResetCardTransform(ActionPayload payload)
     {
         ResetCardTransformPayload resetCardTransformPayload = payload as ResetCardTransformPayload;
+        int cardId = resetCardTransformPayload.cardId;
+
+        Card card = Battle.Instance.Deck.GetCard(cardId);
+        card.ResetTransform();
     }
     #endregion
 

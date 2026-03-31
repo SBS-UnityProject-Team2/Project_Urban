@@ -185,6 +185,7 @@ public class CreateCardPayload : ActionPayload
 
 public class CopyCardPayload : ActionPayload
 {
+    public int cardId;
     public CardName cardName;
     public Location to;
 
@@ -193,14 +194,16 @@ public class CopyCardPayload : ActionPayload
 
 public class TransformCardPayload : ActionPayload
 {
-    public CardName before;
-    public CardName after;
+    public int cardId;
+    public CardName to;
 
     public TransformCardPayload() { actionId = ActorAction.TransformCard; }
 }
 
 public class ResetCardTransformPayload : ActionPayload
 {
+    public int cardId;
+    
     public ResetCardTransformPayload() { actionId = ActorAction.ResetCardTransform; }
 }
 

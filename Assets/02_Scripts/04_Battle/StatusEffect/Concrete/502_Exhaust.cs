@@ -1,4 +1,4 @@
-public class Exhaust : DurationEffect, ICostChange
+public class Exhaust : DurationEffect, ICostRegenChange
 {
     private readonly int decreaseCost = 1;
     public override StatusEffectName Name => StatusEffectName.Exhaust;

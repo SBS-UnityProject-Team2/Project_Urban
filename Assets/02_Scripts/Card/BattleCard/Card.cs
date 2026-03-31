@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 [RequireComponent(typeof(CardAction))]      // 카드 동작담당
 [RequireComponent(typeof(CardController))]  // 카드 조작 담당
 [RequireComponent(typeof(CardEffect))]      // 카드 이펙트
+[RequireComponent(typeof(CardState))]       // 카드 상태 관리
 public class Card : MonoBehaviour
 {
     private static int id = 0;
@@ -14,37 +15,25 @@ public class Card : MonoBehaviour
     private CardDataEntry cardDataEntry;
     private int cardId;
 
-    // 코스트 상태 관리
-    private int originCost;
-    private int curCost;
-
     // 모듈
     private CardView cardView;
     private CardAction cardAction;    
     private CardEffect cardEffect;
+    private CardState cardState;
+
     private CardController cardController;
     
     public DeckCard DeckCard => deckCard;
     public CardDataEntry CardData => cardDataEntry;
     public int Id => cardId;
 
-    public int Cost
-    {
-        get => curCost;
-        set
-        {
-            curCost = value;
-
-            if (value < 0)
-                curCost = 0;
-        }
-    }
 
     private void Awake()
     {
         cardView = GetComponent<CardView>();
         cardAction = GetComponent<CardAction>();
         cardEffect = GetComponent<CardEffect>();
+        cardState = GetComponent<CardState>();
         cardController = GetComponent<CardController>();
     }
 
@@ -54,21 +43,51 @@ public class Card : MonoBehaviour
         this.deckCard = deckCard;
 
         cardDataEntry = deckCard.CardData;
+        InitModules(cardDataEntry);
+        cardController.Init(Use);
+    }
+
+    public void SetCost(int costPoint)
+    {
+        cardState.Cost = costPoint;
+    }
+
+    public void AddCost(int delta)
+    {
+        cardState.Cost += delta;
+    }
+
+    public void ReduceCost(int delta)
+    {
+        cardState.Cost -= delta;
+    }
+    
+    public void ResetCost()
+    {
+        cardState.ResetCost();
+    }
+
+    public void Transform(CardName cardName)
+    {
+        cardDataEntry = CardManager.Instance.GetCardData(cardName);
+        InitModules(cardDataEntry);
+    }
+
+    public void ResetTransform()
+    {
+        cardDataEntry = DeckCard.CardData;
+        InitModules(cardDataEntry);
+    }
+
+    private void InitModules(CardDataEntry cardDataEntry)
+    {
         cardView.Init(cardDataEntry);
         cardAction.Init(cardDataEntry.linkId);
         cardEffect.Init(cardDataEntry.effectType);
-        cardController.Init(Use);
-
-        originCost = cardDataEntry.cost;
-        curCost = originCost;
+        cardState.Init(cardDataEntry);
     }
 
-    public void ResetCost()
-    {
-        curCost = originCost;
-    }
-
-    private async UniTask Use(Actor target)
+    public async UniTask Use(Actor target)
     {
         IEnumerator seq = cardAction.Execute(target).GetEnumerator();
 
@@ -77,5 +96,5 @@ public class Card : MonoBehaviour
             if (seq.Current is int seqNum && seqNum == 1) 
                 await cardEffect.Play();
         }
-    }
+    }    
 }
