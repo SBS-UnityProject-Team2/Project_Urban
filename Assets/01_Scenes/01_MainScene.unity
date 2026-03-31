@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   maxHp: 500
+  curCoin: 9999
 --- !u!1 &345359193
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bbd2ab3440283478dcf9bc5ed002f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardFactory
-  cardData: {fileID: 11400000, guid: 71f7d62a017a8024a88375c4e3619639, type: 2}
 --- !u!4 &864483422
 Transform:
   m_ObjectHideFlags: 0
@@ -1440,7 +1440,6 @@ GameObject:
   - component: {fileID: 1099356383}
   - component: {fileID: 1099356382}
   - component: {fileID: 1099356381}
-  - component: {fileID: 1099356380}
   m_Layer: 5
   m_Name: Button_QuitGame
   m_TagString: Untagged
@@ -1471,18 +1470,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -175}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1099356380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099356378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74881f83bca471d4189fef88224248ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStart
 --- !u!114 &1099356381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,7 +1606,7 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1099356380}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameStart, Assembly-CSharp
         m_MethodName: OnQuitGame
         m_Mode: 1
@@ -2391,8 +2378,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1750378932}
-        m_TargetAssemblyTypeName: GameStart, Assembly-CSharp
-        m_MethodName: OnGameStart
+        m_TargetAssemblyTypeName: TitleUI, Assembly-CSharp
+        m_MethodName: OnClickGameStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2438,9 +2425,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750378924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74881f83bca471d4189fef88224248ef, type: 3}
+  m_Script: {fileID: 11500000, guid: a7a401b78e72e0a498c7d2e75644b4db, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameStart
+  m_EditorClassIdentifier: Assembly-CSharp::TitleUI
 --- !u!1 &1900859561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,7 +2644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640f99a35674dcb41b5bc1a038bddf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  initialDeckRecipe: []
+  initialDeckRecipe:
+  - name: 1000
+    count: 1
+  - name: 1005
+    count: 1
 --- !u!1 &1987620309
 GameObject:
   m_ObjectHideFlags: 0

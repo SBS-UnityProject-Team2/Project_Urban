@@ -1,31 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDisplay : MonoBehaviour
+public class CardDisplay : Singleton<CardDisplay>
 {
-    [SerializeField] private UICard uiCardPrefab;      
-    private readonly List<UICard> spawnedCards = new();
+    private readonly List<UICard> spawnedCards = new();    
 
     public void Display(List<DeckCard> cardInstances, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
     {
         int cardCount = cardInstances.Count;
-        CheckCount(cardCount - spawnedCards.Count, targetContent);
-            
-        for (int i = 0; i < cardCount; i++)
+        
+        CheckCount(cardCount, prefab, targetContent);
+
+        for (int i = 0; i < spawnedCards.Count; i++)
         {
             if (i < cardCount)
+            {
+                spawnedCards[i].transform.SetParent(targetContent, false);
+                
                 spawnedCards[i].Init(cardInstances[i]);  
-            
-            spawnedCards[i].gameObject.SetActive(i < cardCount);
+                spawnedCards[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                spawnedCards[i].gameObject.SetActive(false);
+            }
         }
     }
 
-    // 필요한 카드 프리펩 갯수만큼 만들어놓고 부족하면 추가생성, 남으면 비활성화로 대기
-    private void CheckCount(int neededCount, Transform targetContent)
+    private void CheckCount(int neededCount, UICard prefab, Transform targetContent)
     {
-        for (int i = 0; i < neededCount; i++)
+        int cardsToCreate = neededCount - spawnedCards.Count;
+        
+        for (int i = 0; i < cardsToCreate; i++)
         {
-            UICard spawnedCard = Instantiate(uiCardPrefab, targetContent);
+            UICard spawnedCard = Instantiate(prefab, targetContent);
             spawnedCards.Add(spawnedCard);
         }
     }
