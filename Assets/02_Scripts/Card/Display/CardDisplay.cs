@@ -6,7 +6,7 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private UICard uiCardPrefab;      
     private readonly List<UICard> spawnedCards = new();
 
-    public void Display(List<CardInstance> cardInstances, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
+    public void Display(List<DeckCard> cardInstances, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
     {
         int cardCount = cardInstances.Count;
         CheckCount(cardCount - spawnedCards.Count, targetContent);

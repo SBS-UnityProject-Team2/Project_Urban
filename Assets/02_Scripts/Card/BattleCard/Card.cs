@@ -6,23 +6,27 @@ using Cysharp.Threading.Tasks;
 [RequireComponent(typeof(CardAction))]      // 카드 동작담당
 [RequireComponent(typeof(CardController))]  // 카드 조작 담당
 [RequireComponent(typeof(CardEffect))]      // 카드 이펙트
-public class Card : MonoBehaviour, ICardInstance
+public class Card : MonoBehaviour
 {
-    // 데이터
-    private CardInstance cardInstance;
+    private static int id = 0;
+
+    private DeckCard deckCard;
+    private CardDataEntry cardDataEntry;
+    private int cardId;
 
     // 코스트 상태 관리
     private int originCost;
     private int curCost;
 
     // 모듈
-    private CardView cardIView;
+    private CardView cardView;
     private CardAction cardAction;    
     private CardEffect cardEffect;
     private CardController cardController;
     
-    public CardInstance CardInstance => cardInstance;
-    public CardDataEntry CardData => cardInstance.CardData;
+    public DeckCard DeckCard => deckCard;
+    public CardDataEntry CardData => cardDataEntry;
+    public int Id => cardId;
 
     public int Cost
     {
@@ -38,22 +42,24 @@ public class Card : MonoBehaviour, ICardInstance
 
     private void Awake()
     {
-        cardIView = GetComponent<CardView>();
+        cardView = GetComponent<CardView>();
         cardAction = GetComponent<CardAction>();
         cardEffect = GetComponent<CardEffect>();
         cardController = GetComponent<CardController>();
     }
 
-    public void Init(CardInstance cardInstance)
-    {
-        this.cardInstance = cardInstance;
-        
-        cardIView.Init(cardInstance);
-        cardAction.Init(cardInstance.CardData.linkId);
-        cardEffect.Init(cardInstance.CardData.effectType);
+    public void Init(DeckCard deckCard)
+    {        
+        cardId = id++;
+        this.deckCard = deckCard;
+
+        cardDataEntry = deckCard.CardData;
+        cardView.Init(cardDataEntry);
+        cardAction.Init(cardDataEntry.linkId);
+        cardEffect.Init(cardDataEntry.effectType);
         cardController.Init(Use);
 
-        originCost = cardInstance.CardData.cost;
+        originCost = cardDataEntry.cost;
         curCost = originCost;
     }
 

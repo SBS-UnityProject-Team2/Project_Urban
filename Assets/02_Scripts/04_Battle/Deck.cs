@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 public class Deck : MonoBehaviour
 {
-    private readonly List<CardInstance> unusedCardList = new();
-    private readonly List<CardInstance> usedCardList = new();
-    private readonly List<CardInstance> extinctCardList = new();
+    private readonly List<Card> unusedCardList = new();
+    private readonly List<Card> usedCardList = new();
+    private readonly List<Card> extinctCardList = new();
     private Hand hand;
 
-    public List<CardInstance> UnusedCardList => unusedCardList;
-    public List<CardInstance> UsedCardList => usedCardList;
-    public List<CardInstance> ExtinctCardList => extinctCardList;
+    public List<DeckCard> UnusedCardList => unusedCardList.Select(card => card.DeckCard).ToList();
+    public List<DeckCard> UsedCardList => usedCardList.Select(card => card.DeckCard).ToList();
+    public List<DeckCard> ExtinctCardList => extinctCardList.Select(card => card.DeckCard).ToList();
     public Hand Hand => hand;
 
-    public void Init(List<CardInstance> originDeck, Hand hand)
+    public void Init(List<DeckCard> originDeck, Hand hand)
     {
-        unusedCardList.AddRange(originDeck);
+        foreach (DeckCard cardInstance in originDeck)
+            CreateCard(cardInstance, Location.Deck);
+        Shuffle();
+
         this.hand = hand;
     }
 
@@ -41,17 +44,105 @@ public class Deck : MonoBehaviour
         if (unusedCardList.Count == 0)
             ReShuffle();
 
-        CardInstance drawCard = unusedCardList[^1];
+        Card drawCard = unusedCardList[^1];
         unusedCardList.RemoveAt(unusedCardList.Count - 1);
 
-        return drawCard.Instantiate(CardManager.Instance.GetCardPrefab(), Vector3.zero, hand.transform);
+        drawCard.transform.parent = hand.transform;
+        drawCard.gameObject.SetActive(true);
+
+        return drawCard;
+    }
+
+    public async void DiscardCard(Card card)
+    {
+        await hand.RemoveCard(card);
+
+        usedCardList.Add(card);
+
+        card.gameObject.SetActive(false);
+        card.transform.parent = transform;
+    }
+
+    public async UniTask DiscardAllCard()
+    {
+        List<Card> copy = new(hand.CurHand);
+
+        await hand.RemoveAllCards();
+
+        foreach (Card card in copy)
+        {
+            usedCardList.Add(card);
+
+            card.gameObject.SetActive(false);
+            card.transform.parent = transform;
+        }
+    }
+
+    public async void UseCard(Card card)
+    {
+        await hand.RemoveCard(card);
+
+        if (card.CardData.isExtinct)
+            extinctCardList.Add(card);
+        else
+            usedCardList.Add(card);
+
+        card.gameObject.SetActive(false);
+        card.transform.parent = transform;
+    }
+
+    public Card GetCard(Location location, int cardId)
+    {
+        return location switch
+        {
+            Location.Deck or Location.DeckBottom or Location.DeckTop => unusedCardList.Find(card => card.Id == cardId),
+            Location.DiscardPile => usedCardList.Find(card => card.Id == cardId),
+            Location.ExhaustPile => extinctCardList.Find(card => card.Id == cardId),
+            Location.Hand => hand.GetCard(cardId),
+            _ => null,
+        };
+    }
+
+    public async void CreateCard(DeckCard deckCard, Location destination)
+    {
+        Card card = Instantiate(CardManager.Instance.GetCardPrefab(), Vector3.zero, Quaternion.identity, transform);
+        card.Init(deckCard);
+        card.gameObject.SetActive(false);
+        
+        switch (destination)
+        {
+            case Location.Deck:
+            case Location.DeckTop:
+            case Location.DeckBottom:
+                unusedCardList.Add(card);
+                break;
+
+            case Location.DiscardPile:
+                usedCardList.Add(card);
+                break;
+
+            case Location.ExhaustPile:
+                extinctCardList.Add(card);
+                break;
+
+            case Location.Hand:
+                await hand.AddCard(card);
+                break;
+        }
+    }
+
+    public void CreateCard(CardName cardName, Location destination)
+    {
+        DeckCard cardInstance = new(cardName);
+        
+        CreateCard(cardInstance, destination);
     }
 
     public async UniTask MoveCard(Location from, Location to, int amount)
     {
         if (from == to) return;
 
-        List<CardInstance> moveCards = new();
+        List<Card> moveCards = new();
 
         switch (from)
         {
@@ -79,8 +170,7 @@ public class Deck : MonoBehaviour
                 break;
 
             case Location.Hand:
-                List<CardInstance> handList = hand.CurHand.Select(card => card.CardInstance).ToList();
-                RandomCardMove(handList, moveCards, amount);
+                RandomCardMove(hand.CurHand, moveCards, amount);
                 break;
         }
         
@@ -104,48 +194,9 @@ public class Deck : MonoBehaviour
                 break;
 
             case Location.Hand:
-                List<Card> cards = new();
-
-                foreach (CardInstance cardInstance in moveCards)
-                {
-                    Card newCard = cardInstance.Instantiate(CardManager.Instance.GetCardPrefab(), Vector3.zero, hand.transform);
-                    cards.Add(newCard);
-                }
-
-                await hand.AddCards(cards);
+                await hand.AddCards(moveCards);
                 break;
         }
-    }
-
-    public async void DiscardCard(Card card)
-    {
-        await hand.RemoveCard(card);
-
-        usedCardList.Add(card.CardInstance);
-        Destroy(card.gameObject);
-    }
-
-    public async UniTask DiscardAllCard()
-    {
-        List<Card> copy = new(hand.CurHand);
-
-        await hand.RemoveAllCards();
-
-        foreach (Card card in copy)
-        {
-            usedCardList.Add(card.CardInstance);
-            Destroy(card.gameObject);
-        }
-    }
-
-    public async void UseCard(Card card)
-    {
-        await hand.RemoveCard(card);
-
-        if (card.CardData.isExtinct)
-            extinctCardList.Add(card.CardInstance);
-        else
-            usedCardList.Add(card.CardInstance);
     }
 
     public void Shuffle()
@@ -165,7 +216,7 @@ public class Deck : MonoBehaviour
         Shuffle();
     }
 
-    private void RandomCardMove(List<CardInstance> from, List<CardInstance> to, int amount)
+    private void RandomCardMove(List<Card> from, List<Card> to, int amount)
     {
         if (from.Count < amount)
         {

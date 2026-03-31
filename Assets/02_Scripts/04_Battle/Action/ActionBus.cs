@@ -365,6 +365,8 @@ public static class ActionBus
         MoveCardFromHandPayload moveCardFromHandPayload = payload as MoveCardFromHandPayload;
         int cardCount = moveCardFromHandPayload.cardCount;
         Location to = moveCardFromHandPayload.to;
+
+        Battle.Instance.Deck.MoveCard(Location.Hand, to, cardCount).Forget();
     }
 
     private static void MoveCardFromDiscard(ActionPayload payload)
@@ -372,6 +374,8 @@ public static class ActionBus
         MoveCardFromDiscardPayload moveCardFromDiscardPayload = payload as MoveCardFromDiscardPayload;
         int cardCount = moveCardFromDiscardPayload.cardCount;
         Location to = moveCardFromDiscardPayload.to;
+
+        Battle.Instance.Deck.MoveCard(Location.DiscardPile, to, cardCount).Forget();
     }
 
     private static void MoveCardFromExhaust(ActionPayload payload)
@@ -379,6 +383,8 @@ public static class ActionBus
         MoveCardFromExhaustPayload moveCardFromExhaustPayload = payload as MoveCardFromExhaustPayload;
         int cardCount = moveCardFromExhaustPayload.cardCount;
         Location to = moveCardFromExhaustPayload.to;
+
+        Battle.Instance.Deck.MoveCard(Location.ExhaustPile, to, cardCount).Forget();
     }
 
     private static void SearchCard(ActionPayload payload)
@@ -396,6 +402,16 @@ public static class ActionBus
     {
         DrawCountPayload drawCountPayload = payload as DrawCountPayload;
         int drawCount = drawCountPayload.drawCount;
+
+        Battle.Instance.Deck.DrawCard(drawCount);
+        
+        DrawPayload drawPayload = new()
+        {
+            source = payload.source,  
+            target = payload.targets[0],
+            drawCount = drawCount
+        };
+        payload.targets[0].DispatchEvent(drawPayload);
     }
     #endregion
 
