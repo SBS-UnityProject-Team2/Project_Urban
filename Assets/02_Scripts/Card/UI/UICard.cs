@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICard : MonoBehaviour, ICardInstance
+public class UICard : MonoBehaviour
 {
     [SerializeField] private TMP_Text cardTitle;
     [SerializeField] private TMP_Text cardDesc;
@@ -12,7 +12,7 @@ public class UICard : MonoBehaviour, ICardInstance
     private CardName cardName;
     public CardName CardName => cardName;
 
-    public void Init(CardInstance cardInstance)
+    public void Init(DeckCard cardInstance)
     {
         CardDataEntry cardData = cardInstance.CardData;
         

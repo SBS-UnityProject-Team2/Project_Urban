@@ -10,6 +10,8 @@ public class Battle : SceneSingleton<Battle>
     [SerializeField] private Deck deck;
     [SerializeField] private Hand hand;
     [SerializeField] private int drawCount;
+    
+    private int extraCost;
 
     public Player Player => player;
     public List<Monster> Monsters => monsters;
@@ -20,6 +22,12 @@ public class Battle : SceneSingleton<Battle>
     {
         get => drawCount;
         set => drawCount = value;
+    }
+
+    public int ExtraCost
+    {
+        get => extraCost;
+        set => extraCost = value;
     }
 
     public UnityEvent OnBattleStart = new();

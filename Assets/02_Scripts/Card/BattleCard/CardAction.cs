@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.Events;
-using System.Threading.Tasks;
 
 public class CardAction : MonoBehaviour
 {

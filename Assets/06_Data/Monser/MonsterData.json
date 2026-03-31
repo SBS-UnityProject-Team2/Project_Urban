@@ -1,0 +1,12 @@
+{
+    "monsters" :
+    [
+        {
+            "level" : "Normal",
+            "name" : "WildDog_A",
+            "koreanName" : "들개",
+            "element" : "None",
+            "score" : 1
+        }
+    ]
+}

@@ -67,6 +67,11 @@ public class Hand : MonoBehaviour
         curHand.Clear();
     }
 
+    public Card GetCard(int instanceId)
+    {
+        return curHand.Find(card => card.GetInstanceID() == instanceId);
+    }
+
     private async UniTask Align()
     {
         if (curHand.Count == 0) return;

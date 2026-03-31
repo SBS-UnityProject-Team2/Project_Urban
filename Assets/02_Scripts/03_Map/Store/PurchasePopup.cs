@@ -27,8 +27,8 @@ public class PurchasePopup : MonoBehaviour
         questionText.text = $"{cardData.koreanName} 구매하시겠습니까?";
         targetCardUI.Init(new CardInstance(cardData.cardName));
 
-        gameObject.SetActive(true);
-        modalWindowManager.ModalWindowIn();
+        // gameObject.SetActive(true);
+        // modalWindowManager.ModalWindowIn();
     }
 
     public void OnClickConfirm()

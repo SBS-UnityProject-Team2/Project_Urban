@@ -14,7 +14,7 @@ public class Actor : MonoBehaviour
     public ActorEventBus EventBus => eventBus;
     public ActorStatus Status => status;
 
-    readonly private ActorEventPayload actorEventPayload = new();
+    readonly private EventPayload actorEventPayload = new();
 
     private bool isTurn = false;
 
@@ -59,5 +59,10 @@ public class Actor : MonoBehaviour
 
         await eventBus.DispatchAsync(actorEventPayload);
         turnEndTcs?.TrySetResult();
+    }
+
+    public void DispatchEvent(EventPayload eventPayload)
+    {
+        eventBus.Dispatch(eventPayload);
     }
 }

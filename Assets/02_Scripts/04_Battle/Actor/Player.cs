@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 public class Player : Actor
@@ -9,18 +10,47 @@ public class Player : Actor
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
-    private void HandleTurnStart(ActorEventPayload eventPayload)
+    private void HandleTurnStart(EventPayload eventPayload)
     {
-        Battle.Instance.Deck.DrawCard(Battle.Instance.DrawCount);
+        InitDraw();
+        RegenCost();
     }
 
-    private async UniTask HandleTurnEnd(ActorEventPayload eventPayload)
+    private async UniTask HandleTurnEnd(EventPayload eventPayload)
     {
+        Status.Health.Block = 0;
+
         await Battle.Instance.Deck.DiscardAllCard();
     }
 
-    private void HandleDead(ActorEventPayload eventPayload)
+    private void HandleDead(EventPayload eventPayload)
     {
         tokenSource.Cancel();
     }
+
+    private void InitDraw()
+    {
+        int drawCount = Battle.Instance.DrawCount;
+        List<IDrawCountChange> drawCountChanges = Status.EffectList.GetActiveEffectWith<IDrawCountChange>();
+        drawCountChanges.ForEach(draw => drawCount += draw.GetDrawCountDelta());
+
+        Battle.Instance.Deck.DrawCard(drawCount);
+
+        InitDrawPayload payload = new()
+        {
+            source = this,
+            target = this,
+            drawCount = drawCount
+        };
+        DispatchEvent(payload);
+    }
+
+    private void RegenCost()
+    {
+        int regenCost = Status.Cost.MaxCost;
+        List<ICostRegenChange> costRegenChanges = Status.EffectList.GetActiveEffectWith<ICostRegenChange>();
+        costRegenChanges.ForEach(cost => regenCost += cost.GetCostDelta());
+
+        Status.Cost.CurCost = regenCost;
+    }   
 }

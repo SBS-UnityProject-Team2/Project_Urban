@@ -1,7 +1,8 @@
-public enum Element
+public enum ElementType
 {
     None,
     Ruin,
     Psychic,
-    Bio
+    Bio,
+    Reset
 }

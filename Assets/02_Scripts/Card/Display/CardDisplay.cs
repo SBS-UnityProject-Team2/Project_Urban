@@ -5,7 +5,7 @@ public class CardDisplay : Singleton<CardDisplay>
 {
     private readonly List<UICard> spawnedCards = new();    
 
-    public void Display(List<CardInstance> cardInstances, UICard prefab, Transform targetContent)
+    public void Display(List<DeckCard> cardInstances, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
     {
         int cardCount = cardInstances.Count;
         

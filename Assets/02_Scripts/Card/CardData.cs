@@ -79,7 +79,7 @@ public class CardData : ScriptableObject
                 if (!Enum.TryParse(jsonCard.cardName, true, out CardName parsedCardName))
                     throw new ArgumentException($"{jsonCard.cardName} can not parse CardName");
 
-                if (!Enum.TryParse(jsonCard.element, true, out Element parsedElement))
+                if (!Enum.TryParse(jsonCard.element, true, out ElementType parsedElement))
                     throw new ArgumentException($"{jsonCard.element} can not parse Element");
 
                 CardDataEntry cardDataEntry = new()
@@ -141,7 +141,7 @@ public class CardDataEntry
 {
     public CardName cardName;
     public string koreanName;
-    public Element element;
+    public ElementType element;
     public string description;
     public bool isExtinct;
     public bool isSpecial;
