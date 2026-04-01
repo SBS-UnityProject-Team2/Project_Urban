@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DeckManager : Singleton<DeckManager>
@@ -7,6 +8,7 @@ public class DeckManager : Singleton<DeckManager>
 
     private readonly List<DeckCard> deck = new();
     public List<DeckCard> Deck => deck;
+    public List<DeckCard> CardList => deck;
 
     private void Start()
     {
@@ -19,10 +21,9 @@ public class DeckManager : Singleton<DeckManager>
         Sort();
     }
 
-    public void Add(CardName cardName)
+    public void AddCard(CardName cardName)
     {
         deck.Add(new DeckCard(cardName));
-        
         Sort();
     }
 
@@ -30,6 +31,14 @@ public class DeckManager : Singleton<DeckManager>
     {
         int idx = deck.FindIndex(card => card.Id == cardId);
         deck.RemoveAt(idx);
+    }
+
+    public void RemoveCard(DeckCard card)
+    {
+        if (card == null)
+            return;
+
+        Remove(card.Id);
     }
 
     public void Enchant(int cardId)
@@ -41,6 +50,19 @@ public class DeckManager : Singleton<DeckManager>
     public void Sort()
     {
         deck.Sort((card1, card2) => card1.Name.CompareTo(card2.Name));
+    }
+
+    public DeckCard GetRandomCard(ElementType element)
+    {       
+
+        if (element == ElementType.None)
+            return deck[Random.Range(0, deck.Count)];
+
+        List<DeckCard> filteredDeck = deck
+            .Where(card => Util.GetElement(card.Name) == element)
+            .ToList();       
+
+        return filteredDeck[Random.Range(0, filteredDeck.Count)];
     }
 }
 

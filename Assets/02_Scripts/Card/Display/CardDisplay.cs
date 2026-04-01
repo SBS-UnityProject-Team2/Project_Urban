@@ -5,11 +5,11 @@ public class CardDisplay : Singleton<CardDisplay>
 {
     private readonly List<UICard> spawnedCards = new();    
 
-    public void Display(List<DeckCard> cardInstances, Transform targetContent)      // 어떤 카드리스트를, 어디에 까지 받아옴
+    public void Display(List<DeckCard> cardInstances, Transform targetContent, UICard prefab)      // 어떤 카드리스트를, 어디에 까지 받아옴
     {
         int cardCount = cardInstances.Count;
         
-        CheckCount(cardCount, prefab, targetContent);
+        CheckCount(cardCount, targetContent, prefab);
 
         for (int i = 0; i < spawnedCards.Count; i++)
         {
@@ -27,7 +27,7 @@ public class CardDisplay : Singleton<CardDisplay>
         }
     }
 
-    private void CheckCount(int neededCount, UICard prefab, Transform targetContent)
+    private void CheckCount(int neededCount, Transform targetContent, UICard prefab)
     {
         int cardsToCreate = neededCount - spawnedCards.Count;
         

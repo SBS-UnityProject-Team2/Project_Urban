@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Element SelectedElement { get; set; } = Element.None;
+    public ElementType SelectedElement { get; set; } = ElementType.None;
     private int minScore = 2;
     private int maxScore = 2;
 

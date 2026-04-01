@@ -29,7 +29,7 @@ public class StoreCardUI : MonoBehaviour
         isSoldOut = false;
         button.interactable = true;
         
-        uICard.Init(new CardInstance(cardDataEntry.cardName));
+        uICard.Init(new DeckCard(cardDataEntry.cardName));
 
         price = cardDataEntry.price;
         cardName = cardDataEntry.cardName;
@@ -83,7 +83,7 @@ public class StoreCardUI : MonoBehaviour
 
         CoinController coin = subscribedCoin ?? PlayerManager.Instance?.Coin ?? CoinController.Fallback;
         coin.Decrease(price);
-        DeckManager.Instance.Add(cardName);
+        DeckManager.Instance.AddCard(cardName);
     }
 
     public void OnClickOpenPopup()
