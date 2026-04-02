@@ -15,10 +15,13 @@ public class StoreDisplayUI : MonoBehaviour
     [SerializeField] private PurchasePopup purchasePopup;
 
     private readonly List<StoreCardUI> spawnedCardList = new();
-    private static readonly List<CardName> cachedCardPool = BuildCardPool();
+    private bool isInitialized = false;
 
     private void Awake()
     {
+        if (purchasePopup == null)
+            purchasePopup = FindFirstObjectByType<PurchasePopup>(FindObjectsInactive.Include);
+
         for (int i = 0; i < targetCount; i++)
         {
             GameObject newObj = Instantiate(cardPrefab, displayArea);
@@ -27,15 +30,23 @@ public class StoreDisplayUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        isInitialized = true;
+        SetupStore();
+    }
+
     private void OnEnable()
     {
+        if (!isInitialized) return;
         SetupStore();
     }
 
     public void SetupStore()
     {
-        // 캐시된 풀을 복사해서 이번 상점 후보 리스트로 사용
-        List<CardName> cardList = new(cachedCardPool);
+        // entries에 등록된 카드만 상점 판매카드로 사용
+        List<CardName> cardList = new(CardManager.Instance.GetAllCardNames());
+        cardList.RemoveAll(cardName => cardName.ToString().EndsWith("End"));        
         int usedCount = 0;
 
         for (int i = 0; i < targetCount; i++)
@@ -46,7 +57,7 @@ public class StoreDisplayUI : MonoBehaviour
             StoreCardUI storeCard = spawnedCardList[i];
 
             storeCard.SetCardDataEntry(cardData);
-            storeCard.BindPopup(purchasePopup, cardData);
+            storeCard.BindPopup(purchasePopup);
             storeCard.gameObject.SetActive(true);
             usedCount++;
         }
@@ -69,21 +80,5 @@ public class StoreDisplayUI : MonoBehaviour
     public void CloseStoreDisplay()
     {
         gameObject.SetActive(false);
-    }
-
-    private static List<CardName> BuildCardPool()
-    {
-        List<CardName> list = new();
-        CardName[] allCardNames = (CardName[])System.Enum.GetValues(typeof(CardName));
-
-        foreach (CardName cardName in allCardNames)
-        {
-            if (cardName.ToString().EndsWith("End"))
-                continue;
-
-            list.Add(cardName);
-        }
-
-        return list;
     }
 }

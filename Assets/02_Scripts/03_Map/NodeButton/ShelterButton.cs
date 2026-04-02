@@ -1,0 +1,7 @@
+public class ShelterButton : NodeButton
+{
+    public override void OnClick()
+    {
+        ButtonEvent.Instance.EnterNodeType(NodeType.Shelter);
+    }
+}

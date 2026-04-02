@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
@@ -19,4 +20,37 @@ static public class Util
             await UniTask.Yield();
         }
     }
+
+    static public ElementType GetElement(CardName name)
+    {
+        int nameNum = (int)name;
+
+        if (nameNum >= (int)ElementType.Bio)
+            return ElementType.Bio;
+
+        if (nameNum >= (int)ElementType.Psychic)
+            return ElementType.Psychic;
+
+        if (nameNum >= (int)ElementType.Ruin)
+            return ElementType.Ruin;
+
+        return ElementType.None;
+    }
+    
+    static public int [] ParseIntArray(string intArrayString)
+    {   
+        if (string.IsNullOrWhiteSpace(intArrayString))
+            return null;
+
+        return intArrayString.Split(',').Select(numString => int.Parse(numString.Trim())).ToArray();
+    }
+
+    static public CardName [] ParseCardNameArray(string intArrayString)
+    {
+        if (string.IsNullOrWhiteSpace(intArrayString))
+            return null;
+
+        return intArrayString.Split(',').Select(numString => (CardName)int.Parse(numString.Trim())).ToArray();
+    }
+        
 } 

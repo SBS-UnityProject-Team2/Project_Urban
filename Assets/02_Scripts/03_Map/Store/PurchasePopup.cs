@@ -17,9 +17,9 @@ public class PurchasePopup : MonoBehaviour
 
     public void OpenPopup(StoreCardUI uIStoreCard, CardDataEntry cardData)
     {
-        // selectedCard = uIStoreCard;
-        // questionText.text = $"{cardData.koreanName} 구매하시겠습니까?";
-        // targetCardUI.SetCardDataEntry(cardData); 
+        selectedCard = uIStoreCard;
+        questionText.text = $"{cardData.koreanName} 구매하시겠습니까?";
+        targetCardUI.Init(new DeckCard(cardData.cardName));
 
         // gameObject.SetActive(true);
         // modalWindowManager.ModalWindowIn();
@@ -39,5 +39,12 @@ public class PurchasePopup : MonoBehaviour
     private void ClosePopup()
     {
         modalWindowManager.ModalWindowOut();       
+        
+        Invoke(nameof(DisablePopupObject), 0.5f);
     }   
+
+    private void DisablePopupObject()
+    {
+        gameObject.SetActive(false);
+    }
 }
