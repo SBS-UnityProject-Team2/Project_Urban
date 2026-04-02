@@ -1,17 +1,18 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class CardEnchantPanel : MonoBehaviour
+public class CardRemovePanel : MonoBehaviour
 {
-
     [Header("Display Settings")]
-    [SerializeField] private Transform displayArea;   // ScrollView의 Content
+    [SerializeField] private Transform displayArea;       // ScrollView의 Content
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
-    [SerializeField] private GameObject EnchantCardPanel; // 인챈트 패널
-
+    [SerializeField] private GameObject RemoveCardPanel; // 패널
     [Header("Popup Settings")]
-    [SerializeField] private EnchantConfirmPopup deckEnchantPopup;
+    [SerializeField] private RemoveConfirmPopup removeConfirmPopup;
+
+    private int prevCardCount;
 
     public void OpenDeckDisplay()
     {
@@ -19,12 +20,12 @@ public class CardEnchantPanel : MonoBehaviour
 
         RenderDeck(receivedDeck);
 
-        EnchantCardPanel.SetActive(true);
+        RemoveCardPanel.SetActive(true);
     }
 
     public void CloseDeckDisplay()
     {
-        EnchantCardPanel.SetActive(false);
+        RemoveCardPanel.SetActive(false);
     }
 
     private void RenderDeck(List<DeckCard> deckToRender)
@@ -48,7 +49,7 @@ public class CardEnchantPanel : MonoBehaviour
 
             DeckCard capturedCard = cardInstance;
             cardButton.onClick.RemoveAllListeners();
-            cardButton.onClick.AddListener(() => deckEnchantPopup.OpenPopup(capturedCard));
+            cardButton.onClick.AddListener(() => removeConfirmPopup.OpenPopup(capturedCard));
         }
     }
 }

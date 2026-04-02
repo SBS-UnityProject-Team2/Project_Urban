@@ -6,29 +6,29 @@ public class UISelectElement : MonoBehaviour
 {
     [SerializeField] private List<CardName> cards = new();
 
-    public void SelectElement(Element element)
+    public void SelectElement(ElementType element)
     {
         GameManager.Instance.SelectedElement = element;
         List<CardName> selectedCards = GetStarterCardsByElement(element);
 
         foreach (CardName cardName in selectedCards)
         {
-            DeckManager.Instance.Add(cardName);
+            DeckManager.Instance.AddCard    (cardName);
         }
 
         SceneManager.LoadScene(SceneName.Map);
         BgmManager.Instance.PlayMapSound();
     }
 
-    private List<CardName> GetStarterCardsByElement(Element element)
+    private List<CardName> GetStarterCardsByElement(ElementType element)
     {
         switch (element)
         {
-            case Element.Ruin:
+            case ElementType.Ruin:
                 return GetCardsFromRange(0, 2);
-            case Element.Psychic:
+            case ElementType.Psychic:
                 return GetCardsFromRange(2, 2);
-            case Element.Bio:
+            case ElementType.Bio:
                 return GetCardsFromRange(4, 2);
             default:
                 return new List<CardName>();
@@ -48,18 +48,18 @@ public class UISelectElement : MonoBehaviour
 
     public void OnClickFlame()
     {
-        SelectElement(Element.Ruin);
+        SelectElement(ElementType.Ruin);
     }
 
     // 2. Ice 속성 선택 버튼 연결
     public void OnClickIce()
     {
-       SelectElement(Element.Psychic);
+       SelectElement(ElementType.Psychic);
     }
 
     // 3. Grass 속성 선택 버튼 연결
     public void OnClickGrass()
     {
-       SelectElement(Element.Bio);
+       SelectElement(ElementType.Bio);
     }
 }

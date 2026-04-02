@@ -26,6 +26,11 @@ public class UsedCardList : MonoBehaviour
     {
         panel.SetActive(true);
         
-        CardDisplay.Instance.Display(deck.UsedCardList, cardPrefab, content);
+        CardDisplay.Instance.Display(deck.UsedCardList, content, cardPrefab);
+    }
+
+    public void OnClose()
+    {
+        panel.SetActive(false);
     }
 }

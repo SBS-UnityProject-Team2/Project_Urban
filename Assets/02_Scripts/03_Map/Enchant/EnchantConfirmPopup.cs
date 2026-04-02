@@ -13,7 +13,7 @@ public class EnchantConfirmPopup : MonoBehaviour
     [SerializeField] private TMP_Text AfterCardNameText; 
     [SerializeField] private CardEnchantPanel cardEnchantPanel;
 
-    private CardInstance selectedCard;
+    private DeckCard selectedCard;
     private CardDataEntry currentOriginalCard; // 원본 데이터 저장용
     private CardDataEntry currentEnchantedCard; // 강화 데이터 저장용
     private ModalWindowManager modalWindowManager;
@@ -23,7 +23,7 @@ public class EnchantConfirmPopup : MonoBehaviour
         modalWindowManager = GetComponent<ModalWindowManager>();
     }
 
-    public void OpenPopup(CardInstance cardInstance)
+    public void OpenPopup(DeckCard cardInstance)
     {        
         selectedCard = cardInstance;
 
@@ -45,7 +45,7 @@ public class EnchantConfirmPopup : MonoBehaviour
 
     public void OnClickEnchant()
     {
-        DeckManager.Instance.Enchant(selectedCard.InstanceId);
+        DeckManager.Instance.Enchant(selectedCard.Id);
         Debug.Log($"[강화 성공] {currentOriginalCard.cardName} -> {currentEnchantedCard.koreanName}");
         
         ClosePopup();
