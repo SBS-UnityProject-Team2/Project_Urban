@@ -20,11 +20,12 @@ public class FocusStance : StackEffect
 
     private void HandleBreak(EventPayload eventPayload)
     {
-        ClearBuffsPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ClearBuffs,
             source = owner,
-            effectName = StatusEffectName.Burst
         };
+        payload.Write(StatusEffectName.Burst);
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
 

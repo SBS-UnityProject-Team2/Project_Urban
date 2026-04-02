@@ -10,11 +10,12 @@ public class Refined : DurationEffect
         {
             owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
             
-            ChangeElementPayload payload = new()
+            ActionPayload payload = new()
             {
+                actionId = ActorAction.ChangeElement,
                 source = owner,
-                elementType = ElementType.Ruin
             };
+            payload.Write(ElementType.Ruin);
 
             payload.AddTarget(owner);
             ActionBus.Dispatch(payload);
@@ -29,11 +30,12 @@ public class Refined : DurationEffect
 
         owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
 
-        ChangeElementPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ChangeElement,
             source = owner,
-            elementType = ElementType.Reset
         };
+        payload.Write(ElementType.Reset);
 
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);        

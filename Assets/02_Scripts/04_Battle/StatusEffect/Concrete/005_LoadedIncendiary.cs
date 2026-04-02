@@ -24,12 +24,13 @@ public class LoadedIncendiary : StackEffect
 
     private void HandleAttack(EventPayload eventPayload)
     {
-        AtkDmgPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.AtkDmg,
             source = owner,
-            damage = stack,  
-            elementType = ElementType.Ruin
         };
+        payload.Write(ElementType.Ruin);
+        payload.Write(stack);
 
         payload.AddTarget(eventPayload.target);
         ActionBus.Dispatch(payload);

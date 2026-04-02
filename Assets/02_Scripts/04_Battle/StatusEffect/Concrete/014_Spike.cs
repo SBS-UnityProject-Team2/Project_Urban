@@ -24,12 +24,13 @@ public class Spike : StackEffect
 
     private void HandleDamage(EventPayload eventPayload)
     {
-        AtkDmgPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.AtkDmg,
             source = owner,
-            damage = stack,
-            elementType = ElementType.None
         };
+        payload.Write(ElementType.None);
+        payload.Write(stack);
         payload.AddTarget(eventPayload.source);
         ActionBus.Dispatch(payload);
     }

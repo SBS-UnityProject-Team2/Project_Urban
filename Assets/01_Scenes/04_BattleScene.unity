@@ -638,6 +638,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120324974}
   m_CullTransparentMesh: 1
+--- !u!1 &158449385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158449386}
+  - component: {fileID: 158449387}
+  m_Layer: 0
+  m_Name: Monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &158449386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158449385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &158449387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158449385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d9b8f1f285c804cbf648e2108c1cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Monsters
 --- !u!1 &168374733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1755,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -150, y: 50}
-  m_SizeDelta: {x: 121.76999, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &380910178
 MonoBehaviour:
@@ -3813,7 +3857,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 60.884995, y: -25}
-  m_SizeDelta: {x: 121.76999, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080403642
 MonoBehaviour:
@@ -5183,10 +5227,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battle
   player: {fileID: 1803260117}
-  monsters: []
+  monsters: {fileID: 158449387}
   deck: {fileID: 299941731}
   hand: {fileID: 506069452}
   drawCount: 6
+  monsterScore: 3
+  monsterLevel: 0
   OnBattleStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5983,6 +6029,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3166992934431129039, guid: 0487c08710d4b7243865314c72dac31b, type: 3}
   m_PrefabInstance: {fileID: 2840391441834483103}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1949887317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1949887319}
+  - component: {fileID: 1949887318}
+  m_Layer: 0
+  m_Name: MonsterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1949887318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949887317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32b834246a22713429d8b78f55b36cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterManager
+  monsterData: {fileID: 11400000, guid: 5349638c87d57ff40a4afae6e38512c6, type: 2}
+  monsterActionData: {fileID: 11400000, guid: acf7f61ccfaf907419e7806090e8530b, type: 2}
+--- !u!4 &1949887319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949887317}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2024774386
 GameObject:
   m_ObjectHideFlags: 0
@@ -7593,8 +7685,10 @@ SceneRoots:
   - {fileID: 293836577}
   - {fileID: 763903713}
   - {fileID: 1263214705}
+  - {fileID: 1803260118}
+  - {fileID: 158449386}
   - {fileID: 1547858874}
-  - {fileID: 362605297}
   - {fileID: 470395188}
   - {fileID: 1273147315}
-  - {fileID: 1803260118}
+  - {fileID: 1949887319}
+  - {fileID: 362605297}

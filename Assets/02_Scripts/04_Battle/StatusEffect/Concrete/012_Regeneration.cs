@@ -20,11 +20,12 @@ public class Regeneration : StackEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        HealHpPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.HealHp,
             source = owner,
-            healPoint = stack
         };
+        payload.Write(stack);
 
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);

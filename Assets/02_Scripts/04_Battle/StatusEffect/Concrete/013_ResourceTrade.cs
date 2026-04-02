@@ -20,30 +20,33 @@ public class ResourceTrade : StackEffect
 
     public void HandleDraw(EventPayload eventPayload)
     {   
-        MoveCardFromHandPayload movePayload = new()
+        ActionPayload movePayload = new()
         {
+            actionId = ActorAction.MoveCardFromHand,
             source = owner,
-            cardCount = stack,
-            to = Location.DiscardPile,
         };
+        movePayload.Write(Location.DiscardPile);
+        movePayload.Write(stack);
         movePayload.AddTarget(owner);
         ActionBus.Dispatch(movePayload);
 
         // 카드 버린것을 확인하고 실행해야됨
-        HealHpPayload healHpPayload = new()
+        ActionPayload healHpPayload = new()
         {
+            actionId = ActorAction.HealHp,
             source = owner,
-            healPoint = stack
         };
+        healHpPayload.Write(stack);
         healHpPayload.AddTarget(owner);
         ActionBus.Dispatch(healHpPayload);
 
-        AddCostPayload addCostPayload = new()
+        ActionPayload addCostPayload = new()
         {
+            actionId = ActorAction.AddCost,
             source = owner,
-            costPoint = stack,
         };
-        healHpPayload.AddTarget(owner);
+        addCostPayload.Write(stack);
+        addCostPayload.AddTarget(owner);
         ActionBus.Dispatch(addCostPayload);
     }
 }

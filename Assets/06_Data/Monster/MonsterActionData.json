@@ -1,0 +1,25 @@
+{
+    "actions" :
+    [
+        {
+            "actionId" : 8000,
+            "actionName" : "Charge",
+            "koreanName" : "돌진",
+            "linkId" : 800001,
+            "description" : "대상에 물리 피해를 가한다."
+        },
+        {
+            "actionId" : 8001,
+            "actionName" : "Bite",
+            "koreanName" : "물기",
+            "linkId" : 800101,
+            "description" : "대상에 물리 피해를 가하며, 출혈을 부여한다."
+        },{
+            "actionId" : 8002,
+            "actionName" : "Screw",
+            "koreanName" : "후비기",
+            "linkId" : 800201,
+            "description" : "대상에 물리 피해를 2회 가한다."
+        }
+    ]
+}
