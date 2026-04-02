@@ -26,7 +26,7 @@ public class ExtinctCardList : MonoBehaviour
     public void OnClick()
     {
         panel.SetActive(true);
-        CardDisplay.Instance.Display(deck.ExtinctCardList, panelContent, cardPrefab);
+        CardDisplay.Display(deck.ExtinctCardList, panelContent, cardPrefab);
     }
 
     public void OnClose()

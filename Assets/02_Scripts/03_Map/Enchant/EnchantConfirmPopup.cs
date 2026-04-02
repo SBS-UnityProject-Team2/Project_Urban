@@ -24,7 +24,8 @@ public class EnchantConfirmPopup : MonoBehaviour
     }
 
     public void OpenPopup(DeckCard cardInstance)
-    {        
+    {   
+        gameObject.SetActive(true);
         selectedCard = cardInstance;
 
         currentOriginalCard = cardInstance.CardData;
@@ -41,6 +42,12 @@ public class EnchantConfirmPopup : MonoBehaviour
     public void ClosePopup()
     {
         modalWindowManager.ModalWindowOut();
+        Invoke(nameof(DisablePopup), 0.5f); 
+    }
+
+    private void DisablePopup()
+    {
+        gameObject.SetActive(false);
     }
 
     public void OnClickEnchant()

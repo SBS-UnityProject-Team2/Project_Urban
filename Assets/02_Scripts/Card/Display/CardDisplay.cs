@@ -1,22 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDisplay : Singleton<CardDisplay>
+public static class CardDisplay
 {
-    private readonly List<UICard> spawnedCards = new();    
+    private static readonly Dictionary<Transform, List<UICard>> poolDict = new();
 
-    public void Display(List<DeckCard> cardInstances, Transform targetContent, UICard prefab)      // 어떤 카드리스트를, 어디에 까지 받아옴
+    public static void Display(List<DeckCard> cardInstances, Transform targetContent, UICard prefab)
     {
+        if (!poolDict.ContainsKey(targetContent))
+        {
+            poolDict[targetContent] = new List<UICard>();
+        }
+
+        List<UICard> spawnedCards = poolDict[targetContent];
         int cardCount = cardInstances.Count;
-        
-        CheckCount(cardCount, targetContent, prefab);
+
+        // 부족한 갯수만큼 카드를 추가로 생성
+        int cardsToCreate = cardCount - spawnedCards.Count;
+        for (int i = 0; i < cardsToCreate; i++)
+        {
+            // static 클래스에서는 Instantiate 앞에 Object. 을 붙여서 사용합니다.
+            UICard spawnedCard = Object.Instantiate(prefab, targetContent);
+            spawnedCards.Add(spawnedCard);
+        }
 
         for (int i = 0; i < spawnedCards.Count; i++)
         {
             if (i < cardCount)
             {
-                spawnedCards[i].transform.SetParent(targetContent, false);
-                
                 spawnedCards[i].Init(cardInstances[i]);  
                 spawnedCards[i].gameObject.SetActive(true);
             }
@@ -24,17 +35,6 @@ public class CardDisplay : Singleton<CardDisplay>
             {
                 spawnedCards[i].gameObject.SetActive(false);
             }
-        }
-    }
-
-    private void CheckCount(int neededCount, Transform targetContent, UICard prefab)
-    {
-        int cardsToCreate = neededCount - spawnedCards.Count;
-        
-        for (int i = 0; i < cardsToCreate; i++)
-        {
-            UICard spawnedCard = Instantiate(prefab, targetContent);
-            spawnedCards.Add(spawnedCard);
         }
     }
 }

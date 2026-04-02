@@ -7,6 +7,8 @@ public class CardManager : Singleton<CardManager>
     [Header("Data")]
     [SerializeField] private CardData cardData; 
     [SerializeField] private ActionData actionData;
+    
+    // EffectData 도 ActionData 처럼 연결하기
 
     public Card GetCardPrefab()
     {
@@ -44,4 +46,12 @@ public class CardManager : Singleton<CardManager>
 
         return filtered[Random.Range(0, filtered.Count)];
     }
+    /*
+    public string GetDescription(CardName cardName)
+    {
+        // 완성된 String 값을 리턴 > 카드 조립 
+        // 카드데이터에서 Description 값을 받아와서 전문을 String 으로 변환해서 카드 프리펩에 전달
+        
+    }
+    */
 }
