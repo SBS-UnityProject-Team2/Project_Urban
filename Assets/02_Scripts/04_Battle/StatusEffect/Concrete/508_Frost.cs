@@ -14,12 +14,13 @@ public class Frost : StackEffect
         {
             RemoveStack(targetValue);
 
-            GiveBuffDurPayload payload = new()
+            ActionPayload payload = new()
             {
+                actionId = ActorAction.GiveBuffDur,
                 source = owner,
-                effectName = StatusEffectName.Frozen,
-                duration = frozenDuration  
             };
+            payload.Write(StatusEffectName.Frozen);
+            payload.Write(frozenDuration);
             payload.AddTarget(owner);
             ActionBus.Dispatch(payload);
         }

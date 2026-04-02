@@ -88,11 +88,12 @@ public abstract class StatusEffect
 
     protected void RequestClear()
     {
-        ClearBuffsPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ClearBuffs,
             source = owner,
-            effectName = Name  
         };
+        payload.Write(Name);
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
     }

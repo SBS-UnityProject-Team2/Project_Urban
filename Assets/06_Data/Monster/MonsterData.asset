@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acc90ac170ebda4abf51717d97a09b4, type: 3}
+  m_Name: MonsterData
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterData
+  monsterPrefab: {fileID: 7209226890364365154, guid: e059f70f517c81d489c2f4506e5c944e, type: 3}
+  images:
+  - {fileID: 21300000, guid: 93e04b3de05f79644ac5d56178a90748, type: 3}
+  - {fileID: 21300000, guid: d3992a5128e499041861f94712001fc8, type: 3}
+  - {fileID: 21300000, guid: 0f8a0f02b6ab6ef4ba9823545bca7c23, type: 3}
+  - {fileID: 21300000, guid: e46a81e6cfb82ad4d9421091cda113ca, type: 3}
+  - {fileID: 21300000, guid: dd34fbd0861636c46aa63d4d93001a64, type: 3}
+  - {fileID: 21300000, guid: 03ce8bb47833e404bab54b3fdea58f3a, type: 3}
+  - {fileID: 21300000, guid: be3fba18a59781e48a6854df75058d12, type: 3}
+  - {fileID: 21300000, guid: bb17e81fb88c842498bd1b283919a593, type: 3}
+  - {fileID: 21300000, guid: 24f2026ebaaa7b84ba3812ce5a3a6755, type: 3}
+  - {fileID: 21300000, guid: bdc7307b7f01b6c4d8e53b2de42ad476, type: 3}
+  - {fileID: 21300000, guid: d258a5aa05c1c23498b77a27243534aa, type: 3}
+  - {fileID: 21300000, guid: 494720b2002dea846b351c5076155429, type: 3}
+  - {fileID: 21300000, guid: ccda92615bad02f4c9bce384a00602df, type: 3}
+  entries:
+  - level: 0
+    name: 0
+    koreanName: "\uB4E4\uAC1C"
+    element: 0
+    score: 1
+    phaseStep: 00000000
+    pattern:
+    - patterns:
+      - actionIds: 401f0000
+      - actionIds: 411f0000
+      - actionIds: 421f0000

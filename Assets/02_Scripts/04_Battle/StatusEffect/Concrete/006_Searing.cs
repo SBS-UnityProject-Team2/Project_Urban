@@ -20,12 +20,13 @@ public class Searing : StackEffect
 
     private void HandleDamage(EventPayload eventPayload)
     {
-        MoveCardFromDeckPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.MoveCardFromDeck,
             source = owner,
-            cardCount = stack,
-            to = Location.Hand
         };
+        payload.Write(Location.Hand);
+        payload.Write(stack);
 
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);

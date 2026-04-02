@@ -20,16 +20,17 @@ public class ElectricVeil : StackEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        AtkDmgPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.AtkDmg,
             source = owner,
-            damage = stack,
-            elementType = ElementType.Psychic  
         };
+        payload.Write(ElementType.Psychic);
+        payload.Write(stack);
 
         if (payload.source == Battle.Instance.Player)
         {
-            foreach (Monster monster in Battle.Instance.Monsters)
+            foreach (Monster monster in Battle.Instance.Monsters.List)
                 payload.AddTarget(monster);
         }
         else

@@ -81,17 +81,15 @@ public static class ActionBus
 
     public static void Dispatch(ActionPayload payload)
     {
-        queue.Enqueue(payload);
-        // if (dispatchTable.TryGetValue(payload.actionId, out var handler))
-        //     handler(payload);
+        if (dispatchTable.TryGetValue(payload.actionId, out var handler))
+            handler(payload);
     }
 
     #region 공격
     private static void AtkDmg(ActionPayload payload)
     {
-        AtkDmgPayload atkDmgPayload = payload as AtkDmgPayload;
-        int baseDamage = atkDmgPayload.damage;
-        ElementType element = atkDmgPayload.elementType;
+        ElementType element = payload.Read<ElementType>();
+        int baseDamage = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -152,9 +150,8 @@ public static class ActionBus
 
     private static void AtkFixedDmg(ActionPayload payload)
     {
-        AtkFixedDmgPayload dmgPayload = payload as AtkFixedDmgPayload;
-        int baseDamage = dmgPayload.damage;
-        ElementType element = dmgPayload.elementType;
+        ElementType element = payload.Read<ElementType>();
+        int baseDamage = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -198,8 +195,7 @@ public static class ActionBus
 
     private static void AtkLossHp(ActionPayload payload)
     {
-        AtkLossHpPayload atkLossHpPayload = payload as AtkLossHpPayload;
-        int damage = atkLossHpPayload.damage;
+        int damage = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -228,14 +224,12 @@ public static class ActionBus
 
     private static void DmgAdjust(ActionPayload payload)
     {
-        DmgAdjustPayload dmgAdjustPayload = payload as DmgAdjustPayload;
-        int maxDamage = dmgAdjustPayload.maxDamage;
+        int maxDamage = payload.Read<int>();
     }
 
     private static void DmgRateAdjust(ActionPayload payload)
     {
-        DmgRateAdjustPayload dmgRateAdjustPayload = payload as DmgRateAdjustPayload;
-        float maxDamageRate = dmgRateAdjustPayload.maxDamageRate;
+        float maxDamageRate = payload.Read<float>();
     }
 
     #endregion
@@ -243,8 +237,7 @@ public static class ActionBus
     #region 방어 및 지원
     private static void AddBlock(ActionPayload payload)
     {
-        AddBlockPayload addBlock = payload as AddBlockPayload;
-        int block = addBlock.block;
+        int block = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -262,8 +255,7 @@ public static class ActionBus
 
     private static void HealHp(ActionPayload payload)
     {
-        HealHpPayload healHpPayload = payload as HealHpPayload;
-        int healPoint = healHpPayload.healPoint;
+        int healPoint = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -281,8 +273,7 @@ public static class ActionBus
 
     private static void AddMaxHp(ActionPayload payload)
     {
-        AddMaxHpPayload addMaxHpPayload = payload as AddMaxHpPayload;
-        int maxHpPoint = addMaxHpPayload.maxHpPoint;
+        int maxHpPoint = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -300,8 +291,7 @@ public static class ActionBus
 
     private static void AddCost(ActionPayload payload)
     {
-        AddCostPayload addCostPayload = payload as AddCostPayload;
-        int costPoint = addCostPayload.costPoint;
+        int costPoint = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -319,8 +309,7 @@ public static class ActionBus
 
     private static void ChangeElement(ActionPayload payload)
     {
-        ChangeElementPayload changeElementPayload = payload as ChangeElementPayload;
-        ElementType elementType = changeElementPayload.elementType;
+        ElementType elementType = payload.Read<ElementType>();
 
         payload.targets.ForEach(target =>
         {
@@ -340,8 +329,7 @@ public static class ActionBus
 
     private static void TakenDmgRateAdjust(ActionPayload payload)
     {
-        TakenDmgRateAdjustPayload takenDmgRateAdjustPayload = payload as TakenDmgRateAdjustPayload;
-        float damageRate = takenDmgRateAdjustPayload.damageRate;
+        float damageRate = payload.Read<float>();
     }
     #endregion
 
@@ -353,57 +341,50 @@ public static class ActionBus
 
     private static void MoveCardFromDeck(ActionPayload payload)
     {
-        MoveCardFromDeckPayload moveCardFromDeckPayload = payload as MoveCardFromDeckPayload;
-        int cardCount = moveCardFromDeckPayload.cardCount;
-        Location to = moveCardFromDeckPayload.to;
+        Location to = payload.Read<Location>();
+        int cardCount = payload.Read<int>();
 
         Battle.Instance.Deck.MoveCard(Location.Deck, to, cardCount).Forget();
     }
 
     private static void MoveCardFromHand(ActionPayload payload)
     {
-        MoveCardFromHandPayload moveCardFromHandPayload = payload as MoveCardFromHandPayload;
-        int cardCount = moveCardFromHandPayload.cardCount;
-        Location to = moveCardFromHandPayload.to;
+        Location to = payload.Read<Location>();
+        int cardCount = payload.Read<int>();
 
         Battle.Instance.Deck.MoveCard(Location.Hand, to, cardCount).Forget();
     }
 
     private static void MoveCardFromDiscard(ActionPayload payload)
     {
-        MoveCardFromDiscardPayload moveCardFromDiscardPayload = payload as MoveCardFromDiscardPayload;
-        int cardCount = moveCardFromDiscardPayload.cardCount;
-        Location to = moveCardFromDiscardPayload.to;
+        Location to = payload.Read<Location>();
+        int cardCount = payload.Read<int>();
 
         Battle.Instance.Deck.MoveCard(Location.DiscardPile, to, cardCount).Forget();
     }
 
     private static void MoveCardFromExhaust(ActionPayload payload)
     {
-        MoveCardFromExhaustPayload moveCardFromExhaustPayload = payload as MoveCardFromExhaustPayload;
-        int cardCount = moveCardFromExhaustPayload.cardCount;
-        Location to = moveCardFromExhaustPayload.to;
+        Location to = payload.Read<Location>();
+        int cardCount = payload.Read<int>();
 
         Battle.Instance.Deck.MoveCard(Location.ExhaustPile, to, cardCount).Forget();
     }
 
     private static void SearchCard(ActionPayload payload)
     {
-        SearchCardPayload searchCardPayload = payload as SearchCardPayload;
-        int cardCount = searchCardPayload.cardCount;
+        int cardCount = payload.Read<int>();
     }
 
     private static void MoveSelectedCard(ActionPayload payload)
     {
-        MoveSelectedCardPayload moveSelectedCardPayload = payload as MoveSelectedCardPayload;
     }
 
     private static void DrawCount(ActionPayload payload)
     {
-        DrawCountPayload drawCountPayload = payload as DrawCountPayload;
-        int drawCount = drawCountPayload.drawCount;
+        int drawCount = payload.Read<int>();
 
-        Battle.Instance.Deck.DrawCard(drawCount);
+        Battle.Instance.Deck.DrawCard(drawCount).Forget();
         
         DrawPayload drawPayload = new()
         {
@@ -418,9 +399,8 @@ public static class ActionBus
     #region 코스트 조작
     private static void SetCardCost(ActionPayload payload)
     {
-        SetCardCostPayload setCardCostPayload = payload as SetCardCostPayload;
-        int cardInstanceId = setCardCostPayload.cardInstanceId;
-        int costPoint = setCardCostPayload.costPoint;
+        int cardInstanceId = payload.Read<int>();
+        int costPoint = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
         card.SetCost(costPoint);
@@ -428,9 +408,8 @@ public static class ActionBus
 
     private static void AddCardCost(ActionPayload payload)
     {
-        AddCardCostPayload addCardCostPayload = payload as AddCardCostPayload;
-        int cardInstanceId = addCardCostPayload.cardInstanceId;
-        int costPoint = addCardCostPayload.costPoint;
+        int cardInstanceId = payload.Read<int>();
+        int costPoint = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
         card.AddCost(costPoint);
@@ -438,9 +417,8 @@ public static class ActionBus
 
     private static void ReduceCardCost(ActionPayload payload)
     {
-        ReduceCardCostPayload reduceCardCostPayload = payload as ReduceCardCostPayload;
-        int cardInstanceId = reduceCardCostPayload.cardInstanceId;
-        int costPoint = reduceCardCostPayload.costPoint;
+        int cardInstanceId = payload.Read<int>();
+        int costPoint = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
         card.ReduceCost(costPoint);
@@ -448,9 +426,8 @@ public static class ActionBus
 
     private static void RandomizeCardCost(ActionPayload payload)
     {
-        RandomizeCardCostPayload randomizeCardCostPayload = payload as RandomizeCardCostPayload;
-        int cardInstanceId = randomizeCardCostPayload.cardInstanceId;
-        int maxCostPoint = randomizeCardCostPayload.maxCostPoint;
+        int cardInstanceId = payload.Read<int>();
+        int maxCostPoint = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
         card.SetCost(UnityEngine.Random.Range(0, maxCostPoint + 1));
@@ -458,8 +435,7 @@ public static class ActionBus
 
     private static void ResetCardCost(ActionPayload payload)
     {
-        ResetCardCostPayload resetCardCostPayload = payload as ResetCardCostPayload;
-        int cardInstanceId = resetCardCostPayload.cardInstanceId;
+        int cardInstanceId = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.Hand.GetCard(cardInstanceId);
         card.ResetCost();
@@ -470,27 +446,24 @@ public static class ActionBus
     #region 카드 생성
     private static void CreateCard(ActionPayload payload)
     {
-        CreateCardPayload createCardPayload = payload as CreateCardPayload;
-        CardName cardName = createCardPayload.cardName;
-        Location to = createCardPayload.to;
+        Location to = payload.Read<Location>();
+        CardName cardName = payload.Read<CardName>();
 
         Battle.Instance.Deck.CreateCard(cardName, to);
     }
 
     private static void CopyCard(ActionPayload payload)
     {
-        CopyCardPayload copyCardPayload = payload as CopyCardPayload;
-        CardName cardName = copyCardPayload.cardName;
-        Location to = copyCardPayload.to;
+        Location to = payload.Read<Location>();
+        CardName cardName = payload.Read<CardName>();
 
         Battle.Instance.Deck.CreateCard(cardName, to);
     }
 
     private static void TransformCard(ActionPayload payload)
     {
-        TransformCardPayload transformCardPayload = payload as TransformCardPayload;
-        int cardId = transformCardPayload.cardId;
-        CardName to = transformCardPayload.to;
+        int cardId = payload.Read<int>();
+        CardName to = payload.Read<CardName>();
 
         Card card = Battle.Instance.Deck.GetCard(cardId);
         card.Transform(to);
@@ -498,8 +471,7 @@ public static class ActionBus
 
     private static void ResetCardTransform(ActionPayload payload)
     {
-        ResetCardTransformPayload resetCardTransformPayload = payload as ResetCardTransformPayload;
-        int cardId = resetCardTransformPayload.cardId;
+        int cardId = payload.Read<int>();
 
         Card card = Battle.Instance.Deck.GetCard(cardId);
         card.ResetTransform();
@@ -509,9 +481,8 @@ public static class ActionBus
     #region 버프/디버프
     private static void GiveBuffDur(ActionPayload payload)
     {
-        GiveBuffDurPayload giveBuffDurPayload = payload as GiveBuffDurPayload;
-        StatusEffectName effectName = giveBuffDurPayload.effectName;
-        int duration = giveBuffDurPayload.duration;
+        StatusEffectName effectName = payload.Read<StatusEffectName>();
+        int duration = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -530,9 +501,8 @@ public static class ActionBus
 
     private static void GiveBuffSta(ActionPayload payload)
     {
-        GiveBuffStaPayload giveBuffStaPayload = payload as GiveBuffStaPayload;
-        StatusEffectName effectName = giveBuffStaPayload.effectName;
-        int stack = giveBuffStaPayload.stack;
+        StatusEffectName effectName = payload.Read<StatusEffectName>();
+        int stack = payload.Read<int>();
 
         payload.targets.ForEach(target => 
         {
@@ -551,9 +521,8 @@ public static class ActionBus
 
     private static void RemoveBuffDur(ActionPayload payload)
     {
-        RemoveBuffDurPayload removeBuffDurPayload = payload as RemoveBuffDurPayload;
-        StatusEffectName effectName = removeBuffDurPayload.effectName;
-        int duration = removeBuffDurPayload.duration;
+        StatusEffectName effectName = payload.Read<StatusEffectName>();
+        int duration = payload.Read<int>();
 
         payload.targets.ForEach(target => 
         {
@@ -572,9 +541,8 @@ public static class ActionBus
 
     private static void RemoveBuffSta(ActionPayload payload)
     {
-        RemoveBuffStaPayload removeBuffStaPayload = payload as RemoveBuffStaPayload;
-        StatusEffectName effectName = removeBuffStaPayload.effectName;
-        int stack = removeBuffStaPayload.stack;
+        StatusEffectName effectName = payload.Read<StatusEffectName>();
+        int stack = payload.Read<int>();
 
         payload.targets.ForEach(target =>
         {
@@ -593,8 +561,7 @@ public static class ActionBus
 
     private static void ClearBuffs(ActionPayload payload)
     {
-        ClearBuffsPayload clearBuffsPayload = payload as ClearBuffsPayload;
-        StatusEffectName effectName = clearBuffsPayload.effectName;
+        StatusEffectName effectName = payload.Read<StatusEffectName>();
 
         payload.targets.ForEach(target =>
         {
@@ -612,14 +579,12 @@ public static class ActionBus
 
     private static void CancelBuff(ActionPayload payload)
     {
-        CancelBuffPayload cancelBuffPayload = payload as CancelBuffPayload;
-        StatusEffectName before = cancelBuffPayload.before;
-        StatusEffectName after = cancelBuffPayload.after;
+        StatusEffectName before = payload.Read<StatusEffectName>();
+        StatusEffectName after = payload.Read<StatusEffectName>();
     }
 
     private static void ActionSkip(ActionPayload payload)
     {
-        ActionSkipPayload actionSkipPayload = payload as ActionSkipPayload;
     }
     #endregion
 

@@ -38,12 +38,13 @@ public class ElasticVeil : StackEffect
 
     private void GiveBuff(EventPayload eventPayload, StatusEffectName effectName)
     {
-        GiveBuffDurPayload payload = new()
+        ActionPayload payload = new()
         {
-            effectName = effectName,
-            duration = stack,
-            source = eventPayload.target,  
+            actionId = ActorAction.GiveBuffDur,
+            source = eventPayload.target,
         };
+        payload.Write(effectName);
+        payload.Write(stack);
         
         payload.AddTarget(eventPayload.source);
         ActionBus.Dispatch(payload);

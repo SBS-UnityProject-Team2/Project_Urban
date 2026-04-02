@@ -10,11 +10,12 @@ public class KineticVeil : DurationEffect
         {
             owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
             
-            ChangeElementPayload payload = new()
+            ActionPayload payload = new()
             {
+                actionId = ActorAction.ChangeElement,
                 source = owner,
-                elementType = ElementType.Psychic
             };
+            payload.Write(ElementType.Psychic);
 
             payload.AddTarget(owner);
             ActionBus.Dispatch(payload);
@@ -29,11 +30,12 @@ public class KineticVeil : DurationEffect
 
         owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
         
-        ChangeElementPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ChangeElement,
             source = owner,
-            elementType = ElementType.Reset
         };
+        payload.Write(ElementType.Reset);
 
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
