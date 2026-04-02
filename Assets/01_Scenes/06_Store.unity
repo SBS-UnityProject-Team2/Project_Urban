@@ -510,7 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640f99a35674dcb41b5bc1a038bddf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  initialDeckRecipe: []
+  initialDeckRecipe:
+  - name: 1005
+    count: 3
 --- !u!4 &547504112
 Transform:
   m_ObjectHideFlags: 0
@@ -1284,7 +1286,7 @@ MonoBehaviour:
   BeforeCardUI: {fileID: 1228342238}
   AfterCardUI: {fileID: 983695556}
   AfterCardNameText: {fileID: 254373781}
-  cardEnchantPanel: {fileID: 0}
+  cardEnchantPanel: {fileID: 852078140}
 --- !u!1 &1552435771
 GameObject:
   m_ObjectHideFlags: 0

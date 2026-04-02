@@ -18,7 +18,8 @@ public class RemoveConfirmPopup : MonoBehaviour
     }
 
     public void OpenPopup(DeckCard cardInstance)
-    {
+    {   
+        gameObject.SetActive(true);
         targetCard = cardInstance;
         targetCardUI = cardInstance.CardData;
 
@@ -44,5 +45,11 @@ public class RemoveConfirmPopup : MonoBehaviour
     private void ClosePopup()
     {
         modalWindowManager.ModalWindowOut();
+        Invoke(nameof(DisablePopup), 0.5f);
+    }
+
+    private void DisablePopup()
+    {
+        gameObject.SetActive(false);
     }
 }
