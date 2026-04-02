@@ -10,11 +10,12 @@ public class BioActiveShell : DurationEffect
         {
             owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
 
-            ChangeElementPayload payload = new()
+            ActionPayload payload = new()
             {
+                actionId = ActorAction.ChangeElement,
                 source = owner,
-                elementType = ElementType.Bio
             };
+            payload.Write(ElementType.Bio);
 
             payload.AddTarget(owner);
             ActionBus.Dispatch(payload);
@@ -29,11 +30,12 @@ public class BioActiveShell : DurationEffect
 
         owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
 
-        ChangeElementPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ChangeElement,
             source = owner,
-            elementType = ElementType.Reset
         };
+        payload.Write(ElementType.Reset);
 
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);

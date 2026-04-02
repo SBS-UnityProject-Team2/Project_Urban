@@ -40,16 +40,13 @@ public class CardAction : MonoBehaviour
                     }
 
                 case Target.TarEnemiesAll:
-                    payload.targets.AddRange(Battle.Instance.Monsters);
+                    payload.targets.AddRange(Battle.Instance.Monsters.List);
                     break;
-
 
                 // 적 위치 관련된 부분은 몬스터 관리자 작성 후 추가하기
                 case Target.TarAdjacentEnemies:
                     {
                         payload.targets.Add(selectedActor);
-
-
                         break;
                     }
             }

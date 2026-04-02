@@ -21,11 +21,12 @@ public class Bleed : StackEffect, IHealChange
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        AtkLossHpPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.AtkLossHp,
             source = owner,
-            damage = stack,
         };
+        payload.Write(stack);
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
 

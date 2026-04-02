@@ -1,0 +1,24 @@
+{
+    "monsters" :
+    [
+        {
+            "level" : "Normal",
+            "name" : "WildDog_A",
+            "koreanName" : "들개",
+            "element" : "None",
+            "score" : 1,
+            "phaseStep" : 
+            [
+                [0, 0]
+            ],
+            "pattern" : 
+            [ 
+                [
+                    [8000], 
+                    [8001],
+                    [8002]
+                ]
+            ]
+        }
+    ]
+}

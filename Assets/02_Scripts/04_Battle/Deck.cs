@@ -24,12 +24,12 @@ public class Deck : MonoBehaviour
         this.hand = hand;
     }
 
-    public async void DrawCard()
+    public async UniTask DrawCard()
     {
         await hand.AddCard(InternalDrawCard());
     }
 
-    public async void DrawCard(int amount)
+    public async UniTask DrawCard(int amount)
     {
         List<Card> cards = new();
         for (int i = 0; i < amount; i++)

@@ -23,11 +23,12 @@ public class Poisoned : DurationEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        AtkLossHpPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.AtkLossHp,
             source = owner,
-            damage = (int)(owner.Status.Health.CurHp * 0.2)
         };
+        payload.Write((int)(owner.Status.Health.CurHp * damageRatio));
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
 

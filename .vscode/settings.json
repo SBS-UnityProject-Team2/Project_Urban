@@ -80,6 +80,7 @@
         "IMGUI",
         "interactable",
         "Lerp",
+        "nums",
         "playermove",
         "selfburn",
         "Superconducter",

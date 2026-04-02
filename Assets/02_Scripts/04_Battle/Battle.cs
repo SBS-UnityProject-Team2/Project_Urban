@@ -5,16 +5,19 @@ using System;
 
 public class Battle : SceneSingleton<Battle>
 {
+    [Header("Object Settings")]
     [SerializeField] private Player player;
-    [SerializeField] private List<Monster> monsters;
+    [SerializeField] private Monsters monsters;
     [SerializeField] private Deck deck;
     [SerializeField] private Hand hand;
-    [SerializeField] private int drawCount;
-    
-    private int extraCost;
 
+    [Header("Battle Settings")]
+    [SerializeField] private int drawCount;
+    [SerializeField] private int monsterScore;
+    [SerializeField] private MonsterLevel monsterLevel;
+    
     public Player Player => player;
-    public List<Monster> Monsters => monsters;
+    public Monsters Monsters => monsters;
     public Deck Deck => deck;
     public Hand Hand => hand;
 
@@ -24,20 +27,13 @@ public class Battle : SceneSingleton<Battle>
         set => drawCount = value;
     }
 
-    public int ExtraCost
-    {
-        get => extraCost;
-        set => extraCost = value;
-    }
-
     public UnityEvent OnBattleStart = new();
     public UnityEvent OnBattleEnd = new();
 
     private void Start()
     {
         deck.Init(DeckManager.Instance.Deck, hand);
-        // 배틀 시작 전 필요한 준비하기
-        // 덱 초기화 등등
+        monsters.Init(monsterScore, monsterLevel);
 
         StartBattleLoop();
     }
@@ -45,7 +41,7 @@ public class Battle : SceneSingleton<Battle>
     async private void StartBattleLoop()
     {
         List<Actor> actors = new() { player };
-        actors.AddRange(monsters);
+        actors.AddRange(monsters.List);
 
         OnBattleStart?.Invoke();
 

@@ -11,15 +11,19 @@ public class Dizzy : DurationEffect
         {
             owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
 
-            AddCardCostPayload payload = new()
+            ActionPayload payload = new()
             {
+                actionId = ActorAction.AddCardCost,
                 source = owner,
-                costPoint = additionalCost,
             };
 
             foreach (Card card in Battle.Instance.Deck.Hand.CurHand)
             {
-                payload.cardInstanceId = card.Id;
+                payload.Init();
+                payload.actionId = ActorAction.AddCardCost;
+                payload.source = owner;
+                payload.Write(card.Id);
+                payload.Write(additionalCost);
                 ActionBus.Dispatch(payload);
             }
         }
@@ -31,14 +35,18 @@ public class Dizzy : DurationEffect
     {
         base.Clear();
 
-        ResetCardCostPayload payload = new()
+        ActionPayload payload = new()
         {
+            actionId = ActorAction.ResetCardCost,
             source = owner,
         };
 
         foreach (Card card in Battle.Instance.Deck.Hand.CurHand)
         {
-            payload.cardInstanceId = card.Id;
+            payload.Init();
+            payload.actionId = ActorAction.ResetCardCost;
+            payload.source = owner;
+            payload.Write(card.Id);
             ActionBus.Dispatch(payload);
         }
 

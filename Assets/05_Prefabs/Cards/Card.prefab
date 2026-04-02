@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 318462283492012030}
   - component: {fileID: 2592206397937631846}
   - component: {fileID: 775217607919543698}
-  m_Layer: 0
+  - component: {fileID: 8788532708348732960}
+  - component: {fileID: 4666581285463183489}
+  - component: {fileID: 3000563351140385760}
+  m_Layer: 6
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +183,44 @@ MonoBehaviour:
   textCardName: {fileID: 5391069173789204096}
   textCardDesc: {fileID: 720870070363394128}
   textCost: {fileID: 8592493839888877718}
+--- !u!114 &8788532708348732960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691134573167423411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bdf323e129b5e4da90312c7de2167a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardAction
+--- !u!114 &4666581285463183489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691134573167423411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967de2ab3fab0614d860f843c2eeb1f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+--- !u!114 &3000563351140385760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691134573167423411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1337e300996d8834b9a6a9809ea209a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardState
+  originCost: 0
+  curCost: 0
 --- !u!1 &7786725635655764598
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +233,7 @@ GameObject:
   - component: {fileID: 6486174861769066407}
   - component: {fileID: 8646663077595555368}
   - component: {fileID: 1619412730983014235}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +336,7 @@ GameObject:
   - component: {fileID: 8132562774778885510}
   - component: {fileID: 8026904438105956179}
   - component: {fileID: 5391069173789204096}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +472,7 @@ GameObject:
   - component: {fileID: 2185647242227531842}
   - component: {fileID: 1958900705871316777}
   - component: {fileID: 720870070363394128}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text_Desc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +608,7 @@ GameObject:
   - component: {fileID: 28058798973484560}
   - component: {fileID: 4343286543150657667}
   - component: {fileID: 8592493839888877718}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

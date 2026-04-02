@@ -1,0 +1,66 @@
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class MonsterAction : MonoBehaviour
+{
+    private List<PhaseEntry> phaseEntries = new();
+    private List<PatternEntry> curPattern;
+    private List<PhaseStepEntry> phaseStep;
+
+    private int curPhase = 0;
+    private int curIndex = 0;
+    
+    private MonsterActionDataEntry curAction;
+
+    public int NextPhaseHp => phaseStep[curPhase].triggerHp;
+    public UnityEvent<MonsterActionDataEntry> UpdateNextAction = new(); 
+
+    public void Init(MonsterDataEntry monsterDataEntry)
+    {
+        phaseEntries = monsterDataEntry.pattern; 
+        phaseStep = monsterDataEntry.phaseStep;
+
+        Debug.Assert(phaseStep.Count == phaseEntries.Count,
+            $"phaseStep({phaseStep.Count}) != pattern phases({phaseEntries.Count})");
+
+        curPattern = phaseEntries[curPhase].patterns;        
+        SetNextAction();
+    }
+
+    public async UniTask Execute()
+    {
+        // 여기에 액션 수행을 처리한다. -> 카드랑 똑같이 처리하면 될듯
+    }
+
+    public void SetNextAction()
+    {
+        int actionId = curPattern[curIndex][Random.Range(0, curPattern[curIndex].Count)];
+        curAction = MonsterManager.Instance.GetMonsterAction(actionId);
+
+        curIndex++;
+        curIndex %= curPattern.Count;
+
+        UpdateNextAction?.Invoke(curAction);
+    }
+
+    public void SetNextPhase()
+    {
+        if (NextPhaseHp == 0) return;
+
+        curPhase++;
+        curPattern = phaseEntries[curPhase].patterns;
+        
+        Reset();
+        if (phaseStep[curPhase].actionId == 0)
+            SetNextAction();
+        else
+            curAction = MonsterManager.Instance.GetMonsterAction(phaseStep[curPhase].actionId);
+    }
+
+    public void Reset()
+    {
+        curIndex = 0;
+    }
+} 

@@ -20,11 +20,11 @@ public class Card : MonoBehaviour
     private CardAction cardAction;    
     private CardEffect cardEffect;
     private CardState cardState;
-
     private CardController cardController;
     
     public DeckCard DeckCard => deckCard;
     public CardDataEntry CardData => cardDataEntry;
+    public CardController Controller => cardController;
     public int Id => cardId;
 
 

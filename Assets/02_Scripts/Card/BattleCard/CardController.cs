@@ -1,39 +1,76 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CardController : MonoBehaviour
 {
-    static private CardController selectedCard;
-
     private Vector3 originPos;
     private Vector3 originScale;
-    private bool isDrag;
+
+    private static CardController selectedCard;
+    public static bool IsDragging => selectedCard != null;
 
     private System.Func<Actor, UniTask> handleDrop;
 
     public void Init(System.Func<Actor, UniTask> handleDrop)
     {
-        this.handleDrop = handleDrop; 
+        this.handleDrop = handleDrop;
     }
 
     private void Update()
     {
-        if (selectedCard == this)
-        {
-            Vector3 mouseScreenPos = Input.mousePosition;
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-            mouseWorldPos.z = -5.0f;
+        if (selectedCard != this) return;
 
-            transform.position = mouseWorldPos;
-        }
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = -5.0f;
+        transform.position = mouseWorldPos;
+
+        if (Input.GetMouseButtonUp(0))
+            Drop();
     }
 
     private void OnMouseEnter()
     {
-        if (isDrag) return;
+        if (IsDragging) return;
+        Highlight();
+    }
 
+    private void OnMouseExit()
+    {
+        if (IsDragging) return;
+        Reset();
+    }
+
+    private void OnMouseDown()
+    {
+        selectedCard = this;
+    }
+
+    private void Drop()
+    {
+        selectedCard = null;
+
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D hit = Physics2D.OverlapPoint(mouseWorldPos);
+
+        // 카드에 타겟을 확인한다
+
+        if (hit != null && hit.TryGetComponent(out Monster monster))
+        {
+            UseCard(monster).Forget();
+            return;
+        }
+
+        Reset();
+    }
+
+    private async UniTaskVoid UseCard(Actor target)
+    {
+        if (handleDrop != null)
+            await handleDrop(target);
+    }
+
+    private void Highlight()
+    {
         originScale = transform.localScale;
         originPos = transform.localPosition;
 
@@ -41,31 +78,9 @@ public class CardController : MonoBehaviour
         transform.localPosition = originPos + Vector3.back;
     }
 
-    private void OnMouseExit()
+    public void Reset()
     {
-        if (isDrag) return;
-
         transform.localScale = originScale;
         transform.localPosition = originPos;
-    }
-
-    private void OnMouseDown()
-    {
-        if (isDrag) return;
-
-        selectedCard = this;
-        isDrag = true;
-    }
-
-    private async void OnMouseUp()
-    {
-        if (!isDrag) return;
-
-        transform.localPosition = originPos;
-        transform.localScale = originScale;
-        selectedCard = null;
-        
-        // await handleDrop?.Invoke()
-        await UniTask.WaitForSeconds(2.0f);
     }
 }
