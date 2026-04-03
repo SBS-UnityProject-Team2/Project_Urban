@@ -32,7 +32,7 @@ public enum CardName
     EnergyNeedle = 3000, // 에너지 송곳
     KineticGrasp,       // 염력 손아귀
     Pulse,              // 파동
-    ElectricArrow,      // 전기 화살
+    FlowArrow,          // 흐름의 화살
     GlacialWedge,       // 빙하 쐐기
     IceShield,          // 얼음 방패
     ElectricField,      // 전자기장

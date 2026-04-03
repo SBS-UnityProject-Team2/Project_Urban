@@ -1,4 +1,4 @@
-{
+﻿{
   "cards": [
   {
     "cardName": "Punch",
@@ -7,11 +7,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "대상에게 물리 피해를 줍니다.",
+    "description": "적에게 물리 속성 피해를 [ActValue1] 가합니다.",
     "price": 0,
     "effectType": 0,
     "effectDelay": 0,
-    "LinkID": 100001
+    "NormalLinkID": 100001,
+    "ActValue1": 5,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Shooting",
@@ -20,11 +23,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "방어도를 얻습니다.",
+    "description": "방어도를 [ActValue1]만큼 얻습니다.",
     "price": 50,
     "effectType": 0,
     "effectDelay": 0,
-    "LinkID": 100101
+    "NormalLinkID": 100101,
+    "ActValue1": 7,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Strike",
@@ -33,11 +39,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "대상에게 피해를 줍니다, 이전에 사용한 카드의 속성과 동일한 속성의 피해를 입힙니다.",
+    "description": "적에게 속성 피해를 [ActValue1] 가합니다. 이전에 사용한 카드의 속성과 동일한 속성을 갖습니다. 현재 속성 : [Elem]",
     "price": 50,
     "effectType": 0,
     "effectDelay": 0,
-    "LinkID": 100201
+    "NormalLinkID": 100201,
+    "ActValue1": 12,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "VileAttack",
@@ -46,11 +55,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "대상에게 피해를 줍니다.",
+    "description": "적에게 물리 속성 피해를 [ActValue1] 가합니다.",
     "price": 80,
     "effectType": "1,8",
     "effectDelay": 0,
-    "LinkID": 100301
+    "NormalLinkID": 100301,
+    "ActValue1": 9,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "Assault",
@@ -59,11 +71,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "대상에게 피해를 줍니다. 약화를 부여합니다.",
+    "description": "적에게 물리 속성 피해를 [ActValue1] 가하고 약화를 [ActValue2] 부여합니다.",
     "price": 80,
     "effectType": "1,20",
     "effectDelay": 0,
-    "LinkID": 100401
+    "NormalLinkID": 100401,
+    "ActValue1": 10,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Guard",
@@ -72,11 +87,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "대상에게 피해를 줍니다. 기절을 부여합니다. 소멸",
+    "description": "적에게 물리 속성 피해를 [ActValue1] 가하고 동결을 [ActValue2] 부여합니다. 소멸",
     "price": 0,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 100501
+    "NormalLinkID": 100501,
+    "ActValue1": 5,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Rollout",
@@ -85,11 +103,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "방어도를 얻습니다. 다음 턴에 드로우가 증가합니다.",
+    "description": "방어도를 [ActValue1]만큼 얻습니다. 다음 턴에 드로우가 [ActValue2]만큼 증가합니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 100601
+    "NormalLinkID": 100601,
+    "ActValue1": 7,
+    "ActValue2": 1,
+    "ActValue3": 0
   },
   {
     "cardName": "Maintenance",
@@ -98,24 +119,30 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "뽑을 카드 더미에서 드로우 합니다.",
+    "description": "뽑을 카드 더미에서 [ActValue1]만큼 드로우 합니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 100701
+    "NormalLinkID": 100701,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Dummy",
     "koreanName": "더미",
     "element": "None",
-    "isExtinct": "FALSE",
+    "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "더미를 얻습니다.",
+    "description": "더미를 [ActValue1]만큼 얻습니다. 소멸",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 100801
+    "NormalLinkID": 100801,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Ignition",
@@ -124,11 +151,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적에게 파괴 속성 피해를 입히고 화상을 부여합니다.",
+    "description": "적에게 파괴 속성 피해를 [ActValue1] 가하고 화상을 [ActValue2] 부여합니다.",
     "price": 50,
     "effectType": "3,19",
     "effectDelay": 0,
-    "LinkID": 200001
+    "NormalLinkID": 200001,
+    "ActValue1": 6,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "MoltenArms",
@@ -137,11 +167,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "적에게 파괴 속성 피해를 입히고, 자신에게 화상을 부여합니다.",
+    "description": "적에게 파괴 속성 피해를 [ActValue1] 가하고, 자신에게 화상을 [ActValue2] 부여합니다.",
     "price": 80,
     "effectType": 3,
     "effectDelay": 0,
-    "LinkID": 200101
+    "NormalLinkID": 200101,
+    "ActValue1": 15,
+    "ActValue2": 5,
+    "ActValue3": 0
   },
   {
     "cardName": "Embers",
@@ -150,11 +183,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적에게 파괴 속성 피해를 입히고, 동일한 카드를 뽑을 카드 더미에 1장 복사합니다. 소멸",
+    "description": "적에게 파괴 속성 피해를 [ActValue1] 가하고, 동일한 카드를 뽑을 카드 더미에 1장 복사합니다. 소멸",
     "price": 50,
     "effectType": 3,
     "effectDelay": 0,
-    "LinkID": 200201
+    "NormalLinkID": 200201,
+    "ActValue1": 6,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Inferno",
@@ -163,11 +199,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "TRUE",
     "cost": 3,
-    "description": "소멸된 카드 1장 당, 적에게 파괴 속성 피해를 입힙니다.",
+    "description": "소멸된 카드 1장 당, 적에게 파괴 속성 피해를 [ActValue1] 가합니다.",
     "price": 120,
     "effectType": "21,22",
     "effectDelay": 0.6,
-    "LinkID": 200301
+    "NormalLinkID": 200301,
+    "ActValue1": 8,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Backdraft",
@@ -176,11 +215,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "TRUE",
     "cost": 3,
-    "description": "모든 적에게 파괴 속성 피해를 입힙니다. 지정한 적의 화상 횟수 만큼 반복합니다. 적 전체와 자신에게 화상을 부여합니다.",
+    "description": "모든 적에게 파괴 속성 피해를 [ActValue1] 가합니다. 지정한 적의 화상 횟수 만큼 반복합니다. 적 전체와 자신에게 화상을 [ActValue2] 부여합니다.",
     "price": 120,
     "effectType": "6,7,19",
     "effectDelay": 0,
-    "LinkID": 200401
+    "NormalLinkID": 200401,
+    "ActValue1": 6,
+    "ActValue2": 5,
+    "ActValue3": 0
   },
   {
     "cardName": "BlazeBarrier",
@@ -189,11 +231,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "방어도를 얻습니다. 정련됨을 얻습니다.",
+    "description": "방어도를 [ActValue1] 얻습니다. 정련됨을 [ActValue2] 얻습니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 200501
+    "NormalLinkID": 200501,
+    "ActValue1": 10,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "Reforge",
@@ -202,11 +247,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "방어도를 얻습니다. 자신에게 부여된 화상 중첩 당 추가 방어도를 얻고 정련됨을 얻습니다.",
+    "description": "방어도를 [ActValue1] 얻습니다. 자신에게 부여된 화상 중첩 당 추가 방어도를 [ActValue2] 얻습니다. 정련됨을 [ActValue3] 얻습니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 200601
+    "NormalLinkID": 200601,
+    "ActValue1": 5,
+    "ActValue2": 1,
+    "ActValue3": 2
   },
   {
     "cardName": "Incendiary",
@@ -215,11 +263,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "소이탄 장전을 얻습니다.",
+    "description": "소이탄 장전을 [ActValue1] 얻습니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 200701
+    "NormalLinkID": 200701,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "HeatUp",
@@ -228,11 +279,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "증강을 얻습니다.",
+    "description": "증강을 [ActValue] 얻습니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 200801
+    "NormalLinkID": 200801,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Overheat",
@@ -241,11 +295,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "코스트를 얻습니다. 자신에게 화상을 부여합니다. 소멸",
+    "description": "코스트를 [ActValue1] 얻습니다. 자신에게 화상을 [ActValue2] 부여합니다. 소멸",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 200901
+    "NormalLinkID": 200901,
+    "ActValue1": 2,
+    "ActValue2": 4,
+    "ActValue3": 0
   },
   {
     "cardName": "Cinder",
@@ -254,11 +311,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "이글거림을 얻습니다. 소멸",
+    "description": "이글거림을 [ActValue1] 얻습니다. 소멸",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 201001
+    "NormalLinkID": 201001,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Stigma",
@@ -267,11 +327,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적에게 낙인을 부여합니다.",
+    "description": "적에게 낙인을 [ActValue1] 부여합니다.",
     "price": 50,
     "effectType": 19,
     "effectDelay": 0,
-    "LinkID": 201101
+    "NormalLinkID": 201101,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "OilSplash",
@@ -280,63 +343,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "적의 화상 수치를 배로 합니다. 소멸",
+    "description": "적의 화상 수치를 [ActValue]배로 합니다. 소멸",
     "price": 80,
     "effectType": 19,
     "effectDelay": 0,
-    "LinkID": 201201
-  },
-  {
-    "cardName": "EnergyNeedle",
-    "koreanName": "에너지 송곳",
-    "element": "Psychic",
-    "isExtinct": "FALSE",
-    "isSpecial": "FALSE",
-    "cost": 1,
-    "description": "적에게 사이킥 속성 데미지를 주고 냉기를 부여합니다.",
-    "price": 80,
-    "effectType": 8,
-    "effectDelay": 0,
-    "LinkID": 300001
-  },
-  {
-    "cardName": "KineticGrasp",
-    "koreanName": "염력 손아귀",
-    "element": "Psychic",
-    "isExtinct": "FALSE",
-    "isSpecial": "TRUE",
-    "cost": 4,
-    "description": "적에게 사이킥 속성 데미지를 줍니다. 만약 지정 대상이 냉기 혹은 동결 상태라면 카드 1장을 드로우합니다.",
-    "price": 120,
-    "effectType": 9,
-    "effectDelay": 0,
-    "LinkID": 300101
-  },
-  {
-    "cardName": "Pulse",
-    "koreanName": "파동",
-    "element": "Psychic",
-    "isExtinct": "FALSE",
-    "isSpecial": "FALSE",
-    "cost": 2,
-    "description": "적에게 사이킥 속성 데미지를 주고 코스트를 1 회복합니다. 이 카드를 사용 후 코스트가 0 이라면 추가로 1 더 회복합니다.",
-    "price": 80,
-    "effectType": 8,
-    "effectDelay": 0,
-    "LinkID": 300201
-  },
-  {
-    "cardName": "ElectricArrow",
-    "koreanName": "전기 화살",
-    "element": "Psychic",
-    "isExtinct": "FALSE",
-    "isSpecial": "FALSE",
-    "cost": 1,
-    "description": "적 전체에게 사이킥 속성 데미지를 줍니다. 동결 상태인 적은 추가로 같은 데미지를 줍니다.",
-    "price": 50,
-    "effectType": 8,
-    "effectDelay": 0,
-    "LinkID": 300301
+    "NormalLinkID": 201201,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "GlacialWedge",
@@ -345,11 +359,78 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적에게 사이킥 속성 데미지를 줍니다. 이 카드 이외의 손패의 카드 2장당 코스트가 1 줄어듭니다.",
+    "description": "적에게 사이킥 속성 피해를 [ActValue1] 가하고 냉기를 [ActValue2] 부여합니다.",
+    "price": 80,
+    "effectType": 8,
+    "effectDelay": 0,
+    "NormalLinkID": 300001,
+    "ActValue1": 6,
+    "ActValue2": 1,
+    "ActValue3": 0
+  },
+  {
+    "cardName": "FlowArrow",
+    "koreanName": "흐름의 화살",
+    "element": "Psychic",
+    "isExtinct": "FALSE",
+    "isSpecial": "TRUE",
+    "cost": 4,
+    "description": "적에게 사이킥 속성 피해를 [ActValue1] 가합니다. 만약 지정 대상이 냉기 혹은 동결 상태라면 카드 1장을 드로우합니다.",
+    "price": 120,
+    "effectType": 9,
+    "effectDelay": 0,
+    "NormalLinkID": 300101,
+    "ActValue1": 7,
+    "ActValue2": 0,
+    "ActValue3": 0
+  },
+  {
+    "cardName": "EnergyNeedle",
+    "koreanName": "에너지 송곳",
+    "element": "Psychic",
+    "isExtinct": "FALSE",
+    "isSpecial": "FALSE",
+    "cost": 2,
+    "description": "적에게 사이킥 속성 피해를 [ActVaue1] 가하고 코스트를 1 회복합니다. 이 카드를 사용 후 코스트가 0 이라면 추가로 1 더 회복합니다.",
+    "price": 80,
+    "effectType": 8,
+    "effectDelay": 0,
+    "NormalLinkID": 300201,
+    "ActValue1": 8,
+    "ActValue2": 0,
+    "ActValue3": 0
+  },
+  {
+    "cardName": "Pulse",
+    "koreanName": "파동",
+    "element": "Psychic",
+    "isExtinct": "FALSE",
+    "isSpecial": "FALSE",
+    "cost": 1,
+    "description": "적 전체에게 사이킥 속성 피해를 [ActValue1] 가합니다. 냉기 상태인 적은 추가로 같은 피해를 한번 더 가합니다.",
+    "price": 50,
+    "effectType": 8,
+    "effectDelay": 0,
+    "NormalLinkID": 300301,
+    "ActValue1": 8,
+    "ActValue2": 8,
+    "ActValue3": 0
+  },
+  {
+    "cardName": "KineticGrasp",
+    "koreanName": "염력 손아귀",
+    "element": "Psychic",
+    "isExtinct": "FALSE",
+    "isSpecial": "FALSE",
+    "cost": 1,
+    "description": "적에게 사이킥 속성 피해를 [ActValue1] 가합니다. 이 카드 이외의 손패의 카드 [ActValue2] 장당 코스트가 1 줄어듭니다.",
     "price": 50,
     "effectType": "8,20",
     "effectDelay": 0,
-    "LinkID": 300401
+    "NormalLinkID": 300401,
+    "ActValue1": 24,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "IceShield",
@@ -358,11 +439,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "방어도를 얻고 염력 장막을 얻습니다.",
+    "description": "방어도를 [ActValue1] 얻고 염력 장막을 [ActValue2] 얻습니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 300501
+    "NormalLinkID": 300501,
+    "ActValue1": 10,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "ElectricField",
@@ -371,11 +455,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "전자기장 버프를 얻습니다. 매 턴이 종료될 때 마다 사이킥 속성 피해를 적 전체에게 가합니다.",
+    "description": "전자기장을 [ActValue1] 얻습니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 300601
+    "NormalLinkID": 300601,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "AccelConcoction",
@@ -384,11 +471,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "가속 화합물 버프를 얻습니다.(시작 드로우, 시작 코스트 + 1), 소멸",
+    "description": "가속 화합물을 [ActValue1] 얻습니다. 소멸",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 300701
+    "NormalLinkID": 300701,
+    "ActValue1": 3,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Superconducter",
@@ -397,11 +487,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "TRUE",
     "cost": 2,
-    "description": "무효화, 동결, 염력 장막을 얻습니다. 소멸",
+    "description": "무효화 [ActValue1], 동결을 [ActValue2] 얻습니다. 소멸",
     "price": 120,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 300801
+    "NormalLinkID": 300801,
+    "ActValue1": 1,
+    "ActValue2": 1,
+    "ActValue3": 0
   },
   {
     "cardName": "Anxiolytic",
@@ -414,7 +507,10 @@
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 300901
+    "NormalLinkID": 300901,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "CryoPowder",
@@ -423,11 +519,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "TRUE",
     "cost": 1,
-    "description": "적 전체에게 동결을 부여합니다. 소멸",
+    "description": "적 전체에게 동결을 [ActValue1] 부여합니다. 소멸",
     "price": 120,
     "effectType": 20,
     "effectDelay": 0,
-    "LinkID": 301001
+    "NormalLinkID": 301001,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "Disturb",
@@ -436,11 +535,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적 전체에게 파갑을 부여합니다.",
+    "description": "적 전체에게 파갑을 [ActValue1] 부여합니다.",
     "price": 80,
     "effectType": 18,
     "effectDelay": 0,
-    "LinkID": 301101
+    "NormalLinkID": 301101,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "DoubleEdge",
@@ -449,11 +551,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "적에게 생체 속성 피해를 가하고 그 절반의 피해를 입습니다.",
+    "description": "적에게 생체 속성 피해를 [ActValue1] 가하고 그 절반의 피해를 입습니다.",
     "price": 50,
     "effectType": 12,
     "effectDelay": 0,
-    "LinkID": 400001
+    "NormalLinkID": 400001,
+    "ActValue1": 16,
+    "ActValue2": 8,
+    "ActValue3": 0
   },
   {
     "cardName": "Plague",
@@ -462,24 +567,30 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "패에서 최대 3장 까지 카드를 선택해 버리고, 버린 수 만큼 반복하여 무작위 적에게 생체 데미지를 입힙니다.",
+    "description": "패에서 최대 3장 까지 카드를 선택해 버리고, 버린 수 만큼 반복하여 무작위 적에게 생체 속성 피해를 [ActValue1] 가합니다.",
     "price": 80,
     "effectType": 13,
     "effectDelay": 0,
-    "LinkID": 400101
+    "NormalLinkID": 400101,
+    "ActValue1": 6,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
-    "cardName": "SpikyBush",
-    "koreanName": "가시 덤불",
+    "cardName": "ThornWhip",
+    "koreanName": " 가시 채찍",
     "element": "Bio",
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "적에게 생체 속성 피해를 가하고 파갑을 부여합니다.",
+    "description": "적에게 생체 속성 피해를 [ActValue1] 가하고 파갑을 [ActValue2] 부여합니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 400201
+    "NormalLinkID": 400201,
+    "ActValue1": 10,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "AbsorbingStrike",
@@ -488,11 +599,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "TRUE",
     "cost": 2,
-    "description": "적에게 생체 속성 피해를 가하고, 막히지 않은 데미지 만큼 체력을 회복합니다. 소멸",
+    "description": "적에게 생체 속성 피해를 [ActValue1] 가하고, 막히지 않은 데미지 만큼 체력을 회복합니다. 소멸",
     "price": 120,
     "effectType": "14,15",
     "effectDelay": 0,
-    "LinkID": 400301
+    "NormalLinkID": 400301,
+    "ActValue1": 8,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "DistortedSlay",
@@ -501,24 +615,30 @@
     "isExtinct": "FALSE",
     "isSpecial": "TRUE",
     "cost": 2,
-    "description": "적에게 생체 속성 피해를 가합니다. 이 카드가 버려졌을 경우 버려진 카드의 수 만큼 피해가 증가합니다.",
+    "description": "적에게 생체 속성 피해를 [ActValue1] 가합니다. 이 카드가 버려졌을 경우 버려진 카드의 수 만큼 피해가 증가합니다.",
     "price": 120,
     "effectType": "16,17",
     "effectDelay": 0.6,
-    "LinkID": 400401
+    "NormalLinkID": 400401,
+    "ActValue1": 6,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
-    "cardName": "ThornWhip",
-    "koreanName": "가시 채찍",
+    "cardName": "SpikyBush",
+    "koreanName": "가시 덤불",
     "element": "Bio",
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "방어도를 얻고, 생체 반응 장갑, 가시를 얻습니다.",
+    "description": "방어도를 [ActValue1] 얻고, 생체 반응 장갑 [ActValue2], 가시를 [ActValue3] 얻습니다.",
     "price": 80,
     "effectType": "12,18",
     "effectDelay": 0,
-    "LinkID": 400501
+    "NormalLinkID": 400501,
+    "ActValue1": 8,
+    "ActValue2": 2,
+    "ActValue3": 4
   },
   {
     "cardName": "ElasticWall",
@@ -527,11 +647,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "방어도를 얻고, 생체 반응 장갑, 탄성막을 얻습니다.",
+    "description": "방어도를 [ActValue1] 얻고, 생체 반응 장갑 [ActValue2], 탄성막을 [ActValue3] 얻습니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 400601
+    "NormalLinkID": 400601,
+    "ActValue1": 6,
+    "ActValue2": 2,
+    "ActValue3": 2
   },
   {
     "cardName": "Blooming",
@@ -540,11 +663,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "카드를 골라 버리고 코스트를 얻습니다.",
+    "description": "카드를 [ActValue1] 장 골라 버리고 코스트를 [ActValue2] 얻습니다.",
     "price": 50,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 400701
+    "NormalLinkID": 400701,
+    "ActValue1": 1,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "SurgingLife",
@@ -553,11 +679,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "TRUE",
     "cost": 3,
-    "description": "재생을 얻습니다. 소멸",
+    "description": "재생을 [ActValue1] 얻습니다. 소멸",
     "price": 120,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 400801
+    "NormalLinkID": 400801,
+    "ActValue1": 5,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "CellChange",
@@ -566,11 +695,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "카드를 골라 버리고 드로우 합니다.",
+    "description": "카드를 [ActValue1] 장 골라 버리고 [ActValue2]장을 드로우 합니다.",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 400901
+    "NormalLinkID": 400901,
+    "ActValue1": 1,
+    "ActValue2": 2,
+    "ActValue3": 0
   },
   {
     "cardName": "Cycle",
@@ -579,11 +711,14 @@
     "isExtinct": "TRUE",
     "isSpecial": "FALSE",
     "cost": 2,
-    "description": "자원 교환을 얻습니다. 소멸",
+    "description": "자원 교환을 [ActValue1] 얻습니다. 소멸",
     "price": 80,
     "effectType": "",
     "effectDelay": 0,
-    "LinkID": 401001
+    "NormalLinkID": 401001,
+    "ActValue1": 1,
+    "ActValue2": 0,
+    "ActValue3": 0
   },
   {
     "cardName": "EnfeebleSludge",
@@ -592,11 +727,14 @@
     "isExtinct": "FALSE",
     "isSpecial": "FALSE",
     "cost": 1,
-    "description": "적 전체에게 약화를 부여합니다.",
+    "description": "적 전체에게 약화를 [ActValue1] 부여합니다.",
     "price": 80,
     "effectType": 18,
     "effectDelay": 0,
-    "LinkID": 401101
+    "NormalLinkID": 401101,
+    "ActValue1": 2,
+    "ActValue2": 0,
+    "ActValue3": 0
   }
 ]
 }

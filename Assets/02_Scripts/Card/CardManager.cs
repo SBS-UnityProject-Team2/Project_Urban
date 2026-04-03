@@ -6,6 +6,8 @@ public class CardManager : Singleton<CardManager>
 {
     [Header("Data")]
     [SerializeField] private CardData cardData; 
+    [SerializeField] private EnchantCardData enchantCardData;
+
     [SerializeField] private ActionData actionData;
     
     // EffectData 도 ActionData 처럼 연결하기
@@ -18,6 +20,11 @@ public class CardManager : Singleton<CardManager>
     public CardDataEntry GetCardData(CardName cardName)
     {
         return cardData[cardName];
+    }
+
+    public EnchantCardDataEntry GetEnchantCardData(CardName cardName)
+    {
+        return enchantCardData[cardName];
     }
 
     public List<CardName> GetAllCardNames()

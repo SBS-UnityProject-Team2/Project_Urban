@@ -17,7 +17,7 @@ public class ActionData : ScriptableObject
 
     public List<ActionDataEntry> this[int id]
     {
-        get => actionMap[id];
+        get => actionMap.TryGetValue(id, out var list) ? list : new List<ActionDataEntry>();    // id에 해당하는 액션이 없으면 빈 리스트 반환
     }
 
     private void OnEnable()

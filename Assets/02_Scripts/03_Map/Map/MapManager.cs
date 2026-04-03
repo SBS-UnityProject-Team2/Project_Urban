@@ -103,12 +103,26 @@ public class Branch
 
 public class MapManager : Singleton<MapManager>
 {
+    // 데모 버전 임시 고정 스테이지 순서 (1층 -> 8층)
+    private static readonly NodeType[] DemoStageSequence =
+    {
+        NodeType.Monster,
+        NodeType.Event,
+        NodeType.Monster,
+        NodeType.Store,
+        NodeType.Shelter,
+        NodeType.Elite,
+        NodeType.Shelter,
+        NodeType.Boss
+    };
+
     [Header("PlayerSettings")]
     public PlayerMove playerMove;
 
     [Header("Map Settings")]
-    [SerializeField] private int width = 3;   // 맵의 가로 라인 수 (기본 3갈래)
-    [SerializeField] private int height = 20; // 맵의 총 층수
+    // [SerializeField] private int width = 3;   // 기존 3열 설정 (데모 동안 비활성화)
+    [SerializeField] private int width = 1;   // 데모용 고정 1열
+    [SerializeField] private int height = 8; // 데모용 고정 8층
 
     [Header("Stage Data")]
     [SerializeField] private NodeTypeData earlyStageData; // 1~10층 확률 데이터 
@@ -171,6 +185,12 @@ public class MapManager : Singleton<MapManager>
     // 맵 결정 메인로직
     public void GenerateMap()
     {
+        // 데모 버전은 1열 고정
+        width = 1;
+
+        // 데모 버전은 요청된 8스테이지 고정 순서를 항상 사용
+        height = DemoStageSequence.Length;
+
         // 1. 빈 맵 그리드 생성
         mapGrid = new List<List<MapNode>>(height);
         for (int y = 0; y < height; y++)
@@ -180,34 +200,13 @@ public class MapManager : Singleton<MapManager>
             mapGrid.Add(row);
         }
 
-        List<NodeType> floorTypes = new List<NodeType>(width);
-        Dictionary<NodeType, NodeTypeDataEntry> currentRules = earlyRules;
-
-        // 2. 층별 노드 타입 결정 루프
+        // 2. 데모 고정 맵 생성
+        int centerIndex = width / 2;
         for (int floor = 1; floor <= height; floor++)
         {
-             int floorIndex = floor - 1; 
-
-            // 11층 도달 시 후반부 확률 규칙으로 교체
-            if (floor == 11)
-            {
-                currentRules = lateRules;
-                List<Branch> oldBranches = new List<Branch>(branches);
-                branches.Clear();
-                
-                for(int i = 0; i < width; i++) 
-                {
-                    Branch newBranch = new Branch(lateRules);
-                    newBranch.InheritData(oldBranches[i]); // 과거에 등장했던 쿨타임 기록은 유지
-                    branches.Add(newBranch);
-                }
-            }
-
-            floorTypes.Clear();
-            
-            // 특수 층(보스, 휴식)은 무조건 중앙 1개 고정
-            bool isSingleNodeFloor = (floor == 10 || floor == 19 || floor == 20);
-            int centerIndex = width / 2; 
+            int floorIndex = floor - 1;
+            NodeType fixedType = DemoStageSequence[floorIndex];
+            bool isSingleNodeFloor = (fixedType == NodeType.Shelter || fixedType == NodeType.Boss);
 
             for (int x = 0; x < width; x++)
             {
@@ -216,26 +215,70 @@ public class MapManager : Singleton<MapManager>
                 if (isSingleNodeFloor && x != centerIndex)
                 {
                     node.nodeType = NodeType.None;
-                    node.isActive = false; // 중앙이 아니면 비활성화(투명 칸)
+                    node.isActive = false;
                     continue;
                 }
 
-                // 해당 칸에 무슨 방이 나올지 확률 계산 시작
+                node.nodeType = fixedType;
+                node.isActive = true;
+            }
+        }
+
+        /*
+        [기존 랜덤 생성 로직 - 데모 버전 동안 임시 비활성화]
+
+        List<NodeType> floorTypes = new List<NodeType>(width);
+        Dictionary<NodeType, NodeTypeDataEntry> currentRules = earlyRules;
+
+        for (int floor = 1; floor <= height; floor++)
+        {
+             int floorIndex = floor - 1;
+
+            if (floor == 11)
+            {
+                currentRules = lateRules;
+                List<Branch> oldBranches = new List<Branch>(branches);
+                branches.Clear();
+
+                for (int i = 0; i < width; i++)
+                {
+                    Branch newBranch = new Branch(lateRules);
+                    newBranch.InheritData(oldBranches[i]);
+                    branches.Add(newBranch);
+                }
+            }
+
+            floorTypes.Clear();
+
+            bool isSingleNodeFloor = (floor == 10 || floor == 19 || floor == 20);
+            int center = width / 2;
+
+            for (int x = 0; x < width; x++)
+            {
+                MapNode node = mapGrid[floorIndex][x];
+
+                if (isSingleNodeFloor && x != center)
+                {
+                    node.nodeType = NodeType.None;
+                    node.isActive = false;
+                    continue;
+                }
+
                 NodeType selectedType = DetermineNodeType(branches[x], floor, currentRules);
-                
+
                 node.nodeType = selectedType;
                 node.isActive = true;
-                
+
                 floorTypes.Add(selectedType);
                 branches[x].OnNodeSelected(selectedType, floor);
             }
 
-            // 상점 3개 같은 잭팟 방지
             if (!isSingleNodeFloor)
             {
                 CheckAndFixJackpot(floorIndex, floor, floorTypes);
             }
         }
+        */
         
         // 3. 결정된 노드들을 연결하는 선 긋기
         GenerateFixedPaths();
@@ -310,8 +353,6 @@ public class MapManager : Singleton<MapManager>
 
     private void GenerateFixedPaths()
     {
-        int centerIndex = width / 2;
-
         foreach (var row in mapGrid)
             foreach (var node in row)
             {
@@ -320,35 +361,25 @@ public class MapManager : Singleton<MapManager>
 
         for (int y = 0; y < height - 1; y++)
         {
+            List<int> nextActiveXs = new List<int>(width);
+            for (int nextX = 0; nextX < width; nextX++)
+            {
+                if (mapGrid[y + 1][nextX].isActive) nextActiveXs.Add(nextX);
+            }
+
             for (int x = 0; x < width; x++)
             {
                 MapNode currentNode = mapGrid[y][x];
                 if (!currentNode.isActive) continue;
 
-                // 1. 직진하는 구간
-                if ((y >= 0 && y <= 7) || (y >= 10 && y <= 16))
+                // 다음 층 활성 노드가 1개면 수렴, 아니면 같은 열로 직진
+                if (nextActiveXs.Count == 1)
                 {
-                    TryConnect(currentNode, x, y + 1); 
+                    TryConnect(currentNode, nextActiveXs[0], y + 1);
                 }
-                // 2. 휴식방을 향해 좁아지는 구간 (가운데로 모임)
-                else if (y == 8 || y == 17)
+                else
                 {
-                    TryConnect(currentNode, centerIndex, y + 1); 
-                }
-                // 3. 휴식방 이후 다시 넓어지는 구간 (세 갈래로 퍼짐)
-                else if (y == 9)
-                {
-                    if (x == centerIndex) 
-                    {
-                        TryConnect(currentNode, centerIndex - 1, y + 1);
-                        TryConnect(currentNode, centerIndex, y + 1);
-                        TryConnect(currentNode, centerIndex + 1, y + 1);
-                    }
-                }
-                // 4. 보스방 진입 구간 (직진 외길)
-                else if (y == 18)
-                {
-                    if (x == centerIndex) TryConnect(currentNode, centerIndex, y + 1);
+                    TryConnect(currentNode, x, y + 1);
                 }
             }
         }
