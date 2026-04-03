@@ -13,6 +13,7 @@ public class DeckCard
 
     // 나중에 캐시처리하기
     public CardDataEntry CardData => CardManager.Instance.GetCardData(name);
+
     
     public DeckCard(CardName cardName)
     {
