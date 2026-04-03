@@ -177,7 +177,7 @@
     "ActValue3": 0
   },
   {
-    "cardName": "Embers",
+    "cardName": "Ember",
     "koreanName": "불씨 +",
     "element": "Ruin",
     "isExtinct": true,
@@ -353,7 +353,7 @@
     "ActValue3": 0
   },
   {
-    "cardName": "GlacialWedge",
+    "cardName": "GlacierWedge",
     "koreanName": "빙하 쐐기 +",
     "element": "Psychic",
     "isExtinct": false,

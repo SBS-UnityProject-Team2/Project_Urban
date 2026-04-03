@@ -57,17 +57,13 @@ public class CardManager : Singleton<CardManager>
     public string GetDescription(CardName cardName)
     {
         CardDataEntry cardDataEntry = GetCardData(cardName);
-        string descriptionTemplate = cardDataEntry.description ?? string.Empty;
+        string description = cardDataEntry.description ?? string.Empty;
 
-        List<object> args = GetDescriptionArgs(cardDataEntry.linkId);
-        if (args.Count == 0)
-            return descriptionTemplate;
+        // 상점/덱 UI 설명은 CardData에 저장된 값으로 치환 (ActionData 의존 제거)
+        description = description.Replace("[ActValue1]", cardDataEntry.actValue1.ToString());
+        description = description.Replace("[ActValue2]", cardDataEntry.actValue2.ToString());
+        description = description.Replace("[ActValue3]", cardDataEntry.actValue3.ToString());
 
-        return string.Format(descriptionTemplate, args.ToArray());
-    }
-
-    private List<object> GetDescriptionArgs(int linkId)
-    {
-        return actionData[linkId].Select(action => (object)action.actValue).ToList();
+        return description;
     }
 }

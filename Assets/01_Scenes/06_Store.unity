@@ -513,6 +513,7 @@ MonoBehaviour:
   initialDeckRecipe:
   - name: 1005
     count: 3
+  deck: []
 --- !u!4 &547504112
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardManager
   cardData: {fileID: 11400000, guid: 516ba7db6be339a48b529719874c30f7, type: 2}
+  enchantCardData: {fileID: 11400000, guid: 4701ee5270e715848b872febb661bd1b, type: 2}
   actionData: {fileID: 11400000, guid: a5c00e4380dfc954b906208430b34922, type: 2}
 --- !u!4 &900085013
 Transform:
