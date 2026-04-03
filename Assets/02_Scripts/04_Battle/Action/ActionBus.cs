@@ -28,17 +28,18 @@ public enum ActorAction
     MoveCardFromHand,
     MoveCardFromDiscard,
     MoveCardFromExhaust,
+    DrawCard,
     SearchCard,
     MoveSelectedCard,
     DrawCount,
     // 코스트 조작 관련
-    SetCardCost = 50208,
+    SetCardCost = 50209,
     AddCardCost,
     ReduceCardCost,
     RandomizeCardCost,
     ResetCardCost,
     // 카드 생성 관련
-    CreateCard = 50213,
+    CreateCard = 50214,
     CopyCard,
     TransformCard,
     ResetCardTransform,
@@ -369,6 +370,13 @@ public static class ActionBus
         int cardCount = payload.Read<int>();
 
         Battle.Instance.Deck.MoveCard(Location.ExhaustPile, to, cardCount).Forget();
+    }
+
+    private static void DrawCard(ActionPayload payload)
+    {
+        int drawCount = payload.Read<int>();
+
+        Battle.Instance.Deck.DrawCard(drawCount).Forget();
     }
 
     private static void SearchCard(ActionPayload payload)

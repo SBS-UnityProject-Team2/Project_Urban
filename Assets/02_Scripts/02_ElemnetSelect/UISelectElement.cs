@@ -6,60 +6,85 @@ public class UISelectElement : MonoBehaviour
 {
     [SerializeField] private List<CardName> cards = new();
 
-    public void SelectElement(ElementType element)
+    private readonly List<CardName> ruinDeck = new()
     {
-        GameManager.Instance.SelectedElement = element;
-        List<CardName> selectedCards = GetStarterCardsByElement(element);
+        CardName.Shooting,
+        CardName.Strike,
+        CardName.VileAttack,
+        CardName.Assault,
+        CardName.Maintenance,
+        CardName.Maintenance,
+        CardName.Dummy,
+        CardName.Ignition,
+        CardName.Ignition,
+        CardName.MoltenArms,
+        CardName.MoltenArms,
+        CardName.Ember,
+        CardName.Ember,
+        CardName.Inferno,
+        CardName.Backdraft,
+        CardName.BlazeBarrier,
+        CardName.Reforge,
+        CardName.Reforge,
+        CardName.HeatUp,
+        CardName.HeatUp,
+        CardName.Overheat,    
+        CardName.Overheat,
+        CardName.Cinder,
+        CardName.OilSplash
+    };
 
-        foreach (CardName cardName in selectedCards)
-        {
-            DeckManager.Instance.AddCard    (cardName);
-        }
+    private readonly List<CardName> psychicDeck = new()
+    {
+        CardName.Shooting,
+        CardName.Shooting,
+        CardName.VileAttack,
+        CardName.Assault,
+        CardName.Rollout,
+        CardName.Rollout,
+        CardName.Maintenance,
+        CardName.Maintenance,
+        CardName.Dummy,
+        CardName.GlacierWedge,
+        CardName.GlacierWedge,
+        CardName.FlowArrow,
+        CardName.FlowArrow,
+        CardName.EnergyNeedle,
+        CardName.EnergyNeedle,
+        CardName.Pulse,
+        CardName.KineticGrasp,
+        CardName.IceShield,
+        CardName.IceShield,
+        CardName.ElectricField,
+        CardName.AccelConcoction,
+        CardName.AccelConcoction,
+        CardName.SuperConducter,
+        CardName.CryoPowder,
+        CardName.Disturb
+    };
+
+    public void OnClickRuin()
+    {
+        DeckManager.Instance.SelectedElement = ElementType.Ruin;
+        DeckManager.Instance.AddCards(ruinDeck);
 
         SceneManager.LoadScene(SceneName.Map);
         BgmManager.Instance.PlayMapSound();
     }
 
-    private List<CardName> GetStarterCardsByElement(ElementType element)
-    {
-        switch (element)
-        {
-            case ElementType.Ruin:
-                return GetCardsFromRange(0, 2);
-            case ElementType.Psychic:
-                return GetCardsFromRange(2, 2);
-            case ElementType.Bio:
-                return GetCardsFromRange(4, 2);
-            default:
-                return new List<CardName>();
-        }
-    }
-
-    private List<CardName> GetCardsFromRange(int startIndex, int count)
-    {
-        List<CardName> result = new();
-        int endIndex = Mathf.Min(startIndex + count, cards.Count);
-
-        for (int i = startIndex; i < endIndex; i++)
-            result.Add(cards[i]);
-
-        return result;
-    }
-
-    public void OnClickFlame()
-    {
-        SelectElement(ElementType.Ruin);
-    }
-
     // 2. Ice 속성 선택 버튼 연결
-    public void OnClickIce()
+    public void OnClickPsychic()
     {
-       SelectElement(ElementType.Psychic);
+        DeckManager.Instance.SelectedElement = ElementType.Psychic;
+        DeckManager.Instance.AddCards(psychicDeck);
+
+        SceneManager.LoadScene(SceneName.Map);
+        BgmManager.Instance.PlayMapSound();
     }
 
     // 3. Grass 속성 선택 버튼 연결
-    public void OnClickGrass()
+    public void OnClickBio()
     {
-       SelectElement(ElementType.Bio);
+
     }
 }

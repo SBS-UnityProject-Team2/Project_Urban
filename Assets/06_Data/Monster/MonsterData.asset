@@ -33,7 +33,9 @@ MonoBehaviour:
     koreanName: "\uB4E4\uAC1C"
     element: 0
     score: 1
-    phaseStep: 00000000
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
     pattern:
     - patterns:
       - actionIds: 401f0000

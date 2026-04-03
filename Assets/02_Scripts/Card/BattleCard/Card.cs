@@ -89,12 +89,6 @@ public class Card : MonoBehaviour
 
     public async UniTask Use(Actor target)
     {
-        IEnumerator seq = cardAction.Execute(target).GetEnumerator();
-
-        while (seq.MoveNext())
-        {   
-            if (seq.Current is int seqNum && seqNum == 1) 
-                await cardEffect.Play();
-        }
+        CardMethods.Dispatch(cardDataEntry.cardName, target, deckCard.IsEnchanted);
     }    
 }

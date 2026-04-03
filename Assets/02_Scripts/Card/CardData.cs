@@ -50,7 +50,7 @@ public class CardData : ScriptableObject
 
         foreach (Sprite cardImage in images)
         {
-            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName));
+            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName), $"{cardImage.name} is Fail");
 
             cardImageMap[cardName] = cardImage;
         }
