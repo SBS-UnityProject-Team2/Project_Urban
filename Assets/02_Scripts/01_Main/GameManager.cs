@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public ElementType SelectedElement { get; set; } = ElementType.None;
     private int minScore = 2;
     private int maxScore = 2;
 
@@ -20,5 +17,4 @@ public class GameManager : Singleton<GameManager>
     {
         return Random.Range(minScore, maxScore + 1);
     }
-
 }

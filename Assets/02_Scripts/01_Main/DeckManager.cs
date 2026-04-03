@@ -5,8 +5,9 @@ using UnityEngine;
 public class DeckManager : Singleton<DeckManager>
 {
     [SerializeField] private List<CardRecipe> initialDeckRecipe = new();
+    [SerializeField] private List<DeckCard> deck = new();
 
-    private readonly List<DeckCard> deck = new();
+    public ElementType SelectedElement { get; set; } = ElementType.None;
     public List<DeckCard> Deck => deck;
     public List<DeckCard> CardList => deck;
 
@@ -24,6 +25,14 @@ public class DeckManager : Singleton<DeckManager>
     public void AddCard(CardName cardName)
     {
         deck.Add(new DeckCard(cardName));
+        Sort();
+    }
+
+    public void AddCards(List<CardName> cardNames)
+    {
+        foreach(CardName name in cardNames)
+            deck.Add(new DeckCard(name));
+
         Sort();
     }
 

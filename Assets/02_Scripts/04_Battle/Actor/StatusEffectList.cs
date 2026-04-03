@@ -86,4 +86,11 @@ public class StatusEffectList
 
         return list;
     }
+
+    public StatusEffect GetEffect(StatusEffectName statusEffectName)
+    {
+        bool result = effectMap.TryGetValue(statusEffectName, out StatusEffect effect);
+
+        return result ? effect : null;
+    }
 }

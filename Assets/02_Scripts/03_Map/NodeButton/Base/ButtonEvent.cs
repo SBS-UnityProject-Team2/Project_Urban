@@ -68,8 +68,6 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
 
     private void EnterBattle(bool isNormal, int minScore, int maxScore)
     {
-        GameManager.Instance.IsNormal = isNormal;
-        GameManager.Instance.SetEnemyScore(minScore, maxScore);
         SceneManager.LoadScene(SceneName.Battle);
     }
 

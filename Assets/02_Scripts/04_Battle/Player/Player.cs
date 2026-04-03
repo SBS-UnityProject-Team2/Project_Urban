@@ -3,6 +3,8 @@ using Cysharp.Threading.Tasks;
 
 public class Player : Actor
 {
+    public ElementType LastUsedElementType { get; set; }
+
     private void Awake()
     {
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);

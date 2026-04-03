@@ -15,9 +15,9 @@ public class ActionData : ScriptableObject
 
     private readonly Dictionary<int, List<ActionDataEntry>> actionMap = new();
 
-    public List<ActionDataEntry> this[int id]
+    public List<ActionDataEntry> this[int linkID]
     {
-        get => actionMap[id];
+        get => actionMap[linkID];
     }
 
     private void OnEnable()
@@ -31,10 +31,10 @@ public class ActionData : ScriptableObject
 
         foreach (ActionDataEntry actionData in entries)
         {
-            if (!actionMap.ContainsKey(actionData.id))
-                actionMap[actionData.id] = new();
+            if (!actionMap.ContainsKey(actionData.linkID))
+                actionMap[actionData.linkID] = new();
 
-            actionMap[actionData.id].Add(actionData);
+            actionMap[actionData.linkID].Add(actionData);
         }
 
         // 시퀀스 순서대로 정렬시켜주기
@@ -56,25 +56,18 @@ public class ActionData : ScriptableObject
 
         foreach (JsonActionData actionData in jsonWrapper.actions)
         {
-            if (!Enum.TryParse(actionData.conTarget, true, out Target conTarget))
-                throw new ArgumentException($"{actionData.conTarget} can not parse conTarget");
-
-            if (!Enum.TryParse(actionData.op, true, out Operator op))
-                throw new ArgumentException($"{actionData.op} can not parse Operator");
-
             if (!Enum.TryParse(actionData.actTarget, true, out Target actTarget))
                 throw new ArgumentException($"{actionData.actTarget} can not parse actTarget");
 
             ActionDataEntry actionDataEntry = new()
             {
-                id = actionData.id,
+                linkID = actionData.linkID,
                 seq = actionData.seq,
-                condId = actionData.condId,
-                conTarget = conTarget,
-                op = op,
-                actId = (ActorAction)actionData.actId,
+                actId = (ActorAction)actionData.actID,
                 actTarget = actTarget,
-                actValue = actionData.actValue
+                actParam = actionData.actParam,
+                actValue = actionData.actValue,
+                visibleState = actionData.visibleState
             };
 
             entries.Add(actionDataEntry);
@@ -99,26 +92,24 @@ public class JsonActionWrapper
 [Serializable]
 public class JsonActionData
 {
-    public int id;
+    public int linkID;
     public int seq;
-    public int condId;
-    public string conTarget;
-    public string op;
-    public int actId;
+    public int actID;
     public string actTarget;
+    public string actParam;
     public int actValue;
+    public int visibleState;
 }
 #endif
 
 [Serializable]
 public class ActionDataEntry
 {
-    public int id;
+    public int linkID;
     public int seq;
-    public int condId;
-    public Target conTarget;
-    public Operator op;
     public ActorAction actId;
     public Target actTarget;
+    public string actParam;
     public int actValue;
+    public int visibleState;
 }

@@ -15,7 +15,7 @@ public enum CardName
     // [Ruin] 2000 ~ 2999: 파멸(화염) 속성
     Ignition = 2000,     // 점화
     MoltenArms,         // 융해 일격
-    Embers,             // 불씨
+    Ember,             // 불씨
     Inferno,            // 백염
     Backdraft,          // 백드래프트
     BlazeBarrier,       // 화염 방벽
@@ -29,15 +29,15 @@ public enum CardName
     RuinEnd,
 
     // [Psychic] 3000 ~ 3999: 초능력(얼음) 속성
-    EnergyNeedle = 3000, // 에너지 송곳
-    KineticGrasp,       // 염력 손아귀
-    Pulse,              // 파동
-    ElectricArrow,      // 전기 화살
-    GlacialWedge,       // 빙하 쐐기
-    IceShield,          // 얼음 방패
-    ElectricField,      // 전자기장
-    AccelConcoction,    // 가속 화합물
-    SuperConducter,     // 초전도체 (JSON 철자: Superconducter)
+    GlacierWedge = 3000, 
+    FlowArrow,       
+    EnergyNeedle,    
+    Pulse,       
+    KineticGrasp,
+    IceShield,   
+    ElectricField,    
+    AccelConcoction,     
+    SuperConducter,     // 초전도체 
     Anxiolytic,         // 신경 안정제
     CryoPowder,         // 초저온 분말
     Disturb,            // 방해
@@ -46,10 +46,10 @@ public enum CardName
     // [Bio] 4000 ~ 4999: 생체(자연) 속성
     DoubleEdge = 4000,   // 양날의 검
     Plague,             // 역병
-    SpikyBush,          // 가시 덤블
+    ThornWhip,          // 가시 채찍
     AbsorbingStrike,    // 흡수의 일격
     DistortedSlay,      // 뒤틀린 일격
-    ThornWhip,          // 가시 채찍
+    SpikyBush,          // 가시 덤블
     ElasticWall,        // 탄성 장벽
     Blooming,           // 개화
     SurgingLife,        // 맥동하는 생명
