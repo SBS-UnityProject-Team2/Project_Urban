@@ -12,6 +12,718 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6908e9dfdf03051498f5de3e1e98ba4a, type: 3}
   m_Name: EnchantCardData
   m_EditorClassIdentifier: Assembly-CSharp::EnchantCardData
-  cardPrefab: {fileID: 0}
-  images: []
-  entries: []
+  cardPrefab: {fileID: -3574608686869692921, guid: e9bb58ec3e549604199c56bfe68b3f0b, type: 3}
+  images:
+  - {fileID: 21300000, guid: af69e792aff7dd74d9cc298b2be49ec8, type: 3}
+  - {fileID: 21300000, guid: c46370d4082df0d439259a949a0aeba9, type: 3}
+  - {fileID: 21300000, guid: 8d07908cd61a4de4e924034099a07699, type: 3}
+  - {fileID: 21300000, guid: a9e4bc5cd9ecee14c84f3e70cbad3bc7, type: 3}
+  - {fileID: 21300000, guid: 0662f845ba54d6f4495854183d4d79c6, type: 3}
+  - {fileID: 21300000, guid: d7b3c30bca605434195ff1f2f09c629b, type: 3}
+  - {fileID: 21300000, guid: c43d771744e17c04290964f384aa445b, type: 3}
+  - {fileID: 21300000, guid: 73ed88edbd27ed741a5b711abb7f4e04, type: 3}
+  - {fileID: 21300000, guid: 804356c7e5b268547af932e8db0574b0, type: 3}
+  - {fileID: 21300000, guid: 86ca19ed565477848a97c901cf577097, type: 3}
+  - {fileID: 21300000, guid: 7a63e078a2943484baf91f51b0edb210, type: 3}
+  - {fileID: 21300000, guid: 7b551e52e84cb63459170e4f1c80f87a, type: 3}
+  - {fileID: 21300000, guid: 4f617da8dfc353e4b8191bd05dad23e1, type: 3}
+  - {fileID: 21300000, guid: 31295ef818c6e7844b05abae9e533739, type: 3}
+  - {fileID: 21300000, guid: 5b2fa60b4a1b1be489e6ce33055724d9, type: 3}
+  - {fileID: 21300000, guid: 5576c375f317cb5499818ca9dfdf81e4, type: 3}
+  - {fileID: 21300000, guid: e8ab799898a3f124e9611d619aa58832, type: 3}
+  - {fileID: 21300000, guid: d3f625bb7acc62b429922d0d347a5cf9, type: 3}
+  - {fileID: 21300000, guid: 03e6f53330caf66478ca551a9ca527ab, type: 3}
+  - {fileID: 21300000, guid: ef46f3576f5127a4492b7a008b54e0fa, type: 3}
+  - {fileID: 21300000, guid: a04fba5351d3ebe4ba6888bd17eb6ac2, type: 3}
+  - {fileID: 21300000, guid: 60f9278c179b3734ca22bc5229b84600, type: 3}
+  - {fileID: 21300000, guid: 525edf7481e67084aa8d61c0f6eb940e, type: 3}
+  - {fileID: 21300000, guid: 47a5b40f9e92a3842a721099ed1124c2, type: 3}
+  - {fileID: 21300000, guid: ff99905be9c8d174da5d79c673a4877b, type: 3}
+  - {fileID: 21300000, guid: 9e334d5b21c571d4f9d38128e2f1c57a, type: 3}
+  - {fileID: 21300000, guid: 8d4609d66935b1c4ba31a385c9409b81, type: 3}
+  - {fileID: 21300000, guid: d0b3b32ac9572db4a916af4c00b552d8, type: 3}
+  - {fileID: 21300000, guid: 2ce724a31e074c5409ed09bc32a47b0d, type: 3}
+  - {fileID: 21300000, guid: 24391036af2e88c44ac97ad497c9b6bd, type: 3}
+  - {fileID: 21300000, guid: d8dc348a1da00e24c8547325dedeb0dd, type: 3}
+  - {fileID: 21300000, guid: 02ed10b494f354c4ca5225923456677f, type: 3}
+  - {fileID: 21300000, guid: 97122a9b1f3cd9b45a088286cec8cec6, type: 3}
+  - {fileID: 21300000, guid: d86f35a4fe86bc74182d0de582bbf49b, type: 3}
+  - {fileID: 21300000, guid: e41710d0e0a38fc49ad2cf907df50067, type: 3}
+  - {fileID: 21300000, guid: a923c5169360d364685f5cf69450a965, type: 3}
+  - {fileID: 21300000, guid: a7acd8ee0acec294fab660357f1d6790, type: 3}
+  - {fileID: 21300000, guid: 235d84921ec623945ab96aa0bc9da63a, type: 3}
+  - {fileID: 21300000, guid: eb34597d5a96d1243bcc71bf3846e0d2, type: 3}
+  - {fileID: 21300000, guid: 6957324ec59262f43a0258401b72d352, type: 3}
+  - {fileID: 21300000, guid: e4ac38ad032ee5c478b515064f94ee23, type: 3}
+  - {fileID: 21300000, guid: 995262eac64c5e742b889356b0749ff3, type: 3}
+  - {fileID: 21300000, guid: 3e593170429ad944eb98e8db30d4ca58, type: 3}
+  - {fileID: 21300000, guid: a0f42743014a7f44096ac2a820fd2791, type: 3}
+  - {fileID: 21300000, guid: 90f3ba40ba1bd9b40b35fbcaf25e9175, type: 3}
+  - {fileID: 21300000, guid: 69b1d86f63fb0ad48af8a10afe2705fc, type: 3}
+  entries:
+  - cardName: 1000
+    koreanName: "\uD0C0\uACA9 +"
+    element: 0
+    description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 0
+    effectType: 0
+    linkId: 100002
+    actValue1: 8
+    actValue2: 0
+    actValue3: 0
+  - cardName: 1001
+    koreanName: "\uC0AC\uACA9 +"
+    element: 0
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 0
+    linkId: 100102
+    actValue1: 8
+    actValue2: 0
+    actValue3: 0
+  - cardName: 1002
+    koreanName: "\uAC15\uD0C0 +"
+    element: 0
+    description: "\uC801\uC5D0\uAC8C \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1]
+      \uAC00\uD569\uB2C8\uB2E4. \uC774\uC804\uC5D0 \uC0AC\uC6A9\uD55C \uCE74\uB4DC\uC758
+      \uC18D\uC131\uACFC \uB3D9\uC77C\uD55C \uC18D\uC131\uC744 \uAC16\uC2B5\uB2C8\uB2E4.
+      \uD604\uC7AC \uC18D\uC131 : [Elem]"
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 70
+    effectType: 0
+    linkId: 100202
+    actValue1: 10
+    actValue2: 0
+    actValue3: 0
+  - cardName: 1003
+    koreanName: "\uBE44\uC5F4\uD55C \uACF5\uACA9 +"
+    element: 0
+    description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 1
+    linkId: 100302
+    actValue1: 18
+    actValue2: 0
+    actValue3: 0
+  - cardName: 1004
+    koreanName: "\uAE30\uC2B5 +"
+    element: 0
+    description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uC57D\uD654\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 1
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 1
+    linkId: 100402
+    actValue1: 12
+    actValue2: 2
+    actValue3: 0
+  - cardName: 1005
+    koreanName: "\uBC29\uC5B4 +"
+    element: 0
+    description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uB3D9\uACB0\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 0
+    effectType: 0
+    linkId: 100502
+    actValue1: 14
+    actValue2: 1
+    actValue3: 0
+  - cardName: 1006
+    koreanName: "\uAD6C\uB974\uAE30 +"
+    element: 0
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uB2E4\uC74C \uD134\uC5D0 \uB4DC\uB85C\uC6B0\uAC00 [ActValue2]\uB9CC\uD07C
+      \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 0
+    linkId: 100602
+    actValue1: 10
+    actValue2: 2
+    actValue3: 0
+  - cardName: 1007
+    koreanName: "\uC815\uBE44 +"
+    element: 0
+    description: "\uBF51\uC744 \uCE74\uB4DC \uB354\uBBF8\uC5D0\uC11C [ActValue1]\uB9CC\uD07C
+      \uB4DC\uB85C\uC6B0 \uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 0
+    price: 100
+    effectType: 0
+    linkId: 100702
+    actValue1: 2
+    actValue2: 0
+    actValue3: 0
+  - cardName: 1008
+    koreanName: "\uB354\uBBF8 +"
+    element: 0
+    description: "\uB354\uBBF8\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 0
+    linkId: 100802
+    actValue1: 2
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2000
+    koreanName: "\uC810\uD654 +"
+    element: 1000
+    description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uD654\uC0C1\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 3
+    linkId: 200002
+    actValue1: 8
+    actValue2: 3
+    actValue3: 0
+  - cardName: 2001
+    koreanName: "\uC735\uD574 \uC77C\uACA9 +"
+    element: 1000
+    description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0, \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1\uC744
+      [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 3
+    linkId: 200102
+    actValue1: 18
+    actValue2: 6
+    actValue3: 0
+  - cardName: 2002
+    koreanName: "\uBD88\uC528 +"
+    element: 1000
+    description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0, \uB3D9\uC77C\uD55C \uCE74\uB4DC\uB97C \uBF51\uC744
+      \uCE74\uB4DC \uB354\uBBF8\uC5D0 1\uC7A5 \uBCF5\uC0AC\uD569\uB2C8\uB2E4. \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 3
+    linkId: 200202
+    actValue1: 8
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2003
+    koreanName: "\uBC31\uC5FC +"
+    element: 1000
+    description: "\uC18C\uBA78\uB41C \uCE74\uB4DC 1\uC7A5 \uB2F9, \uC801\uC5D0\uAC8C
+      \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 1
+    cost: 3
+    price: 150
+    effectType: 21
+    linkId: 200302
+    actValue1: 10
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2004
+    koreanName: "\uBC31\uB4DC\uB798\uD504\uD2B8 +"
+    element: 1000
+    description: "\uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC9C0\uC815\uD55C \uC801\uC758 \uD654\uC0C1
+      \uD69F\uC218 \uB9CC\uD07C \uBC18\uBCF5\uD569\uB2C8\uB2E4. \uC801 \uC804\uCCB4\uC640
+      \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 1
+    cost: 3
+    price: 150
+    effectType: 6
+    linkId: 200402
+    actValue1: 8
+    actValue2: 5
+    actValue3: 0
+  - cardName: 2005
+    koreanName: "\uD654\uC5FC \uBC29\uBCBD +"
+    element: 1000
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC815\uB828\uB428\uC744 [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 70
+    effectType: 0
+    linkId: 200502
+    actValue1: 13
+    actValue2: 2
+    actValue3: 0
+  - cardName: 2006
+    koreanName: "\uB2E8\uB828 +"
+    element: 1000
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC790\uC2E0\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uD654\uC0C1 \uC911\uCCA9 \uB2F9
+      \uCD94\uAC00 \uBC29\uC5B4\uB3C4\uB97C [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC815\uB828\uB428\uC744 [ActValue3] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 0
+    linkId: 200602
+    actValue1: 6
+    actValue2: 3
+    actValue3: 2
+  - cardName: 2007
+    koreanName: "\uC18C\uC774\uD0C4 +"
+    element: 1000
+    description: "\uC18C\uC774\uD0C4 \uC7A5\uC804\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 200702
+    actValue1: 4
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2008
+    koreanName: "\uC5F4\uAE30 +"
+    element: 1000
+    description: "\uC99D\uAC15\uC744 [ActValue] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 200802
+    actValue1: 3
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2009
+    koreanName: "\uACFC\uC5F4 +"
+    element: 1000
+    description: "\uCF54\uC2A4\uD2B8\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 0
+    price: 100
+    effectType: 0
+    linkId: 200902
+    actValue1: 3
+    actValue2: 4
+    actValue3: 0
+  - cardName: 2010
+    koreanName: "\uC794\uBD88 +"
+    element: 1000
+    description: "\uC774\uAE00\uAC70\uB9BC\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 201002
+    actValue1: 1
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2011
+    koreanName: "\uB099\uC778 +"
+    element: 1000
+    description: "\uC801\uC5D0\uAC8C \uB099\uC778\uC744 [ActValue1] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 19
+    linkId: 201102
+    actValue1: 2
+    actValue2: 0
+    actValue3: 0
+  - cardName: 2012
+    koreanName: "\uAE30\uB984 \uBFCC\uB9AC\uAE30 +"
+    element: 1000
+    description: "\uC801\uC758 \uD654\uC0C1 \uC218\uCE58\uB97C [ActValue]\uBC30\uB85C
+      \uD569\uB2C8\uB2E4. \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 19
+    linkId: 201202
+    actValue1: 3
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3000
+    koreanName: "\uBE59\uD558 \uC410\uAE30 +"
+    element: 2000
+    description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uB0C9\uAE30\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 8
+    linkId: 300002
+    actValue1: 8
+    actValue2: 1
+    actValue3: 0
+  - cardName: 3001
+    koreanName: "\uD750\uB984\uC758 \uD654\uC0B4 +"
+    element: 2000
+    description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uB9CC\uC57D \uC9C0\uC815 \uB300\uC0C1\uC774
+      \uB0C9\uAE30 \uD639\uC740 \uB3D9\uACB0 \uC0C1\uD0DC\uB77C\uBA74 \uCE74\uB4DC
+      1\uC7A5\uC744 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 1
+    cost: 4
+    price: 150
+    effectType: 9
+    linkId: 300102
+    actValue1: 10
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3002
+    koreanName: "\uC5D0\uB108\uC9C0 \uC1A1\uACF3 +"
+    element: 2000
+    description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActVaue1] \uAC00\uD558\uACE0 \uCF54\uC2A4\uD2B8\uB97C 1 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
+      \uC774 \uCE74\uB4DC\uB97C \uC0AC\uC6A9 \uD6C4 \uCF54\uC2A4\uD2B8\uAC00 0 \uC774\uB77C\uBA74
+      \uCD94\uAC00\uB85C 1 \uB354 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 8
+    linkId: 300202
+    actValue1: 10
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3003
+    koreanName: "\uD30C\uB3D9 +"
+    element: 2000
+    description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131
+      \uD53C\uD574\uB97C [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uB0C9\uAE30 \uC0C1\uD0DC\uC778
+      \uC801\uC740 \uCD94\uAC00\uB85C \uAC19\uC740 \uD53C\uD574\uB97C \uD55C\uBC88
+      \uB354 \uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 8
+    linkId: 300302
+    actValue1: 10
+    actValue2: 10
+    actValue3: 0
+  - cardName: 3004
+    koreanName: "\uC5FC\uB825 \uC190\uC544\uADC0 +"
+    element: 2000
+    description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC774 \uCE74\uB4DC \uC774\uC678\uC758
+      \uC190\uD328\uC758 \uCE74\uB4DC [ActValue2] \uC7A5\uB2F9 \uCF54\uC2A4\uD2B8\uAC00
+      1 \uC904\uC5B4\uB4ED\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 70
+    effectType: 8
+    linkId: 300402
+    actValue1: 24
+    actValue2: 1
+    actValue3: 0
+  - cardName: 3005
+    koreanName: "\uC5BC\uC74C \uBC29\uD328 +"
+    element: 2000
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0 \uC5FC\uB825
+      \uC7A5\uB9C9\uC744 [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 70
+    effectType: 0
+    linkId: 300502
+    actValue1: 13
+    actValue2: 2
+    actValue3: 0
+  - cardName: 3006
+    koreanName: "\uC804\uC790\uAE30\uC7A5 +"
+    element: 2000
+    description: "\uC804\uC790\uAE30\uC7A5\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 300602
+    actValue1: 4
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3007
+    koreanName: "\uAC00\uC18D \uD654\uD569\uBB3C +"
+    element: 2000
+    description: "\uAC00\uC18D \uD654\uD569\uBB3C\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 300702
+    actValue1: 3
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3008
+    koreanName: "\uCD08\uC804\uB3C4\uCCB4 +"
+    element: 2000
+    description: "\uBB34\uD6A8\uD654 [ActValue1], \uB3D9\uACB0\uC744 [ActValue2]
+      \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 1
+    cost: 2
+    price: 150
+    effectType: 0
+    linkId: 300802
+    actValue1: 2
+    actValue2: 1
+    actValue3: 0
+  - cardName: 3009
+    koreanName: "\uC2E0\uACBD \uC548\uC815\uC81C +"
+    element: 2000
+    description: "\uBC84\uB824\uC9C4 \uCE74\uB4DC \uB354\uBBF8\uC5D0\uC11C \uCE74\uB4DC\uB97C
+      \uC9C0\uC815\uD574 \uC190\uD328\uB85C \uAC00\uC838\uC635\uB2C8\uB2E4. \uC774
+      \uD134 \uB3D9\uC548 \uD574\uB2F9 \uCE74\uB4DC\uC758 \uCF54\uC2A4\uD2B8\uB294
+      0\uC774 \uB429\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 300902
+    actValue1: 1
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3010
+    koreanName: "\uCD08\uC800\uC628 \uBD84\uB9D0+"
+    element: 2000
+    description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uB3D9\uACB0\uC744 [ActValue1]
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 1
+    cost: 1
+    price: 120
+    effectType: 20
+    linkId: 301002
+    actValue1: 1
+    actValue2: 0
+    actValue3: 0
+  - cardName: 3011
+    koreanName: "\uBC29\uD574 +"
+    element: 2000
+    description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uD30C\uAC11\uC744 [ActValue1]
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 18
+    linkId: 301102
+    actValue1: 3
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4000
+    koreanName: "\uC591\uB0A0\uC758 \uAC80 +"
+    element: 3000
+    description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uADF8 \uC808\uBC18\uC758 \uD53C\uD574\uB97C
+      \uC785\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 70
+    effectType: 12
+    linkId: 400002
+    actValue1: 20
+    actValue2: 10
+    actValue3: 0
+  - cardName: 4001
+    koreanName: "\uC5ED\uBCD1 +"
+    element: 3000
+    description: "\uD328\uC5D0\uC11C \uCD5C\uB300 3\uC7A5 \uAE4C\uC9C0 \uCE74\uB4DC\uB97C
+      \uC120\uD0DD\uD574 \uBC84\uB9AC\uACE0, \uBC84\uB9B0 \uC218 \uB9CC\uD07C \uBC18\uBCF5\uD558\uC5EC
+      \uBB34\uC791\uC704 \uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 13
+    linkId: 400102
+    actValue1: 8
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4002
+    koreanName: "\uAC00\uC2DC \uCC44\uCC0D +"
+    element: 3000
+    description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0 \uD30C\uAC11\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 0
+    linkId: 400202
+    actValue1: 13
+    actValue2: 3
+    actValue3: 0
+  - cardName: 4003
+    koreanName: "\uD761\uC218\uC758 \uC77C\uACA9 +"
+    element: 3000
+    description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD558\uACE0, \uB9C9\uD788\uC9C0 \uC54A\uC740 \uB370\uBBF8\uC9C0
+      \uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4. \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 1
+    cost: 2
+    price: 150
+    effectType: 14
+    linkId: 400302
+    actValue1: 12
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4004
+    koreanName: "\uB4A4\uD2C0\uB9B0 \uC77C\uACA9 +"
+    element: 3000
+    description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
+      [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC774 \uCE74\uB4DC\uAC00 \uBC84\uB824\uC84C\uC744
+      \uACBD\uC6B0 \uBC84\uB824\uC9C4 \uCE74\uB4DC\uC758 \uC218 \uB9CC\uD07C \uD53C\uD574\uAC00
+      \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 1
+    cost: 2
+    price: 150
+    effectType: 16
+    linkId: 400402
+    actValue1: 8
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4005
+    koreanName: "\uAC00\uC2DC \uB364\uBD88 +"
+    element: 3000
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0, \uC0DD\uCCB4
+      \uBC18\uC751 \uC7A5\uAC11 [ActValue2], \uAC00\uC2DC\uB97C [ActValue3] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 100
+    effectType: 12
+    linkId: 400502
+    actValue1: 10
+    actValue2: 2
+    actValue3: 4
+  - cardName: 4006
+    koreanName: "\uD0C4\uC131 \uC7A5\uBCBD +"
+    element: 3000
+    description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0, \uC0DD\uCCB4
+      \uBC18\uC751 \uC7A5\uAC11 [ActValue2], \uD0C4\uC131\uB9C9\uC744 [ActValue3]
+      \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 2
+    price: 70
+    effectType: 0
+    linkId: 400602
+    actValue1: 8
+    actValue2: 2
+    actValue3: 2
+  - cardName: 4007
+    koreanName: "\uAC1C\uD654 +"
+    element: 3000
+    description: "\uCE74\uB4DC\uB97C [ActValue1] \uC7A5 \uACE8\uB77C \uBC84\uB9AC\uACE0
+      \uCF54\uC2A4\uD2B8\uB97C [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 0
+    price: 70
+    effectType: 0
+    linkId: 400702
+    actValue1: 1
+    actValue2: 2
+    actValue3: 0
+  - cardName: 4008
+    koreanName: "\uB9E5\uB3D9\uD558\uB294 \uC0DD\uBA85\uCCB4 +"
+    element: 3000
+    description: "\uC7AC\uC0DD\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 1
+    cost: 2
+    price: 150
+    effectType: 0
+    linkId: 400802
+    actValue1: 5
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4009
+    koreanName: "\uC870\uC9C1 \uAD50\uD658 +"
+    element: 3000
+    description: "\uCE74\uB4DC\uB97C [ActValue1] \uC7A5 \uACE8\uB77C \uBC84\uB9AC\uACE0
+      [ActValue2]\uC7A5\uC744 \uB4DC\uB85C\uC6B0 \uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 400902
+    actValue1: 1
+    actValue2: 3
+    actValue3: 0
+  - cardName: 4010
+    koreanName: "\uC21C\uD658 +"
+    element: 3000
+    description: "\uC790\uC6D0 \uAD50\uD658\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
+      \uC18C\uBA78"
+    isExtinct: 1
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 0
+    linkId: 401002
+    actValue1: 1
+    actValue2: 0
+    actValue3: 0
+  - cardName: 4011
+    koreanName: "\uC57D\uD654 \uC810\uC561 +"
+    element: 3000
+    description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uC57D\uD654\uB97C [ActValue1]
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    isExtinct: 0
+    isSpecial: 0
+    cost: 1
+    price: 100
+    effectType: 18
+    linkId: 401102
+    actValue1: 3
+    actValue2: 0
+    actValue3: 0

@@ -14,10 +14,18 @@ public class ActionData : ScriptableObject
     [SerializeField] private List<ActionDataEntry> entries = new();
 
     private readonly Dictionary<int, List<ActionDataEntry>> actionMap = new();
+    private static readonly List<ActionDataEntry> EmptyActionList = new();
 
     public List<ActionDataEntry> this[int linkID]
     {
-        get => actionMap[linkID];
+        get
+        {
+            if (actionMap.TryGetValue(linkID, out List<ActionDataEntry> actions))
+                return actions;
+
+            Debug.LogWarning($"[ActionData] linkID {linkID} 데이터가 없어 빈 액션 리스트를 반환합니다.");
+            return EmptyActionList;
+        }
     }
 
     private void OnEnable()
