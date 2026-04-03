@@ -17,7 +17,7 @@ public class UICard : MonoBehaviour
         CardDataEntry cardData = cardInstance.CardData;
         
         cardTitle.text = $"{cardData.koreanName}";
-        cardDesc.text = CardManager.Instance.GetDescription(cardInstance.Name);
+        cardDesc.text = cardData.GetDescription(cardInstance.Name);
         cardCost.text = $"{cardData.cost}";
         cardImage.sprite = CardManager.Instance.GetCardImage(cardInstance.Name);
     }

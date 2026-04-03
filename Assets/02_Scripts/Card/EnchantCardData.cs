@@ -19,16 +19,16 @@ public class EnchantCardData : ScriptableObject
     [SerializeField] private List<Sprite> images = new();
 
     [Header("Enchant Card Data List")]
-    [SerializeField] private List<EnchantCardDataEntry> entries = new();
+    [SerializeField] private List<CardDataEntry> entries = new();
 
     private readonly Dictionary<CardName, Sprite> cardImageMap = new();
-    private readonly Dictionary<CardName, EnchantCardDataEntry> cardDataMap = new();
+    private readonly Dictionary<CardName, CardDataEntry> cardDataMap = new();
 
     public Card Prefab => cardPrefab;
 
     public List<CardName> CardNames => cardDataMap.Keys.ToList();
 
-    public EnchantCardDataEntry this[CardName cardName]
+    public CardDataEntry this[CardName cardName]
     {
         get => cardDataMap[cardName];
     }
@@ -54,7 +54,7 @@ public class EnchantCardData : ScriptableObject
             cardImageMap[cardName] = cardImage;
         }
 
-        foreach (EnchantCardDataEntry cardData in entries)
+        foreach (CardDataEntry cardData in entries)
             cardDataMap[cardData.cardName] = cardData;
     }
 
@@ -83,7 +83,7 @@ public class EnchantCardData : ScriptableObject
                 if (!Enum.TryParse(jsonCard.element, true, out ElementType parsedElement))
                     throw new ArgumentException($"{jsonCard.element} can not parse Element");
 
-                EnchantCardDataEntry cardDataEntry = new()
+                CardDataEntry cardDataEntry = new()
                 {
                     cardName = parsedCardName,
                     koreanName = jsonCard.koreanName,
@@ -151,24 +151,3 @@ public class JsonEnchantCardData
     public int ActValue3;
 }
 #endif
-
-[Serializable]
-public class EnchantCardDataEntry
-{
-    public CardName cardName;
-    public string koreanName;
-    public ElementType element;
-    public string description;
-    public bool isExtinct;
-    public bool isSpecial;
-    public int cost;
-    public int price;
-
-    // 나중에 이펙트 타입으로 변경하기
-    public int effectType;
-
-    public int linkId;
-    public int actValue1;
-    public int actValue2;
-    public int actValue3;
-}

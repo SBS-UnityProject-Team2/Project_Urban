@@ -16,7 +16,7 @@ public class CardView : MonoBehaviour
     virtual public void Init(CardDataEntry cardDataEntry)
     {
         textCardName.text = $"{cardDataEntry.koreanName}";
-        textCardDesc.text = CardManager.Instance.GetDescription(cardDataEntry.cardName);
+        textCardDesc.text = cardDataEntry.GetDescription(cardDataEntry.cardName);
         textCost.text = $"{cardDataEntry.cost}";
 
         GetComponent<SpriteRenderer>().sprite = CardManager.Instance.GetCardImage(cardDataEntry.cardName);

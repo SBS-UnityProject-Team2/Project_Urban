@@ -162,4 +162,16 @@ public class CardDataEntry
     public int actValue1;
     public int actValue2;
     public int actValue3;
+
+    public string GetDescription(CardName cardName, bool isEnchant = false)
+    {        
+        string description = this.description ?? string.Empty;
+
+        // 상점/덱 UI 설명은 CardData에 저장된 값으로 치환 (ActionData 의존 제거)
+        description = description.Replace("[ActValue1]", actValue1.ToString());
+        description = description.Replace("[ActValue2]", actValue2.ToString());
+        description = description.Replace("[ActValue3]", actValue3.ToString());
+
+        return description;
+    }
 }
