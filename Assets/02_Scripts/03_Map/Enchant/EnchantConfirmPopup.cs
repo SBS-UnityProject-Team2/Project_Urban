@@ -1,4 +1,5 @@
 using Michsky.UI.Dark;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -24,7 +25,7 @@ public class EnchantConfirmPopup : MonoBehaviour
     }
 
     public void OpenPopup(DeckCard cardInstance)
-    {   
+    {
         gameObject.SetActive(true);
         selectedCard = cardInstance;
 
@@ -36,7 +37,19 @@ public class EnchantConfirmPopup : MonoBehaviour
         AfterCardUI.Init(cardInstance);
         AfterCardNameText.text = currentEnchantedCard.koreanName;
 
-        modalWindowManager.ModalWindowIn();
+        StopCoroutine(nameof(DelayedModalOpen));
+        StartCoroutine(nameof(DelayedModalOpen));
+    }
+
+    private IEnumerator DelayedModalOpen()
+    {
+        // 활성화가 프레임에 반영된 뒤 모달 코루틴을 실행해야 비활성 오브젝트 예외를 피할 수 있음
+        yield return null;
+
+        if (modalWindowManager != null && modalWindowManager.gameObject.activeInHierarchy)
+        {
+            modalWindowManager.ModalWindowIn();
+        }
     }
 
     public void ClosePopup()

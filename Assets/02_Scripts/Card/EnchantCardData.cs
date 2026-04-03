@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 using System.IO;
+using System.Text.RegularExpressions;
 #endif
 
-[CreateAssetMenu(fileName = "CardData", menuName = "Card/CardData", order = 0)]
-public class CardData : ScriptableObject
+[CreateAssetMenu(fileName = "EnchantCardData", menuName = "Card/EnchantCardData", order = 1)]
+public class EnchantCardData : ScriptableObject
 {
     [Header("Prefab Setting")]
     [SerializeField] private Card cardPrefab;
@@ -18,17 +18,17 @@ public class CardData : ScriptableObject
     [Header("Card Image Setting")]
     [SerializeField] private List<Sprite> images = new();
 
-    [Header("Card Data List")]
-    [SerializeField] private List<CardDataEntry> entries = new();
+    [Header("Enchant Card Data List")]
+    [SerializeField] private List<EnchantCardDataEntry> entries = new();
 
     private readonly Dictionary<CardName, Sprite> cardImageMap = new();
-    private readonly Dictionary<CardName, CardDataEntry> cardDataMap = new();
+    private readonly Dictionary<CardName, EnchantCardDataEntry> cardDataMap = new();
 
     public Card Prefab => cardPrefab;
 
     public List<CardName> CardNames => cardDataMap.Keys.ToList();
 
-    public CardDataEntry this[CardName cardName]
+    public EnchantCardDataEntry this[CardName cardName]
     {
         get => cardDataMap[cardName];
     }
@@ -50,31 +50,32 @@ public class CardData : ScriptableObject
 
         foreach (Sprite cardImage in images)
         {
-            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName), $"{cardImage.name} is Fail");
-
+            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName));
             cardImageMap[cardName] = cardImage;
         }
 
-        foreach (CardDataEntry cardData in entries)
+        foreach (EnchantCardDataEntry cardData in entries)
             cardDataMap[cardData.cardName] = cardData;
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Import Card Data")]
-    public void ImportCardData()
+    [ContextMenu("Import Enchant Card Data")]
+    public void ImportEnchantCardData()
     {
-        string jsonPath = EditorUtility.OpenFilePanel("Select Standard Card Data JSON", Application.dataPath, "json");
-        if (string.IsNullOrEmpty(jsonPath)) 
+        string jsonPath = EditorUtility.OpenFilePanel("Select Enchant Card Data JSON", Application.dataPath, "json");
+        if (string.IsNullOrEmpty(jsonPath))
             throw new ArgumentException($"Can no open {jsonPath}");
 
         try
         {
             string jsonText = File.ReadAllText(jsonPath);
-            JsonCardWrapper jsonWrapper = JsonUtility.FromJson<JsonCardWrapper>(jsonText);
+            // effectType가 숫자/문자열 혼합으로 들어오는 포맷을 문자열 기준으로 통일
+            jsonText = Regex.Replace(jsonText, "\"effectType\"\\s*:\\s*(\\d+)", "\"effectType\": \"$1\"");
+            JsonEnchantCardWrapper jsonWrapper = JsonUtility.FromJson<JsonEnchantCardWrapper>(jsonText);
 
             entries.Clear();
 
-            foreach (JsonCardData jsonCard in jsonWrapper.cards)
+            foreach (JsonEnchantCardData jsonCard in jsonWrapper.cards)
             {
                 if (!Enum.TryParse(jsonCard.cardName, true, out CardName parsedCardName))
                     throw new ArgumentException($"{jsonCard.cardName} can not parse CardName");
@@ -82,7 +83,7 @@ public class CardData : ScriptableObject
                 if (!Enum.TryParse(jsonCard.element, true, out ElementType parsedElement))
                     throw new ArgumentException($"{jsonCard.element} can not parse Element");
 
-                CardDataEntry cardDataEntry = new()
+                EnchantCardDataEntry cardDataEntry = new()
                 {
                     cardName = parsedCardName,
                     koreanName = jsonCard.koreanName,
@@ -92,8 +93,8 @@ public class CardData : ScriptableObject
                     description = jsonCard.description,
                     price = jsonCard.price,
                     cost = jsonCard.cost,
-                    effectType = jsonCard.effectType,
-                    linkId = jsonCard.NormalLinkID,
+                    effectType = ParseEffectType(jsonCard.effectType),
+                    linkId = jsonCard.EnhancedLinkID,
                     actValue1 = jsonCard.ActValue1,
                     actValue2 = jsonCard.ActValue2,
                     actValue3 = jsonCard.ActValue3
@@ -106,25 +107,34 @@ public class CardData : ScriptableObject
             AssetDatabase.SaveAssets();
 
             BuildCardDataMap();
-            Debug.Log($"Successfully imported {entries.Count} cards.");
+            Debug.Log($"Successfully imported {entries.Count} enchant cards.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to import CardData JSON: {e.Message}");
+            Debug.LogError($"Failed to import EnchantCardData JSON: {e.Message}");
         }
+    }
+
+    private static int ParseEffectType(string raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw)) return 0;
+        if (int.TryParse(raw, out int single)) return single;
+
+        string firstToken = raw.Split(',')[0].Trim();
+        return int.TryParse(firstToken, out int parsed) ? parsed : 0;
     }
 #endif
 }
 
 #if UNITY_EDITOR
 [Serializable]
-public class JsonCardWrapper
+public class JsonEnchantCardWrapper
 {
-    public List<JsonCardData> cards;
+    public List<JsonEnchantCardData> cards;
 }
 
 [Serializable]
-public class JsonCardData
+public class JsonEnchantCardData
 {
     public string cardName;
     public string koreanName;
@@ -134,17 +144,16 @@ public class JsonCardData
     public bool isSpecial;
     public int cost;
     public int price;
-    public int effectType;
-    public int NormalLinkID;
+    public string effectType;
+    public int EnhancedLinkID;
     public int ActValue1;
     public int ActValue2;
     public int ActValue3;
-    public int linkId;
 }
 #endif
 
 [Serializable]
-public class CardDataEntry
+public class EnchantCardDataEntry
 {
     public CardName cardName;
     public string koreanName;

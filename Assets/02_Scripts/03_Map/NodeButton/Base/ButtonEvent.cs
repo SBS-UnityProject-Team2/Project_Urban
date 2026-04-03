@@ -57,13 +57,19 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterEliteNode()
     {
         EnterBattle(false, 5, 5);
-        BgmManager.Instance.PlayEliteSound();
+        if (BgmManager.Instance != null)
+        {
+            BgmManager.Instance.PlayEliteSound();
+        }
     }
 
     private void EnterBossNode()
     {
         EnterBattle(false, 9, 9);
-        BgmManager.Instance.PlayBossSound();
+        if (BgmManager.Instance != null)
+        {
+            BgmManager.Instance.PlayBossSound();
+        }
     }
 
     private void EnterBattle(bool isNormal, int minScore, int maxScore)
@@ -73,9 +79,13 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
 
     private void EnterStoreNode()
     {
+        // Store 씬으로 전환하기 전에 음악 재생 (씬 전환 후는 BgmManager가 초기화 중일 수 있음)
+        if (BgmManager.Instance != null)
+        {
+            BgmManager.Instance.PlayShopSound();
+        }
+        
         SceneManager.LoadScene(SceneName.Store);
-
-        BgmManager.Instance.PlayShopSound();
     }
 
     // 쉼터UI
@@ -90,7 +100,10 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_Map.SetActive(false);
         UI_EnterShelter.SetActive(true);
 
-        BgmManager.Instance.PlayRestSound();
+        if (BgmManager.Instance != null)
+        {
+            BgmManager.Instance.PlayRestSound();
+        }
     }
 
     public void OnClickEnterShelter()
@@ -114,7 +127,10 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_Map.SetActive(true);
 
         BackgroundManager.Instance.SetMapBg();
-        BgmManager.Instance.PlayMapSound();
+        if (BgmManager.Instance != null)
+        {
+            BgmManager.Instance.PlayMapSound();
+        }
     }
 
     public void ActiveMap()
