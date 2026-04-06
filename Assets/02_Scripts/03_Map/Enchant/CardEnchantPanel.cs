@@ -41,7 +41,18 @@ public class CardEnchantPanel : MonoBehaviour
         foreach (DeckCard cardInstance in deckToRender)
         {
             UICard spawnedCard = Instantiate(uiCardPrefab, displayArea);
-            spawnedCard.Init(cardInstance);
+
+            if (cardInstance.IsEnchanted)
+            {
+                CardDataEntry enchantedData = CardManager.Instance.GetEnchantCardData(cardInstance.Name);
+                Sprite enchantedImage = CardManager.Instance.GetEnchantCardImage(cardInstance.Name);
+                spawnedCard.Init(enchantedData, enchantedImage);
+            }
+            else
+            {
+                spawnedCard.Init(cardInstance);
+            }
+
             spawnedCard.transform.localScale = Vector3.one;
 
             Button cardButton = spawnedCard.GetComponent<Button>();            

@@ -66,7 +66,7 @@ MonoBehaviour:
     element: 0
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
-      [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+      [ActValue] \uAC00\uD569\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 0
     cost: 1
@@ -84,7 +84,7 @@ MonoBehaviour:
     isExtinct: 0
     isSpecial: 0
     cost: 1
-    price: 50
+    price: 0
     effectType: 0
     linkId: 100101
     actValue1: 5
@@ -100,7 +100,7 @@ MonoBehaviour:
       \uD604\uC7AC \uC18D\uC131 : [Elem]"
     isExtinct: 0
     isSpecial: 0
-    cost: 2
+    cost: 1
     price: 50
     effectType: 0
     linkId: 100201
@@ -112,7 +112,7 @@ MonoBehaviour:
     element: 0
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
-      [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
+      [ActValue1] \uAC00\uD558\uACE0 \uC57D\uD654\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 0
     cost: 1
@@ -127,7 +127,8 @@ MonoBehaviour:
     element: 0
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
-      [ActValue1] \uAC00\uD558\uACE0 \uC57D\uD654\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+      [ActValue1] \uAC00\uD558\uACE0 \uB3D9\uACB0\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
+      \uC18C\uBA78"
     isExtinct: 1
     isSpecial: 0
     cost: 2
@@ -435,7 +436,7 @@ MonoBehaviour:
     element: 2000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
-      [ActVaue1] \uAC00\uD558\uACE0 \uCF54\uC2A4\uD2B8\uB97C 1 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
+      [ActValue1] \uAC00\uD558\uACE0 \uCF54\uC2A4\uD2B8\uB97C 1 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
       \uC774 \uCE74\uB4DC\uB97C \uC0AC\uC6A9 \uD6C4 \uCF54\uC2A4\uD2B8\uAC00 0 \uC774\uB77C\uBA74
       \uCD94\uAC00\uB85C 1 \uB354 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     isExtinct: 0

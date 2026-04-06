@@ -15,9 +15,11 @@ public class EnchantConfirmPopup : MonoBehaviour
     [SerializeField] private CardEnchantPanel cardEnchantPanel;
 
     private DeckCard selectedCard;
-    private CardDataEntry currentOriginalCard; // 원본 데이터 저장용
-    private CardDataEntry currentEnchantedCard; // 강화 데이터 저장용
+    private CardDataEntry currentOriginalCard; 
+    private CardDataEntry currentEnchantedCard; 
     private ModalWindowManager modalWindowManager;
+    private bool isReadyForUserConfirm;
+    private bool isEnchantProcessing;
 
     private void Awake()
     {
@@ -26,49 +28,64 @@ public class EnchantConfirmPopup : MonoBehaviour
 
     public void OpenPopup(DeckCard cardInstance)
     {
-        gameObject.SetActive(true);
+        if (!gameObject.activeSelf) 
+            gameObject.SetActive(true);
+
+        isReadyForUserConfirm = false;
+        isEnchantProcessing = false;
+
         selectedCard = cardInstance;
 
         currentOriginalCard = cardInstance.CardData;
         BeforeCardUI.Init(cardInstance);
 
-        // 현재 데이터 구조에서는 강화 전/후가 별도 데이터로 분리되어 있지 않아 미리보기는 동일 카드 기준입니다.
-        currentEnchantedCard = currentOriginalCard;
-        AfterCardUI.Init(cardInstance);
+        currentEnchantedCard = CardManager.Instance.GetEnchantCardData(cardInstance.Name);
+        Sprite enchantSprite = CardManager.Instance.GetEnchantCardImage(cardInstance.Name);
+        AfterCardUI.Init(currentEnchantedCard, enchantSprite);
         AfterCardNameText.text = currentEnchantedCard.koreanName;
 
-        StopCoroutine(nameof(DelayedModalOpen));
-        StartCoroutine(nameof(DelayedModalOpen));
+        StartCoroutine(PlayModalInNextFrame());
     }
 
-    private IEnumerator DelayedModalOpen()
+    private IEnumerator PlayModalInNextFrame()
     {
-        // 활성화가 프레임에 반영된 뒤 모달 코루틴을 실행해야 비활성 오브젝트 예외를 피할 수 있음
-        yield return null;
+        yield return null; 
+        
+        modalWindowManager.ModalWindowIn();
 
-        if (modalWindowManager != null && modalWindowManager.gameObject.activeInHierarchy)
-        {
-            modalWindowManager.ModalWindowIn();
-        }
+        yield return null;
+        isReadyForUserConfirm = true;
     }
 
     public void ClosePopup()
     {
-        modalWindowManager.ModalWindowOut();
-        Invoke(nameof(DisablePopup), 0.5f); 
-    }
+        isReadyForUserConfirm = false;
 
-    private void DisablePopup()
-    {
-        gameObject.SetActive(false);
+        modalWindowManager.ModalWindowOut();
     }
 
     public void OnClickEnchant()
     {
+        if (!isReadyForUserConfirm || isEnchantProcessing || selectedCard == null)
+            return;
+
+        isEnchantProcessing = true;
+        isReadyForUserConfirm = false;
+
         DeckManager.Instance.Enchant(selectedCard.Id);
         Debug.Log($"[강화 성공] {currentOriginalCard.cardName} -> {currentEnchantedCard.koreanName}");
         
-        ClosePopup();
+        // 1. 팝업창 닫기 애니메이션 시작
+        modalWindowManager.ModalWindowOut();
+        
+        // 2. 애니메이션이 끝날 시간을 벌어준 뒤 부모 패널 끄기
+        StartCoroutine(ClosePanelAfterDelay());
+    }
+
+    private IEnumerator ClosePanelAfterDelay()
+    {
+        // 팝업이 스르륵 사라질 때까지 0.5초 대기
+        yield return new WaitForSeconds(0.5f);
         cardEnchantPanel.CloseDeckDisplay();
     }
 }
