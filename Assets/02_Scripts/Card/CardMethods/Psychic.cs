@@ -1,3 +1,5 @@
+using System;
+
 public static class Psychic
 {
     #region Normal
@@ -53,6 +55,7 @@ public static class Psychic
             payload.AddTarget(monster);
         payload.Write(ElementType.Psychic);
         payload.Write(8);
+        ActionBus.Dispatch(payload);
 
 
         ActionPayload payload1 = new()
@@ -213,6 +216,7 @@ public static class Psychic
             payload.AddTarget(monster);
         payload.Write(ElementType.Psychic);
         payload.Write(10);
+        ActionBus.Dispatch(payload);
 
 
         ActionPayload payload1 = new()

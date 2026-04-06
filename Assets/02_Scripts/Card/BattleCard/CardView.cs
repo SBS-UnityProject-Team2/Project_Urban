@@ -12,7 +12,6 @@ public class CardView : MonoBehaviour
     [SerializeField] private TMP_Text textCardDesc;
     [SerializeField] private TMP_Text textCost;
 
-
     virtual public void Init(CardDataEntry cardDataEntry)
     {
         textCardName.text = $"{cardDataEntry.koreanName}";

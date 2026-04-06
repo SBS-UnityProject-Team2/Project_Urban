@@ -32,6 +32,33 @@ MonoBehaviour:
     name: 0
     koreanName: "\uB4E4\uAC1C"
     element: 0
+    hp: 15
+    score: 1
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 98210000
+      - actionIds: 401f0000411f0000
+  - level: 0
+    name: 1
+    koreanName: "\uB4E4\uAC1C"
+    element: 0
+    hp: 18
+    score: 1
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 401f0000411f0000
+      - actionIds: 08200000
+  - level: 0
+    name: 2
+    koreanName: "\uB4E4\uAC1C"
+    element: 0
+    hp: 21
     score: 1
     phaseStep:
     - triggerHp: 0
@@ -39,5 +66,153 @@ MonoBehaviour:
     pattern:
     - patterns:
       - actionIds: 401f0000
-      - actionIds: 411f0000
+      - actionIds: 08200000
+      - actionIds: 98210000
+  - level: 0
+    name: 3
+    koreanName: "\uB4A4\uCC98\uC9C4 \uBD80\uB791\uC790"
+    element: 0
+    hp: 49
+    score: 2
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
       - actionIds: 421f0000
+      - actionIds: 08200000
+      - actionIds: d0200000
+  - level: 0
+    name: 4
+    koreanName: "\uB4A4\uCC98\uC9C4 \uBD80\uB791\uC790"
+    element: 0
+    hp: 51
+    score: 2
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 09200000
+      - actionIds: 431f0000441f0000
+  - level: 0
+    name: 5
+    koreanName: "\uB4A4\uCC98\uC9C4 \uBD80\uB791\uC790"
+    element: 0
+    hp: 53
+    score: 2
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 441f0000
+      - actionIds: 0820000099210000
+  - level: 0
+    name: 6
+    koreanName: "\uBB34\uC7A5 \uB3C4\uC801"
+    element: 0
+    hp: 70
+    score: 3
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: d0200000
+      - actionIds: 421f0000
+      - actionIds: 09200000431f0000
+  - level: 0
+    name: 7
+    koreanName: "\uC720\uC57D\uD55C \uAC10\uC5FC\uCCB4"
+    element: 3000
+    hp: 53
+    score: 2
+    phaseStep:
+    - triggerHp: 53
+      actionId: 0
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: d3200000
+    - patterns:
+      - actionIds: 401f0000411f0000
+  - level: 0
+    name: 8
+    koreanName: "\uC720\uC57D\uD55C \uAC10\uC5FC\uCCB4"
+    element: 3000
+    hp: 56
+    score: 2
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 0c200000
+      - actionIds: 401f0000481f0000
+  - level: 0
+    name: 9
+    koreanName: "\uC720\uC57D\uD55C \uAC10\uC5FC\uCCB4"
+    element: 3000
+    hp: 59
+    score: 2
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 98210000
+      - actionIds: 401f0000
+      - actionIds: 08200000
+  - level: 1
+    name: 10
+    koreanName: "\uD654\uB825 \uCD94\uC885\uC790"
+    element: 1000
+    hp: 109
+    score: 5
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 99210000
+      - actionIds: 451f0000
+      - actionIds: 0a200000d1200000
+  - level: 1
+    name: 11
+    koreanName: "\uC5BC\uC5B4\uBD99\uC740 \uC0AC\uC81C"
+    element: 2000
+    hp: 87
+    score: 5
+    phaseStep:
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 461f0000471f0000
+      - actionIds: 0d200000
+      - actionIds: 461f0000471f0000
+      - actionIds: d2200000
+  - level: 2
+    name: 12
+    koreanName: "\uAC15\uD0C8\uC790"
+    element: 0
+    hp: 164
+    score: 9
+    phaseStep:
+    - triggerHp: 80
+      actionId: 8406
+    - triggerHp: 0
+      actionId: 0
+    pattern:
+    - patterns:
+      - actionIds: 4a1f0000
+      - actionIds: 0e200000
+      - actionIds: 441f0000
+      - actionIds: d5200000
+    - patterns:
+      - actionIds: 481f0000491f0000
+      - actionIds: d4200000
+      - actionIds: 481f0000491f0000
+      - actionIds: 0c200000

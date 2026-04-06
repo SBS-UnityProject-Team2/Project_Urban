@@ -658,7 +658,7 @@ public static class ActionBus
         foreach (IAttackerDamageFlatChange attackChange in attackChanges)
             attackFlatDelta += attackChange.GetDamageDelta();
 
-        return attackFlatDelta;
+        return damage + attackFlatDelta;
     }
 
     private static bool TryDamageNullification(Actor defender)

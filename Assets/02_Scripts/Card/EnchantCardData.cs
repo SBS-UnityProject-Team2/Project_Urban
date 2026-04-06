@@ -93,6 +93,7 @@ public class EnchantCardData : ScriptableObject
                     description = jsonCard.description,
                     price = jsonCard.price,
                     cost = jsonCard.cost,
+                    target = Enum.TryParse(jsonCard.target, true, out CardTarget parsedTarget) ? parsedTarget : CardTarget.Monster,
                     effectType = ParseEffectType(jsonCard.effectType),
                     linkId = jsonCard.EnhancedLinkID,
                     actValue1 = jsonCard.ActValue1,
@@ -149,5 +150,6 @@ public class JsonEnchantCardData
     public int ActValue1;
     public int ActValue2;
     public int ActValue3;
+    public string target;
 }
 #endif

@@ -14,18 +14,18 @@ public class Payload
         readPos  = 0;
     }
 
-    public Payload Write<T>(T value) where T : unmanaged
+    public unsafe Payload Write<T>(T value) where T : unmanaged
     {
         MemoryMarshal.Write(buffer.AsSpan(writePos), ref value);
-        writePos += Marshal.SizeOf<T>();
+        writePos += sizeof(T);
 
         return this;
     }
 
-    public T Read<T>() where T : unmanaged
+    public unsafe T Read<T>() where T : unmanaged
     {
         T value = MemoryMarshal.Read<T>(buffer.AsSpan(readPos));
-        readPos += Marshal.SizeOf<T>();
+        readPos += sizeof(T);
         return value;
     }
 }

@@ -32,6 +32,9 @@ public class MonsterAction : MonoBehaviour
     public async UniTask Execute()
     {
         // 여기에 액션 수행을 처리한다. -> 카드랑 똑같이 처리하면 될듯
+        Debug.Log("Monster Do Something...");
+        await UniTask.WaitForSeconds(0.5f);
+        
     }
 
     public void SetNextAction()

@@ -47,7 +47,7 @@ public class Hand : MonoBehaviour
     {
         curHand.Remove(card);
 
-        UniTask moveTask = Util.MoveTo(card.gameObject, cardDespawnPoint.position, 0.25f);
+        UniTask moveTask = card.MoveTo(cardDespawnPoint.position, 0.25f);
         UniTask alignTask = Align();
 
         await UniTask.WhenAll(moveTask, alignTask);
@@ -59,7 +59,7 @@ public class Hand : MonoBehaviour
 
         foreach (Card card in curHand)
         {
-            UniTask moveTask = Util.MoveTo(card.gameObject, cardDespawnPoint.position, 0.25f);
+            UniTask moveTask = card.MoveTo(cardDespawnPoint.position, 0.25f);
             tasks.Add(moveTask);
         }
 
@@ -88,7 +88,7 @@ public class Hand : MonoBehaviour
             cardPos.y = 0.0f;
             cardPos.z = -0.2f * i;
 
-            UniTask task = Util.MoveTo(curHand[reverseIndex].gameObject, cardPos, 0.25f);
+            UniTask task = curHand[reverseIndex].MoveTo(cardPos, 0.25f);
             tasks.Add(task);
         }
 

@@ -1,12 +1,20 @@
+using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
+[RequireComponent(typeof(PlayerView))]
 public class Player : Actor
 {
+    [SerializeField] private PlayerView playerView;
     public ElementType LastUsedElementType { get; set; }
 
     private void Awake()
     {
+        playerView = GetComponent<PlayerView>();
+
+        Status.Init(this, PlayerManager.Instance.Health.CurrentHp, PlayerManager.Instance.Health.MaxHp, 10, ElementType.None);
+        playerView.Init(Status);
+
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddAsyncEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
@@ -48,6 +56,7 @@ public class Player : Actor
             target = this,
             drawCount = drawCount
         };
+
         DispatchEvent(payload);
     }
 

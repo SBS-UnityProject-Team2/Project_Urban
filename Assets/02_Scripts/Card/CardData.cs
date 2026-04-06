@@ -92,6 +92,7 @@ public class CardData : ScriptableObject
                     description = jsonCard.description,
                     price = jsonCard.price,
                     cost = jsonCard.cost,
+                    target = Enum.TryParse(jsonCard.target, true, out CardTarget parsedTarget) ? parsedTarget : CardTarget.Monster,
                     effectType = jsonCard.effectType,
                     linkId = jsonCard.NormalLinkID,
                     actValue1 = jsonCard.ActValue1,
@@ -140,6 +141,7 @@ public class JsonCardData
     public int ActValue2;
     public int ActValue3;
     public int linkId;
+    public string target;
 }
 #endif
 
@@ -149,6 +151,7 @@ public class CardDataEntry
     public CardName cardName;
     public string koreanName;
     public ElementType element;
+    public CardTarget target;
     public string description;
     public bool isExtinct;
     public bool isSpecial;

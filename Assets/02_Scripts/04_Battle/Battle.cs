@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
+using Cysharp.Threading.Tasks;
 
 public class Battle : SceneSingleton<Battle>
 {
@@ -55,9 +56,14 @@ public class Battle : SceneSingleton<Battle>
             {
                 foreach (Actor actor in actors)
                 {
-                    actor.BeginTurn();
+                    Debug.Log($"{actor.name} Start Turn");
 
+                    actor.BeginTurn().Forget();
+
+                    Debug.Log($"Waiting {actor.name} End Turn...");
                     await actor.WaitForTurnEndAsync();
+
+                    Debug.Log($"{actor.name} End Turn");
                 }
             }
         }
@@ -65,5 +71,7 @@ public class Battle : SceneSingleton<Battle>
         {
             OnBattleEnd?.Invoke();
         }
+
+        Debug.Log("BattleEnd");
     }
 }

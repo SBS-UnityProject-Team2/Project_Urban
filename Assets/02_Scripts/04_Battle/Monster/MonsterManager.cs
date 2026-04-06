@@ -16,6 +16,11 @@ public class MonsterManager : Singleton<MonsterManager>
         return monsterData.GetMonsterData(monsterName);
     }
 
+    public Sprite GetMonsterImage(MonsterName monsterName)
+    {
+        return monsterData.GetMonsterImage(monsterName);
+    }
+
     public MonsterActionDataEntry GetMonsterAction(int actionId)
     {
         return monsterActionData[actionId];

@@ -55,6 +55,8 @@ public class ActionData : ScriptableObject
     [ContextMenu("Import Action Data")]
     public void ImportActionData()
     {
+        entries.Clear();
+
         string jsonPath = EditorUtility.OpenFilePanel("Select Standard Card Data JSON", Application.dataPath, "json");
         if (string.IsNullOrEmpty(jsonPath))
             throw new ArgumentException($"Can no open {jsonPath}");
@@ -64,15 +66,13 @@ public class ActionData : ScriptableObject
 
         foreach (JsonActionData actionData in jsonWrapper.actions)
         {
-            if (!Enum.TryParse(actionData.actTarget, true, out Target actTarget))
-                throw new ArgumentException($"{actionData.actTarget} can not parse actTarget");
-
+           
             ActionDataEntry actionDataEntry = new()
             {
                 linkID = actionData.linkID,
                 seq = actionData.seq,
                 actId = (ActorAction)actionData.actID,
-                actTarget = actTarget,
+                actTarget = actionData.actTarget,
                 actParam = actionData.actParam,
                 actValue = actionData.actValue,
                 visibleState = actionData.visibleState
@@ -116,7 +116,7 @@ public class ActionDataEntry
     public int linkID;
     public int seq;
     public ActorAction actId;
-    public Target actTarget;
+    public string actTarget;
     public string actParam;
     public int actValue;
     public int visibleState;
