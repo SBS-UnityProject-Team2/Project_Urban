@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
     public CardDataEntry CardData => cardDataEntry;
     public CardController Controller => cardController;
     public int Id => cardId;
+    public CardTarget Target => cardDataEntry.target;
 
 
     private void Awake()
@@ -44,7 +45,7 @@ public class Card : MonoBehaviour
 
         cardDataEntry = deckCard.CardData;
         InitModules(cardDataEntry);
-        cardController.Init(Use);
+        cardController.Init(Use, cardDataEntry.target);
     }
 
     public void SetCost(int costPoint)
@@ -90,5 +91,16 @@ public class Card : MonoBehaviour
     public async UniTask Use(Actor target)
     {
         CardMethods.Dispatch(cardDataEntry.cardName, target, deckCard.IsEnchanted);
-    }    
+        Debug.Log($"{target.name} / {cardDataEntry.cardName} Use");
+
+        Battle.Instance.Deck.UseCard(this);
+    }
+
+    public async UniTask MoveTo(Vector3 targetPos, float duration)
+    {
+        cardController.SetMoving(true);
+        await Util.MoveTo(gameObject, targetPos, duration);
+        cardController.SetMoving(false);
+        cardController.UpdateOrigin();
+    }
 }

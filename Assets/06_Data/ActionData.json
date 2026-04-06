@@ -1,7 +1,7 @@
-﻿{
+{
     "actions": [
         {
-            "linkID": 100002,
+            "linkID": 100001,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -10,7 +10,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100102,
+            "linkID": 100101,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -19,7 +19,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100202,
+            "linkID": 100201,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -28,7 +28,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100302,
+            "linkID": 100301,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -37,7 +37,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100402,
+            "linkID": 100401,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -46,7 +46,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100402,
+            "linkID": 100401,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -55,7 +55,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100402,
+            "linkID": 100401,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -64,7 +64,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 100502,
+            "linkID": 100501,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -73,7 +73,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100502,
+            "linkID": 100501,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -82,7 +82,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100502,
+            "linkID": 100501,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -91,7 +91,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 100502,
+            "linkID": 100501,
             "seq": 4,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -100,7 +100,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 100602,
+            "linkID": 100601,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -109,7 +109,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100602,
+            "linkID": 100601,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -118,7 +118,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 100602,
+            "linkID": 100601,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -127,7 +127,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100702,
+            "linkID": 100701,
             "seq": 1,
             "actID": 50201,
             "actTarget": "TarSelf",
@@ -136,7 +136,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100802,
+            "linkID": 100801,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -145,7 +145,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 100802,
+            "linkID": 100801,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -154,7 +154,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 100802,
+            "linkID": 100801,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -163,7 +163,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200002,
+            "linkID": 200001,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -172,7 +172,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200002,
+            "linkID": 200001,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -181,7 +181,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200002,
+            "linkID": 200001,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -190,7 +190,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200102,
+            "linkID": 200101,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -199,7 +199,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200102,
+            "linkID": 200101,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -208,7 +208,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200102,
+            "linkID": 200101,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -217,7 +217,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200202,
+            "linkID": 200201,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -226,7 +226,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200202,
+            "linkID": 200201,
             "seq": 2,
             "actID": 50212,
             "actTarget": "TarSelf",
@@ -235,7 +235,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200202,
+            "linkID": 200201,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -244,7 +244,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200302,
+            "linkID": 200301,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -253,7 +253,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200402,
+            "linkID": 200401,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemiesAll",
@@ -262,7 +262,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200402,
+            "linkID": 200401,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemiesAll",
@@ -271,7 +271,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200402,
+            "linkID": 200401,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemiesAll",
@@ -280,7 +280,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200402,
+            "linkID": 200401,
             "seq": 4,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -289,7 +289,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200402,
+            "linkID": 200401,
             "seq": 5,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -298,7 +298,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200502,
+            "linkID": 200501,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -307,7 +307,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200502,
+            "linkID": 200501,
             "seq": 2,
             "actID": 50305,
             "actTarget": "TarSelf",
@@ -316,7 +316,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200502,
+            "linkID": 200501,
             "seq": 3,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -325,7 +325,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200502,
+            "linkID": 200501,
             "seq": 4,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -334,7 +334,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200602,
+            "linkID": 200601,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -343,7 +343,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200602,
+            "linkID": 200601,
             "seq": 2,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -352,7 +352,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200602,
+            "linkID": 200601,
             "seq": 3,
             "actID": 50305,
             "actTarget": "TarSelf",
@@ -361,7 +361,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200602,
+            "linkID": 200601,
             "seq": 4,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -370,7 +370,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200602,
+            "linkID": 200601,
             "seq": 5,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -379,7 +379,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200702,
+            "linkID": 200701,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -388,7 +388,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200702,
+            "linkID": 200701,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -397,7 +397,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200802,
+            "linkID": 200801,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -406,7 +406,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200802,
+            "linkID": 200801,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -415,7 +415,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200902,
+            "linkID": 200901,
             "seq": 1,
             "actID": 50104,
             "actTarget": "TarSelf",
@@ -424,7 +424,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200902,
+            "linkID": 200901,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -433,7 +433,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 200902,
+            "linkID": 200901,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -442,7 +442,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 200902,
+            "linkID": 200901,
             "seq": 4,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -451,7 +451,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 201002,
+            "linkID": 201001,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -460,7 +460,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 201002,
+            "linkID": 201001,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -469,7 +469,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 201002,
+            "linkID": 201001,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -478,7 +478,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 201102,
+            "linkID": 201101,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -487,7 +487,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 201102,
+            "linkID": 201101,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -496,7 +496,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 201202,
+            "linkID": 201201,
             "seq": 1,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -505,7 +505,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 201202,
+            "linkID": 201201,
             "seq": 2,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -514,7 +514,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300002,
+            "linkID": 300001,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -523,7 +523,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300002,
+            "linkID": 300001,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -532,7 +532,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300002,
+            "linkID": 300001,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -541,7 +541,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300102,
+            "linkID": 300101,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -550,7 +550,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300102,
+            "linkID": 300101,
             "seq": 2,
             "actID": 50201,
             "actTarget": "TarSelf",
@@ -559,7 +559,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300202,
+            "linkID": 300201,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -568,7 +568,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300202,
+            "linkID": 300201,
             "seq": 2,
             "actID": 50104,
             "actTarget": "TarSelf",
@@ -577,7 +577,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300202,
+            "linkID": 300201,
             "seq": 3,
             "actID": 50104,
             "actTarget": "TarSelf",
@@ -586,7 +586,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300302,
+            "linkID": 300301,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemiesAll",
@@ -595,7 +595,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300302,
+            "linkID": 300301,
             "seq": 2,
             "actID": 50001,
             "actTarget": "TarEnemiesAll",
@@ -604,7 +604,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300402,
+            "linkID": 300401,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -613,7 +613,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300402,
+            "linkID": 300401,
             "seq": 2,
             "actID": 50210,
             "actTarget": "TarSelf",
@@ -622,7 +622,7 @@
             "visibleState": 2
         },
         {
-            "linkID": 300502,
+            "linkID": 300501,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -631,7 +631,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300502,
+            "linkID": 300501,
             "seq": 2,
             "actID": 50305,
             "actTarget": "TarSelf",
@@ -640,7 +640,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300502,
+            "linkID": 300501,
             "seq": 3,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -649,7 +649,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300502,
+            "linkID": 300501,
             "seq": 4,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -658,7 +658,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300602,
+            "linkID": 300601,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -667,7 +667,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300602,
+            "linkID": 300601,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -676,7 +676,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300702,
+            "linkID": 300701,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -685,7 +685,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300702,
+            "linkID": 300701,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -694,7 +694,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300702,
+            "linkID": 300701,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -703,7 +703,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300802,
+            "linkID": 300801,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -712,7 +712,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300802,
+            "linkID": 300801,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -721,7 +721,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300802,
+            "linkID": 300801,
             "seq": 3,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -730,7 +730,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 300802,
+            "linkID": 300801,
             "seq": 4,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -739,7 +739,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300802,
+            "linkID": 300801,
             "seq": 5,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -748,7 +748,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300902,
+            "linkID": 300901,
             "seq": 1,
             "actID": 50205,
             "actTarget": "LocDiscardPile",
@@ -757,7 +757,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300902,
+            "linkID": 300901,
             "seq": 2,
             "actID": 50206,
             "actTarget": "TarSelf",
@@ -766,7 +766,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300902,
+            "linkID": 300901,
             "seq": 3,
             "actID": 50405,
             "actTarget": "TarSelf",
@@ -775,7 +775,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 300902,
+            "linkID": 300901,
             "seq": 4,
             "actID": 50208,
             "actTarget": "SelUserSelect",
@@ -784,7 +784,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 301002,
+            "linkID": 301001,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarEnemiesAll",
@@ -793,7 +793,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 301002,
+            "linkID": 301001,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarEnemiesAll",
@@ -802,7 +802,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 301102,
+            "linkID": 301101,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarEnemiesAll",
@@ -811,7 +811,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 301102,
+            "linkID": 301101,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarEnemiesAll",
@@ -820,7 +820,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400002,
+            "linkID": 400001,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -829,7 +829,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400002,
+            "linkID": 400001,
             "seq": 2,
             "actID": 50001,
             "actTarget": "TarSelf",
@@ -838,7 +838,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400102,
+            "linkID": 400101,
             "seq": 1,
             "actID": 50205,
             "actTarget": "LocHand",
@@ -847,7 +847,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400102,
+            "linkID": 400101,
             "seq": 2,
             "actID": 50206,
             "actTarget": "LocDiscardPile",
@@ -856,7 +856,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400102,
+            "linkID": 400101,
             "seq": 3,
             "actID": 50405,
             "actTarget": "TarSelf",
@@ -865,7 +865,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400102,
+            "linkID": 400101,
             "seq": 4,
             "actID": 50001,
             "actTarget": "TarEnemyRandomEach",
@@ -874,7 +874,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400202,
+            "linkID": 400201,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -883,7 +883,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400202,
+            "linkID": 400201,
             "seq": 2,
             "actID": 50301,
             "actTarget": "TarEnemy",
@@ -892,7 +892,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400202,
+            "linkID": 400201,
             "seq": 3,
             "actID": 50302,
             "actTarget": "TarEnemy",
@@ -901,7 +901,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400302,
+            "linkID": 400301,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -910,7 +910,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400302,
+            "linkID": 400301,
             "seq": 2,
             "actID": 50102,
             "actTarget": "TarSelf",
@@ -919,7 +919,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400402,
+            "linkID": 400401,
             "seq": 1,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -928,7 +928,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400402,
+            "linkID": 400401,
             "seq": 2,
             "actID": 50001,
             "actTarget": "TarEnemy",
@@ -937,7 +937,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -946,7 +946,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 2,
             "actID": 50305,
             "actTarget": "TarSelf",
@@ -955,7 +955,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 3,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -964,7 +964,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 4,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -973,7 +973,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 5,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -982,7 +982,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400502,
+            "linkID": 400501,
             "seq": 6,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -991,7 +991,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 1,
             "actID": 50101,
             "actTarget": "TarSelf",
@@ -1000,7 +1000,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 2,
             "actID": 50305,
             "actTarget": "TarSelf",
@@ -1009,7 +1009,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 3,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -1018,7 +1018,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 4,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -1027,7 +1027,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 5,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -1036,7 +1036,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400602,
+            "linkID": 400601,
             "seq": 6,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -1045,7 +1045,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400702,
+            "linkID": 400701,
             "seq": 1,
             "actID": 50205,
             "actTarget": "LocHand",
@@ -1054,7 +1054,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400702,
+            "linkID": 400701,
             "seq": 2,
             "actID": 50206,
             "actTarget": "TarSelf",
@@ -1063,7 +1063,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400702,
+            "linkID": 400701,
             "seq": 3,
             "actID": 50405,
             "actTarget": "TarSelf",
@@ -1072,7 +1072,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400702,
+            "linkID": 400701,
             "seq": 4,
             "actID": 50104,
             "actTarget": "TarSelf",
@@ -1081,7 +1081,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400802,
+            "linkID": 400801,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf",
@@ -1090,7 +1090,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400802,
+            "linkID": 400801,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -1099,7 +1099,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400802,
+            "linkID": 400801,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -1108,7 +1108,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400902,
+            "linkID": 400901,
             "seq": 1,
             "actID": 50205,
             "actTarget": "LocHand",
@@ -1117,7 +1117,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400902,
+            "linkID": 400901,
             "seq": 2,
             "actID": 50206,
             "actTarget": "TarSelf",
@@ -1126,7 +1126,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 400902,
+            "linkID": 400901,
             "seq": 3,
             "actID": 50405,
             "actTarget": "TarSelf",
@@ -1135,7 +1135,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 400902,
+            "linkID": 400901,
             "seq": 4,
             "actID": 50201,
             "actTarget": "TarSelf",
@@ -1144,7 +1144,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 401002,
+            "linkID": 401001,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarSelf ",
@@ -1153,7 +1153,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 401002,
+            "linkID": 401001,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarSelf",
@@ -1162,7 +1162,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 401002,
+            "linkID": 401001,
             "seq": 3,
             "actID": 50202,
             "actTarget": "TarSelf",
@@ -1171,7 +1171,7 @@
             "visibleState": 0
         },
         {
-            "linkID": 401102,
+            "linkID": 401101,
             "seq": 1,
             "actID": 50301,
             "actTarget": "TarEnemiesAll",
@@ -1180,7 +1180,7 @@
             "visibleState": 1
         },
         {
-            "linkID": 401102,
+            "linkID": 401101,
             "seq": 2,
             "actID": 50302,
             "actTarget": "TarEnemiesAll",

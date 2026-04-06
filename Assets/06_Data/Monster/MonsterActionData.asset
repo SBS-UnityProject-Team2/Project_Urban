@@ -16,16 +16,464 @@ MonoBehaviour:
   - actionId: 8000
     actionName: Charge
     koreanName: "\uB3CC\uC9C4"
+    actionType: 1
     linkId: 800001
     description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
   - actionId: 8001
     actionName: Bite
     koreanName: "\uBB3C\uAE30"
+    actionType: 9
     linkId: 800101
     description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
       \uCD9C\uD608\uC744 \uBD80\uC5EC\uD55C\uB2E4."
   - actionId: 8002
     actionName: Screw
     koreanName: "\uD6C4\uBE44\uAE30"
+    actionType: 1
     linkId: 800201
     description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C 2\uD68C \uAC00\uD55C\uB2E4."
+  - actionId: 8003
+    actionName: ScarpGun
+    koreanName: "\uC2A4\uD06C\uB7A9 \uAC74"
+    actionType: 1
+    linkId: 800301
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8004
+    actionName: CrudeMolotv
+    koreanName: "\uC870\uC7A1\uD55C \uD654\uC5FC\uBCD1"
+    actionType: 9
+    linkId: 800401
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD654\uC0C1\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8005
+    actionName: BurntArm
+    koreanName: "\uB2EC\uAD88\uC9C4 \uD314"
+    actionType: 5
+    linkId: 800501
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC99D\uAC15\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8006
+    actionName: PsychicBeat
+    koreanName: "\uC0AC\uC774\uD0A5 \uBE44\uD2B8"
+    actionType: 1
+    linkId: 800601
+    description: "\uB300\uC0C1\uC5D0 \uC0AC\uC774\uD0A5 \uD53C\uD574\uB97C 2\uD68C
+      \uAC00\uD55C\uB2E4."
+  - actionId: 8007
+    actionName: RepulsiveMatrix
+    koreanName: "\uCC99\uB825\uC7A5"
+    actionType: 3
+    linkId: 800701
+    description: "\uB300\uC0C1\uC5D0 \uC0AC\uC774\uD0A5 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8008
+    actionName: Bash
+    koreanName: "\uD6C4\uB824\uCE58\uAE30"
+    actionType: 9
+    linkId: 800801
+    description: "\uB300\uC0C1\uC5D0 \uC0DD\uCCB4 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC57D\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8009
+    actionName: CorrosiveShock
+    koreanName: "\uBD80\uC2DD \uCDA9\uACA9"
+    actionType: 9
+    linkId: 800901
+    description: "\uB300\uC0C1\uC5D0 \uC0DD\uCCB4 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD30C\uAC11\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8010
+    actionName: MultipleFire
+    koreanName: "\uC5F0\uC0AC"
+    actionType: 1
+    linkId: 801001
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8011
+    actionName: Steal
+    koreanName: "\uD6D4\uCE58\uAE30"
+    actionType: 1
+    linkId: 801101
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uACE8\uB4DC\uB97C \uAC08\uCDE8\uD55C\uB2E4."
+  - actionId: 8012
+    actionName: SandSpray
+    koreanName: "\uBAA8\uB798 \uBFCC\uB9AC\uAE30"
+    actionType: 9
+    linkId: 801201
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC57D\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8013
+    actionName: ChainAttack
+    koreanName: "\uC0AC\uC2AC \uD718\uB450\uB974\uAE30"
+    actionType: 9
+    linkId: 801301
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD30C\uAC11\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8014
+    actionName: Stomp
+    koreanName: "\uC9D3\uBC1F\uAE30"
+    actionType: 1
+    linkId: 801401
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8015
+    actionName: Swing
+    koreanName: "\uD718\uB450\uB974\uAE30"
+    actionType: 1
+    linkId: 801501
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8016
+    actionName: HeavyAttack
+    koreanName: "\uC911\uACA9"
+    actionType: 1
+    linkId: 801601
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD30C\uAC11\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8017
+    actionName: BlackOut
+    koreanName: "\uBE14\uB799 \uC544\uC6C3"
+    actionType: 9
+    linkId: 801701
+    description: "\uB300\uC0C1\uC5D0 \uC0AC\uC774\uD0A5 \uD53C\uD574\uB97C 3\uD68C
+      \uAC00\uD558\uBA70, \uD604\uAE30\uC99D\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8018
+    actionName: Hit
+    koreanName: "\uB54C\uB9AC\uAE30"
+    actionType: 1
+    linkId: 801801
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8019
+    actionName: Sludge
+    koreanName: "\uC810\uC561"
+    actionType: 9
+    linkId: 801901
+    description: "\uB300\uC0C1\uC5D0 \uC0DD\uCCB4 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC57D\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8020
+    actionName: Tremor
+    koreanName: "\uB1CC\uC9C4\uD0D5"
+    actionType: 9
+    linkId: 802001
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD0C8\uB825\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8021
+    actionName: StabAndTear
+    koreanName: "\uCC0C\uB974\uACE0 \uBE44\uD2C0\uAE30"
+    actionType: 9
+    linkId: 802101
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uCD9C\uD608\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8022
+    actionName: ThrowingNeedle
+    koreanName: "\uC554\uAE30 \uB358\uC9C0\uAE30"
+    actionType: 9
+    linkId: 802201
+    description: "\uB300\uC0C1\uC5D0 \uBB3C\uB9AC \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC0C1\uCC98\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8023
+    actionName: FallAttack
+    koreanName: "\uB0B4\uB824\uCC0D\uAE30"
+    actionType: 1
+    linkId: 802301
+    description: "\uB300\uC0C1\uC5D0 \uC0DD\uCCB4 \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8024
+    actionName: DirtyBlade
+    koreanName: "\uB354\uB7EC\uC6B4 \uCE7C\uB0A0"
+    actionType: 9
+    linkId: 802401
+    description: "\uB300\uC0C1\uC5D0 \uC0DD\uCCB4 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC911\uB3C5\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8025
+    actionName: Hammering
+    koreanName: "\uB9DD\uCE58\uC9C8"
+    actionType: 9
+    linkId: 802501
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD30C\uAC11\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8026
+    actionName: CombinationAttack
+    koreanName: "\uC5F0\uC18D \uACF5\uACA9"
+    actionType: 1
+    linkId: 802601
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8027
+    actionName: GroundFracture
+    koreanName: "\uB300\uC9C0 \uAC00\uB974\uAE30"
+    actionType: 1
+    linkId: 802701
+    description: "\uB300\uC0C1\uC5D0 \uD30C\uAD34 \uD53C\uD574\uB97C \uAC00\uD55C\uB2E4."
+  - actionId: 8028
+    actionName: Gravity
+    koreanName: "\uC911\uB825"
+    actionType: 9
+    linkId: 802801
+    description: "\uB300\uC0C1\uC5D0 \uC0AC\uC774\uD0A5 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uC57D\uD654\uC640 \uB454\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8029
+    actionName: Echoes
+    koreanName: "\uBA54\uC544\uB9AC"
+    actionType: 9
+    linkId: 802901
+    description: "\uB300\uC0C1\uC5D0 \uC0AC\uC774\uD0A5 \uD53C\uD574\uB97C \uAC00\uD558\uBA70,
+      \uD0C8\uB825\uACFC \uD604\uAE30\uC99D\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8200
+    actionName: Curl
+    koreanName: "\uC6C5\uD06C\uB9AC\uAE30"
+    actionType: 2
+    linkId: 820001
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8201
+    actionName: Smoke
+    koreanName: "\uC5F0\uB9C9"
+    actionType: 2
+    linkId: 820101
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8202
+    actionName: ScrapShield
+    koreanName: "\uACE0\uCCA0 \uBC29\uD328"
+    actionType: 2
+    linkId: 820201
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uD30C\uAC11\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8203
+    actionName: HardenPill
+    koreanName: "\uACBD\uD654 \uC57D\uBB3C"
+    actionType: 6
+    linkId: 820301
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uC7A5\uAC11\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8204
+    actionName: RegenCell
+    koreanName: "\uC7AC\uC0DD\uD558\uB294 \uCCB4\uC870\uC9C1"
+    actionType: 6
+    linkId: 820401
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uC7AC\uC0DD\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8205
+    actionName: Barrier
+    koreanName: "\uBC30\uB9AC\uC5B4"
+    actionType: 2
+    linkId: 820501
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8206
+    actionName: Rush
+    koreanName: "\uC57D\uC9C4"
+    actionType: 6
+    linkId: 820601
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uC99D\uAC15\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8207
+    actionName: ChainGuard
+    koreanName: "\uC0AC\uC2AC \uB450\uB974\uAE30"
+    actionType: 2
+    linkId: 820701
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8208
+    actionName: DefensiveVapor
+    koreanName: "\uACBD\uD654 \uC99D\uAE30"
+    actionType: 2
+    linkId: 820801
+    description: "\uC544\uAD70 \uC804\uCCB4\uAC00 \uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8209
+    actionName: Fume
+    koreanName: "\uC5F0\uAE30 \uD53C\uC6B0\uAE30"
+    actionType: 10
+    linkId: 820901
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uB300\uC0C1\uC5D0
+      \uB454\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8210
+    actionName: TerribleWall
+    koreanName: "\uB054\uCC0D\uD55C \uBCBD"
+    actionType: 6
+    linkId: 821001
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uD0C4\uC131\uB9C9\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8211
+    actionName: Posing
+    koreanName: "\uD3EC\uC9D5"
+    actionType: 2
+    linkId: 821101
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8212
+    actionName: GatheringStrength
+    koreanName: "\uD798 \uBAA8\uC73C\uAE30"
+    actionType: 6
+    linkId: 821201
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uBC84\uC2A4\uD2B8\uC640
+      \uC9D1\uC911 \uC790\uC138\uB97C \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8213
+    actionName: EnergyTune
+    koreanName: "\uC5D0\uB108\uC9C0 \uC870\uC728"
+    actionType: 6
+    linkId: 821301
+    description: "\uBC29\uC5B4\uB9C9\uC744 \uD68D\uB4DD\uD558\uBA70, \uCF54\uD305\uC744
+      \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8400
+    actionName: Sharpening
+    koreanName: "\uCE7C\uB0A0 \uC138\uC6B0\uAE30"
+    actionType: 4
+    linkId: 840001
+    description: "\uBC84\uC2A4\uD2B8\uB97C \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8401
+    actionName: EnhanceBody
+    koreanName: "\uAC15\uCCB4\uD654"
+    actionType: 4
+    linkId: 840101
+    description: "\uC7A5\uAC11\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8402
+    actionName: GhostPill
+    koreanName: "\uC720\uB839\uD654 \uC57D\uBB3C"
+    actionType: 4
+    linkId: 840201
+    description: "\uB354\uBBF8\uB97C \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8403
+    actionName: ToxicSpore
+    koreanName: "\uB3C5\uC131 \uD3EC\uC790"
+    actionType: 4
+    linkId: 840301
+    description: "\uB300\uC0C1\uC5D0 \uCD94\uAC00 \uD53C\uD574\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8404
+    actionName: Enrage
+    koreanName: "\uACA9\uB178"
+    actionType: 4
+    linkId: 840401
+    description: "\uC99D\uAC15\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8405
+    actionName: Reload
+    koreanName: "\uD0C4\uD658 \uC7A5\uC804"
+    actionType: 4
+    linkId: 840501
+    description: "\uC18C\uC774\uD0C4\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8406
+    actionName: DefiledInjection
+    koreanName: "\uC624\uC5FC\uB41C \uC8FC\uC0AC"
+    actionType: 4
+    linkId: 840601
+    description: "\uC99D\uAC15\uC744 \uD68D\uB4DD\uD558\uBA70, \uBC29\uC5B4 \uC18D\uC131\uC744
+      \uC0DD\uCCB4\uB85C \uBCC0\uACBD\uD55C\uB2E4."
+  - actionId: 8407
+    actionName: HardDrink
+    koreanName: "\uC220 \uB9C8\uC2DC\uAE30"
+    actionType: 4
+    linkId: 840701
+    description: "\uC99D\uAC15\uC744 \uD68D\uB4DD\uD558\uBA70, \uCCB4\uB825\uC744
+      \uC783\uB294\uB2E4."
+  - actionId: 8408
+    actionName: AnointingRitual
+    koreanName: "\uAE30\uB984 \uC138\uB840 \uC758\uC2DD"
+    actionType: 4
+    linkId: 840801
+    description: "\uB9E4 \uD134\uB9C8\uB2E4 \uC99D\uAC15\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8409
+    actionName: HealingVapor
+    koreanName: "\uD68C\uBCF5 \uC99D\uAE30"
+    actionType: 64
+    linkId: 840901
+    description: "\uC544\uAD70 \uC804\uCCB4\uAC00 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."
+  - actionId: 8410
+    actionName: EnchantVapor
+    koreanName: "\uAC15\uD654 \uC99D\uAE30"
+    actionType: 4
+    linkId: 841001
+    description: "\uC544\uAD70 \uC804\uCCB4\uAC00 \uC99D\uAC15\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8411
+    actionName: PowerUp
+    koreanName: "\uADFC\uB825 \uC99D\uAC15"
+    actionType: 4
+    linkId: 841101
+    description: "\uC99D\uAC15\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8412
+    actionName: OverCharge
+    koreanName: "\uACFC\uC804\uD558"
+    actionType: 4
+    linkId: 841201
+    description: "\uC804\uAE30 \uC7A5\uB9C9\uC744 \uD68D\uB4DD\uD55C\uB2E4."
+  - actionId: 8600
+    actionName: Roar
+    koreanName: "\uD3EC\uD6A8"
+    actionType: 8
+    linkId: 841301
+    description: "\uB300\uC0C1\uC5D0 \uC57D\uD654\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8601
+    actionName: ArmorBreak
+    koreanName: "\uBC29\uC5B4\uAD6C \uBD80\uC218\uAE30"
+    actionType: 8
+    linkId: 841401
+    description: "\uB300\uC0C1\uC5D0 \uC7A5\uAC11\uACFC \uD30C\uAC11\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8602
+    actionName: OilVapor
+    koreanName: "\uC720\uC99D\uAE30"
+    actionType: 8
+    linkId: 841501
+    description: "\uB300\uC0C1\uC5D0 \uD0C8\uB825\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8603
+    actionName: OverheatedBody
+    koreanName: "\uACFC\uC5F4\uB41C \uBAB8\uCCB4"
+    actionType: 8
+    linkId: 841601
+    description: "\uD654\uC0C1\uC744 \uD68D\uB4DD\uD558\uBA70, \uB300\uC0C1\uC5D0
+      \uD654\uC0C1\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8604
+    actionName: Pollution
+    koreanName: "\uC624\uC5FC"
+    actionType: 8
+    linkId: 841701
+    description: "\uB300\uC0C1\uC5D0 \uC99D\uAC15\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8605
+    actionName: ToxicGas
+    koreanName: "\uB3C5\uC131 \uAC00\uC2A4"
+    actionType: 8
+    linkId: 841801
+    description: "\uB300\uC0C1\uC5D0 \uC911\uB3C5\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8606
+    actionName: PutridAir
+    koreanName: "\uC5ED\uACA8\uC6B4 \uACF5\uAE30"
+    actionType: 8
+    linkId: 841901
+    description: "\uB300\uC0C1\uC5D0 \uD0C8\uB825\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8607
+    actionName: Defilement
+    koreanName: "\uBD88\uACB0\uD568"
+    actionType: 8
+    linkId: 842001
+    description: "\uB300\uC0C1\uC5D0 \uAC10\uC5FC\uC744 \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8608
+    actionName: MindStake
+    koreanName: "\uC815\uC2E0 \uB9D0\uB69D"
+    actionType: 8
+    linkId: 842101
+    description: "\uB300\uC0C1\uC5D0 \uC0C1\uCC98\uB97C \uBD80\uC5EC\uD55C\uB2E4."
+  - actionId: 8800
+    actionName: Escape
+    koreanName: "\uB3C4\uC8FC"
+    actionType: 16
+    linkId: 870001
+    description: "\uC804\uD22C\uC5D0\uC11C \uC774\uD0C8, \uD574\uB2F9 \uD589\uB3D9\uC73C\uB85C
+      \uC804\uD22C \uC885\uB8CC \uC2DC \uD574\uB2F9 \uAC1C\uCCB4\uC758 \uBCF4\uC0C1
+      \uC0AD\uC81C"
+  - actionId: 8801
+    actionName: Shambling
+    koreanName: "\uBC84\uBC85\uB304\uB2E4"
+    actionType: 32
+    linkId: 870101
+    description: "\uC544\uBB34 \uD589\uB3D9\uB3C4 \uD558\uC9C0 \uC54A\uB294\uB2E4."
+  - actionId: 8802
+    actionName: CallingShriek
+    koreanName: "\uBD80\uB974\uB294 \uAD34\uC131"
+    actionType: 128
+    linkId: 870201
+    description: "\uAC10\uC5FC\uC790\uB97C 2\uAC1C\uCCB4 \uC18C\uD658\uD55C\uB2E4.(\uC18C\uD658\uB428
+      \uBD80\uC5EC) \uD574\uB2F9 \uD328\uD134\uC740 \uC5F0\uC18D \uC0AC\uC6A9\uD560
+      \uC218 \uC5C6\uB2E4. "
+  - actionId: 8803
+    actionName: Absorbtion
+    koreanName: "\uD761\uC218"
+    actionType: 256
+    linkId: 870301
+    description: "\uAC10\uC5FC\uC790 1\uAC1C\uCCB4\uB97C \uC8FD\uC774\uACE0 \uCD5C\uB300
+      \uCCB4\uB825\uC758 10%\uB97C \uD68C\uBCF5\uD55C\uB2E4. \uAC10\uC5FC\uC790\uAC00
+      \uC874\uC7AC\uD574\uC57C\uB9CC \uC0AC\uC6A9\uD55C\uB2E4. \uD574\uB2F9 \uD328\uD134\uC740
+      \uC5F0\uC18D \uC0AC\uC6A9\uD560 \uC218 \uC5C6\uB2E4."
+  - actionId: 8804
+    actionName: Rest
+    koreanName: "\uC228\uACE0\uB974\uAE30"
+    actionType: 32
+    linkId: 870401
+    description: "\uC544\uBB34 \uD589\uB3D9\uB3C4 \uD558\uC9C0 \uC54A\uB294\uB2E4."

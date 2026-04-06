@@ -43,7 +43,7 @@ public static class Physical
 
     public static void Rollout(Actor target)
     {
-        Attack(target, 7);
+        AddProtect(Battle.Instance.Player, 7);
         GiveEffect(Battle.Instance.Player, StatusEffectName.Preparation, 1, 1);
     }
 
@@ -56,6 +56,8 @@ public static class Physical
         };
         payload.AddTarget(target);
         payload.Write(2);
+
+        ActionBus.Dispatch(payload);
     }
 
     public static void Dummy(Actor target)
@@ -164,6 +166,19 @@ public static class Physical
         stPayload.Write(effectName);
         stPayload.Write(duration);
         ActionBus.Dispatch(stPayload);
+    }
+
+    private static void AddProtect(Actor target, int blockPoint)
+    {
+        ActionPayload payload = new()
+        {
+            actionId = ActorAction.AddBlock,
+            source = target
+        };
+        payload.AddTarget(target);
+        payload.Write(blockPoint);
+
+        ActionBus.Dispatch(payload);
     }
     #endregion
 }

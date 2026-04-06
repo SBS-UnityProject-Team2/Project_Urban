@@ -5,10 +5,14 @@
 */
 
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class Monsters : MonoBehaviour
 {
+    [Header("Align Settings")]
+    [SerializeField] private float spacing;
+
     private Monster monsterPrefab;
     private readonly List<Monster> monsters = new();
 
@@ -20,11 +24,10 @@ public class Monsters : MonoBehaviour
     {
         get
         {
-            if (monsterPrefab == null)
-                monsterPrefab = MonsterManager.Instance.GetPrefab();
+            monsterPrefab = monsterPrefab != null ? monsterPrefab : MonsterManager.Instance.GetPrefab();
 
             return monsterPrefab;
-        }
+        }   
     }
 
     public void Init(int monsterScore, MonsterLevel monsterLevel)
@@ -49,12 +52,15 @@ public class Monsters : MonoBehaviour
             CreateRandomMonster(monsterScore, out Monster monster);
             monsters.Add(monster);
         }
+
+        Align();
     }
     
     public void Init(MonsterName monsterName)
     {
         MonsterDataEntry monsterData = MonsterManager.Instance.GetMonsterData(monsterName);
         monsters.Add(CreateMonster(monsterData));
+        Align();
     }
 
     private bool CreateRandomMonster(int score, out Monster monster)
@@ -85,8 +91,18 @@ public class Monsters : MonoBehaviour
         return monster;
     }
 
-    private async void Align()
+    private void Align()
     {
-        
+        int count = monsters.Count;
+        if (count == 0) return;
+
+        float totalWidth = (count - 1) * spacing;
+        float startX = -totalWidth / 2f;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 target = new Vector3(startX + i * spacing, 0f, 0f);
+            Util.MoveTo(monsters[i].gameObject, target, 0.3f).Forget();
+        }
     }
 }

@@ -46,6 +46,11 @@ public class MonsterData : ScriptableObject
         return monsterLevelMap[level];
     }
 
+    public Sprite GetMonsterImage(MonsterName monsterName)
+    {
+        return monsterImageMap[monsterName];
+    }
+
     private void OnEnable()
     {
         BuildMonsterDataMap();
@@ -119,6 +124,7 @@ public class MonsterData : ScriptableObject
                     name = parsedName,
                     koreanName = jsonMonster.koreanName,
                     element = parsedElement,
+                    hp = jsonMonster.hp,
                     score = jsonMonster.score,
                     phaseStep = allPhaseSteps[index].Select(p => new PhaseStepEntry(p[0], p[1])).ToList(),
                     pattern = allPatterns[index].Select(phase =>
@@ -243,6 +249,7 @@ public class JsonMonsterData
     public string name;
     public string koreanName;
     public string element;
+    public int hp;
     public int score;
 }
 
@@ -255,6 +262,7 @@ public class MonsterDataEntry
     public MonsterName name;
     public string koreanName;
     public ElementType element;
+    public int hp;
     public int score;
     public List<PhaseStepEntry> phaseStep;
     public List<PhaseEntry> pattern;

@@ -13,19 +13,927 @@ MonoBehaviour:
   m_Name: ActionData
   m_EditorClassIdentifier: Assembly-CSharp::ActionData
   entries:
-  - id: 100001
+  - linkID: 100001
     seq: 1
-    condId: 0
-    conTarget: 0
-    op: 0
     actId: 50001
-    actTarget: 2
-    actValue: 5
-  - id: 100101
+    actTarget: TarEnemy
+    actParam: ElemPhysics
+    actValue: 8
+    visibleState: 1
+  - linkID: 100101
     seq: 1
-    condId: 0
-    conTarget: 0
-    op: 0
     actId: 50101
-    actTarget: 1
+    actTarget: TarSelf
+    actParam: None
+    actValue: 8
+    visibleState: 1
+  - linkID: 100201
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: FltElem
+    actValue: 10
+    visibleState: 1
+  - linkID: 100301
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPhysics
+    actValue: 18
+    visibleState: 1
+  - linkID: 100401
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPhysics
+    actValue: 12
+    visibleState: 1
+  - linkID: 100401
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 500
+    actValue: 2
+    visibleState: 1
+  - linkID: 100401
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 500
+    actValue: 3
+    visibleState: 0
+  - linkID: 100501
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPhysics
+    actValue: 14
+    visibleState: 1
+  - linkID: 100501
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 509
+    actValue: 1
+    visibleState: 1
+  - linkID: 100501
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 509
+    actValue: 1
+    visibleState: 0
+  - linkID: 100501
+    seq: 4
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 100601
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 10
+    visibleState: 1
+  - linkID: 100601
+    seq: 2
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 2
+    actValue: 1
+    visibleState: 0
+  - linkID: 100601
+    seq: 3
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 2
+    actValue: 1
+    visibleState: 1
+  - linkID: 100701
+    seq: 1
+    actId: 50201
+    actTarget: TarSelf
+    actParam: LocHand
+    actValue: 2
+    visibleState: 1
+  - linkID: 100801
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 3
+    actValue: -2
+    visibleState: 0
+  - linkID: 100801
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 3
+    actValue: 2
+    visibleState: 1
+  - linkID: 100801
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 200001
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemRuin
+    actValue: 8
+    visibleState: 1
+  - linkID: 200001
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 505
+    actValue: -3
+    visibleState: 0
+  - linkID: 200001
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 505
+    actValue: 3
+    visibleState: 1
+  - linkID: 200101
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemRuin
+    actValue: 18
+    visibleState: 1
+  - linkID: 200101
+    seq: 2
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 505
+    actValue: -3
+    visibleState: 0
+  - linkID: 200101
+    seq: 3
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 505
+    actValue: 6
+    visibleState: 1
+  - linkID: 200201
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemRuin
+    actValue: 8
+    visibleState: 1
+  - linkID: 200201
+    seq: 2
+    actId: 50212
+    actTarget: TarSelf
+    actParam: LocDeck
+    actValue: 1
+    visibleState: 0
+  - linkID: 200201
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 200301
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemRuin
+    actValue: 10
+    visibleState: 1
+  - linkID: 200401
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemiesAll
+    actParam: ElemRuin
+    actValue: 8
+    visibleState: 1
+  - linkID: 200401
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemiesAll
+    actParam: 505
+    actValue: -3
+    visibleState: 0
+  - linkID: 200401
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemiesAll
+    actParam: 505
     actValue: 5
+    visibleState: 1
+  - linkID: 200401
+    seq: 4
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 505
+    actValue: -3
+    visibleState: 0
+  - linkID: 200401
+    seq: 5
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 505
+    actValue: 5
+    visibleState: 1
+  - linkID: 200501
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 13
+    visibleState: 1
+  - linkID: 200501
+    seq: 2
+    actId: 50305
+    actTarget: TarSelf
+    actParam: 'BuffID : 7, BuffID : 11'
+    actValue: 0
+    visibleState: 0
+  - linkID: 200501
+    seq: 3
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 3
+    actValue: 2
+    visibleState: 1
+  - linkID: 200501
+    seq: 4
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 3
+    actValue: 1
+    visibleState: 0
+  - linkID: 200601
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 6
+    visibleState: 1
+  - linkID: 200601
+    seq: 2
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 3
+    visibleState: 1
+  - linkID: 200601
+    seq: 3
+    actId: 50305
+    actTarget: TarSelf
+    actParam: 'BuffID : 7, BuffID : 11'
+    actValue: 0
+    visibleState: 0
+  - linkID: 200601
+    seq: 4
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 3
+    actValue: 2
+    visibleState: 1
+  - linkID: 200601
+    seq: 5
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 3
+    actValue: 1
+    visibleState: 0
+  - linkID: 200701
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 5
+    actValue: 1
+    visibleState: 0
+  - linkID: 200701
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 5
+    actValue: 4
+    visibleState: 1
+  - linkID: 200801
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 0
+    actValue: -2
+    visibleState: 0
+  - linkID: 200801
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 0
+    actValue: 3
+    visibleState: 1
+  - linkID: 200901
+    seq: 1
+    actId: 50104
+    actTarget: TarSelf
+    actParam: None
+    actValue: 3
+    visibleState: 1
+  - linkID: 200901
+    seq: 2
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 505
+    actValue: -3
+    visibleState: 0
+  - linkID: 200901
+    seq: 3
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 505
+    actValue: 4
+    visibleState: 1
+  - linkID: 200901
+    seq: 4
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 201001
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 6
+    actValue: -2
+    visibleState: 0
+  - linkID: 201001
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 6
+    actValue: 1
+    visibleState: 1
+  - linkID: 201001
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 201101
+    seq: 1
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 507
+    actValue: 1
+    visibleState: 0
+  - linkID: 201101
+    seq: 2
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 507
+    actValue: 2
+    visibleState: 1
+  - linkID: 201201
+    seq: 1
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 505
+    actValue: 3
+    visibleState: 1
+  - linkID: 201201
+    seq: 2
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 300001
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPsychic
+    actValue: 8
+    visibleState: 1
+  - linkID: 300001
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 508
+    actValue: -2
+    visibleState: 0
+  - linkID: 300001
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 508
+    actValue: 1
+    visibleState: 1
+  - linkID: 300101
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPsychic
+    actValue: 10
+    visibleState: 1
+  - linkID: 300101
+    seq: 2
+    actId: 50201
+    actTarget: TarSelf
+    actParam: LocHand
+    actValue: 1
+    visibleState: 0
+  - linkID: 300201
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPsychic
+    actValue: 10
+    visibleState: 1
+  - linkID: 300201
+    seq: 2
+    actId: 50104
+    actTarget: TarSelf
+    actParam: None
+    actValue: 1
+    visibleState: 0
+  - linkID: 300201
+    seq: 3
+    actId: 50104
+    actTarget: TarSelf
+    actParam: None
+    actValue: 1
+    visibleState: 0
+  - linkID: 300301
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemiesAll
+    actParam: ElemPsychic
+    actValue: 10
+    visibleState: 1
+  - linkID: 300301
+    seq: 2
+    actId: 50001
+    actTarget: TarEnemiesAll
+    actParam: ElemPsychic
+    actValue: 10
+    visibleState: 1
+  - linkID: 300401
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemPsychic
+    actValue: 24
+    visibleState: 1
+  - linkID: 300401
+    seq: 2
+    actId: 50210
+    actTarget: TarSelf
+    actParam: Turn
+    actValue: 1
+    visibleState: 2
+  - linkID: 300501
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 13
+    visibleState: 1
+  - linkID: 300501
+    seq: 2
+    actId: 50305
+    actTarget: TarSelf
+    actParam: 'BuffID : 4, BuffID : 11'
+    actValue: 0
+    visibleState: 0
+  - linkID: 300501
+    seq: 3
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 7
+    actValue: 2
+    visibleState: 1
+  - linkID: 300501
+    seq: 4
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 7
+    actValue: 1
+    visibleState: 0
+  - linkID: 300601
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 8
+    actValue: -2
+    visibleState: 0
+  - linkID: 300601
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 8
+    actValue: 4
+    visibleState: 1
+  - linkID: 300701
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 9
+    actValue: 3
+    visibleState: 1
+  - linkID: 300701
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 9
+    actValue: 1
+    visibleState: 0
+  - linkID: 300701
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 300801
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 10
+    actValue: 2
+    visibleState: 1
+  - linkID: 300801
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 10
+    actValue: 1
+    visibleState: 0
+  - linkID: 300801
+    seq: 3
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 509
+    actValue: 1
+    visibleState: 1
+  - linkID: 300801
+    seq: 4
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 509
+    actValue: 1
+    visibleState: 0
+  - linkID: 300801
+    seq: 5
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 300901
+    seq: 1
+    actId: 50205
+    actTarget: LocDiscardPile
+    actParam: UIGrid
+    actValue: 0
+    visibleState: 0
+  - linkID: 300901
+    seq: 2
+    actId: 50206
+    actTarget: TarSelf
+    actParam: LocHand
+    actValue: 1
+    visibleState: 0
+  - linkID: 300901
+    seq: 3
+    actId: 50405
+    actTarget: TarSelf
+    actParam: None
+    actValue: 0
+    visibleState: 0
+  - linkID: 300901
+    seq: 4
+    actId: 50208
+    actTarget: SelUserSelect
+    actParam: Turn
+    actValue: 0
+    visibleState: 0
+  - linkID: 301001
+    seq: 1
+    actId: 50301
+    actTarget: TarEnemiesAll
+    actParam: 509
+    actValue: 1
+    visibleState: 1
+  - linkID: 301001
+    seq: 2
+    actId: 50302
+    actTarget: TarEnemiesAll
+    actParam: 509
+    actValue: 1
+    visibleState: 0
+  - linkID: 301101
+    seq: 1
+    actId: 50301
+    actTarget: TarEnemiesAll
+    actParam: 501
+    actValue: 3
+    visibleState: 1
+  - linkID: 301101
+    seq: 2
+    actId: 50302
+    actTarget: TarEnemiesAll
+    actParam: 501
+    actValue: 3
+    visibleState: 0
+  - linkID: 400001
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemBio
+    actValue: 20
+    visibleState: 1
+  - linkID: 400001
+    seq: 2
+    actId: 50001
+    actTarget: TarSelf
+    actParam: None
+    actValue: 10
+    visibleState: 0
+  - linkID: 400101
+    seq: 1
+    actId: 50205
+    actTarget: LocHand
+    actParam: UIGrid
+    actValue: 0
+    visibleState: 0
+  - linkID: 400101
+    seq: 2
+    actId: 50206
+    actTarget: LocDiscardPile
+    actParam: SelUserSelect
+    actValue: 0
+    visibleState: 0
+  - linkID: 400101
+    seq: 3
+    actId: 50405
+    actTarget: TarSelf
+    actParam: None
+    actValue: 0
+    visibleState: 0
+  - linkID: 400101
+    seq: 4
+    actId: 50001
+    actTarget: TarEnemyRandomEach
+    actParam: ElemBio
+    actValue: 8
+    visibleState: 1
+  - linkID: 400201
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemBio
+    actValue: 13
+    visibleState: 1
+  - linkID: 400201
+    seq: 2
+    actId: 50301
+    actTarget: TarEnemy
+    actParam: 500
+    actValue: 3
+    visibleState: 1
+  - linkID: 400201
+    seq: 3
+    actId: 50302
+    actTarget: TarEnemy
+    actParam: 500
+    actValue: 3
+    visibleState: 0
+  - linkID: 400301
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemBio
+    actValue: 12
+    visibleState: 1
+  - linkID: 400301
+    seq: 2
+    actId: 50102
+    actTarget: TarSelf
+    actParam: None
+    actValue: 0
+    visibleState: 0
+  - linkID: 400401
+    seq: 1
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemBio
+    actValue: 8
+    visibleState: 1
+  - linkID: 400401
+    seq: 2
+    actId: 50001
+    actTarget: TarEnemy
+    actParam: ElemBio
+    actValue: 8
+    visibleState: 0
+  - linkID: 400501
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 10
+    visibleState: 1
+  - linkID: 400501
+    seq: 2
+    actId: 50305
+    actTarget: TarSelf
+    actParam: 'BuffID : 4, BuffID : 7'
+    actValue: 0
+    visibleState: 0
+  - linkID: 400501
+    seq: 3
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 11
+    actValue: 2
+    visibleState: 1
+  - linkID: 400501
+    seq: 4
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 11
+    actValue: 1
+    visibleState: 0
+  - linkID: 400501
+    seq: 5
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 14
+    actValue: 1
+    visibleState: 0
+  - linkID: 400501
+    seq: 6
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 14
+    actValue: 4
+    visibleState: 1
+  - linkID: 400601
+    seq: 1
+    actId: 50101
+    actTarget: TarSelf
+    actParam: None
+    actValue: 8
+    visibleState: 1
+  - linkID: 400601
+    seq: 2
+    actId: 50305
+    actTarget: TarSelf
+    actParam: 'BuffID : 4, BuffID : 7'
+    actValue: 0
+    visibleState: 0
+  - linkID: 400601
+    seq: 3
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 11
+    actValue: 2
+    visibleState: 1
+  - linkID: 400601
+    seq: 4
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 11
+    actValue: 1
+    visibleState: 0
+  - linkID: 400601
+    seq: 5
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 15
+    actValue: 1
+    visibleState: 0
+  - linkID: 400601
+    seq: 6
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 15
+    actValue: 2
+    visibleState: 1
+  - linkID: 400701
+    seq: 1
+    actId: 50205
+    actTarget: LocHand
+    actParam: UIGrid
+    actValue: 0
+    visibleState: 0
+  - linkID: 400701
+    seq: 2
+    actId: 50206
+    actTarget: TarSelf
+    actParam: LocDiscardPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 400701
+    seq: 3
+    actId: 50405
+    actTarget: TarSelf
+    actParam: None
+    actValue: 0
+    visibleState: 0
+  - linkID: 400701
+    seq: 4
+    actId: 50104
+    actTarget: TarSelf
+    actParam: None
+    actValue: 2
+    visibleState: 1
+  - linkID: 400801
+    seq: 1
+    actId: 50301
+    actTarget: TarSelf
+    actParam: 12
+    actValue: -3
+    visibleState: 0
+  - linkID: 400801
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 12
+    actValue: 5
+    visibleState: 1
+  - linkID: 400801
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocExhaustPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 400901
+    seq: 1
+    actId: 50205
+    actTarget: LocHand
+    actParam: UIGrid
+    actValue: 0
+    visibleState: 0
+  - linkID: 400901
+    seq: 2
+    actId: 50206
+    actTarget: TarSelf
+    actParam: LocDiscardPile
+    actValue: 1
+    visibleState: 1
+  - linkID: 400901
+    seq: 3
+    actId: 50405
+    actTarget: TarSelf
+    actParam: None
+    actValue: 0
+    visibleState: 0
+  - linkID: 400901
+    seq: 4
+    actId: 50201
+    actTarget: TarSelf
+    actParam: LocHand
+    actValue: 3
+    visibleState: 1
+  - linkID: 401001
+    seq: 1
+    actId: 50301
+    actTarget: 'TarSelf '
+    actParam: 13
+    actValue: -2
+    visibleState: 0
+  - linkID: 401001
+    seq: 2
+    actId: 50302
+    actTarget: TarSelf
+    actParam: 13
+    actValue: 1
+    visibleState: 1
+  - linkID: 401001
+    seq: 3
+    actId: 50202
+    actTarget: TarSelf
+    actParam: LocDiscardPile
+    actValue: 1
+    visibleState: 0
+  - linkID: 401101
+    seq: 1
+    actId: 50301
+    actTarget: TarEnemiesAll
+    actParam: 500
+    actValue: 3
+    visibleState: 1
+  - linkID: 401101
+    seq: 2
+    actId: 50302
+    actTarget: TarEnemiesAll
+    actParam: 500
+    actValue: 3
+    visibleState: 0

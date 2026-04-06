@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 #if UNITY_EDITOR
@@ -10,34 +11,34 @@ using System.IO;
 [CreateAssetMenu(fileName = "MonsterActionData", menuName = "Monster/MonsterActionData", order = 0)]
 public class MonsterActionData : ScriptableObject
 {
-    [Header("Monster Pattern Data List")]
+    [Header("Monster Action Data List")]
     [SerializeField] private List<MonsterActionDataEntry> entries = new();
 
-    private readonly Dictionary<int, MonsterActionDataEntry> patternMap = new();
+    private readonly Dictionary<int, MonsterActionDataEntry> actionMap = new();
 
-    public MonsterActionDataEntry this[int patternId]
+    public MonsterActionDataEntry this[int actionId]
     {
-        get => patternMap[patternId];
+        get => actionMap[actionId];
     }
 
     private void OnEnable()
     {
-        BuildPatternMap();
+        BuildActionMap();
     }
 
-    private void BuildPatternMap()
+    private void BuildActionMap()
     {
-        patternMap.Clear();
+        actionMap.Clear();
 
         foreach (MonsterActionDataEntry entry in entries)
-            patternMap[entry.actionId] = entry;
+            actionMap[entry.actionId] = entry;
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Import Monster Pattern Data")]
-    public void ImportMonsterPatternData()
+    [ContextMenu("Import Monster Action Data")]
+    public void ImportMonsterActionData()
     {
-        string jsonPath = EditorUtility.OpenFilePanel("Select Monster Pattern Data JSON", Application.dataPath, "json");
+        string jsonPath = EditorUtility.OpenFilePanel("Select Monster Action Data JSON", Application.dataPath, "json");
         if (string.IsNullOrEmpty(jsonPath))
             throw new ArgumentException($"Can not open {jsonPath}");
 
@@ -48,15 +49,16 @@ public class MonsterActionData : ScriptableObject
 
             entries.Clear();
 
-            foreach (JsonMonsterActionData jsonPattern in jsonWrapper.actions)
+            foreach (JsonMonsterActionData jsonAction in jsonWrapper.actions)
             {
                 MonsterActionDataEntry entry = new()
                 {
-                    actionId = jsonPattern.actionId,
-                    actionName = jsonPattern.actionName,
-                    koreanName = jsonPattern.koreanName,
-                    linkId = jsonPattern.linkId,
-                    description = jsonPattern.description
+                    actionId = jsonAction.ActionID,
+                    actionName = jsonAction.EngName,
+                    koreanName = jsonAction.ActionName,
+                    actionType = ParseActionType(jsonAction.ActionType),
+                    linkId = jsonAction.LinkID,
+                    description = jsonAction.Description
                 };
 
                 entries.Add(entry);
@@ -65,13 +67,22 @@ public class MonsterActionData : ScriptableObject
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
 
-            BuildPatternMap();
-            Debug.Log($"Successfully imported {entries.Count} monster patterns.");
+            BuildActionMap();
+            Debug.Log($"Successfully imported {entries.Count} monster actions.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to import MonsterPatternData JSON: {e.Message}");
+            Debug.LogError($"Failed to import MonsterActionData JSON: {e.Message}");
         }
+    }
+
+    private static MonsterActionType ParseActionType(string raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw)) return MonsterActionType.None;
+
+        return raw.Split('/')
+            .Select(s => Enum.TryParse(s.Trim(), true, out MonsterActionType t) ? t : MonsterActionType.None)
+            .Aggregate(MonsterActionType.None, (a, b) => a | b);
     }
 #endif
 }
@@ -86,11 +97,12 @@ public class JsonMonsterActionWrapper
 [Serializable]
 public class JsonMonsterActionData
 {
-    public int actionId;
-    public string actionName;
-    public string koreanName;
-    public int linkId;
-    public string description;
+    public int ActionID;
+    public string ActionName;
+    public string EngName;
+    public string ActionType;
+    public int LinkID;
+    public string Description;
 }
 #endif
 
@@ -100,6 +112,7 @@ public class MonsterActionDataEntry
     public int actionId;
     public string actionName;
     public string koreanName;
+    public MonsterActionType actionType;
     public int linkId;
     public string description;
 }

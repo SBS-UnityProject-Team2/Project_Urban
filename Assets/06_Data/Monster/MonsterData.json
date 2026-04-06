@@ -1,4 +1,4 @@
-{
+﻿{
     "monsters" :
     [
         {
@@ -6,19 +6,130 @@
             "name" : "WildDog_A",
             "koreanName" : "들개",
             "element" : "None",
+            "hp" : 15,
             "score" : 1,
-            "phaseStep" : 
-            [
-                [0, 0]
-            ],
-            "pattern" : 
-            [ 
-                [
-                    [8000], 
-                    [8001],
-                    [8002]
-                ]
-            ]
+            "phaseStep" :  [ [0, 0] ],
+            "pattern" : [ [ [8600], [8000, 8001] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "WildDog_B",
+            "koreanName" : "들개",
+            "element" : "None",
+            "hp" : 18,
+            "score" : 1,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8000, 8001], [8200] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "WildDog_C",
+            "koreanName" : "들개",
+            "element" : "None",
+            "hp" : 21,
+            "score" : 1,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8000], [8200], [8600] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "Straggler_A",
+            "koreanName" : "뒤처진 부랑자",
+            "element" : "None",
+            "hp" : 49,
+            "score" : 2,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8002], [8200], [8400] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "Straggler_B",
+            "koreanName" : "뒤처진 부랑자",
+            "element" : "None",
+            "hp" : 51,
+            "score" : 2,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8201], [8003, 8004] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "Straggler_C",
+            "koreanName" : "뒤처진 부랑자",
+            "element" : "None",
+            "hp" : 53,
+            "score" : 2,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8004], [8200, 8601] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "ArmoredRobber",
+            "koreanName" : "무장 도적",
+            "element" : "None",
+            "hp" : 70,
+            "score" : 3,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8400], [8002], [8201, 8003] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "FeebleZombie_A",
+            "koreanName" : "유약한 감염체",
+            "element" : "Bio",
+            "hp" : 53,
+            "score" : 2,
+            "phaseStep" : [ [53, 0], [0, 0] ],
+            "pattern" : [ [ [8403] ],  [ [8000, 8001] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "FeebleZombie_B",
+            "koreanName" : "유약한 감염체",
+            "element" : "Bio",
+            "hp" : 56,
+            "score" : 2,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8204], [8000, 8008] ] ]
+        },
+        {
+            "level" : "Normal",
+            "name" : "FeebleZombie_C",
+            "koreanName" : "유약한 감염체",
+            "element" : "Bio",
+            "hp" : 59,
+            "score" : 2,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8600], [8000], [8200] ] ]
+        },
+        {
+            "level" : "Elite",
+            "name" : "PowerDevotee",
+            "koreanName" : "화력 추종자",
+            "element" : "Ruin",
+            "hp" : 109,
+            "score" : 5,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8601], [8005], [8202, 8401] ] ]
+        },
+        {
+            "level" : "Elite",
+            "name" : "FrozenPriest",
+            "koreanName" : "얼어붙은 사제",
+            "element" : "Psychic",
+            "hp" : 87,
+            "score" : 5,
+            "phaseStep" : [ [0, 0] ],
+            "pattern" : [ [ [8006, 8007], [8205], [8006, 8007], [8402] ] ]
+        },
+        {
+            "level" : "Boss",
+            "name" : "Usurper",
+            "koreanName" : "강탈자",
+            "element" : "None",
+            "hp" : 164,
+            "score" : 9,
+            "phaseStep" : [ [80, 8406], [0, 0] ],
+            "pattern" : [ [ [8010], [8206], [8004], [8405] ], [ [8008, 8009], [8404], [8008, 8009], [8204] ] ]
         }
     ]
 }
