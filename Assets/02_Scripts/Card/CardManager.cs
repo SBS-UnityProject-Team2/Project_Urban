@@ -36,6 +36,11 @@ public class CardManager : Singleton<CardManager>
     {
         return cardData.GetCardImage(cardName);
     }
+
+    public Sprite GetEnchantCardImage(CardName cardName)
+    {
+        return enchantCardData.GetCardImage(cardName);
+    }
     
 
     public List<ActionDataEntry> GetActionData(int linkId)

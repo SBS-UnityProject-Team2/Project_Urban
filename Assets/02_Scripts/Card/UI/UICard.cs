@@ -15,10 +15,20 @@ public class UICard : MonoBehaviour
     public void Init(DeckCard cardInstance)
     {
         CardDataEntry cardData = cardInstance.CardData;
+        cardName = cardInstance.Name;
         
         cardTitle.text = $"{cardData.koreanName}";
         cardDesc.text = cardData.GetDescription(cardInstance.Name);
         cardCost.text = $"{cardData.cost}";
         cardImage.sprite = CardManager.Instance.GetCardImage(cardInstance.Name);
+    }
+
+    public void Init(CardDataEntry cardData, Sprite image)
+    {
+        cardName = cardData.cardName;
+        cardTitle.text = cardData.koreanName;
+        cardDesc.text = cardData.GetDescription(cardData.cardName, true);
+        cardCost.text = $"{cardData.cost}";
+        cardImage.sprite = image;
     }
 }

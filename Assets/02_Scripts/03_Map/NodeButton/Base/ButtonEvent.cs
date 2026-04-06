@@ -8,8 +8,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     [SerializeField] private GameObject UI_Map;
     [SerializeField] private GameObject UI_EnterShelter;
     [SerializeField] private GameObject Panel_ShelterPopup;
-    [SerializeField] private GameObject Panel_ShelterCardEnchantPopup;
-    [SerializeField] private GameObject Panel_EnchantCardPopup;
+
     [SerializeField] private GameObject UI_Event;
 
     public void EnterNodeType(NodeType nodeType)
@@ -100,10 +99,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_Map.SetActive(false);
         UI_EnterShelter.SetActive(true);
 
-        if (BgmManager.Instance != null)
-        {
-            BgmManager.Instance.PlayRestSound();
-        }
+        
+        // BgmManager.Instance.PlayRestSound();
+        
     }
 
     public void OnClickEnterShelter()
@@ -111,12 +109,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_EnterShelter.SetActive(false);
         Panel_ShelterPopup.SetActive(true);
 
-        BackgroundManager.Instance.SetRestBg();
-    }
-
-    public void OnClickShelterCardEnchant()
-    {
-        Panel_ShelterCardEnchantPopup.SetActive(true);
+        // BackgroundManager.Instance.SetRestBg();
     }
 
     public void OnClickShelterExit()
@@ -126,11 +119,13 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_Shelter.SetActive(false);
         UI_Map.SetActive(true);
 
+        /*
         BackgroundManager.Instance.SetMapBg();
         if (BgmManager.Instance != null)
         {
             BgmManager.Instance.PlayMapSound();
         }
+        */
     }
 
     public void ActiveMap()
@@ -153,10 +148,5 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     {
         UI_Event.SetActive(false);
         UI_Map.SetActive(true);
-    }
-
-    public void OnClickEnchantPopupExit()
-    {
-        Panel_EnchantCardPopup.SetActive(false);
     }
 }

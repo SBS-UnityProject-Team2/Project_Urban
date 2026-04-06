@@ -135,22 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &224115231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224115217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e6196bd5721de4d909916e8e5b55d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnusedCardList
-  cardPrefab: {fileID: 6225411347598948980, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
-  deck: {fileID: 1226701554}
-  panel: {fileID: 224115217}
-  panelContent: {fileID: 809379062}
 --- !u!114 &224115232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +178,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 224115228}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnusedCardList, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &224115233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224115217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c3ef27309f4aa4896b75fdd44b075e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StoreDeckDisplay
+  displayArea: {fileID: 809379062}
+  cardPrefab: {fileID: 513533824014746170, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
+  deckPanel: {fileID: 224115217}
 --- !u!114 &254373781 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7305412783713923824, guid: be31e9e090900404f846f58e0358af57, type: 3}
@@ -351,12 +362,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306691083}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1091682804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &306691087
 MonoBehaviour:
@@ -510,9 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640f99a35674dcb41b5bc1a038bddf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeckManager
-  initialDeckRecipe:
-  - name: 1005
-    count: 3
+  initialDeckRecipe: []
   deck: []
 --- !u!4 &547504112
 Transform:
@@ -522,12 +531,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547504110}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1091682804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &767227405
 PrefabInstance:
@@ -688,14 +697,14 @@ PrefabInstance:
     - target: {fileID: 1404936845328760858, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1256202893}
+      objectReference: {fileID: 0}
     - target: {fileID: 1404936845328760858, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1404936845328760858, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickEnchant
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1404936845328760858, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: onEnable.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -712,14 +721,14 @@ PrefabInstance:
     - target: {fileID: 1953926926290436167, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 224115231}
+      objectReference: {fileID: 224115233}
     - target: {fileID: 1953926926290436167, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClose
+      value: CloseDeckDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 1953926926290436167, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnusedCardList, Assembly-CSharp
+      value: StoreDeckDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1996308151654770061, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_AnchorMax.x
@@ -805,6 +814,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2739152768478221567, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066167419832084049, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_Name
+      value: Yes
+      objectReference: {fileID: 0}
     - target: {fileID: 3653233893451908037, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -880,14 +897,14 @@ PrefabInstance:
     - target: {fileID: 5675684811906558922, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 224115231}
+      objectReference: {fileID: 224115233}
     - target: {fileID: 5675684811906558922, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClick
+      value: OpenDeckDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 5675684811906558922, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnusedCardList, Assembly-CSharp
+      value: StoreDeckDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5970929762376713176, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_AnchorMax.y
@@ -932,6 +949,14 @@ PrefabInstance:
     - target: {fileID: 6182438756392144525, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 949490116}
+    - target: {fileID: 6182438756392144525, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickRemove
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182438756392144525, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RemoveConfirmPopup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6554576866746107680, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1009,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7359087940633805785, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7519112923767657957, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1020,6 +1049,10 @@ PrefabInstance:
     - target: {fileID: 7664966282082829191, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1256202893}
+    - target: {fileID: 7664966282082829191, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickEnchant
       objectReference: {fileID: 0}
     - target: {fileID: 7763427108911019649, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1068,6 +1101,14 @@ PrefabInstance:
     - target: {fileID: 8679846875002885066, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 949490116}
+    - target: {fileID: 8679846875002885066, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickCancel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679846875002885066, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RemoveConfirmPopup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8963224254092206971, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_IgnoreReversedGraphics
@@ -1087,7 +1128,7 @@ PrefabInstance:
       addedObject: {fileID: 224115232}
     - targetCorrespondingSourceObject: {fileID: 3905662986190087366, guid: be31e9e090900404f846f58e0358af57, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 224115231}
+      addedObject: {fileID: 224115233}
     - targetCorrespondingSourceObject: {fileID: 8288058242438756263, guid: be31e9e090900404f846f58e0358af57, type: 3}
       insertIndex: -1
       addedObject: {fileID: 852078140}
@@ -1183,12 +1224,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900085011}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1091682804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949490112 stripped
 GameObject:
@@ -1208,7 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoveConfirmPopup
   RemoveCardUI: {fileID: 1687057303}
-  cardRemovePanel: {fileID: 0}
+  cardRemovePanel: {fileID: 986073473}
 --- !u!114 &983695556 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6151419911812014420, guid: be31e9e090900404f846f58e0358af57, type: 3}
@@ -1241,6 +1282,42 @@ MonoBehaviour:
   cardPrefab: {fileID: 513533824014746170, guid: 65d377e13a306294986ff45b51d74aea, type: 3}
   RemoveCardPanel: {fileID: 986073471}
   removeConfirmPopup: {fileID: 949490116}
+--- !u!1 &1091682803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091682804}
+  m_Layer: 0
+  m_Name: =====Manager=======
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091682804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091682803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1226701555}
+  - {fileID: 547504112}
+  - {fileID: 900085013}
+  - {fileID: 2040039868}
+  - {fileID: 306691086}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226701553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,12 +1355,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226701553}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1091682804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1228342238 stripped
 MonoBehaviour:
@@ -1570,12 +1647,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040039867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1091682804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2040039869
 MonoBehaviour:
@@ -1704,8 +1781,4 @@ SceneRoots:
   - {fileID: 474437541}
   - {fileID: 1552435773}
   - {fileID: 283912084}
-  - {fileID: 900085013}
-  - {fileID: 2040039868}
-  - {fileID: 306691086}
-  - {fileID: 547504112}
-  - {fileID: 1226701555}
+  - {fileID: 1091682804}
