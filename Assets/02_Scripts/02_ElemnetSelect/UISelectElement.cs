@@ -69,7 +69,7 @@ public class UISelectElement : MonoBehaviour
         DeckManager.Instance.AddCards(ruinDeck);
 
         SceneManager.LoadScene(SceneName.Map);
-        BgmManager.Instance.PlayMapSound();
+        SoundManager.Instance.PlayMapSound();
     }
 
     // 2. Ice 속성 선택 버튼 연결
@@ -79,7 +79,7 @@ public class UISelectElement : MonoBehaviour
         DeckManager.Instance.AddCards(psychicDeck);
 
         SceneManager.LoadScene(SceneName.Map);
-        BgmManager.Instance.PlayMapSound();
+        SoundManager.Instance.PlayMapSound();
     }
 
     // 3. Grass 속성 선택 버튼 연결

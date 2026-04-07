@@ -10,9 +10,11 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private HealthController health;
     private CoinController coin;
+    private ArtifactManager artifact;
 
     public HealthController Health => health;
     public CoinController Coin => coin;
+    public ArtifactManager Artifact => artifact;
 
     protected override void Awake()
     {
@@ -22,5 +24,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
         health = new HealthController(maxHp);
         coin = new CoinController(curCoin);
+        artifact = new ArtifactManager();
     }
 }

@@ -1,14 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(Button))]
 public class UnusedCardList : MonoBehaviour
 {
+
     [SerializeField] private UICard cardPrefab;
     [SerializeField] private Deck deck; 
     [SerializeField] private GameObject panel;
     [SerializeField] private Transform panelContent;
+    [SerializeField] private TMP_Text emptyMessageText;
 
     private Button button;
 
@@ -27,10 +29,14 @@ public class UnusedCardList : MonoBehaviour
     {
         panel.SetActive(true);
         CardDisplay.Display(deck.UnusedCardList, panelContent, cardPrefab);
+
+        bool hasCards = deck.UnusedCardList.Count > 0;
+        emptyMessageText.gameObject.SetActive(!hasCards);
     }
 
     public void OnClose()
     {
         panel.SetActive(false);
+        emptyMessageText.gameObject.SetActive(false);
     }
 }

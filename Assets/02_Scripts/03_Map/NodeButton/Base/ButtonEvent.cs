@@ -56,18 +56,18 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterEliteNode()
     {
         EnterBattle(false, 5, 5);
-        if (BgmManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
-            BgmManager.Instance.PlayEliteSound();
+            SoundManager.Instance.PlayEliteSound();
         }
     }
 
     private void EnterBossNode()
     {
         EnterBattle(false, 9, 9);
-        if (BgmManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
-            BgmManager.Instance.PlayBossSound();
+            SoundManager.Instance.PlayBossSound();
         }
     }
 
@@ -79,9 +79,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterStoreNode()
     {
         // Store 씬으로 전환하기 전에 음악 재생 (씬 전환 후는 BgmManager가 초기화 중일 수 있음)
-        if (BgmManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
-            BgmManager.Instance.PlayShopSound();
+            SoundManager.Instance.PlayShopSound();
         }
         
         SceneManager.LoadScene(SceneName.Store);
@@ -100,7 +100,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_EnterShelter.SetActive(true);
 
         
-        // BgmManager.Instance.PlayRestSound();
+        // SoundManager.Instance.PlayRestSound();
         
     }
 
@@ -121,9 +121,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
 
         /*
         BackgroundManager.Instance.SetMapBg();
-        if (BgmManager.Instance != null)
+        if (SoundManager.Instance != null)
         {
-            BgmManager.Instance.PlayMapSound();
+            SoundManager.Instance.PlayMapSound();
         }
         */
     }

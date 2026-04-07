@@ -1,9 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1000)]
 [RequireComponent(typeof(AudioSource))]
-public class BgmManager : Singleton<BgmManager>
+public class SoundManager : Singleton<SoundManager>
 {
+    private const string MasterVolumeKey = "MasterVolume";
+    private const string BgmVolumeKey = "BgmVolume";
+
+    [Header("Volume")]
+    [Range(0f, 1f)] [SerializeField] private float masterVolume = 1f;
+    [Range(0f, 1f)] [SerializeField] private float bgmVolume = 1f;
+
+    [Header("Clip")]
     [SerializeField] private AudioClip titleSound;
     [SerializeField] private AudioClip mapSound;
     [SerializeField] private AudioClip shopSound;
@@ -14,15 +23,66 @@ public class BgmManager : Singleton<BgmManager>
 
     private AudioSource audioSource;
     private float defaultVolume;
+    private float FinalBgmVolume => defaultVolume * masterVolume * bgmVolume;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         defaultVolume = audioSource.volume;
-        
+
+        LoadVolumes();
+    }
+
+    private void Start()
+    {
         audioSource.clip = titleSound;
+        ApplyFinalBgmVolume();
         audioSource.Play();
+    }
+
+    private void LoadVolumes()
+    {
+        masterVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MasterVolumeKey, masterVolume));
+        bgmVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(BgmVolumeKey, bgmVolume));
+    }
+
+    private void SaveVolumes()
+    {
+        PlayerPrefs.SetFloat(MasterVolumeKey, masterVolume);
+        PlayerPrefs.SetFloat(BgmVolumeKey, bgmVolume);
+        PlayerPrefs.Save();
+    }
+
+    private void ApplyFinalBgmVolume()
+    {
+        audioSource.volume = FinalBgmVolume;
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = Mathf.Clamp01(volume);
+        SaveVolumes();
+        ApplyFinalBgmVolume();
+    }
+
+    public void SetBgmVolume(float volume)
+    {
+        bgmVolume = Mathf.Clamp01(volume);
+        SaveVolumes();
+        ApplyFinalBgmVolume();
+    }
+
+    public float GetMasterVolume()
+    {
+        return masterVolume;
+    }
+
+    public float GetBgmVolume()
+    {
+        return bgmVolume;
     }
 
     public void PlayTitleSound()
@@ -63,6 +123,7 @@ public class BgmManager : Singleton<BgmManager>
     private IEnumerator FadeOutIn(AudioClip newClip)
     {
         float startVolume = audioSource.volume;
+        float targetVolume = FinalBgmVolume;
         float elapsed = 0f;
 
         while (elapsed < fadeDuration)
@@ -80,10 +141,10 @@ public class BgmManager : Singleton<BgmManager>
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(0f, defaultVolume, elapsed / fadeDuration);
+            audioSource.volume = Mathf.Lerp(0f, targetVolume, elapsed / fadeDuration);
             yield return null;
         }
 
-        audioSource.volume = defaultVolume;
+        audioSource.volume = targetVolume;
     }
 }

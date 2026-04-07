@@ -14,10 +14,12 @@ public class EventRewardUI : MonoBehaviour
     [SerializeField] private Button randomCardButton;
     [SerializeField] private Button removeCardButton;
     [SerializeField] private Button confirmButton;
+    [SerializeField] private Button selectArtifactButton;
 
     [Header("UI Reference")]
     [SerializeField] private SelectCardUI selectCardUI;
     [SerializeField] private EventRewardCardUI rewardCardUI;
+    // [SerializeField] private EventRewardArtifactUI rewardArtifactUI;
 
     // EventResult에 데이터 전달용
     private readonly EventResultData resultData = new();

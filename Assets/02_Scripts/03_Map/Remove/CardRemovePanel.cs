@@ -9,6 +9,7 @@ public class CardRemovePanel : MonoBehaviour
     [SerializeField] private Transform displayArea;       // ScrollView의 Content
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
     [SerializeField] private GameObject RemoveCardPanel; // 패널
+    [SerializeField] private GameObject emptyDeckMessage; 
     [Header("Popup Settings")]
     [SerializeField] private RemoveConfirmPopup removeConfirmPopup;
 
@@ -19,6 +20,7 @@ public class CardRemovePanel : MonoBehaviour
         List<DeckCard> receivedDeck = DeckManager.Instance.Deck;
 
         RenderDeck(receivedDeck);
+        emptyDeckMessage.SetActive(receivedDeck.Count == 0);
 
         RemoveCardPanel.SetActive(true);
     }
@@ -26,28 +28,22 @@ public class CardRemovePanel : MonoBehaviour
     public void CloseDeckDisplay()
     {
         RemoveCardPanel.SetActive(false);
+        emptyDeckMessage.SetActive(false);
     }
 
     private void RenderDeck(List<DeckCard> deckToRender)
     {
-        UICard uiCardPrefab = cardPrefab != null ? cardPrefab.GetComponent<UICard>() : null;        
+        UICard uiCardPrefab = cardPrefab.GetComponent<UICard>();
+        CardDisplay.Display(deckToRender, displayArea, uiCardPrefab);
 
-        // 1. 초기화
-        foreach (Transform child in displayArea)
+        for (int i = 0; i < deckToRender.Count; i++)
         {
-            Destroy(child.gameObject);
-        }
-
-        // 2. 슬롯 생성
-        foreach (DeckCard cardInstance in deckToRender)
-        {
-            UICard spawnedCard = Instantiate(uiCardPrefab, displayArea);
-            spawnedCard.Init(cardInstance);
+            UICard spawnedCard = displayArea.GetChild(i).GetComponent<UICard>();
             spawnedCard.transform.localScale = Vector3.one;
 
-            Button cardButton = spawnedCard.GetComponent<Button>();            
+            Button cardButton = spawnedCard.GetComponent<Button>();
 
-            DeckCard capturedCard = cardInstance;
+            DeckCard capturedCard = deckToRender[i];
             cardButton.onClick.RemoveAllListeners();
             cardButton.onClick.AddListener(() => removeConfirmPopup.OpenPopup(capturedCard));
         }
