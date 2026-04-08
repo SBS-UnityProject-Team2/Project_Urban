@@ -38,8 +38,6 @@ public class CardEnchantPanel : MonoBehaviour
 
     private void RenderDeck(List<DeckCard> deckToRender)
     {
-        UICard uiCardPrefab = cardPrefab != null ? cardPrefab.GetComponent<UICard>() : null;        
-
         // 1. 초기화
         foreach (Transform child in displayArea)
         {
@@ -49,7 +47,7 @@ public class CardEnchantPanel : MonoBehaviour
         // 2. 슬롯 생성
         foreach (DeckCard cardInstance in deckToRender)
         {
-            UICard spawnedCard = Instantiate(uiCardPrefab, displayArea);
+            UICard spawnedCard = Instantiate(cardPrefab, displayArea).GetComponent<UICard>();
 
             if (cardInstance.IsEnchanted)
             {
@@ -64,7 +62,7 @@ public class CardEnchantPanel : MonoBehaviour
 
             spawnedCard.transform.localScale = Vector3.one;
 
-            Button cardButton = spawnedCard.GetComponent<Button>();            
+            Button cardButton = spawnedCard.GetComponent<Button>();
 
             DeckCard capturedCard = cardInstance;
             cardButton.onClick.RemoveAllListeners();

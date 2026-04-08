@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,30 +32,15 @@ public class CardRemovePanel : MonoBehaviour
 
     private void RenderDeck(List<DeckCard> deckToRender)
     {
-        UICard uiCardPrefab = cardPrefab != null ? cardPrefab.GetComponent<UICard>() : null;        
+        foreach (Transform child in displayArea)
+            Destroy(child.gameObject);
 
         // 1. 초기화
         foreach (Transform child in displayArea)
         {
-            Destroy(child.gameObject);
-        }
+            UICard spawnedCard = Instantiate(cardPrefab, displayArea).GetComponent<UICard>();
 
-        // 2. 슬롯 생성
-        foreach (DeckCard cardInstance in deckToRender)
-        {
-            UICard spawnedCard = Instantiate(uiCardPrefab, displayArea);
-
-            if (cardInstance.IsEnchanted)
-            {
-                CardDataEntry enchantedData = CardManager.Instance.GetEnchantCardData(cardInstance.Name);
-                Sprite enchantedImage = CardManager.Instance.GetEnchantCardImage(cardInstance.Name);
-                spawnedCard.Init(enchantedData, enchantedImage);
-            }
-            else
-            {
-                spawnedCard.Init(cardInstance);
-            }
-
+            spawnedCard.Init(deckToRender[i]);
             spawnedCard.transform.localScale = Vector3.one;
 
             Button cardButton = spawnedCard.GetComponent<Button>();            

@@ -39,9 +39,14 @@ public class Battle : SceneSingleton<Battle>
     {
         deck.Init(DeckManager.Instance.Deck, hand);
         monsters.Init(monsterScore, monsterLevel);
-        PlayerManager.Instance.Artifact.Init(this);
+        InitArtifacts();
 
         StartBattleLoop();
+    }
+
+    private void InitArtifacts()
+    {
+        Artifact.InitOwnedArtifacts(player, PlayerManager.Instance.OwnedArtifacts);
     }
 
     async private void StartBattleLoop()
@@ -65,7 +70,6 @@ public class Battle : SceneSingleton<Battle>
         }
         catch(OperationCanceledException)
         {
-            PlayerManager.Instance.Artifact.Dispose();
             OnBattleEnd?.Invoke();
         }
 

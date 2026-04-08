@@ -1,9 +1,7 @@
 using System.Text;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class EventRewardUI : MonoBehaviour
@@ -19,7 +17,6 @@ public class EventRewardUI : MonoBehaviour
     [Header("UI Reference")]
     [SerializeField] private SelectCardUI selectCardUI;
     [SerializeField] private EventRewardCardUI rewardCardUI;
-    // [SerializeField] private EventRewardArtifactUI rewardArtifactUI;
 
     // EventResult에 데이터 전달용
     private readonly EventResultData resultData = new();
@@ -52,6 +49,9 @@ public class EventRewardUI : MonoBehaviour
         removeCardButton.gameObject.SetActive(false);
         removeCardButton.onClick.RemoveAllListeners();
 
+        selectArtifactButton.gameObject.SetActive(false);
+        selectArtifactButton.onClick.RemoveAllListeners();
+
         confirmButton.onClick.RemoveAllListeners();
         gameObject.SetActive(false);
     }
@@ -59,6 +59,7 @@ public class EventRewardUI : MonoBehaviour
     public void SetReward(EventRewardData eventRewardData)
     {
         resultData.earnHp = eventRewardData.earnHp;
+        resultData.artifact = 0;
 
         if (eventRewardData.earnCoin != 0)
             SetCoinButton(eventRewardData.earnCoin);
@@ -71,6 +72,9 @@ public class EventRewardUI : MonoBehaviour
 
         if (eventRewardData.removeCard != 0)
             SetRemoveCardButton(eventRewardData.removeCard);
+
+        if (eventRewardData.artifact != 0)
+            SetSelectArtifactButton(eventRewardData.artifact);
 
         confirmButton.onClick.AddListener(() => resultCompletionSource.TrySetResult((eventRewardData.scriptCode, BuildResultString())));
     }
@@ -152,6 +156,34 @@ public class EventRewardUI : MonoBehaviour
         removeCardButton.gameObject.SetActive(true);
     }
 
+    private void SetSelectArtifactButton(int artifactCode)
+    {
+        selectArtifactButton.onClick.AddListener(() =>
+        {
+            if (!TryGetArtifactId(artifactCode, out ArtifactId artifactId))
+                return;
+
+            PlayerManager.Instance.AddArtifact(artifactId);
+            resultData.artifact = artifactCode;
+            selectArtifactButton.gameObject.SetActive(false);
+        });
+
+        selectArtifactButton.gameObject.SetActive(true);
+    }
+
+    private bool TryGetArtifactId(int artifactCode, out ArtifactId artifactId)
+    {
+        artifactId = artifactCode switch
+        {
+            1 => ArtifactId.AmmoNecklace,
+            2 => ArtifactId.OvercooledLens,
+            3 => ArtifactId.EntangledVines,
+            _ => ArtifactId.AmmoNecklace,
+        };
+
+        return artifactCode is >= 1 and <= 3;
+    }
+
     private string GetElementKoreanString(int elementCode)
     {
         ElementType element = (ElementType)(elementCode * 1000);
@@ -190,6 +222,10 @@ public class EventRewardUI : MonoBehaviour
         if (removeCard != 0)
             builder.Append($"[{GetKoreanCardName(removeCard)}] 소실\n");
 
+        int artifact = resultData.artifact;
+        if (artifact != 0)
+            builder.Append($"유물 [{GetArtifactName(artifact)}]획득\n");
+
         if (builder.Length == 0)
             builder.Append("아무일도 일어나지 않았다");
 
@@ -200,6 +236,17 @@ public class EventRewardUI : MonoBehaviour
     {
         return CardManager.Instance.GetCardData(cardName).koreanName;
     }
+
+    private string GetArtifactName(int artifactCode)
+    {
+        return artifactCode switch
+        {
+            1 => "탄약 목걸이",
+            2 => "과냉각 렌즈",
+            3 => "얽혀진 덩굴",
+            _ => string.Empty
+        };
+    }
 }
 
 public class EventResultData
@@ -209,6 +256,7 @@ public class EventResultData
     public CardName randomCard;
     public CardName selectedCard;
     public CardName removeCard;
+    public int artifact;
 
     public void Reset()
     {
@@ -217,5 +265,6 @@ public class EventResultData
         randomCard = 0;
         selectedCard = 0;
         removeCard = 0;
+        artifact = 0;
     }
 }

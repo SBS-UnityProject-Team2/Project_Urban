@@ -11,6 +11,8 @@ public enum ActorEvent
     InitDraw,
     Draw,
     Action, // 카드 사용
+    DiscardCard,
+    ExtinctCard,
     Attack,
     Protect,
     GiveEffect,

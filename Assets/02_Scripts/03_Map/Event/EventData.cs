@@ -182,6 +182,7 @@ public class EventData : ScriptableObject
                 randomCard = jsonReward.randomCard,
                 selectCards = Util.ParseIntArray(jsonReward.selectCards)?.Select(code => (CardName)code).ToArray(),
                 remove = jsonReward.remove,
+                artifact = jsonReward.artifact,
             };
 
             eventRewards.Add(eventReward);

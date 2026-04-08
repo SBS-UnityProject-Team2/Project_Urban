@@ -93,6 +93,7 @@ public class JsonEventReward
     public int randomCard;
     public string selectCards;
     public int remove;
+    public int artifact;
 }
 
 [Serializable]
@@ -105,6 +106,7 @@ public class EventReward
     public int randomCard;
     public CardName[] selectCards;
     public int remove;
+    public int artifact;
 }
 #endregion
 
@@ -116,6 +118,7 @@ public class EventRewardData
     public int randomCard;
     public CardName[] cards;
     public int removeCard;
+    public int artifact;
     public int scriptCode;
 }
 
