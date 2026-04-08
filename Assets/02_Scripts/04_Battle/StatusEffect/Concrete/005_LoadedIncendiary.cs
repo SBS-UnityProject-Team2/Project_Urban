@@ -2,28 +2,16 @@ public class LoadedIncendiary : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.LoadedIncendiary;
 
-    public LoadedIncendiary(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public LoadedIncendiary(Actor owner) : base(owner)
     {
-        if (!isActive)
-        {
-            owner.EventBus.AddEventListener(ActorEvent.Attack, HandleAttack);
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-        }
-
-        base.GiveStack(stack);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.Attack, HandleAttack);
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.Attack, HandleAttack);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     private void HandleAttack(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.AtkDmg,
@@ -38,6 +26,8 @@ public class LoadedIncendiary : StackEffect
     
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RequestClear();
     }
 }

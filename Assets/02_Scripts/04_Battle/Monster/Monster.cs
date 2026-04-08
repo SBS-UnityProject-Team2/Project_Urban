@@ -18,23 +18,20 @@ public class Monster : Actor
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-        EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
     public void Init(MonsterDataEntry monsterDataEntry)
     {
         Status.Init(this, monsterDataEntry.hp, monsterDataEntry.hp, 0, ElementType.None);
 
-        action.Init(monsterDataEntry);
         view.Init(monsterDataEntry, Status, action);
+        action.Init(this, monsterDataEntry);
         controller.Init(view);
     }
 
     private async UniTask HandleTurnStart(EventPayload eventPayload)
     {
-        await action.Execute();
-
-        Debug.Log("Monster Action Complete!");
+        await action.Execute(this);
         EndTurn();
     }
 
@@ -44,19 +41,13 @@ public class Monster : Actor
             action.SetNextPhase();
         else
             action.SetNextAction();
+
+        Status.Health.Block = 0;
     }
 
     private void HandleTakeDamage(EventPayload eventPayload)
     {
         if (Status.Health.CurHp <= action.NextPhaseHp)
             action.SetNextPhase();
-
-        // Damage받는 이펙트등을 재생
-        Debug.Log("Take Damage");
-    }
-
-    private void HandleDead(EventPayload eventPayload)
-    {
-        tokenSource.Cancel();
     }
 }

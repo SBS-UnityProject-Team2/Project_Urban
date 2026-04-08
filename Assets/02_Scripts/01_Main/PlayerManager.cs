@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class PlayerManager : Singleton<PlayerManager>
 {
     [Header("Player Hp Settings")]
-    [SerializeField] private int maxHp = 500;
+    [SerializeField] private int maxHp = 50;
     
     [Header("Player Coin Settings")]
     [SerializeField] private int curCoin = 9999;

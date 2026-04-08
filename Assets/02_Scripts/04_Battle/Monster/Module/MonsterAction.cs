@@ -13,11 +13,12 @@ public class MonsterAction : MonoBehaviour
     private int curIndex = 0;
     
     private MonsterActionDataEntry curAction;
+    public MonsterActionDataEntry CurAction;
 
     public int NextPhaseHp => phaseStep[curPhase].triggerHp;
-    public UnityEvent<MonsterActionDataEntry> UpdateNextAction = new(); 
+    public UnityEvent<MonsterActionDataEntry> OnUpdateNextAction = new(); 
 
-    public void Init(MonsterDataEntry monsterDataEntry)
+    public void Init(Monster monster, MonsterDataEntry monsterDataEntry)
     {
         phaseEntries = monsterDataEntry.pattern; 
         phaseStep = monsterDataEntry.phaseStep;
@@ -29,12 +30,9 @@ public class MonsterAction : MonoBehaviour
         SetNextAction();
     }
 
-    public async UniTask Execute()
+    public async UniTask Execute(Monster source)
     {
-        // 여기에 액션 수행을 처리한다. -> 카드랑 똑같이 처리하면 될듯
-        Debug.Log("Monster Do Something...");
-        await UniTask.WaitForSeconds(0.5f);
-        
+        await MonsterActionMethod.Execute(curAction.actionId, source);        
     }
 
     public void SetNextAction()
@@ -45,7 +43,7 @@ public class MonsterAction : MonoBehaviour
         curIndex++;
         curIndex %= curPattern.Count;
 
-        UpdateNextAction?.Invoke(curAction);
+        OnUpdateNextAction?.Invoke(curAction);
     }
 
     public void SetNextPhase()

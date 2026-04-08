@@ -2,28 +2,16 @@ public class Spike : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.Spike;
 
-    public Spike(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public Spike(Actor owner) : base(owner)
     {
-        if (!isActive)
-        {
-            owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
-            owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleInitDraw);
-        }
-
-        base.GiveStack(stack);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.DamageTaken, HandleDamage);
-        owner.EventBus.RemoveEventListener(ActorEvent.InitDraw, HandleInitDraw);
+        owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
+        owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleInitDraw);
     }
 
     private void HandleDamage(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.AtkDmg,
@@ -37,6 +25,8 @@ public class Spike : StackEffect
 
     private void HandleInitDraw(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RequestClear();
     }
 }

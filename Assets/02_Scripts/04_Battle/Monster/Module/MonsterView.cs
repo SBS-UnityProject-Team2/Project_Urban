@@ -7,7 +7,7 @@ public class MonsterView : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Image selectArrow;
     [SerializeField] private NextActionView nextActionView;
-    [SerializeField] private StatusEffectView statusEffectView;
+    [SerializeField] private StatusEffectListView statusEffectView;
     [SerializeField] private MonsterHealthView healthView;
 
     private void Awake()
@@ -19,7 +19,10 @@ public class MonsterView : MonoBehaviour
     public void Init(MonsterDataEntry monsterDataEntry, ActorStatus actorStatus, MonsterAction action)
     {
         spriteRenderer.sprite = MonsterManager.Instance.GetMonsterImage(monsterDataEntry.name);
+        
         healthView.Bind(actorStatus);
+        statusEffectView.Bind(actorStatus);
+        nextActionView.Bind(action);
     }
 
     public void Select()

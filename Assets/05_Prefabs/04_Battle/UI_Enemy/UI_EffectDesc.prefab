@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3714413745600451292}
   - component: {fileID: 3556454413823319512}
   - component: {fileID: 5710733780872896608}
-  - component: {fileID: 6713936916868904148}
+  - component: {fileID: 4680330432660548335}
   m_Layer: 7
   m_Name: UI_EffectDesc
   m_TagString: Untagged
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6713936916868904148
+--- !u!114 &4680330432660548335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1343769595331214366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67511b5715f765a4394f03395fdedb8a, type: 3}
+  m_Script: {fileID: 11500000, guid: e0a5cd7197eb51747b3245962f6c1e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectDescPanel
   icon: {fileID: 6349169882701378269}

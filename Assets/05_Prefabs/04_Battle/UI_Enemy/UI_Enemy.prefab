@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 8757857974836171260}
   - component: {fileID: 1453130578448738769}
   - component: {fileID: 3608369242752573867}
+  - component: {fileID: 1157194238818441402}
   m_Layer: 7
   m_Name: Image_Selected
   m_TagString: Untagged
@@ -647,6 +648,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1157194238818441402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3864652569273160529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66c55ebb35dd2849b7bb4aed8a93d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectedArrow
+  moveSpeed: 5
+  spacing: 7.5
 --- !u!1 &4580128740103293391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145664660601450634}
+  - component: {fileID: 5778635076355761400}
   m_Layer: 7
   m_Name: Ul_StatusEffectView
   m_TagString: Untagged
@@ -1323,6 +1339,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -350}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5778635076355761400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7339695432632699372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ee889df0b60d54b9824578df8cda56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
+  content: {fileID: 7102797635018519461}
+  statusEffectUIPrefab: {fileID: 4615814331927290781, guid: d3bf01874606fea448636fead70febd7, type: 3}
+  descContent: {fileID: 7364824574065589506}
+  descPanelPrefab: {fileID: 4680330432660548335, guid: c9edd8367b36165499fb8b947ad9781d, type: 3}
 --- !u!1 &7737276274162665170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,6 +1550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3785093291487300478}
   - component: {fileID: 2957858163405548326}
+  - component: {fileID: 7408139634067631346}
   m_Layer: 7
   m_Name: UI_NextAction
   m_TagString: Untagged
@@ -1572,6 +1605,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7408139634067631346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242700939905319574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70225c2be2a62a42834fc518fca6b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
+  image: {fileID: 7897026110166496738}
+  damageText: {fileID: 2363644837376667606}
 --- !u!1 &8989356201907685298
 GameObject:
   m_ObjectHideFlags: 0

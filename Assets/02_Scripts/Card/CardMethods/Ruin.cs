@@ -325,7 +325,7 @@ public static class Ruin
         };
         stPayload.AddTarget(target);
         stPayload.Write(effectName);
-        stPayload.Write(duration);
+        stPayload.Write(stack);
         ActionBus.Dispatch(stPayload);
     }
 

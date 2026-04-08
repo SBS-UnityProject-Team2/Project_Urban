@@ -1,20 +1,9 @@
 public class FrozenResistance : DurationEffect, IResistEffect
 {
     public override StatusEffectName Name => StatusEffectName.FrozenResistance;
-    public FrozenResistance(Actor owner) : base(owner) {}
-
-    public override void GiveDuration(int duration = 1)
+    public FrozenResistance(Actor owner) : base(owner)
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
-        base.GiveDuration(duration);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     public bool Resist(StatusEffectName effectName)
@@ -27,6 +16,8 @@ public class FrozenResistance : DurationEffect, IResistEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        RemoveStack();
+        if (!isActive) return;
+
+        RemoveDuration();
     }
 }

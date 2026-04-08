@@ -27,6 +27,31 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d258a5aa05c1c23498b77a27243534aa, type: 3}
   - {fileID: 21300000, guid: 494720b2002dea846b351c5076155429, type: 3}
   - {fileID: 21300000, guid: ccda92615bad02f4c9bce384a00602df, type: 3}
+  actionIcons:
+  - actionType: 1
+    iconImage: {fileID: 21300000, guid: 561ebb864ddaac843a8dd392ae758301, type: 3}
+  - actionType: 5
+    iconImage: {fileID: 21300000, guid: 9992aff1aa0622346939a2cdc639283a, type: 3}
+  - actionType: 9
+    iconImage: {fileID: 21300000, guid: 29dc8a7e220c2894298c37fa851530b8, type: 3}
+  - actionType: 3
+    iconImage: {fileID: 21300000, guid: f8a67f49de242214da612269266f10ab, type: 3}
+  - actionType: 4
+    iconImage: {fileID: 21300000, guid: bb01880eabf7838449dd084223ce15ba, type: 3}
+  - actionType: 12
+    iconImage: {fileID: 21300000, guid: 9ecf6a01d7ba8274f8e5b0c8bc38062b, type: 3}
+  - actionType: 8
+    iconImage: {fileID: 21300000, guid: 31a8c983ba9a36b4388a252c63502ae5, type: 3}
+  - actionType: 2
+    iconImage: {fileID: 21300000, guid: eeb98f27be765414eb6f0144e1450734, type: 3}
+  - actionType: 6
+    iconImage: {fileID: 21300000, guid: 5be99dfe43633bc4e866b529bdf14330, type: 3}
+  - actionType: 6
+    iconImage: {fileID: 21300000, guid: 5be99dfe43633bc4e866b529bdf14330, type: 3}
+  - actionType: 6
+    iconImage: {fileID: 21300000, guid: 5be99dfe43633bc4e866b529bdf14330, type: 3}
+  - actionType: 6
+    iconImage: {fileID: 21300000, guid: 5be99dfe43633bc4e866b529bdf14330, type: 3}
   entries:
   - level: 0
     name: 0

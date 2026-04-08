@@ -50,7 +50,7 @@ public class EnchantCardData : ScriptableObject
 
         foreach (Sprite cardImage in images)
         {
-            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName));
+            Enum.TryParse(cardImage.name, out CardName cardName);
             cardImageMap[cardName] = cardImage;
         }
 
@@ -116,13 +116,14 @@ public class EnchantCardData : ScriptableObject
         }
     }
 
-    private static int ParseEffectType(string raw)
+    private static int[] ParseEffectType(string raw)
     {
-        if (string.IsNullOrWhiteSpace(raw)) return 0;
-        if (int.TryParse(raw, out int single)) return single;
-
-        string firstToken = raw.Split(',')[0].Trim();
-        return int.TryParse(firstToken, out int parsed) ? parsed : 0;
+        if (string.IsNullOrWhiteSpace(raw)) return Array.Empty<int>();
+        string[] parts = raw.Split(',');
+        int[] result = new int[parts.Length];
+        for (int i = 0; i < parts.Length; i++)
+            result[i] = int.Parse(parts[i].Trim());
+        return result;
     }
 #endif
 }

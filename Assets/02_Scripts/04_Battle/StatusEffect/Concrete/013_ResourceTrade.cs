@@ -2,24 +2,15 @@ public class ResourceTrade : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.ResourceTrade;
 
-    public ResourceTrade(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public ResourceTrade(Actor owner) : base(owner)
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleDraw);
-
-        base.GiveStack(stack);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.InitDraw, HandleDraw);
+        owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleDraw);
     }
 
     public void HandleDraw(EventPayload eventPayload)
-    {   
+    {
+        if (!isActive) return;
+
         ActionPayload movePayload = new()
         {
             actionId = ActorAction.MoveCardFromHand,

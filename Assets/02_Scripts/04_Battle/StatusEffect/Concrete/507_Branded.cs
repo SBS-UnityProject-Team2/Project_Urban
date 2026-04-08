@@ -2,28 +2,16 @@ public class Branded : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.Branded;
     
-    public Branded(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public Branded(Actor owner) : base(owner)
     {
-        if (!isActive)
-        {   
-            owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-        }
-
-        base.GiveStack(stack); 
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.DamageTaken, HandleDamage);
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     private void HandleDamage(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.AtkLossHp,
@@ -36,6 +24,8 @@ public class Branded : StackEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RequestClear();
     }
 }
