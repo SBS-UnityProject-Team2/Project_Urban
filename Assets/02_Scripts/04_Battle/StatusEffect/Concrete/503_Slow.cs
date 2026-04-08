@@ -3,20 +3,9 @@ public class Slow : DurationEffect, IDrawCountChange
     private readonly int decreaseDrawCount = 1;
     public override StatusEffectName Name => StatusEffectName.Slow;
     
-    public Slow(Actor owner) : base(owner) {}
-
-    public override void GiveDuration(int duration = 1)
+    public Slow(Actor owner) : base(owner) 
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
-        base.GiveDuration(duration);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     public int GetDrawCountDelta()
@@ -26,6 +15,8 @@ public class Slow : DurationEffect, IDrawCountChange
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        RemoveStack();
+        if (!isActive) return;
+
+        RemoveDuration();
     }
 }

@@ -16,6 +16,8 @@ public class Battle : SceneSingleton<Battle>
     [SerializeField] private int drawCount;
     [SerializeField] private int monsterScore;
     [SerializeField] private MonsterLevel monsterLevel;
+
+    private UniTask monsterActionTask;
     
     public Player Player => player;
     public Monsters Monsters => monsters;
@@ -27,6 +29,8 @@ public class Battle : SceneSingleton<Battle>
         get => drawCount;
         set => drawCount = value;
     }
+
+    public bool IsPause { get; set; }
 
     public UnityEvent OnBattleStart = new();
     public UnityEvent OnBattleEnd = new();
@@ -42,9 +46,6 @@ public class Battle : SceneSingleton<Battle>
 
     async private void StartBattleLoop()
     {
-        List<Actor> actors = new() { player };
-        actors.AddRange(monsters.List);
-
         OnBattleStart?.Invoke();
 
         // WaitForTurnEndAsync은 기본적으로 턴 종료 신호까지 대기한다.
@@ -55,17 +56,11 @@ public class Battle : SceneSingleton<Battle>
         {
             while (true)
             {
-                foreach (Actor actor in actors)
-                {
-                    Debug.Log($"{actor.name} Start Turn");
+                await player.BeginTurn();
+                await player.WaitForTurnEndAsync();
 
-                    actor.BeginTurn().Forget();
-
-                    Debug.Log($"Waiting {actor.name} End Turn...");
-                    await actor.WaitForTurnEndAsync();
-
-                    Debug.Log($"{actor.name} End Turn");
-                }
+                monsterActionTask = monsters.ExecuteAction();
+                await monsterActionTask;
             }
         }
         catch(OperationCanceledException)

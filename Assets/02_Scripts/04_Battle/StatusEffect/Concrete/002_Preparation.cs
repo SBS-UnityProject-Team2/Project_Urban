@@ -2,20 +2,9 @@ public class Preparation : StackEffect, IDrawCountChange
 {
     public override StatusEffectName Name => StatusEffectName.Preparation;
     
-    public Preparation(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public Preparation(Actor owner) : base(owner)
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleInitDraw);
-
-        base.GiveStack(stack);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.InitDraw, HandleInitDraw);
+        owner.EventBus.AddEventListener(ActorEvent.InitDraw, HandleInitDraw);
     }
 
     public int GetDrawCountDelta()
@@ -25,6 +14,8 @@ public class Preparation : StackEffect, IDrawCountChange
 
     private void HandleInitDraw(EventPayload payload)
     {
+        if (!isActive) return;
+
         RequestClear();
     }   
 }

@@ -2,14 +2,15 @@ public class BioActiveShell : DurationEffect
 {
     public override StatusEffectName Name => StatusEffectName.BioActiveShell;
 
-    public BioActiveShell(Actor owner) : base(owner) { }
+    public BioActiveShell(Actor owner) : base(owner)
+    {
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+    }
 
     public override void GiveDuration(int duration = 1)
     {
         if (!isActive)
         {
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
             ActionPayload payload = new()
             {
                 actionId = ActorAction.ChangeElement,
@@ -28,8 +29,6 @@ public class BioActiveShell : DurationEffect
     {
         base.Clear();
 
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
         ActionPayload payload = new()
         {
             actionId = ActorAction.ChangeElement,
@@ -43,6 +42,8 @@ public class BioActiveShell : DurationEffect
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RemoveDuration();
     }
 }

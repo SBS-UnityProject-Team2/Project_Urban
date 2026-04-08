@@ -9,7 +9,7 @@ public class CardEffect : MonoBehaviour
     private List<List<Vector3>> offsets;
     private List<float> durations;
 
-    public void Init(int effectType)
+    public void Init(int[] effectType)
     {
         // effectType으로 데이터 찾아서 보관하기       
     }

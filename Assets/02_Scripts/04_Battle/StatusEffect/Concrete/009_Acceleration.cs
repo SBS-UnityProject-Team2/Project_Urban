@@ -2,25 +2,16 @@ public class Acceleration : DurationEffect, IDrawCountChange, ICostRegenChange
 {
     public override StatusEffectName Name => StatusEffectName.Acceleration;
     
-    public Acceleration(Actor owner) : base(owner) {}
-
-    public override void GiveDuration(int duration = 1)
+    public Acceleration(Actor owner) : base(owner)
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
-        base.GiveDuration(duration);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        RemoveStack();
+        if (!isActive) return;
+
+        RemoveDuration();
     }
 
     public int GetDrawCountDelta()

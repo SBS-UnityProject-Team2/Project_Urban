@@ -1,4 +1,4 @@
-﻿{
+{
     "actions": [
         {
             "ActionID": 8000,
@@ -6,7 +6,10 @@
             "EngName": "Charge",
             "ActionType": "Attack",
             "LinkID": 800001,
-            "Description": "대상에 물리 피해를 가한다."
+            "Description": "대상에 물리 피해를 가한다.",
+            "Damage": 6,
+            "Count": 1,
+            "ElementType": "None"
         },
         {
             "ActionID": 8001,
@@ -14,7 +17,10 @@
             "EngName": "Bite",
             "ActionType": "Attack/Debuff",
             "LinkID": 800101,
-            "Description": "대상에 물리 피해를 가하며, 출혈을 부여한다."
+            "Description": "대상에 물리 피해를 가하며, 출혈을 부여한다.",
+            "Damage": 3,
+            "Count": 1,
+            "ElementType": "None"
         },
         {
             "ActionID": 8002,
@@ -22,7 +28,10 @@
             "EngName": "Screw",
             "ActionType": "Attack",
             "LinkID": 800201,
-            "Description": "대상에 물리 피해를 2회 가한다."
+            "Description": "대상에 물리 피해를 2회 가한다.",
+            "Damage": 5,
+            "Count": 2,
+            "ElementType": "None"
         },
         {
             "ActionID": 8003,
@@ -30,7 +39,10 @@
             "EngName": "ScarpGun",
             "ActionType": "Attack",
             "LinkID": 800301,
-            "Description": "대상에 물리 피해를 가한다."
+            "Description": "대상에 물리 피해를 가한다.",
+            "Damage": 12,
+            "Count": 1,
+            "ElementType": "None"
         },
         {
             "ActionID": 8004,
@@ -38,7 +50,10 @@
             "EngName": "CrudeMolotv",
             "ActionType": "Attack/Debuff",
             "LinkID": 800401,
-            "Description": "대상에 파괴 피해를 가하며, 화상을 부여한다."
+            "Description": "대상에 파괴 피해를 가하며, 화상을 부여한다.",
+            "Damage": 4,
+            "Count": 2,
+            "ElementType": "Ruin"
         },
         {
             "ActionID": 8005,
@@ -46,7 +61,10 @@
             "EngName": "BurntArm",
             "ActionType": "Attack/Buff",
             "LinkID": 800501,
-            "Description": "대상에 파괴 피해를 가하며, 증강을 획득한다."
+            "Description": "대상에 파괴 피해를 가하며, 증강을 획득한다.",
+            "Damage": 10,
+            "Count": 1,
+            "ElementType": "Ruin"
         },
         {
             "ActionID": 8006,
@@ -54,7 +72,10 @@
             "EngName": "PsychicBeat",
             "ActionType": "Attack",
             "LinkID": 800601,
-            "Description": "대상에 사이킥 피해를 2회 가한다."
+            "Description": "대상에 사이킥 피해를 2회 가한다.",
+            "Damage": 5,
+            "Count": 2,
+            "ElementType": "Psychic"
         },
         {
             "ActionID": 8007,
@@ -62,7 +83,10 @@
             "EngName": "RepulsiveMatrix",
             "ActionType": "Attack/Defense",
             "LinkID": 800701,
-            "Description": "대상에 사이킥 피해를 가하며, 방어막을 획득한다."
+            "Description": "대상에 사이킥 피해를 가하며, 방어막을 획득한다.",
+            "Damage": 7,
+            "Count": 1,
+            "ElementType": "Psychic"
         },
         {
             "ActionID": 8008,
@@ -70,7 +94,10 @@
             "EngName": "Bash",
             "ActionType": "Attack/Debuff",
             "LinkID": 800801,
-            "Description": "대상에 생체 피해를 가하며, 약화를 부여한다."
+            "Description": "대상에 생체 피해를 가하며, 약화를 부여한다.",
+            "Damage": 8,
+            "Count": 1,
+            "ElementType": "Bio"
         },
         {
             "ActionID": 8009,
@@ -78,7 +105,10 @@
             "EngName": "CorrosiveShock",
             "ActionType": "Attack/Debuff",
             "LinkID": 800901,
-            "Description": "대상에 생체 피해를 가하며, 파갑을 부여한다."
+            "Description": "대상에 생체 피해를 가하며, 파갑을 부여한다.",
+            "Damage": 7,
+            "Count": 2,
+            "ElementType": "Bio"
         },
         {
             "ActionID": 8010,
@@ -86,7 +116,10 @@
             "EngName": "MultipleFire",
             "ActionType": "Attack",
             "LinkID": 801001,
-            "Description": "대상에 물리 피해를 가한다."
+            "Description": "대상에 물리 피해를 가한다.",
+            "Damage": 3,
+            "Count": 5,
+            "ElementType": "None"
         },
         {
             "ActionID": 8011,
@@ -94,7 +127,10 @@
             "EngName": "Steal",
             "ActionType": "Attack",
             "LinkID": 801101,
-            "Description": "대상에 물리 피해를 가하며, 골드를 갈취한다."
+            "Description": "대상에 물리 피해를 가하며, 골드를 갈취한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8012,
@@ -102,7 +138,10 @@
             "EngName": "SandSpray",
             "ActionType": "Attack/Debuff",
             "LinkID": 801201,
-            "Description": "대상에 물리 피해를 가하며, 약화를 부여한다."
+            "Description": "대상에 물리 피해를 가하며, 약화를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8013,
@@ -110,7 +149,10 @@
             "EngName": "ChainAttack",
             "ActionType": "Attack/Debuff",
             "LinkID": 801301,
-            "Description": "대상에 파괴 피해를 가하며, 파갑을 부여한다."
+            "Description": "대상에 파괴 피해를 가하며, 파갑을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8014,
@@ -118,7 +160,10 @@
             "EngName": "Stomp",
             "ActionType": "Attack",
             "LinkID": 801401,
-            "Description": "대상에 물리 피해를 가한다."
+            "Description": "대상에 물리 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8015,
@@ -126,7 +171,10 @@
             "EngName": "Swing",
             "ActionType": "Attack",
             "LinkID": 801501,
-            "Description": "대상에 파괴 피해를 가한다."
+            "Description": "대상에 파괴 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8016,
@@ -134,7 +182,10 @@
             "EngName": "HeavyAttack",
             "ActionType": "Attack",
             "LinkID": 801601,
-            "Description": "대상에 파괴 피해를 가하며, 파갑을 획득한다."
+            "Description": "대상에 파괴 피해를 가하며, 파갑을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8017,
@@ -142,7 +193,10 @@
             "EngName": "BlackOut",
             "ActionType": "Attack/Debuff",
             "LinkID": 801701,
-            "Description": "대상에 사이킥 피해를 3회 가하며, 현기증을 부여한다."
+            "Description": "대상에 사이킥 피해를 3회 가하며, 현기증을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8018,
@@ -150,7 +204,10 @@
             "EngName": "Hit",
             "ActionType": "Attack",
             "LinkID": 801801,
-            "Description": "대상에 물리 피해를 가한다."
+            "Description": "대상에 물리 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8019,
@@ -158,7 +215,10 @@
             "EngName": "Sludge",
             "ActionType": "Attack/Debuff",
             "LinkID": 801901,
-            "Description": "대상에 생체 피해를 가하며, 약화를 부여한다."
+            "Description": "대상에 생체 피해를 가하며, 약화를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8020,
@@ -166,7 +226,10 @@
             "EngName": "Tremor",
             "ActionType": "Attack/Debuff",
             "LinkID": 802001,
-            "Description": "대상에 물리 피해를 가하며, 탈력을 부여한다."
+            "Description": "대상에 물리 피해를 가하며, 탈력을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8021,
@@ -174,7 +237,10 @@
             "EngName": "StabAndTear",
             "ActionType": "Attack/Debuff",
             "LinkID": 802101,
-            "Description": "대상에 물리 피해를 가하며, 출혈을 부여한다."
+            "Description": "대상에 물리 피해를 가하며, 출혈을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8022,
@@ -182,7 +248,10 @@
             "EngName": "ThrowingNeedle",
             "ActionType": "Attack/Debuff",
             "LinkID": 802201,
-            "Description": "대상에 물리 피해를 가하며, 상처를 부여한다."
+            "Description": "대상에 물리 피해를 가하며, 상처를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8023,
@@ -190,7 +259,10 @@
             "EngName": "FallAttack",
             "ActionType": "Attack",
             "LinkID": 802301,
-            "Description": "대상에 생체 피해를 가한다."
+            "Description": "대상에 생체 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8024,
@@ -198,7 +270,10 @@
             "EngName": "DirtyBlade",
             "ActionType": "Attack/Debuff",
             "LinkID": 802401,
-            "Description": "대상에 생체 피해를 가하며, 중독을 부여한다."
+            "Description": "대상에 생체 피해를 가하며, 중독을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8025,
@@ -206,7 +281,10 @@
             "EngName": "Hammering",
             "ActionType": "Attack/Debuff",
             "LinkID": 802501,
-            "Description": "대상에 파괴 피해를 가하며, 파갑을 부여한다."
+            "Description": "대상에 파괴 피해를 가하며, 파갑을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8026,
@@ -214,7 +292,10 @@
             "EngName": "CombinationAttack",
             "ActionType": "Attack",
             "LinkID": 802601,
-            "Description": "대상에 파괴 피해를 가한다."
+            "Description": "대상에 파괴 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8027,
@@ -222,7 +303,10 @@
             "EngName": "GroundFracture",
             "ActionType": "Attack",
             "LinkID": 802701,
-            "Description": "대상에 파괴 피해를 가한다."
+            "Description": "대상에 파괴 피해를 가한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8028,
@@ -230,7 +314,10 @@
             "EngName": "Gravity",
             "ActionType": "Attack/Debuff",
             "LinkID": 802801,
-            "Description": "대상에 사이킥 피해를 가하며, 약화와 둔화를 부여한다."
+            "Description": "대상에 사이킥 피해를 가하며, 약화와 둔화를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8029,
@@ -238,7 +325,10 @@
             "EngName": "Echoes",
             "ActionType": "Attack/Debuff",
             "LinkID": 802901,
-            "Description": "대상에 사이킥 피해를 가하며, 탈력과 현기증을 부여한다."
+            "Description": "대상에 사이킥 피해를 가하며, 탈력과 현기증을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8200,
@@ -246,7 +336,10 @@
             "EngName": "Curl",
             "ActionType": "Defense",
             "LinkID": 820001,
-            "Description": "방어막을 획득한다."
+            "Description": "방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8201,
@@ -254,7 +347,10 @@
             "EngName": "Smoke",
             "ActionType": "Defense",
             "LinkID": 820101,
-            "Description": "방어막을 획득한다."
+            "Description": "방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8202,
@@ -262,7 +358,10 @@
             "EngName": "ScrapShield",
             "ActionType": "Defense",
             "LinkID": 820201,
-            "Description": "방어막을 획득하며, 파갑을 획득한다."
+            "Description": "방어막을 획득하며, 파갑을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8203,
@@ -270,7 +369,10 @@
             "EngName": "HardenPill",
             "ActionType": "Defense/Buff",
             "LinkID": 820301,
-            "Description": "방어막을 획득하며, 장갑을 획득한다."
+            "Description": "방어막을 획득하며, 장갑을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8204,
@@ -278,7 +380,10 @@
             "EngName": "RegenCell",
             "ActionType": "Defense/Buff",
             "LinkID": 820401,
-            "Description": "방어막을 획득하며, 재생을 획득한다."
+            "Description": "방어막을 획득하며, 재생을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8205,
@@ -286,7 +391,10 @@
             "EngName": "Barrier",
             "ActionType": "Defense",
             "LinkID": 820501,
-            "Description": "방어막을 획득한다."
+            "Description": "방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8206,
@@ -294,7 +402,10 @@
             "EngName": "Rush",
             "ActionType": "Defense/Buff",
             "LinkID": 820601,
-            "Description": "방어막을 획득하며, 증강을 획득한다."
+            "Description": "방어막을 획득하며, 증강을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8207,
@@ -302,7 +413,10 @@
             "EngName": "ChainGuard",
             "ActionType": "Defense",
             "LinkID": 820701,
-            "Description": "방어막을 획득한다."
+            "Description": "방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8208,
@@ -310,7 +424,10 @@
             "EngName": "DefensiveVapor",
             "ActionType": "Defense",
             "LinkID": 820801,
-            "Description": "아군 전체가 방어막을 획득한다."
+            "Description": "아군 전체가 방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8209,
@@ -318,7 +435,10 @@
             "EngName": "Fume",
             "ActionType": "Defense/Debuff",
             "LinkID": 820901,
-            "Description": "방어막을 획득하며, 대상에 둔화를 부여한다."
+            "Description": "방어막을 획득하며, 대상에 둔화를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8210,
@@ -326,7 +446,10 @@
             "EngName": "TerribleWall",
             "ActionType": "Defense/Buff",
             "LinkID": 821001,
-            "Description": "방어막을 획득하며, 탄성막을 획득한다."
+            "Description": "방어막을 획득하며, 탄성막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8211,
@@ -334,7 +457,10 @@
             "EngName": "Posing",
             "ActionType": "Defense",
             "LinkID": 821101,
-            "Description": "방어막을 획득한다."
+            "Description": "방어막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8212,
@@ -342,7 +468,10 @@
             "EngName": "GatheringStrength",
             "ActionType": "Defense/Buff",
             "LinkID": 821201,
-            "Description": "방어막을 획득하며, 버스트와 집중 자세를 획득한다."
+            "Description": "방어막을 획득하며, 버스트와 집중 자세를 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8213,
@@ -350,7 +479,10 @@
             "EngName": "EnergyTune",
             "ActionType": "Defense/Buff",
             "LinkID": 821301,
-            "Description": "방어막을 획득하며, 코팅을 획득한다."
+            "Description": "방어막을 획득하며, 코팅을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8400,
@@ -358,7 +490,10 @@
             "EngName": "Sharpening",
             "ActionType": "Buff",
             "LinkID": 840001,
-            "Description": "버스트를 획득한다."
+            "Description": "버스트를 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8401,
@@ -366,7 +501,10 @@
             "EngName": "EnhanceBody",
             "ActionType": "Buff",
             "LinkID": 840101,
-            "Description": "장갑을 획득한다."
+            "Description": "장갑을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8402,
@@ -374,7 +512,10 @@
             "EngName": "GhostPill",
             "ActionType": "Buff",
             "LinkID": 840201,
-            "Description": "더미를 획득한다."
+            "Description": "더미를 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8403,
@@ -382,7 +523,10 @@
             "EngName": "ToxicSpore",
             "ActionType": "Buff",
             "LinkID": 840301,
-            "Description": "대상에 추가 피해를 부여한다."
+            "Description": "대상에 추가 피해를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8404,
@@ -390,7 +534,10 @@
             "EngName": "Enrage",
             "ActionType": "Buff",
             "LinkID": 840401,
-            "Description": "증강을 획득한다."
+            "Description": "증강을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8405,
@@ -398,7 +545,10 @@
             "EngName": "Reload",
             "ActionType": "Buff",
             "LinkID": 840501,
-            "Description": "소이탄을 획득한다."
+            "Description": "소이탄을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8406,
@@ -406,7 +556,10 @@
             "EngName": "DefiledInjection",
             "ActionType": "Buff",
             "LinkID": 840601,
-            "Description": "증강을 획득하며, 방어 속성을 생체로 변경한다."
+            "Description": "증강을 획득하며, 방어 속성을 생체로 변경한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8407,
@@ -414,7 +567,10 @@
             "EngName": "HardDrink",
             "ActionType": "Buff",
             "LinkID": 840701,
-            "Description": "증강을 획득하며, 체력을 잃는다."
+            "Description": "증강을 획득하며, 체력을 잃는다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8408,
@@ -422,7 +578,10 @@
             "EngName": "AnointingRitual",
             "ActionType": "Buff",
             "LinkID": 840801,
-            "Description": "매 턴마다 증강을 획득한다."
+            "Description": "매 턴마다 증강을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8409,
@@ -430,7 +589,10 @@
             "EngName": "HealingVapor",
             "ActionType": "Heal",
             "LinkID": 840901,
-            "Description": "아군 전체가 체력을 회복한다."
+            "Description": "아군 전체가 체력을 회복한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8410,
@@ -438,7 +600,10 @@
             "EngName": "EnchantVapor",
             "ActionType": "Buff",
             "LinkID": 841001,
-            "Description": "아군 전체가 증강을 획득한다."
+            "Description": "아군 전체가 증강을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8411,
@@ -446,7 +611,10 @@
             "EngName": "PowerUp",
             "ActionType": "Buff",
             "LinkID": 841101,
-            "Description": "증강을 획득한다."
+            "Description": "증강을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8412,
@@ -454,7 +622,10 @@
             "EngName": "OverCharge",
             "ActionType": "Buff",
             "LinkID": 841201,
-            "Description": "전기 장막을 획득한다."
+            "Description": "전기 장막을 획득한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8600,
@@ -462,7 +633,10 @@
             "EngName": "Roar",
             "ActionType": "Debuff",
             "LinkID": 841301,
-            "Description": "대상에 약화를 부여한다."
+            "Description": "대상에 약화를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8601,
@@ -470,7 +644,10 @@
             "EngName": "ArmorBreak",
             "ActionType": "Debuff",
             "LinkID": 841401,
-            "Description": "대상에 장갑과 파갑을 부여한다."
+            "Description": "대상에 장갑과 파갑을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8602,
@@ -478,7 +655,10 @@
             "EngName": "OilVapor",
             "ActionType": "Debuff",
             "LinkID": 841501,
-            "Description": "대상에 탈력을 부여한다."
+            "Description": "대상에 탈력을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8603,
@@ -486,7 +666,10 @@
             "EngName": "OverheatedBody",
             "ActionType": "Debuff",
             "LinkID": 841601,
-            "Description": "화상을 획득하며, 대상에 화상을 부여한다."
+            "Description": "화상을 획득하며, 대상에 화상을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8604,
@@ -494,7 +677,10 @@
             "EngName": "Pollution",
             "ActionType": "Debuff",
             "LinkID": 841701,
-            "Description": "대상에 증강을 부여한다."
+            "Description": "대상에 증강을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8605,
@@ -502,7 +688,10 @@
             "EngName": "ToxicGas",
             "ActionType": "Debuff",
             "LinkID": 841801,
-            "Description": "대상에 중독을 부여한다."
+            "Description": "대상에 중독을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8606,
@@ -510,7 +699,10 @@
             "EngName": "PutridAir",
             "ActionType": "Debuff",
             "LinkID": 841901,
-            "Description": "대상에 탈력을 부여한다."
+            "Description": "대상에 탈력을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8607,
@@ -518,7 +710,10 @@
             "EngName": "Defilement",
             "ActionType": "Debuff",
             "LinkID": 842001,
-            "Description": "대상에 감염을 부여한다."
+            "Description": "대상에 감염을 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8608,
@@ -526,7 +721,10 @@
             "EngName": "MindStake",
             "ActionType": "Debuff",
             "LinkID": 842101,
-            "Description": "대상에 상처를 부여한다."
+            "Description": "대상에 상처를 부여한다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8800,
@@ -534,7 +732,10 @@
             "EngName": "Escape",
             "ActionType": "Escape",
             "LinkID": 870001,
-            "Description": "전투에서 이탈, 해당 행동으로 전투 종료 시 해당 개체의 보상 삭제"
+            "Description": "전투에서 이탈, 해당 행동으로 전투 종료 시 해당 개체의 보상 삭제",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8801,
@@ -542,7 +743,10 @@
             "EngName": "Shambling",
             "ActionType": "Stun",
             "LinkID": 870101,
-            "Description": "아무 행동도 하지 않는다."
+            "Description": "아무 행동도 하지 않는다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8802,
@@ -550,7 +754,10 @@
             "EngName": "CallingShriek",
             "ActionType": "Summon",
             "LinkID": 870201,
-            "Description": "감염자를 2개체 소환한다.(소환됨 부여) 해당 패턴은 연속 사용할 수 없다. "
+            "Description": "감염자를 2개체 소환한다.(소환됨 부여) 해당 패턴은 연속 사용할 수 없다. ",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8803,
@@ -558,7 +765,10 @@
             "EngName": "Absorbtion",
             "ActionType": "Unknown",
             "LinkID": 870301,
-            "Description": "감염자 1개체를 죽이고 최대 체력의 10%를 회복한다. 감염자가 존재해야만 사용한다. 해당 패턴은 연속 사용할 수 없다."
+            "Description": "감염자 1개체를 죽이고 최대 체력의 10%를 회복한다. 감염자가 존재해야만 사용한다. 해당 패턴은 연속 사용할 수 없다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         },
         {
             "ActionID": 8804,
@@ -566,7 +776,10 @@
             "EngName": "Rest",
             "ActionType": "Stun",
             "LinkID": 870401,
-            "Description": "아무 행동도 하지 않는다."
+            "Description": "아무 행동도 하지 않는다.",
+            "Damage": 0,
+            "Count": 0,
+            "ElementType": "None"
         }
     ]
 }

@@ -3,14 +3,15 @@ public class Dizzy : DurationEffect
     private readonly int additionalCost = 1;
     public override StatusEffectName Name => StatusEffectName.Dizzy;
 
-    public Dizzy(Actor owner) : base(owner) { }
+    public Dizzy(Actor owner) : base(owner)
+    {
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+    }
 
     public override void GiveDuration(int duration = 1)
     {
         if (!isActive)
         {
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
             ActionPayload payload = new()
             {
                 actionId = ActorAction.AddCardCost,
@@ -50,11 +51,12 @@ public class Dizzy : DurationEffect
             ActionBus.Dispatch(payload);
         }
 
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
     
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RemoveDuration();
     }
 }

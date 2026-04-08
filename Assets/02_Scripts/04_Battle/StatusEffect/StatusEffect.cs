@@ -6,7 +6,7 @@ public abstract class StatusEffect
     protected Actor owner;
 
     private readonly StatusEffectDataEntry data;
-    protected bool isActive;
+    protected bool isActive = false;
     protected int duration;
     protected int stack;
 
@@ -22,7 +22,7 @@ public abstract class StatusEffect
     public StatusEffect(Actor owner)
     {
         this.owner = owner;
-        // data = GameManager.Instance.GetEffectData(Name);
+        data = StatusEffectManager.Instance.GetEffectData(Name);
     }
     
     // 상태 변경 이벤트
@@ -48,7 +48,7 @@ public abstract class StatusEffect
     {
         this.stack -= stack;
 
-        if (stack <= 0)
+        if (this.stack <= 0)
         {
             RequestClear();
 
@@ -62,7 +62,7 @@ public abstract class StatusEffect
     {
         this.duration -= duration;
 
-        if (duration <= 0)
+        if (this.duration <= 0)
         {
             RequestClear();
 

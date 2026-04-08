@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4467810741398546940}
-  - component: {fileID: 5070156144453685304}
+  - component: {fileID: 4615814331927290781}
   m_Layer: 7
   m_Name: UI_StatusEffect
   m_TagString: Untagged
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5070156144453685304
+--- !u!114 &4615814331927290781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,13 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3438121327930526062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ea1497bf761af43ae9a39a4eee5940, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a37f32a4f54e0c49abc17e4f6b8b971, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectUI
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectItemView
   effectIcon: {fileID: 2616780379953115232}
-  effectName: {fileID: 0}
   effectStack: {fileID: 7936395581090986594}
-  descPanel: {fileID: 0}
+  descPanel: {fileID: 4680330432660548335, guid: c9edd8367b36165499fb8b947ad9781d, type: 3}
   isPlayer: 0
 --- !u!1 &8373631411050949614
 GameObject:

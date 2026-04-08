@@ -1,25 +1,23 @@
 public class Refined : DurationEffect
 {
     public override StatusEffectName Name => StatusEffectName.Refined;
-    
-    public Refined(Actor owner) : base(owner) {}
+
+    public Refined(Actor owner) : base(owner)
+    {
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+    }
 
     public override void GiveDuration(int duration = 1)
     {
-        if (!isActive)
+        ActionPayload payload = new()
         {
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-            
-            ActionPayload payload = new()
-            {
-                actionId = ActorAction.ChangeElement,
-                source = owner,
-            };
-            payload.Write(ElementType.Ruin);
+            actionId = ActorAction.ChangeElement,
+            source = owner,
+        };
+        payload.Write(ElementType.Ruin);
 
-            payload.AddTarget(owner);
-            ActionBus.Dispatch(payload);
-        }
+        payload.AddTarget(owner);
+        ActionBus.Dispatch(payload);
 
         base.GiveDuration(duration);
     }
@@ -27,8 +25,6 @@ public class Refined : DurationEffect
     public override void Clear()
     {
         base.Clear();
-
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
 
         ActionPayload payload = new()
         {
@@ -38,11 +34,13 @@ public class Refined : DurationEffect
         payload.Write(ElementType.Reset);
 
         payload.AddTarget(owner);
-        ActionBus.Dispatch(payload);        
+        ActionBus.Dispatch(payload);
     }
-    
+
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RemoveDuration();
     }
 }

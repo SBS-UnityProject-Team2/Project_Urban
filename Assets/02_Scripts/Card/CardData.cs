@@ -43,6 +43,16 @@ public class CardData : ScriptableObject
         BuildCardDataMap();
     }
 
+    private static int[] ParseEffectType(string raw)
+    {
+        if (string.IsNullOrEmpty(raw)) return Array.Empty<int>();
+        string[] parts = raw.Split(',');
+        int[] result = new int[parts.Length];
+        for (int i = 0; i < parts.Length; i++)
+            result[i] = int.Parse(parts[i].Trim());
+        return result;
+    }
+
     private void BuildCardDataMap()
     {
         cardImageMap.Clear();
@@ -50,7 +60,7 @@ public class CardData : ScriptableObject
 
         foreach (Sprite cardImage in images)
         {
-            Debug.Assert(Enum.TryParse(cardImage.name, out CardName cardName), $"{cardImage.name} is Fail");
+            Enum.TryParse(cardImage.name, out CardName cardName);
 
             cardImageMap[cardName] = cardImage;
         }
@@ -93,7 +103,7 @@ public class CardData : ScriptableObject
                     price = jsonCard.price,
                     cost = jsonCard.cost,
                     target = Enum.TryParse(jsonCard.target, true, out CardTarget parsedTarget) ? parsedTarget : CardTarget.Monster,
-                    effectType = jsonCard.effectType,
+                    effectType = ParseEffectType(jsonCard.effectType),
                     linkId = jsonCard.NormalLinkID,
                     actValue1 = jsonCard.ActValue1,
                     actValue2 = jsonCard.ActValue2,
@@ -135,7 +145,7 @@ public class JsonCardData
     public bool isSpecial;
     public int cost;
     public int price;
-    public int effectType;
+    public string effectType;
     public int NormalLinkID;
     public int ActValue1;
     public int ActValue2;
@@ -158,8 +168,7 @@ public class CardDataEntry
     public int cost;
     public int price;
 
-    // 나중에 이펙트 타입으로 변경하기
-    public int effectType;
+    public int[] effectType;
 
     public int linkId;
     public int actValue1;

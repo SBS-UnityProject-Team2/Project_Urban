@@ -164,7 +164,7 @@ public static class Physical
         };
         stPayload.AddTarget(target);
         stPayload.Write(effectName);
-        stPayload.Write(duration);
+        stPayload.Write(stack);
         ActionBus.Dispatch(stPayload);
     }
 

@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Monsters : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Monsters : MonoBehaviour
     public Monster this[int idx] => monsters[idx];
     public int Count => monsters.Count;
     public List<Monster> List => monsters;
+
+    public UnityEvent OnAllMonsterDead = new();
 
     private Monster MonsterPrefab
     {
@@ -59,8 +62,16 @@ public class Monsters : MonoBehaviour
     public void Init(MonsterName monsterName)
     {
         MonsterDataEntry monsterData = MonsterManager.Instance.GetMonsterData(monsterName);
-        monsters.Add(CreateMonster(monsterData));
+        Monster monster = CreateMonster(monsterData);
+
+        monsters.Add(monster);
         Align();
+    }
+
+    public async UniTask ExecuteAction()
+    {
+        foreach (Monster monster in monsters)
+            await monster.BeginTurn();
     }
 
     private bool CreateRandomMonster(int score, out Monster monster)
@@ -84,7 +95,16 @@ public class Monsters : MonoBehaviour
         monster.Init(monsterDataEntry);
         monster.EventBus.AddEventListener(ActorEvent.Dead, eventPayload =>
         {
-            monsters.Remove(eventPayload.source as Monster);
+            monsters.Remove(monster);
+            Destroy(monster.gameObject);
+
+            if (monsters.Count <= 0)
+            {
+                OnAllMonsterDead?.Invoke();
+
+                return;
+            }
+            
             Align();
         });
 
