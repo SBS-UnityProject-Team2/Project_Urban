@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,12 +32,14 @@ public class CardRemovePanel : MonoBehaviour
 
     private void RenderDeck(List<DeckCard> deckToRender)
     {
-        UICard uiCardPrefab = cardPrefab.GetComponent<UICard>();
-        CardDisplay.Display(deckToRender, displayArea, uiCardPrefab);
+        foreach (Transform child in displayArea)
+            Destroy(child.gameObject);
 
         for (int i = 0; i < deckToRender.Count; i++)
         {
-            UICard spawnedCard = displayArea.GetChild(i).GetComponent<UICard>();
+            UICard spawnedCard = Instantiate(cardPrefab, displayArea).GetComponent<UICard>();
+
+            spawnedCard.Init(deckToRender[i]);
             spawnedCard.transform.localScale = Vector3.one;
 
             Button cardButton = spawnedCard.GetComponent<Button>();
