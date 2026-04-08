@@ -22,7 +22,15 @@ public class MonsterController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Card"))
+        if (!other.gameObject.CompareTag("Card")) return;
+        if (CardController.CurTarget == CardTarget.Self) return;
+
+        if (CardController.CurTarget == CardTarget.MonsterAll)
+        {
+            foreach (Monster monster in Battle.Instance.Monsters.List)
+                monster.View.Select();
+        }
+        else
         {
             view.Select();
         }
@@ -30,7 +38,15 @@ public class MonsterController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Card"))
+        if (!other.gameObject.CompareTag("Card")) return;
+        if (CardController.CurTarget == CardTarget.Self) return;
+
+        if (CardController.CurTarget == CardTarget.MonsterAll)
+        {
+            foreach (Monster monster in Battle.Instance.Monsters.List)
+                monster.View.UnSelect();
+        }
+        else
         {
             view.UnSelect();
         }

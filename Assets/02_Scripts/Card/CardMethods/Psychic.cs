@@ -1,15 +1,19 @@
 using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 public static class Psychic
 {
     #region Normal
-    public static void GlacierWedge(Actor target)
+    public static async UniTask GlacierWedge(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 6);
         GiveEffect(target , StatusEffectName.Frost, -2, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void FlowArrow(Actor target)
+    public static async UniTask FlowArrow(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 8);
 
@@ -27,9 +31,11 @@ public static class Psychic
 
             ActionBus.Dispatch(payload);
         }
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void EnergyNeedle(Actor target)
+    public static async UniTask EnergyNeedle(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 7);
 
@@ -42,10 +48,14 @@ public static class Psychic
         payload.Write(Battle.Instance.Player.Status.Cost.CurCost == 0 ? 2 : 1);
 
         ActionBus.Dispatch(payload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Pulse(Actor target)
+    public static async UniTask Pulse(Actor target, Func<Actor, UniTask> effectPlay)
     {
+        List<UniTask> tasks = new(); 
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.AtkDmg,
@@ -57,6 +67,11 @@ public static class Psychic
         payload.Write(8);
         ActionBus.Dispatch(payload);
 
+        foreach (Monster monster in Battle.Instance.Monsters.List)
+        {
+            UniTask task  = effectPlay?.Invoke(target) ?? UniTask.CompletedTask;
+            tasks.Add(task);
+        }
 
         ActionPayload payload1 = new()
         {
@@ -75,44 +90,57 @@ public static class Psychic
         payload1.Write(8);
 
         if (payload1.targets.Count > 0)
+        {
+
             ActionBus.Dispatch(payload1);
+        }
+            await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void KineticGrasp(Actor target)
+    public static async UniTask KineticGrasp(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 24);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void IceShield(Actor target)
+    public static async UniTask IceShield(Actor target, Func<Actor, UniTask> effectPlay)
     {
         AddProtect(Battle.Instance.Player, 10);
 
         ClearBuff(Battle.Instance.Player, StatusEffectName.Refined);
         ClearBuff(Battle.Instance.Player, StatusEffectName.BioActiveShell);
         GiveEffect(Battle.Instance.Player, StatusEffectName.KineticVeil, 2, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void ElectricField(Actor target)
+    public static async UniTask ElectricField(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.ElectricVeil, -2, 2);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void AccelConcoction(Actor target)
+    public static async UniTask AccelConcoction(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.Acceleration, 3, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void SuperConducter(Actor target)
+    public static async UniTask SuperConducter(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.Nullification, 1, 1);
         GiveEffect(Battle.Instance.Player, StatusEffectName.Frozen, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Anxiolytic(Actor target)
+    public static async UniTask Anxiolytic(Actor target, Func<Actor, UniTask> effectPlay)
     {
     }
 
-    public static void CryoPowder(Actor target)
+    public static async UniTask CryoPowder(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload durPayload = new()
         {
@@ -135,9 +163,11 @@ public static class Psychic
         stPayload.Write(StatusEffectName.Frozen);
         stPayload.Write(1);
         ActionBus.Dispatch(stPayload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Disturb(Actor target)
+    public static async UniTask Disturb(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload durPayload = new()
         {
@@ -160,17 +190,21 @@ public static class Psychic
         stPayload.Write(StatusEffectName.Broken);
         stPayload.Write(3);
         ActionBus.Dispatch(stPayload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 
     #region Plus
-    public static void GlacierWedgePlus(Actor target)
+    public static async UniTask GlacierWedgePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 8);
         GiveEffect(target , StatusEffectName.Frost, -2, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void FlowArrowPlus(Actor target)
+    public static async UniTask FlowArrowPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 10);
 
@@ -188,9 +222,11 @@ public static class Psychic
 
             ActionBus.Dispatch(payload);
         }
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void EnergyNeedlePlus(Actor target)
+    public static async UniTask EnergyNeedlePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 10);
 
@@ -203,9 +239,11 @@ public static class Psychic
         payload.Write(Battle.Instance.Player.Status.Cost.CurCost == 0 ? 2 : 1);
 
         ActionBus.Dispatch(payload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void PulsePlus(Actor target)
+    public static async UniTask PulsePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload payload = new()
         {
@@ -236,44 +274,52 @@ public static class Psychic
         payload1.Write(10);
 
         if (payload1.targets.Count > 0)
+        {
             ActionBus.Dispatch(payload1);
+        }
+            await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void KineticGraspPlus(Actor target)
+    public static async UniTask KineticGraspPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 24);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void IceShieldPlus(Actor target)
+    public static async UniTask IceShieldPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         AddProtect(Battle.Instance.Player, 13);
 
         ClearBuff(Battle.Instance.Player, StatusEffectName.Refined);
         ClearBuff(Battle.Instance.Player, StatusEffectName.BioActiveShell);
         GiveEffect(Battle.Instance.Player, StatusEffectName.KineticVeil, 2, 1);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void ElectricFieldPlus(Actor target)
+    public static async UniTask ElectricFieldPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.ElectricVeil, -2, 4);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void AccelConcoctionPlus(Actor target)
+    public static async UniTask AccelConcoctionPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.Acceleration, 3, 1);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void SuperConducterPlus(Actor target)
+    public static async UniTask SuperConducterPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(Battle.Instance.Player, StatusEffectName.Nullification, 2, 1);
         GiveEffect(Battle.Instance.Player, StatusEffectName.Frozen, 1, 1);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void AnxiolyticPlus(Actor target)
+    public static async UniTask AnxiolyticPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
     }
 
-    public static void CryoPowderPlus(Actor target)
+    public static async UniTask CryoPowderPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload durPayload = new()
         {
@@ -296,9 +342,11 @@ public static class Psychic
         stPayload.Write(StatusEffectName.Frozen);
         stPayload.Write(1);
         ActionBus.Dispatch(stPayload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void DisturbPlus(Actor target)
+    public static async UniTask DisturbPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload durPayload = new()
         {
@@ -321,6 +369,8 @@ public static class Psychic
         stPayload.Write(StatusEffectName.Broken);
         stPayload.Write(3);
         ActionBus.Dispatch(stPayload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 

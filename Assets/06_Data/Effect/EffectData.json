@@ -31,8 +31,8 @@
     "effectType": 4,
     "effectName": "FireMeshGlow",
     "effectPath": "MeshGlow/FireMeshGlow",
-    "effectPattern": "[[0], [2]]",
-    "effectDuration": "0.6"
+    "effectPattern": "[0], [2]",
+    "effectDuration": "0.6, 0"
   },
   {
     "effectType": 5,
@@ -108,15 +108,15 @@
     "effectType": 15,
     "effectName": "LifeSpray",
     "effectPath": "Sprays/LifeSpray",
-    "effectPattern": "[[5]]",
-    "effectDuration": "0.4, 1"
+    "effectPattern": "[5]",
+    "effectDuration": "0.4"
   },
   {
     "effectType": 16,
     "effectName": "LifeBeamImpact",
     "effectPath": "Beams/Setup/Impact/LifeBeamImpact",
-    "effectPattern": "[[3], [4], [9]]",
-    "effectDuration": "0.2, 0.2"
+    "effectPattern": "[3], [4], [9]",
+    "effectDuration": "0.2, 0.2, 0.0"
   },
   {
     "effectType": 17,
@@ -151,7 +151,7 @@
     "effectName": "InfernoFireMeshGlow",
     "effectPath": "MeshGlow/FireMeshGlow",
     "effectPattern": "[0],[2]",
-    "effectDuration": "0.6"
+    "effectDuration": "0.6, 0.0"
   },
   {
     "effectType": 22,

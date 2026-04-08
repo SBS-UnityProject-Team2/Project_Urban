@@ -33,17 +33,35 @@ public class CardRemovePanel : MonoBehaviour
 
     private void RenderDeck(List<DeckCard> deckToRender)
     {
-        UICard uiCardPrefab = cardPrefab.GetComponent<UICard>();
-        CardDisplay.Display(deckToRender, displayArea, uiCardPrefab);
+        UICard uiCardPrefab = cardPrefab != null ? cardPrefab.GetComponent<UICard>() : null;        
 
-        for (int i = 0; i < deckToRender.Count; i++)
+        // 1. 초기화
+        foreach (Transform child in displayArea)
         {
-            UICard spawnedCard = displayArea.GetChild(i).GetComponent<UICard>();
+            Destroy(child.gameObject);
+        }
+
+        // 2. 슬롯 생성
+        foreach (DeckCard cardInstance in deckToRender)
+        {
+            UICard spawnedCard = Instantiate(uiCardPrefab, displayArea);
+
+            if (cardInstance.IsEnchanted)
+            {
+                CardDataEntry enchantedData = CardManager.Instance.GetEnchantCardData(cardInstance.Name);
+                Sprite enchantedImage = CardManager.Instance.GetEnchantCardImage(cardInstance.Name);
+                spawnedCard.Init(enchantedData, enchantedImage);
+            }
+            else
+            {
+                spawnedCard.Init(cardInstance);
+            }
+
             spawnedCard.transform.localScale = Vector3.one;
 
-            Button cardButton = spawnedCard.GetComponent<Button>();
+            Button cardButton = spawnedCard.GetComponent<Button>();            
 
-            DeckCard capturedCard = deckToRender[i];
+            DeckCard capturedCard = cardInstance;
             cardButton.onClick.RemoveAllListeners();
             cardButton.onClick.AddListener(() => removeConfirmPopup.OpenPopup(capturedCard));
         }

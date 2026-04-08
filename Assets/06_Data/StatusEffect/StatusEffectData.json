@@ -225,11 +225,32 @@
       "color": "#B17E96"
     },
     {
-      "effectName": "Focus_Stance",
+      "effectName": "FocusStance",
       "koreanName": "집중 자세",
       "description": "이번 턴에 방어도를 모두 잃을 시 버스트 버프를 잃습니다.",
       "buffIcon": "target",
       "color": "#FF6821"
+    },
+    {
+      "effectName": "Frost",
+      "koreanName": "냉기",
+      "description": "해당 수치가 3이 될 때, 해당 디버프를 제거하고 동결 디버프를 부여합니다",
+      "buffIcon": "iceberg",
+      "color": "#7DE1E5"
+    },
+    {
+      "effectName" : "FrozenResistance",
+      "koreanName": "동결 저항",
+      "description": "해당 턴 동안, 냉기가 3중첩 이상 쌓여도 동결 디버프로 전환되지 않는다.",
+      "buffIcon": "sun",
+      "color": "#F7FF5A"
+    },
+    {
+      "effectName" : "Preparation",
+      "koreanName": "예비",
+      "description": "다음 턴에 해당 수치 만큼 추가 드로우를 얻습니다.",
+      "buffIcon": "quest",
+      "color": "#525252"
     }
   ]
 }

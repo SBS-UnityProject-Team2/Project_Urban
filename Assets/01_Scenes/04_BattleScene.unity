@@ -1667,6 +1667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 356369106}
+  - component: {fileID: 356369107}
   m_Layer: 0
   m_Name: EffectManager
   m_TagString: Untagged
@@ -1689,6 +1690,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &356369107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356369105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84be63f6f94e0dc44a9f39d0336eb32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectManager
+  effectData: {fileID: 11400000, guid: 656e4aba11510f042ae64eb17c1acce2, type: 2}
 --- !u!1 &362605294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,7 +2781,7 @@ RectTransform:
   m_LocalScale: {x: 0.99936, y: 0.99936, z: 0.99936}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1338369373}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2940,8 +2954,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 664269928}
-  - component: {fileID: 664269930}
   - component: {fileID: 664269929}
+  - component: {fileID: 664269930}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -2980,6 +2994,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FailUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &664269930
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664269927}
+  m_CullTransparentMesh: 1
 --- !u!1 &691575424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,7 +3170,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -3498,7 +3538,7 @@ RectTransform:
   m_LocalScale: {x: 0.99936, y: 0.99936, z: 0.99936}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 691543599}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4954,7 +4994,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 691543599}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5738,7 +5778,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396851907}
-  - component: {fileID: 1396851908}
   m_Layer: 5
   m_Name: UI_PlayerStatus
   m_TagString: Untagged
@@ -5770,18 +5809,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -6}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1396851908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396851906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e03672577e5df48bae267b638857db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatusView
 --- !u!1 &1463789807
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,7 +6530,7 @@ MonoBehaviour:
   heathView: {fileID: 907602580491395153}
   costView: {fileID: 7849055214972223183}
   playerIconView: {fileID: 8788285261447069454}
-  statusEffectView: {fileID: 0}
+  statusEffectView: {fileID: 1835179186}
 --- !u!1 &1813820303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6709,6 +6736,7 @@ GameObject:
   - component: {fileID: 1835179183}
   - component: {fileID: 1835179185}
   - component: {fileID: 1835179184}
+  - component: {fileID: 1835179186}
   m_Layer: 5
   m_Name: UI_StatusEffectLIst
   m_TagString: Untagged
@@ -6774,6 +6802,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835179182}
   m_CullTransparentMesh: 1
+--- !u!114 &1835179186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835179182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38076c5aa672c5843aa500de2a75c992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffectListView
+  itemPrefab: {fileID: 4838087288863639446, guid: 24fffa2ceb7cca94da2d1141bb8f0eb3, type: 3}
+  content: {fileID: 705168567}
 --- !u!1 &1858769550
 GameObject:
   m_ObjectHideFlags: 0
@@ -9244,3 +9286,6 @@ SceneRoots:
   - {fileID: 362605297}
   - {fileID: 954732935}
   - {fileID: 356369106}
+  - {fileID: 645203744}
+  - {fileID: 903531283}
+  - {fileID: 1170353000}
