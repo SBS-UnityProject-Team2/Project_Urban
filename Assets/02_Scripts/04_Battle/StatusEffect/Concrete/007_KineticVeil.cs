@@ -1,25 +1,23 @@
 public class KineticVeil : DurationEffect
 {
     public override StatusEffectName Name => StatusEffectName.KineticVeil;
-    
-    public KineticVeil(Actor owner) : base(owner) {}
+
+    public KineticVeil(Actor owner) : base(owner)
+    {
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+    }
 
     public override void GiveDuration(int duration = 1)
     {
-        if (!isActive)
+        ActionPayload payload = new()
         {
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-            
-            ActionPayload payload = new()
-            {
-                actionId = ActorAction.ChangeElement,
-                source = owner,
-            };
-            payload.Write(ElementType.Psychic);
+            actionId = ActorAction.ChangeElement,
+            source = owner,
+        };
+        payload.Write(ElementType.Psychic);
 
-            payload.AddTarget(owner);
-            ActionBus.Dispatch(payload);
-        }
+        payload.AddTarget(owner);
+        ActionBus.Dispatch(payload);
 
         base.GiveDuration(duration);
     }
@@ -28,8 +26,6 @@ public class KineticVeil : DurationEffect
     {
         base.Clear();
 
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-        
         ActionPayload payload = new()
         {
             actionId = ActorAction.ChangeElement,
@@ -40,9 +36,11 @@ public class KineticVeil : DurationEffect
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
     }
-    
+
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         RemoveDuration();
     }
 }

@@ -5,32 +5,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class ExtinctCardList : MonoBehaviour
 {   
-    [SerializeField] private UICard cardPrefab;
-    [SerializeField] private Deck deck; 
-    [SerializeField] private GameObject panel;
-    [SerializeField] private Transform panelContent;
-
-    private Button button;
+    [SerializeField] private CardDisplay cardDisplay;
 
     private void Awake()
     {
-        button = GetComponent<Button>();
-        button.onClick.AddListener(OnClick);
-    }
-
-    private void OnDestroy()
-    {
-        button.onClick.RemoveListener(OnClick);
+        GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
     public void OnClick()
-    {
-        panel.SetActive(true);
-        CardDisplay.Display(deck.ExtinctCardList, panelContent, cardPrefab);
-    }
-
-    public void OnClose()
-    {
-        panel.SetActive(false);
+    {        
+        cardDisplay.Display("소멸한 카드 목록", Battle.Instance.Deck.ExtinctCardList);
     }
 }

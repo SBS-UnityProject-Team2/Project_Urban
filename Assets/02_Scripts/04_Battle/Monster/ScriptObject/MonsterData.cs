@@ -18,11 +18,14 @@ public class MonsterData : ScriptableObject
 
     [Header("Monster Image Setting")]
     [SerializeField] private List<Sprite> images = new();
+    [SerializeField] private List<ActionIcon> actionIcons = new();
 
     [Header("Monster Data List")]
     [SerializeField] private List<MonsterDataEntry> entries = new();
 
     private readonly Dictionary<MonsterName, Sprite> monsterImageMap = new();
+    private readonly Dictionary<MonsterActionType, Sprite> actionIconMap = new();
+
     private readonly Dictionary<MonsterName, MonsterDataEntry> monsterDataMap = new();
     private readonly Dictionary<MonsterLevel, List<MonsterDataEntry>> monsterLevelMap = new();
     private readonly Dictionary<int, List<MonsterDataEntry>> monsterScoreMap = new();
@@ -51,6 +54,11 @@ public class MonsterData : ScriptableObject
         return monsterImageMap[monsterName];
     }
 
+    public Sprite GetMonsterActionIcon(MonsterActionType actionType)
+    {
+        return actionIconMap[actionType];
+    }
+
     private void OnEnable()
     {
         BuildMonsterDataMap();
@@ -65,8 +73,13 @@ public class MonsterData : ScriptableObject
 
         foreach (Sprite monsterImage in images)
         {
-            Debug.Assert(Enum.TryParse(monsterImage.name, out MonsterName monsterName));
+            Enum.TryParse(monsterImage.name, out MonsterName monsterName);
             monsterImageMap[monsterName] = monsterImage;
+        }
+
+        foreach (ActionIcon icon in actionIcons)
+        {
+            actionIconMap[icon.actionType] = icon.iconImage;
         }
 
         foreach (MonsterDataEntry entry in entries)
@@ -303,4 +316,11 @@ public class PatternEntry
     {
         this.actionIds = actionIds;
     }
+}
+
+[Serializable]
+public class ActionIcon
+{
+    public MonsterActionType actionType;
+    public Sprite iconImage;
 }

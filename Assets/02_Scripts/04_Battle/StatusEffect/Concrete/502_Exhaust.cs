@@ -3,20 +3,9 @@ public class Exhaust : DurationEffect, ICostRegenChange
     private readonly int decreaseCost = 1;
     public override StatusEffectName Name => StatusEffectName.Exhaust;
 
-    public Exhaust(Actor owner) : base(owner) {}
-
-    public override void GiveDuration(int duration = 1)
+    public Exhaust(Actor owner) : base(owner) 
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
-        base.GiveDuration(duration);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
     public int GetCostDelta()
@@ -26,6 +15,8 @@ public class Exhaust : DurationEffect, ICostRegenChange
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        RemoveStack();
+        if (!isActive) return;
+        
+        RemoveDuration();
     }
 }

@@ -29,6 +29,6 @@ public class Anointed : DurationEffect, IDefenderDamageRateChange
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
-        RemoveStack();
+        RemoveDuration();
     }
 }

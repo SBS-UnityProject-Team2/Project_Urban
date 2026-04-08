@@ -136,7 +136,7 @@ public static class Bio
         };
         stPayload.AddTarget(target);
         stPayload.Write(effectName);
-        stPayload.Write(duration);
+        stPayload.Write(stack);
         ActionBus.Dispatch(stPayload);
     }
 

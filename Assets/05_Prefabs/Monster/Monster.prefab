@@ -141,7 +141,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 15, y: 15}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!50 &7075630653767452156
 Rigidbody2D:
@@ -194,7 +194,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b03b769e2fd85e478933f8a008610c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAction
-  UpdateNextAction:
+  CurAction:
+    actionId: 0
+    actionName: 
+    koreanName: 
+    actionType: 0
+    linkId: 0
+    description: 
+    count: 0
+    damage: 0
+    elementType: 0
+  OnUpdateNextAction:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7871278936156202512
@@ -210,8 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterView
   selectArrow: {fileID: 502847596610025367}
-  nextActionView: {fileID: 0}
-  statusEffectView: {fileID: 0}
+  nextActionView: {fileID: 5919707053591952078}
+  statusEffectView: {fileID: 7266606860531348164}
   healthView: {fileID: 8530069136682732285}
 --- !u!114 &4566305944446453923
 MonoBehaviour:
@@ -382,6 +392,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 152784807394131098, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
   m_PrefabInstance: {fileID: 3812852942469273148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5919707053591952078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7408139634067631346, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 3812852942469273148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70225c2be2a62a42834fc518fca6b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextActionView
+--- !u!114 &7266606860531348164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5778635076355761400, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}
+  m_PrefabInstance: {fileID: 3812852942469273148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ee889df0b60d54b9824578df8cda56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatusEffectListView
 --- !u!114 &8530069136682732285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4794395315577838785, guid: f3c687c7cc431f84fb5bbec6922d0f6e, type: 3}

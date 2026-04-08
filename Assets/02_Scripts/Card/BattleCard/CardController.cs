@@ -38,6 +38,7 @@ public class CardController : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (Battle.Instance.IsPause) return;
         if (!Battle.Instance.Player.IsTurn) return;
         if (isMoving) return;
         if (IsDragging) return;
@@ -46,6 +47,7 @@ public class CardController : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (Battle.Instance.IsPause) return;
         if (!Battle.Instance.Player.IsTurn) return;
         if (isMoving) return;
         if (IsDragging) return;
@@ -54,6 +56,7 @@ public class CardController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (Battle.Instance.IsPause) return;
         if (!Battle.Instance.Player.IsTurn) return;
         if (isMoving) return;
         

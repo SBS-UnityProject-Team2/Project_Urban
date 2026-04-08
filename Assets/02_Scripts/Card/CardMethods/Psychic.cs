@@ -358,7 +358,7 @@ public static class Psychic
         };
         stPayload.AddTarget(target);
         stPayload.Write(effectName);
-        stPayload.Write(duration);
+        stPayload.Write(stack);
         ActionBus.Dispatch(stPayload);
     }
 

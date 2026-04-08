@@ -4,25 +4,16 @@ public class Poisoned : DurationEffect
 
     public override StatusEffectName Name => StatusEffectName.Poisoned;
 
-    public Poisoned(Actor owner) : base(owner) {}
-
-    public override void GiveDuration(int duration = 1)
-    {   
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
-
-        base.GiveDuration(duration);
-    }
-
-    public override void Clear()
+    public Poisoned(Actor owner) : base(owner)
     {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        owner.EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
     }
 
 
     private void HandleTurnEnd(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.AtkLossHp,
@@ -32,6 +23,6 @@ public class Poisoned : DurationEffect
         payload.AddTarget(owner);
         ActionBus.Dispatch(payload);
 
-        RemoveStack();
+        RemoveDuration();
     }
 }

@@ -2,24 +2,15 @@ public class Searing : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.Searing;
 
-    public Searing(Actor owner) : base(owner) {}
-
-    public override void GiveStack(int stack = 1)
+    public Searing(Actor owner) : base(owner)
     {
-        if (!isActive)
-            owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
-
-        base.GiveStack(stack);
-    }
-
-    public override void Clear()
-    {
-        base.Clear();
-        owner.EventBus.RemoveEventListener(ActorEvent.DamageTaken, HandleDamage);
+        owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
     }
 
     private void HandleDamage(EventPayload eventPayload)
     {
+        if (!isActive) return;
+
         ActionPayload payload = new()
         {
             actionId = ActorAction.MoveCardFromDeck,

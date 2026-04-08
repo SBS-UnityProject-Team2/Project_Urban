@@ -58,7 +58,10 @@ public class MonsterActionData : ScriptableObject
                     koreanName = jsonAction.ActionName,
                     actionType = ParseActionType(jsonAction.ActionType),
                     linkId = jsonAction.LinkID,
-                    description = jsonAction.Description
+                    description = jsonAction.Description,
+                    damage = jsonAction.Damage,
+                    count = jsonAction.Count,
+                    elementType = Enum.TryParse(jsonAction.ElementType, true, out ElementType et) ? et : ElementType.None
                 };
 
                 entries.Add(entry);
@@ -103,6 +106,9 @@ public class JsonMonsterActionData
     public string ActionType;
     public int LinkID;
     public string Description;
+    public int Damage;
+    public int Count;
+    public string ElementType;
 }
 #endif
 
@@ -115,4 +121,7 @@ public class MonsterActionDataEntry
     public MonsterActionType actionType;
     public int linkId;
     public string description;
+    public int count;
+    public int damage;
+    public ElementType elementType;
 }
