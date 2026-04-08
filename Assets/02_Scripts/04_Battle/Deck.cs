@@ -2,12 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class Deck : MonoBehaviour
 {
-    private readonly List<Card> unusedCardList = new();
-    private readonly List<Card> usedCardList = new();
-    private readonly List<Card> extinctCardList = new();
+    private readonly CardList unusedCardList = new();
+    private readonly CardList usedCardList = new();
+    private readonly CardList extinctCardList = new();
     private Hand hand;
 
     public List<DeckCard> UnusedCardList => unusedCardList.Select(card => card.DeckCard).ToList();
@@ -57,6 +58,7 @@ public class Deck : MonoBehaviour
         await hand.RemoveCard(card);
 
         usedCardList.Add(card);
+        DispatchDiscardCard(card);
 
         card.gameObject.SetActive(false);
         card.transform.parent = transform;
@@ -71,6 +73,7 @@ public class Deck : MonoBehaviour
         foreach (Card card in copy)
         {
             usedCardList.Add(card);
+            DispatchDiscardCard(card);
 
             card.gameObject.SetActive(false);
             card.transform.parent = transform;
@@ -82,9 +85,15 @@ public class Deck : MonoBehaviour
         await hand.RemoveCard(card);
 
         if (card.CardData.isExtinct)
+        {
             extinctCardList.Add(card);
+            DispatchExtinctCard(card);
+        }
         else
+        {
             usedCardList.Add(card);
+            DispatchDiscardCard(card);
+        }
 
         card.gameObject.SetActive(false);
         card.transform.parent = transform;
@@ -150,7 +159,6 @@ public class Deck : MonoBehaviour
     public async UniTask MoveCard(Location from, Location to, int amount)
     {
         if (from == to) return;
-
         List<Card> moveCards = new();
 
         switch (from)
@@ -163,7 +171,6 @@ public class Deck : MonoBehaviour
                     unusedCardList.RemoveAt(unusedCardList.Count - 1);
                 }
                 break;
-
             case Location.DeckBottom:
                 for (int i = 0; i < amount; i++)
                     moveCards.Add(unusedCardList[i]);
@@ -196,10 +203,14 @@ public class Deck : MonoBehaviour
 
             case Location.DiscardPile:
                 usedCardList.AddRange(moveCards);
+                foreach (Card moveCard in moveCards)
+                    DispatchDiscardCard(moveCard);
                 break;
 
             case Location.ExhaustPile:
                 extinctCardList.AddRange(moveCards);
+                foreach (Card moveCard in moveCards)
+                    DispatchExtinctCard(moveCard);
                 break;
 
             case Location.Hand:
@@ -244,5 +255,29 @@ public class Deck : MonoBehaviour
             from.RemoveAt(from.Count - 1);
         }
 
+    }
+
+    private void DispatchExtinctCard(Card card)
+    {
+        ExtinctCardPayload payload = new()
+        {
+            source = Battle.Instance.Player,
+            target = Battle.Instance.Player,
+            cardName = card.DeckCard.Name,
+        };
+
+        Battle.Instance.Player.DispatchEvent(payload);
+    }
+
+    private void DispatchDiscardCard(Card card)
+    {
+        DiscardCardPayload payload = new()
+        {
+            source = Battle.Instance.Player,
+            target = Battle.Instance.Player,
+            cardName = card.DeckCard.Name,
+        };
+
+        Battle.Instance.Player.DispatchEvent(payload);
     }
 }

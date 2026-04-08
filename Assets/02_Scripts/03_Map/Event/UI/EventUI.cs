@@ -14,7 +14,12 @@ public class EventUI : MonoBehaviour
 
     private void Awake()
     {
-        exitButton.onClick.AddListener(ButtonEvent.Instance.OnClickEventExit);    
+        exitButton.onClick.AddListener(HandleExitButtonClick);
+    }
+
+    private void OnDestroy()
+    {
+        exitButton.onClick.RemoveListener(HandleExitButtonClick);
     }
 
     private void OnEnable()
@@ -36,6 +41,8 @@ public class EventUI : MonoBehaviour
 
         // 유저가 선택지를 고를때까지 대기
         EventRewardData rewardData = await PlayEventChoice();
+        
+        eventButtonsUI.gameObject.SetActive(false);
         
         // 유저가 보상을 받을때까지 대기
         (int scriptCode, string resultString) = await PlayEventReward(rewardData);
@@ -74,5 +81,11 @@ public class EventUI : MonoBehaviour
         eventRewardUI.gameObject.SetActive(false);
 
         await eventScriptUI.StartEndScript(scriptCode, resultString);
+    }
+
+    private void HandleExitButtonClick()
+    {
+        if (ButtonEvent.Instance != null)
+            ButtonEvent.Instance.OnClickEventExit();
     }
 }

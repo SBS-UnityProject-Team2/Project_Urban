@@ -55,6 +55,7 @@ public class EventButtonUI : MonoBehaviour
             earnCoin = earnCoin,
             randomCard = eventReward.randomCard,
             removeCard = eventReward.remove,
+            artifact = eventReward.artifact,
             cards = eventReward.selectCards,
             scriptCode = eventChoice.scriptCode
         };
@@ -103,6 +104,9 @@ public class EventButtonUI : MonoBehaviour
 
         if (eventReward.remove != 0)
             stringBuilder.Append($"[{GetRemoveElementName(eventReward.remove)}] 속성 카드 1개 랜덤 제거");
+
+        if (eventReward.artifact != 0)
+            stringBuilder.Append($"유물 [{GetArtifactName(eventReward.artifact)}] 선택\n");
 
         if (stringBuilder.Length == 0)
             stringBuilder.Append("없음");
@@ -153,6 +157,17 @@ public class EventButtonUI : MonoBehaviour
         stringBuilder.Append(" 중 1개 선택 획득\n");
 
         return stringBuilder.ToString();
+    }
+
+    private string GetArtifactName(int artifactCode)
+    {
+        return artifactCode switch
+        {
+            1 => "탄약 목걸이",
+            2 => "과냉각 렌즈",
+            3 => "얽혀진 덩굴",
+            _ => string.Empty,
+        };
     }
 
     private bool CheckCondition(int condition)

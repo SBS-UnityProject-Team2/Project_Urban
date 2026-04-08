@@ -1,61 +1,25 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ArtifactManager
 {
-	private readonly List<ArtifactId> ownedArtifacts = new();
-	private ArtifactController artifactController;
-
-	public IReadOnlyList<ArtifactId> OwnedArtifacts => ownedArtifacts;
-
-	public void AddArtifact(ArtifactId artifactId)
+	public ArtifactInfo GetInfo(ArtifactId artifactId)
 	{
-		if (ownedArtifacts.Contains(artifactId))
-			return;
-
-		ownedArtifacts.Add(artifactId);
-	}
-
-	public bool HasArtifact(ArtifactId artifactId)
-	{
-		return ownedArtifacts.Contains(artifactId);
-	}
-
-	public void RemoveArtifact(ArtifactId artifactId)
-	{
-		ownedArtifacts.Remove(artifactId);
-	}
-
-	public void Init(Battle battle)
-	{
-		artifactController = new ArtifactController(ownedArtifacts);
-		artifactController.Initialize(battle);
-	}
-
-	public void Dispose()
-	{
-		artifactController.Dispose();
+		return artifactId switch
+		{
+			ArtifactId.AmmoNecklace => new ArtifactInfo(ArtifactId.AmmoNecklace, "탄약 목걸이"),
+			ArtifactId.OvercooledLens => new ArtifactInfo(ArtifactId.OvercooledLens, "과냉각 렌즈"),
+			ArtifactId.EntangledVines => new ArtifactInfo(ArtifactId.EntangledVines, "얽혀진 덩굴"),
+			_ => null,
+		};
 	}
 }
 
-public class ArtifactController
+public class ArtifactInfo
 {
-	private readonly IReadOnlyList<ArtifactId> ownedArtifacts;
+	public ArtifactId Id { get; }
+	public string KoreanName { get; }
 
-	public ArtifactController(IReadOnlyList<ArtifactId> ownedArtifacts)
+	public ArtifactInfo(ArtifactId id, string koreanName)
 	{
-		this.ownedArtifacts = ownedArtifacts;
-	}
-
-	public void Initialize(Battle battle)
-	{
-		for (int i = 0; i < ownedArtifacts.Count; i++)
-		{
-			Debug.Log($"[ArtifactController] Owned Artifact: {ownedArtifacts[i]}");
-		}
-	}
-
-	public void Dispose()
-	{
+		Id = id;
+		KoreanName = koreanName;
 	}
 }

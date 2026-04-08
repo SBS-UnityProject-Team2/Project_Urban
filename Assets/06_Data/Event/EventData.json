@@ -1,4 +1,4 @@
-{
+﻿{
     "eventInfos": [
         {
             "eventCode ": 10,
@@ -215,30 +215,16 @@
         {
             "scriptCode": 124,
             "eventCode": 16,
-            "playerScript": "당신의 앞에 기이한 남자가 나타났다. 남자는 이쪽을 보고는 씨익 웃으며 말했다.\n그리고는 자신이 가지고 있는 물건을 보여줬다.\n탄약으로 만든 듯한 목걸이, 옅은 푸른 빛을 내는 단안경, 얽혀진 덩굴들로 만든 팔찌.\n무엇을 고를까?",
-            "npcDialogue": "\"하나 골라 가시게, 그쪽에게 분명 도움이 될거야.\"",
-            "illustration": "Npc2 복사"
+            "playerScript": "당신의 앞에 기이한 남자가 나타났다. 남자는 이쪽을 보고는 씨익 웃으며 말했다. \n그리고는 자신이 가지고 있는 물건을 보여줬다. \n탄약으로 만든 듯한 목걸이, 옅은 푸른 빛을 내는 단안경, 얽혀진 덩굴들로 만든 팔찌.\n무엇을 고를까?",
+            "npcDialogue": "하나 골라 가시게, 그쪽에게 분명 도움이 될거야.",
+            "illustration": "Npc"
         },
         {
             "scriptCode": 125,
             "eventCode": 16,
-            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
-            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
-            "illustration": "Npc2 복사"
-        },
-        {
-            "scriptCode": 126,
-            "eventCode": 16,
-            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
-            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
-            "illustration": "Npc2 복사"
-        },
-        {
-            "scriptCode": 127,
-            "eventCode": 16,
-            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
-            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
-            "illustration": "Npc2 복사"
+            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다. \n받은 물건에선 특이한 느낌이 들었다. ",
+            "npcDialogue": "행운을 빌겠네. 킬킬킬.",
+            "illustration": "Npc"
         }
     ],
     "eventChoices": [
@@ -407,29 +393,29 @@
         {
             "choiceCode": 1018,
             "eventCode": 16,
-            "choiceName": "1. 탄약 목걸이",
+            "choiceName": "탄약 목걸이를 선택한다.",
             "choiceCondition": 0,
-            "choiceReward": "유물 [탄약 목걸이] 획득",
+            "choiceReward": "카드를 소멸시킬 때 마다 무작위 적에게 화상 1을 부여합니다.",
             "rewardCode": 10018,
             "scriptCode": 125
         },
         {
             "choiceCode": 1019,
             "eventCode": 16,
-            "choiceName": "2. 과냉각 렌즈",
+            "choiceName": "과냉각 렌즈를 선택한다.",
             "choiceCondition": 0,
-            "choiceReward": "유물 [과냉각 렌즈] 획득",
+            "choiceReward": "공격 카드를 사용해 공격 시 적에게 부여된 냉기 1 당 3의 추가 피해를 줍니다.",
             "rewardCode": 10019,
-            "scriptCode": 126
+            "scriptCode": 125
         },
         {
             "choiceCode": 1020,
             "eventCode": 16,
-            "choiceName": "3. 얽혀진 덩굴",
+            "choiceName": "얽혀진 덩굴 팔찌를 선택한다.",
             "choiceCondition": 0,
-            "choiceReward": "유물 [얽혀진 덩굴] 획득",
+            "choiceReward": "매 턴 처음 카드를 5장 버릴때 마다 체력을 3 회복합니다.",
             "rewardCode": 10020,
-            "scriptCode": 127
+            "scriptCode": 125
         }
     ],
     "eventRewards": [
@@ -440,7 +426,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "2007, 3006, 4007",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10001,
@@ -449,7 +436,8 @@
             "gold": -18,
             "randomCard": 0,
             "selectCards": "1001, 1003, 1004",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10002,
@@ -458,7 +446,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10003,
@@ -467,7 +456,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10004,
@@ -476,7 +466,8 @@
             "gold": 18,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10005,
@@ -485,7 +476,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "1008",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10006,
@@ -494,7 +486,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "2002, 2008, 2012",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10007,
@@ -503,7 +496,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10008,
@@ -512,7 +506,8 @@
             "gold": 32,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10009,
@@ -521,7 +516,8 @@
             "gold": 0,
             "randomCard": 2,
             "selectCards": "",
-            "remove": 3
+            "remove": 3,
+            "artifact": 0
         },
         {
             "rewardCode": 10010,
@@ -530,7 +526,8 @@
             "gold": 0,
             "randomCard": 3,
             "selectCards": "",
-            "remove": 2
+            "remove": 2,
+            "artifact": 0
         },
         {
             "rewardCode": 10011,
@@ -539,7 +536,8 @@
             "gold": 0,
             "randomCard": 4,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10012,
@@ -548,7 +546,8 @@
             "gold": 0,
             "randomCard": 4,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10013,
@@ -557,7 +556,8 @@
             "gold": 20,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10014,
@@ -566,7 +566,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10015,
@@ -575,7 +576,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 5
+            "remove": 5,
+            "artifact": 0
         },
         {
             "rewardCode": 10016,
@@ -584,7 +586,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10017,
@@ -593,7 +596,8 @@
             "gold": 0,
             "randomCard": 3,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 0
         },
         {
             "rewardCode": 10018,
@@ -602,7 +606,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 1
         },
         {
             "rewardCode": 10019,
@@ -611,7 +616,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 2
         },
         {
             "rewardCode": 10020,
@@ -620,7 +626,8 @@
             "gold": 0,
             "randomCard": 0,
             "selectCards": "",
-            "remove": 0
+            "remove": 0,
+            "artifact": 3
         }
     ]
 }

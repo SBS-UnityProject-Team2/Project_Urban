@@ -29,6 +29,20 @@ public class ActionEventPayload : EventPayload
     public ActionEventPayload() { eventId = ActorEvent.Action; }
 }
 
+public class DiscardCardPayload : EventPayload
+{
+    public CardName cardName;
+
+    public DiscardCardPayload() { eventId = ActorEvent.DiscardCard; }
+}
+
+public class ExtinctCardPayload : EventPayload
+{
+    public CardName cardName;
+
+    public ExtinctCardPayload() { eventId = ActorEvent.ExtinctCard; }
+}
+
 public class AttackEventPayload : EventPayload
 {
     public AttackEventPayload() { eventId = ActorEvent.Attack; }
