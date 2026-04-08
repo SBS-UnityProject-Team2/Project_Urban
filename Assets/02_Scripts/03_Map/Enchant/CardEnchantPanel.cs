@@ -9,6 +9,7 @@ public class CardEnchantPanel : MonoBehaviour
     [SerializeField] private Transform displayArea;   // ScrollView의 Content
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
     [SerializeField] private GameObject EnchantCardPanel; // 인챈트 패널
+    [SerializeField] private GameObject emptyEnchantableMessageObject; // 강화 가능 카드가 없을 때 안내 텍스트
 
     [Header("Popup Settings")]
     [SerializeField] private EnchantConfirmPopup deckEnchantPopup;
@@ -16,8 +17,15 @@ public class CardEnchantPanel : MonoBehaviour
     public void OpenDeckDisplay()
     {
         List<DeckCard> receivedDeck = DeckManager.Instance.Deck;
+        bool hasEnchantableCard = receivedDeck.Exists(card => !card.IsEnchanted);
 
         RenderDeck(receivedDeck);
+
+        if (!hasEnchantableCard)
+        {
+            emptyEnchantableMessageObject.SetActive(true);
+            SetSpawnedCardsActive(false);
+        }
 
         EnchantCardPanel.SetActive(true);
     }
@@ -25,6 +33,7 @@ public class CardEnchantPanel : MonoBehaviour
     public void CloseDeckDisplay()
     {
         EnchantCardPanel.SetActive(false);
+        emptyEnchantableMessageObject.SetActive(false);
     }
 
     private void RenderDeck(List<DeckCard> deckToRender)
@@ -60,6 +69,14 @@ public class CardEnchantPanel : MonoBehaviour
             DeckCard capturedCard = cardInstance;
             cardButton.onClick.RemoveAllListeners();
             cardButton.onClick.AddListener(() => deckEnchantPopup.OpenPopup(capturedCard));
+        }
+    }
+
+    private void SetSpawnedCardsActive(bool isActive)
+    {
+        foreach (Transform child in displayArea)
+        {
+            child.gameObject.SetActive(isActive);
         }
     }
 }

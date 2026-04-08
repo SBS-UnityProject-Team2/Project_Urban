@@ -41,6 +41,13 @@
             "eventName": "기이한 약",
             "scriptCode": 105,
             "choiceCodes": "1015, 1016, 1017"
+        },
+        {
+            "eventCode ": 16,
+            "stage": 1,
+            "eventName": "골동품",
+            "scriptCode": 124,
+            "choiceCodes": "1018, 1019, 1020"
         }
     ],
     "eventScripts": [
@@ -204,6 +211,34 @@
             "eventCode": 15,
             "playerScript": "수상한 느낌이 아무래도 정답이었던 것 같다. \n깨진 유리병에서 새어나온 물약이 서서히 하나의 지점으로 뭉치더니 거대한 연기가 되어 나를 감쌌다. \n연기가 사라지자 정신이 맑아지는 감각이 느껴진다.",
             "illustration": "Potion"
+        },
+        {
+            "scriptCode": 124,
+            "eventCode": 16,
+            "playerScript": "당신의 앞에 기이한 남자가 나타났다. 남자는 이쪽을 보고는 씨익 웃으며 말했다.\n그리고는 자신이 가지고 있는 물건을 보여줬다.\n탄약으로 만든 듯한 목걸이, 옅은 푸른 빛을 내는 단안경, 얽혀진 덩굴들로 만든 팔찌.\n무엇을 고를까?",
+            "npcDialogue": "\"하나 골라 가시게, 그쪽에게 분명 도움이 될거야.\"",
+            "illustration": "Npc2 복사"
+        },
+        {
+            "scriptCode": 125,
+            "eventCode": 16,
+            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
+            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
+            "illustration": "Npc2 복사"
+        },
+        {
+            "scriptCode": 126,
+            "eventCode": 16,
+            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
+            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
+            "illustration": "Npc2 복사"
+        },
+        {
+            "scriptCode": 127,
+            "eventCode": 16,
+            "playerScript": "남자는 선택한 물건을 건네 주고는 웃으며 발걸음을 옮겼다.\n받은 물건에선 특이한 느낌이 들었다.",
+            "npcDialogue": "\"행운을 빌겠네. 킬킬킬.\"",
+            "illustration": "Npc2 복사"
         }
     ],
     "eventChoices": [
@@ -368,6 +403,33 @@
             "choiceReward": "[사이킥] 속성 카드 1개 획득",
             "rewardCode": 10017,
             "scriptCode": 123
+        },
+        {
+            "choiceCode": 1018,
+            "eventCode": 16,
+            "choiceName": "1. 탄약 목걸이",
+            "choiceCondition": 0,
+            "choiceReward": "유물 [탄약 목걸이] 획득",
+            "rewardCode": 10018,
+            "scriptCode": 125
+        },
+        {
+            "choiceCode": 1019,
+            "eventCode": 16,
+            "choiceName": "2. 과냉각 렌즈",
+            "choiceCondition": 0,
+            "choiceReward": "유물 [과냉각 렌즈] 획득",
+            "rewardCode": 10019,
+            "scriptCode": 126
+        },
+        {
+            "choiceCode": 1020,
+            "eventCode": 16,
+            "choiceName": "3. 얽혀진 덩굴",
+            "choiceCondition": 0,
+            "choiceReward": "유물 [얽혀진 덩굴] 획득",
+            "rewardCode": 10020,
+            "scriptCode": 127
         }
     ],
     "eventRewards": [
@@ -530,6 +592,33 @@
             "hpMax": 0,
             "gold": 0,
             "randomCard": 3,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10018,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10019,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
+            "selectCards": "",
+            "remove": 0
+        },
+        {
+            "rewardCode": 10020,
+            "hpPresent": 0,
+            "hpMax": 0,
+            "gold": 0,
+            "randomCard": 0,
             "selectCards": "",
             "remove": 0
         }
