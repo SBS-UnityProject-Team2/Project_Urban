@@ -62,7 +62,10 @@ public static class MonsterActionMethod
     public static async UniTask Screw(Actor source) // 8002
     {
         for (int i = 0; i < 2; i++)
+        {
             Attack(source, ElementType.None, 5);
+            await UniTask.WaitForSeconds(0.25f);
+        }
     }
 
     public static async UniTask ScarpGun(Actor source) // 8003
@@ -102,7 +105,10 @@ public static class MonsterActionMethod
     public static async UniTask CorrosiveShock(Actor source) // 8009
     {
         for (int i = 0; i < 2; i++)
+        {
             Attack(source, ElementType.Bio, 7);
+            await UniTask.WaitForSeconds(0.25f);
+        }
         
         GiveEffect(source, Battle.Instance.Player, StatusEffectName.Broken, 2, 3);
     }
@@ -110,7 +116,10 @@ public static class MonsterActionMethod
     public static async UniTask MultipleFire(Actor source) // 8010
     {
         for (int i = 0; i < 5; i++)
+        {
             Attack(source, ElementType.None, 3);
+            await UniTask.WaitForSeconds(0.1f);
+        }
     }
     #endregion
 

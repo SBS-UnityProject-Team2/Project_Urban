@@ -11,8 +11,6 @@ using System.IO;
 public class EffectData : ScriptableObject
 {
     [SerializeField] private string effectPrefabBasePath = "05_Prefabs/Effects";
-    private static readonly int[,] EmptyPattern = new int[0, 0];
-    private static readonly float[] EmptyDuration = Array.Empty<float>();
     
     [Header("Data Lists")]
     [SerializeField] private List<EffectDataEntry> effects = new();
@@ -30,12 +28,7 @@ public class EffectData : ScriptableObject
         effectTypeMap.Clear();
 
         foreach (EffectDataEntry entry in effects)
-        {
-            if (entry.effectPatternSerialized != null)
-                entry.effectPattern = entry.effectPatternSerialized.ToArray();
-
             effectTypeMap[entry.effectType] = entry;
-        }
     }
 
     public EffectControl GetEffectPrefab(EffectType effectType) => effectTypeMap[effectType].effectPrefab;
@@ -76,14 +69,11 @@ public class EffectData : ScriptableObject
                 
                 EffectType parsedEffectType = (EffectType)jsonEffect.effectType;
 
-                int[,] parsedPattern = ParseEffectPattern(jsonEffect.effectPattern);
-                
                 EffectDataEntry entry = new()
                 {
                     effectType = parsedEffectType,
                     effectName = jsonEffect.effectName ?? string.Empty,
-                    effectPattern = parsedPattern,
-                    effectPatternSerialized = SerializablePattern.FromArray(parsedPattern),
+                    effectPattern = ParseEffectPattern(jsonEffect.effectPattern),
                     effectDuration = ParseEffectDuration(jsonEffect.effectDuration),
                 };
 
@@ -115,89 +105,45 @@ public class EffectData : ScriptableObject
         }
     }
 
-    private int[,] ParseEffectPattern(string pattern)
+    private List<IntRow> ParseEffectPattern(string pattern)
     {
+        List<IntRow> result = new();
+
         if (string.IsNullOrEmpty(pattern))
-            return EmptyPattern;
-
-        if (pattern.Contains("["))
-            return ParseBracketedPattern(pattern);
-        else
-        {
-            string[] values = pattern.Split(',');
-            int[,] result = new int[1, values.Length];
-            for (int i = 0; i < values.Length; i++)
-            {
-                if (int.TryParse(values[i].Trim(), out int value))
-                    result[0, i] = value;
-            }
             return result;
-        }
-    }
 
-    private int[,] ParseBracketedPattern(string pattern)
-    {
-        string[] rows = pattern.Split(new[] { "]," }, System.StringSplitOptions.None);
-        if (rows.Length == 0) return EmptyPattern;
-
-        List<int[]> parsedRows = new();
-        for (int i = 0; i < rows.Length; i++)
+        string[] rows = pattern.Split(new[] { "]," }, StringSplitOptions.None);
+        foreach (string row in rows)
         {
-            string row = rows[i].Replace("[", "").Replace("]", "").Trim();
-            if (string.IsNullOrEmpty(row))
-                continue;
-            
-            string[] values = row.Split(',');
-            int[] rowValues = new int[values.Length];
-            for (int j = 0; j < values.Length; j++)
+            string cleaned = row.Replace("[", "").Replace("]", "").Trim();
+            if (string.IsNullOrEmpty(cleaned)) continue;
+
+            IntRow intRow = new();
+            foreach (string token in cleaned.Split(','))
             {
-                if (int.TryParse(values[j].Trim(), out int value))
-                    rowValues[j] = value;
+                if (int.TryParse(token.Trim(), out int value))
+                    intRow.values.Add(value);
             }
-            parsedRows.Add(rowValues);
+            result.Add(intRow);
         }
 
-        if (parsedRows.Count == 0)
-            return EmptyPattern;
-
-        int maxCols = parsedRows[0].Length;
-        int[,] result = new int[parsedRows.Count, maxCols];
-        for (int i = 0; i < parsedRows.Count; i++)
-        {
-            for (int j = 0; j < parsedRows[i].Length; j++)
-                result[i, j] = parsedRows[i][j];
-        }
-        
         return result;
     }
 
-    private float[] ParseEffectDuration(string duration)
+    private List<float> ParseEffectDuration(string duration)
     {
-        if (string.IsNullOrEmpty(duration)) return EmptyDuration;
+        List<float> result = new();
 
-        // 쉼표로 구분된 여러 값: "0.2, 0.3, 0.6" 또는 "0.4, 1"
-        if (duration.Contains(","))
-        {
-            string[] values = duration.Split(',');
-            float[] result = new float[values.Length];
-            for (int i = 0; i < values.Length; i++)
-            {
-                if (float.TryParse(values[i].Trim(), out float value))
-                {
-                    result[i] = value;
-                }
-            }
+        if (string.IsNullOrEmpty(duration))
             return result;
-        }
-        // 단일 숫자: "1" 또는 "2.5"
-        else
+
+        foreach (string token in duration.Split(','))
         {
-            if (float.TryParse(duration.Trim(), out float value))
-            {
-                return new float[] { value };
-            }
-            return EmptyDuration;
+            if (float.TryParse(token.Trim(), out float value))
+                result.Add(value);
         }
+
+        return result;
     }
 
     private string GetEffectPrefabPath(string effectPath)
@@ -240,48 +186,9 @@ public class JsonEffectData
 #endif
 
 [Serializable]
-public class SerializablePattern
+public class IntRow
 {
-    public int[] data;     
-    public int rowCount;
-    public int colCount;
-    
-    public int[,] ToArray()
-    {
-        if (data == null || data.Length == 0 || rowCount == 0 || colCount == 0)
-            return new int[0, 0];
-        
-        int[,] result = new int[rowCount, colCount];
-        for (int i = 0; i < rowCount; i++)
-        {
-            for (int j = 0; j < colCount; j++)
-                result[i, j] = data[i * colCount + j];
-        }
-        
-        return result;
-    }
-    
-    public static SerializablePattern FromArray(int[,] array)
-    {
-        SerializablePattern pattern = new();
-        if (array == null)
-            return pattern;
-        
-        int rows = array.GetLength(0);
-        int cols = array.GetLength(1);
-        
-        pattern.rowCount = rows;
-        pattern.colCount = cols;
-        pattern.data = new int[rows * cols];
-        
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-                pattern.data[i * cols + j] = array[i, j];
-        }
-        
-        return pattern;
-    }
+    public List<int> values = new();
 }
 
 [Serializable]
@@ -290,39 +197,8 @@ public class EffectDataEntry
     public EffectType effectType;
     public string effectName;
     public EffectControl effectPrefab;
-    
-    [System.NonSerialized]
-    public int[,] effectPattern;
-
-    public SerializablePattern effectPatternSerialized;
-    public float[] effectDuration;
-
-#if UNITY_EDITOR
-    public string PatternDisplay
-    {
-        get
-        {
-            if (effectPatternSerialized == null || effectPatternSerialized.data == null)
-                return "Empty";
-            
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            for (int i = 0; i < effectPatternSerialized.rowCount; i++)
-            {
-                sb.Append("[");
-                for (int j = 0; j < effectPatternSerialized.colCount; j++)
-                {
-                    sb.Append(effectPatternSerialized.data[i * effectPatternSerialized.colCount + j]);
-                    if (j < effectPatternSerialized.colCount - 1)
-                        sb.Append(", ");
-                }
-                sb.Append("]");
-                if (i < effectPatternSerialized.rowCount - 1)
-                    sb.Append(", ");
-            }
-            return sb.ToString();
-        }
-    }
-#endif
+    public List<IntRow> effectPattern;
+    public List<float> effectDuration;
 }
 
 // EffectType enum 정의
@@ -348,7 +224,7 @@ public enum EffectType
     EarthSphereBlast = 17,
     CurseLife = 18,
     FireFlame2 = 19,
-    FrostWallCircle = 20,
+    FrostWall = 20,
     InfernoFireMeshGlow = 21,
     InfernoFirePillarBlast = 22
 }

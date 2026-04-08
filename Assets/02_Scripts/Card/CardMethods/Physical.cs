@@ -1,12 +1,16 @@
+using System;
+using Cysharp.Threading.Tasks;
+
 public static class Physical
 {
     #region Normal
-    public static void Punch(Actor target)
+    public static async UniTask Punch(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 5);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Guard(Actor target)
+    public static async UniTask Guard(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload payload = new()
         {
@@ -17,37 +21,48 @@ public static class Physical
         payload.Write(5);
 
         ActionBus.Dispatch(payload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Shooting(Actor target)
+    public static async UniTask Shooting(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 7, Battle.Instance.Player.LastUsedElementType);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Strike(Actor target)
+    public static async UniTask Strike(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 12);
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void VileAttack(Actor target)
+    public static async UniTask VileAttack(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 9);
         GiveEffect(target ,StatusEffectName.Weaken, 2, 3);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Assault(Actor target)
+    public static async UniTask Assault(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 10);
         GiveEffect(target, StatusEffectName.Frozen, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Rollout(Actor target)
+    public static async UniTask Rollout(Actor target, Func<Actor, UniTask> effectPlay)
     {
         AddProtect(Battle.Instance.Player, 7);
         GiveEffect(Battle.Instance.Player, StatusEffectName.Preparation, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Maintenance(Actor target)
+    public static async UniTask Maintenance(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload payload = new()
         {
@@ -58,21 +73,27 @@ public static class Physical
         payload.Write(2);
 
         ActionBus.Dispatch(payload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void Dummy(Actor target)
+    public static async UniTask Dummy(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(target, StatusEffectName.Blur, -2, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 
     #region Plus
-    public static void PunchPlus(Actor target)
+    public static async UniTask PunchPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 8);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void GuardPlus(Actor target)
+    public static async UniTask GuardPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload payload = new()
         {
@@ -83,37 +104,49 @@ public static class Physical
         payload.Write(8);
 
         ActionBus.Dispatch(payload);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void ShootingPlus(Actor target)
+    public static async UniTask ShootingPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 10, Battle.Instance.Player.LastUsedElementType);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void StrikePlus(Actor target)
+    public static async UniTask StrikePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 18);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void VileAttackPlus(Actor target)
+    public static async UniTask VileAttackPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 12);
         GiveEffect(target ,StatusEffectName.Weaken, 2, 3);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void AssaultPlus(Actor target)
+    public static async UniTask AssaultPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 14);
         GiveEffect(target, StatusEffectName.Frozen, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void RolloutPlus(Actor target)
+    public static async UniTask RolloutPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 10);
         GiveEffect(Battle.Instance.Player, StatusEffectName.Preparation, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void MaintenancePlus(Actor target)
+    public static async UniTask MaintenancePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
         ActionPayload payload = new()
         {
@@ -122,11 +155,15 @@ public static class Physical
         };
         payload.AddTarget(target);
         payload.Write(2);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
-    public static void DummyPlus(Actor target)
+    public static async UniTask DummyPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-        GiveEffect(target, StatusEffectName.Blur, -2, 2);
+        GiveEffect(target, StatusEffectName.Blur, -2, 3);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 

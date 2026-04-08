@@ -7,7 +7,7 @@ public class PlayerCostView : MonoBehaviour
 
     private void UpdateView(int curCost, int maxCost)
     {
-        costText.text = $"{curCost} / {maxCost}";
+        costText.text = $"{curCost}/{maxCost}";
     }
 
     public void Bind(ActorStatus status)

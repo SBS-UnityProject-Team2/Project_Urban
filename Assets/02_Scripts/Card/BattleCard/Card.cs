@@ -90,10 +90,21 @@ public class Card : MonoBehaviour
 
     public async UniTask Use(Actor target)
     {
-        CardMethods.Dispatch(cardDataEntry.cardName, target, deckCard.IsEnchanted);
-        Debug.Log($"{target.name} / {cardDataEntry.cardName} Use");
+        var blocks = Battle.Instance.Player.Status.EffectList.GetActiveEffectWith<IActionBlock>();
+        
+        foreach (var block in blocks)
+        {
+            if (block.IsActionBlocked())
+                return;
+        }
+
+        if (cardState.Cost > Battle.Instance.Player.Status.Cost.CurCost)
+            return;
 
         Battle.Instance.Deck.UseCard(this);
+        Battle.Instance.Player.Status.Cost.CurCost -= cardState.Cost;
+
+        await CardMethods.Dispatch(cardDataEntry.cardName, target, deckCard.IsEnchanted, cardEffect.Play);
     }
 
     public async UniTask MoveTo(Vector3 targetPos, float duration)

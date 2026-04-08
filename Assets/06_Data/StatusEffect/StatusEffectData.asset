@@ -222,3 +222,29 @@ MonoBehaviour:
       \uC874\uC7AC\uD560 \uACBD\uC6B0 \uC0AC\uB9DD\uD55C\uB2E4."
     buffIcon: {fileID: 21300000, guid: cc85561e633b0f741be39cda62c016e6, type: 3}
     color: {r: 0.69411767, g: 0.49411765, b: 0.5882353, a: 1}
+  - effectName: 516
+    koreanName: "\uC9D1\uC911 \uC790\uC138"
+    description: "\uC774\uBC88 \uD134\uC5D0 \uBC29\uC5B4\uB3C4\uB97C \uBAA8\uB450
+      \uC783\uC744 \uC2DC \uBC84\uC2A4\uD2B8 \uBC84\uD504\uB97C \uC783\uC2B5\uB2C8\uB2E4."
+    buffIcon: {fileID: 21300000, guid: 8a68a819d13e75644a627b6dc7eaf628, type: 3}
+    color: {r: 1, g: 0.40784314, b: 0.12941177, a: 1}
+  - effectName: 508
+    koreanName: "\uB0C9\uAE30"
+    description: "\uD574\uB2F9 \uC218\uCE58\uAC00 3\uC774 \uB420 \uB54C, \uD574\uB2F9
+      \uB514\uBC84\uD504\uB97C \uC81C\uAC70\uD558\uACE0 \uB3D9\uACB0 \uB514\uBC84\uD504\uB97C
+      \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+    buffIcon: {fileID: 21300000, guid: 8726bd7b5b5457a4db5fdd9ed06d873c, type: 3}
+    color: {r: 0.49019608, g: 0.88235295, b: 0.8980392, a: 1}
+  - effectName: 18
+    koreanName: "\uB3D9\uACB0 \uC800\uD56D"
+    description: "\uD574\uB2F9 \uD134 \uB3D9\uC548, \uB0C9\uAE30\uAC00 3\uC911\uCCA9
+      \uC774\uC0C1 \uC313\uC5EC\uB3C4 \uB3D9\uACB0 \uB514\uBC84\uD504\uB85C \uC804\uD658\uB418\uC9C0
+      \uC54A\uB294\uB2E4."
+    buffIcon: {fileID: 21300000, guid: 896d711c697bef346a040d5ff9c1aef4, type: 3}
+    color: {r: 0.96862745, g: 1, b: 0.3529412, a: 1}
+  - effectName: 2
+    koreanName: "\uC608\uBE44"
+    description: "\uB2E4\uC74C \uD134\uC5D0 \uD574\uB2F9 \uC218\uCE58 \uB9CC\uD07C
+      \uCD94\uAC00 \uB4DC\uB85C\uC6B0\uB97C \uC5BB\uC2B5\uB2C8\uB2E4."
+    buffIcon: {fileID: 21300000, guid: d3bfd50179e07554095fc5523326c21e, type: 3}
+    color: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}

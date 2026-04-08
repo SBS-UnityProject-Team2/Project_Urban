@@ -10,6 +10,8 @@ public class Monster : Actor
     private MonsterView view;
     private MonsterController controller;
 
+    public MonsterView View => view;
+
     private void Awake()
     {
         action = GetComponent<MonsterAction>();

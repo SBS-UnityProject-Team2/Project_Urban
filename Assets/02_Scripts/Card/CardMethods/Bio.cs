@@ -1,104 +1,128 @@
+using System;
+using Cysharp.Threading.Tasks;
+
 public static class Bio
 {
     #region Normal
-    public static void DoubleEdge(Actor target)
+    public static async UniTask DoubleEdge(Actor target, Func<Actor, UniTask> effectPlay)
     {
         Attack(target, 16);
         Attack(Battle.Instance.Player, 8);
     }
 
-    public static void Plague(Actor target)
+    public static async UniTask Plague(Actor target, Func<Actor, UniTask> effectPlay)
     {
     }
 
-    public static void ThornWhip(Actor target)
+    public static async UniTask ThornWhip(Actor target, Func<Actor, UniTask> effectPlay)
+    {
+     
+    }
+
+    public static async UniTask AbsorbingStrike(Actor target, Func<Actor, UniTask> effectPlay)
+    {
+     
+    }
+
+    public static async UniTask DistortedSlay(Actor target, Func<Actor, UniTask> effectPlay)
+    {
+     
+    }
+
+    public static async UniTask SpikyBush(Actor target, Func<Actor, UniTask> effectPlay)
     {
     }
 
-    public static void AbsorbingStrike(Actor target)
+    public static async UniTask ElasticWall(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void DistortedSlay(Actor target)
+    public static async UniTask Blooming(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void SpikyBush(Actor target)
+    public static async UniTask SurgingLife(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void ElasticWall(Actor target)
+    public static async UniTask CellChange(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void Blooming(Actor target)
+    public static async UniTask Cycle(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void SurgingLife(Actor target)
+    public static async UniTask EnfeebleSludge(Actor target, Func<Actor, UniTask> effectPlay)
     {
-    }
-
-    public static void CellChange(Actor target)
-    {
-    }
-
-    public static void Cycle(Actor target)
-    {
-    }
-
-    public static void EnfeebleSludge(Actor target)
-    {
+     
     }
     #endregion
 
     #region Plus
-    public static void DoubleEdgePlus(Actor target)
+    public static async UniTask DoubleEdgePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void PlaguePlus(Actor target)
+    public static async UniTask PlaguePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void ThornWhipPlus(Actor target)
+    public static async UniTask ThornWhipPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void AbsorbingStrikePlus(Actor target)
+    public static async UniTask AbsorbingStrikePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void DistortedSlayPlus(Actor target)
+    public static async UniTask DistortedSlayPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void SpikyBushPlus(Actor target)
+    public static async UniTask SpikyBushPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void ElasticWallPlus(Actor target)
+    public static async UniTask ElasticWallPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void BloomingPlus(Actor target)
+    public static async UniTask BloomingPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void SurgingLifePlus(Actor target)
+    public static async UniTask SurgingLifePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void CellChangePlus(Actor target)
+    public static async UniTask CellChangePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void CyclePlus(Actor target)
+    public static async UniTask CyclePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
 
-    public static void EnfeebleSludgePlus(Actor target)
+    public static async UniTask EnfeebleSludgePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+     
     }
     #endregion
 

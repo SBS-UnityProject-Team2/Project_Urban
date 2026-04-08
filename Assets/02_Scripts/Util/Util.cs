@@ -19,6 +19,8 @@ static public class Util
 
             await UniTask.Yield();
         }
+
+        gameObject.transform.localPosition = destination;
     }
 
     static public ElementType GetElement(CardName name)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 496914}
   - component: {fileID: 19842444}
   - component: {fileID: 19947448}
-  - component: {fileID: -6724429079200782685}
+  - component: {fileID: 6226387045296524907}
   m_Layer: 0
   m_Name: FrostWall
   m_TagString: Untagged
@@ -4788,7 +4788,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-6724429079200782685
+--- !u!114 &6226387045296524907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -12,5 +12,6 @@ public class PlayerView : MonoBehaviour
         heathView.Bind(status);
         costView.Bind(status);
         playerIconView.Bind(status);
+        statusEffectView.Bind(status);
     }
 }

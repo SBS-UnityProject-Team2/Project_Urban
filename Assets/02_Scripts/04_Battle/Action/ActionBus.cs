@@ -56,7 +56,7 @@ public enum ActorAction
 public static class ActionBus
 {
     private static readonly float damageModifier = 0.3f;
-    
+
     private static Queue<ActionPayload> queue = new();
 
     private static readonly Dictionary<ActorAction, Action<ActionPayload>> dispatchTable;
@@ -147,6 +147,17 @@ public static class ActionBus
                 target.DispatchEvent(deadPayload);
             }
         });
+
+        payload.targets.ForEach(target =>
+        {
+            AttackEventPayload attackEvent = new()
+            {
+                source = payload.source,
+                target = target
+            };
+
+            payload.source.DispatchEvent(attackEvent);
+        });
     }
 
     private static void AtkFixedDmg(ActionPayload payload)
@@ -191,6 +202,17 @@ public static class ActionBus
                 };
                 target.DispatchEvent(deadPayload);
             }
+        });
+
+        payload.targets.ForEach(target =>
+        {
+            AttackEventPayload attackEvent = new()
+            {
+                source = payload.source,
+                target = target
+            };
+
+            payload.source.DispatchEvent(attackEvent);
         });
     }
 
@@ -393,10 +415,10 @@ public static class ActionBus
         int drawCount = payload.Read<int>();
 
         Battle.Instance.Deck.DrawCard(drawCount).Forget();
-        
+
         DrawPayload drawPayload = new()
         {
-            source = payload.source,  
+            source = payload.source,
             target = payload.targets[0],
             drawCount = drawCount
         };
@@ -512,7 +534,7 @@ public static class ActionBus
         StatusEffectName effectName = payload.Read<StatusEffectName>();
         int stack = payload.Read<int>();
 
-        payload.targets.ForEach(target => 
+        payload.targets.ForEach(target =>
         {
             target.Status.EffectList.GiveStack(effectName, stack);
 
@@ -523,7 +545,7 @@ public static class ActionBus
                 effectName = effectName,
                 stack = stack
             };
-            target.DispatchEvent(giveEffectPayload);    
+            target.DispatchEvent(giveEffectPayload);
         });
     }
 
@@ -532,7 +554,7 @@ public static class ActionBus
         StatusEffectName effectName = payload.Read<StatusEffectName>();
         int duration = payload.Read<int>();
 
-        payload.targets.ForEach(target => 
+        payload.targets.ForEach(target =>
         {
             target.Status.EffectList.RemoveDuration(effectName, duration);
 

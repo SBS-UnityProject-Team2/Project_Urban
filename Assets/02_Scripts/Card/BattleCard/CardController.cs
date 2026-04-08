@@ -17,6 +17,7 @@ public class CardController : MonoBehaviour
 
     private CardTarget cardTarget;
     private System.Func<Actor, UniTask> handleDrop;
+    private Monster hoveredMonster;
 
     public void Init(System.Func<Actor, UniTask> handleDrop, CardTarget target)
     {
@@ -67,34 +68,42 @@ public class CardController : MonoBehaviour
     private void Drop()
     {
         selectedCard = null;
-
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        int useCardZoneLayer = LayerMask.GetMask("UseCardZone");
-        Collider2D zoneHit = Physics2D.OverlapPoint(mouseWorldPos, useCardZoneLayer);
-
-        if (zoneHit == null)
-        {
-            Reset();
-            return;
-        }
-
-        int monsterLayer = LayerMask.GetMask("Monster");
-        Collider2D monsterHit = Physics2D.OverlapPoint(mouseWorldPos, monsterLayer);
-        if (cardTarget == CardTarget.Self && monsterHit == null)
+        
+        if (cardTarget == CardTarget.Self && hoveredMonster == null)
         {
             UseCard(Battle.Instance.Player).Forget();
+            transform.localScale = originScale;
+
             return;
         }
 
         if ((cardTarget == CardTarget.Monster || cardTarget == CardTarget.MonsterAll)
-            && monsterHit != null && monsterHit.TryGetComponent(out Monster monster))
+            && hoveredMonster != null)
         {
-            UseCard(monster).Forget();
+            UseCard(hoveredMonster).Forget();
+            transform.localScale = originScale;
+
             return;
         }
 
         Reset();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Monster")
+            && other.TryGetComponent(out Monster monster))
+        {
+            hoveredMonster = monster;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
+        {
+            hoveredMonster = null;
+        }
     }
 
     private async UniTaskVoid UseCard(Actor target)

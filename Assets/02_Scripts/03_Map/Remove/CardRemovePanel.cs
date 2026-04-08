@@ -35,16 +35,17 @@ public class CardRemovePanel : MonoBehaviour
         foreach (Transform child in displayArea)
             Destroy(child.gameObject);
 
-        for (int i = 0; i < deckToRender.Count; i++)
+        // 1. 초기화
+        foreach (Transform child in displayArea)
         {
             UICard spawnedCard = Instantiate(cardPrefab, displayArea).GetComponent<UICard>();
 
             spawnedCard.Init(deckToRender[i]);
             spawnedCard.transform.localScale = Vector3.one;
 
-            Button cardButton = spawnedCard.GetComponent<Button>();
+            Button cardButton = spawnedCard.GetComponent<Button>();            
 
-            DeckCard capturedCard = deckToRender[i];
+            DeckCard capturedCard = cardInstance;
             cardButton.onClick.RemoveAllListeners();
             cardButton.onClick.AddListener(() => removeConfirmPopup.OpenPopup(capturedCard));
         }

@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.Events;
+using Cysharp.Threading.Tasks;
 
 public static class CardMethods
 {
-    private static readonly Dictionary<CardName, (UnityAction<Actor> normal, UnityAction<Actor> plus)> methodMap = new();
+    private static readonly Dictionary<CardName, (Func<Actor, Func<Actor, UniTask>, UniTask> normal, Func<Actor, Func<Actor, UniTask>, UniTask> plus)> methodMap = new();
 
-    public static void Dispatch(CardName cardName, Actor target, bool isEnchanted = false)
+    public static async UniTask Dispatch(CardName cardName, Actor target, bool isEnchanted, Func<Actor, UniTask> effectPlay)
     {
-        if (!isEnchanted) methodMap[cardName].normal(target);
-        else methodMap[cardName].plus(target);
+        if (!isEnchanted) await methodMap[cardName].normal(target, effectPlay);
+        else await methodMap[cardName].plus(target, effectPlay);
     }
 
     static CardMethods()
