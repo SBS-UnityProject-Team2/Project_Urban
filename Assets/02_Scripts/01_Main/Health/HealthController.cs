@@ -85,4 +85,10 @@ public class HealthController
         protect = 0;
         OnUpdate?.Invoke(curHp, maxHp, protect);
     }
+    public void SetCurrentHealth(int newHealth)
+    {
+        curHp = newHealth;
+        if (curHp > maxHp) curHp = maxHp; // 최대 체력 초과 방지
+        OnUpdate?.Invoke(curHp, maxHp, protect);
+    }
 }

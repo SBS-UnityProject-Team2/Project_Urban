@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class OvercooledLens : Artifact
 {
 	public override ArtifactId Id => ArtifactId.OvercooledLens;
@@ -24,6 +26,7 @@ public class OvercooledLens : Artifact
 
 			// Frost 1스택당 고정 피해 3.
 			int additionalDamage = frost.Stack * 3;
+			Debug.Log($"과냉각 렌즈 유물 추가데미지 {additionalDamage} 발생");
 
 			// 기본 공격 직후 이벤트에서 추가타를 적용
 			ActionPayload damagePayload = new()

@@ -77,6 +77,7 @@ public class Battle : SceneSingleton<Battle>
             bool allMonstersDead = await WaitForTurnEndOrAllMonstersDead();
             if (allMonstersDead)
             {
+                ResultHPCoin(true);
                 OnBattleEnd?.Invoke(true);
 
                 break;
@@ -85,6 +86,7 @@ public class Battle : SceneSingleton<Battle>
             bool playerDead = await ExecuteMonsterActionsOrPlayerDead();
             if (playerDead)
             {
+                ResultHPCoin(false);
                 OnBattleEnd?.Invoke(false);
 
                 break;
@@ -92,6 +94,14 @@ public class Battle : SceneSingleton<Battle>
         }
 
         IsPause = true;
+    }
+
+    private void ResultHPCoin(bool isPlayerWin)
+    {
+        int remainingHealth = player.Status.Health.CurHp;
+        int acquiredCoins = isPlayerWin ? EarnCoin : 0;
+
+        PlayerManager.Instance.UpdateBattleResult(remainingHealth, acquiredCoins);
     }
 
     private async UniTask<bool> WaitForTurnEndOrAllMonstersDead()
