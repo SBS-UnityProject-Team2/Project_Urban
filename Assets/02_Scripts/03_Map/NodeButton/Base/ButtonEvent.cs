@@ -125,7 +125,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterBattle(MonsterLevel level, int minScore, int maxScore)
     {
         int score = Random.Range(minScore, maxScore + 1);
-        Battle.SetEncounter(score, level);
+        MapManager.Instance.SetEncounterPreset(score, level);
         SceneManager.LoadScene(SceneName.Battle);
     }
 

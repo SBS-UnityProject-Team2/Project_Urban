@@ -146,6 +146,9 @@ public class MapManager : Singleton<MapManager>
     private MapNode currentNode = null;
     private bool isNodeChange = false;
     public MapNode CurrentNode => currentNode;
+    private bool hasEncounterPreset;
+    private int encounterScore;
+    private MonsterLevel encounterLevel = MonsterLevel.Normal;
 
     // 매 프레임 new List()를 막기 위해 멤버 변수로 미리 할당한 천장용 임시 리스트
     private readonly List<NodeType> cachedPityList = new List<NodeType>(10);
@@ -502,6 +505,30 @@ public class MapManager : Singleton<MapManager>
     {
         if (currentNode == null) return targetNode.y == 0; // 시작 전엔 1층(index 0)만 가능
         return currentNode.nextNodes.Contains(targetNode); // 내 다음 노드 리스트에 있는지 확인
+    }
+
+    public void SetEncounterPreset(int score, MonsterLevel level)
+    {
+        hasEncounterPreset = true;
+        encounterScore = score;
+        encounterLevel = level;
+    }
+
+
+    // 데모버전 임시 정예, 보스 스테이지 몬스터 스코어 고정 프리셋 제공 함수
+    public bool DemoMonsterScorePreset(out int score, out MonsterLevel level)
+    {
+        if (!hasEncounterPreset)
+        {
+            score = 0;
+            level = MonsterLevel.Normal;
+            return false;
+        }
+
+        score = encounterScore;
+        level = encounterLevel;
+        hasEncounterPreset = false;
+        return true;
     }
 
     public int GetCurrentFloor() => currentNode == null ? 0 : currentNode.y; 
