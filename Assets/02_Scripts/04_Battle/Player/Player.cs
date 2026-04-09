@@ -14,7 +14,7 @@ public class Player : Actor
     {
         playerView = GetComponent<PlayerView>();
 
-        Status.Init(this, PlayerManager.Instance.Health.CurrentHp, PlayerManager.Instance.Health.MaxHp, 10, ElementType.None);
+        Status.Init(this, PlayerManager.Instance.Health.CurrentHp, PlayerManager.Instance.Health.MaxHp, 4, ElementType.None);
         foreach(ArtifactId artifactId in PlayerManager.Instance.Artifacts.List)
         {
             Artifact artifact = ArtifactFactory.Create(artifactId);

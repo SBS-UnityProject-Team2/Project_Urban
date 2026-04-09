@@ -14,7 +14,7 @@ public class DeckCard
     public bool IsEnchanted => isEnchanted;
 
     // 나중에 캐시처리하기
-    public CardDataEntry CardData => CardManager.Instance.GetCardData(name);
+    public CardDataEntry CardData => isEnchanted ? CardManager.Instance.GetEnchantCardData(name) : CardManager.Instance.GetCardData(name);
 
     public DeckCard(CardName cardName)
     {

@@ -15,6 +15,10 @@ public class PauseUI : MonoBehaviour
         {
             SceneManager.LoadScene(SceneName.Main);
             SoundManager.Instance.PlayTitleSound();
+
+            Destroy(PlayerManager.Instance.gameObject);
+            Destroy(DeckManager.Instance.gameObject);
+            Destroy(MapManager.Instance.gameObject);
         });
 
         closeButton.onClick.AddListener(() =>
