@@ -82,7 +82,7 @@ public class Battle : SceneSingleton<Battle>
         }
 
         IsPause = true;
-        PlayerManager.Instance.Health.SetHp(Player.Status.Health.CurHp);
+        PlayerManager.Instance.Health.SetCurrentHealth(Player.Status.Health.CurHp);
     }
 
     private void ResultHPCoin(bool isPlayerWin)
