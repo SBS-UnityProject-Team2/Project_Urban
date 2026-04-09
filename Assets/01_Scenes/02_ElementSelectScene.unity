@@ -1278,7 +1278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   maxHp: 80
-  curCoin: 0
+  curCoin: 100
 --- !u!4 &1618738923
 Transform:
   m_ObjectHideFlags: 0

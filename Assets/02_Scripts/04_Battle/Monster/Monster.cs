@@ -22,7 +22,6 @@ public class Monster : Actor
         controller = GetComponent<MonsterController>();
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
-        EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
         EventBus.AddEventListener(ActorEvent.DamageTaken, HandleTakeDamage);
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
@@ -43,19 +42,9 @@ public class Monster : Actor
         Status.Health.Block = 0;
 
         var actionBlocks = Status.EffectList.GetActiveEffectWith<IActionBlock>();
-
         if (!actionBlocks.Any(block => block.IsActionBlocked()))
             await action.Execute(this);
-            
         EndTurn();
-    }
-
-    private void HandleTurnEnd(EventPayload eventPayload)
-    { 
-        if (Status.Health.CurHp <= action.NextPhaseHp)
-            action.SetNextPhase();
-        else
-            action.SetNextAction();
     }
 
     private void HandleTakeDamage(EventPayload eventPayload)

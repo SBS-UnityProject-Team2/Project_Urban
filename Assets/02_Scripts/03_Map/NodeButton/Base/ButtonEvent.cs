@@ -10,6 +10,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     [SerializeField] private GameObject Panel_ShelterPopup;
     [SerializeField] private GameObject UI_Event;
     [SerializeField] private GameObject NodeImages;
+    [SerializeField] private GameObject UI_Stage;
 
     public void EnterNode(MapNode node)
     {
@@ -87,9 +88,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         else
             Debug.LogWarning("⚠️ MapManager가 없어서 층수를 0으로 가정합니다.");
 
-        if (currentFloor == 0)       EnterBattle(MonsterLevel.Normal, 2, 2);
-        else if (currentFloor < 8)   EnterBattle(MonsterLevel.Normal, 2, 3);
-        else                         EnterBattle(MonsterLevel.Normal, 3, 4);
+        if (currentFloor == 0) EnterBattle(MonsterLevel.Normal, 2, 2);
+        else if (currentFloor < 8) EnterBattle(MonsterLevel.Normal, 2, 3);
+        else EnterBattle(MonsterLevel.Normal, 3, 4);
     }
 
     private void EnterEliteNode()
@@ -103,9 +104,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
             EnterBattle(node.battleLevel, node.minMonsterScore, node.maxMonsterScore);
         else
             EnterBattle(MonsterLevel.Elite, 5, 5);
-        
+
         SoundManager.Instance.PlayEliteSound();
-        
+
     }
 
     private void EnterBossNode()
@@ -132,9 +133,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterStoreNode()
     {
         // Store 씬으로 전환하기 전에 음악 재생 (씬 전환 후는 BgmManager가 초기화 중일 수 있음)
-       
-        SoundManager.Instance.PlayShopSound();        
-        
+
+        SoundManager.Instance.PlayShopSound();
+
         SceneManager.LoadScene(SceneName.Store);
     }
 
@@ -145,8 +146,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_Map.SetActive(false);
         UI_EnterShelter.SetActive(true);
         NodeImages.SetActive(false);
+        UI_Stage.SetActive(false);
         BackgroundManager.Instance.SetRestBg();
-        SoundManager.Instance.PlayRestSound();        
+        SoundManager.Instance.PlayRestSound();
     }
 
     public void OnClickShelterEnter()
@@ -154,7 +156,7 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         Panel_ShelterPopup.SetActive(true);
         UI_EnterShelter.SetActive(false);
         UI_Shelter.SetActive(true);
-        UI_Map.SetActive(false);        
+        UI_Map.SetActive(false);
         BackgroundManager.Instance.SetRestBg();
         SoundManager.Instance.PlayRestSound();
     }
@@ -165,20 +167,33 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_EnterShelter.SetActive(false);
         UI_Shelter.SetActive(false);
         UI_Map.SetActive(true);
-        NodeImages.SetActive(true);    
-        BackgroundManager.Instance.SetMapBg();      
-        SoundManager.Instance.PlayMapSound();       
-    } 
+        NodeImages.SetActive(true);
+        UI_Stage.SetActive(true);
+        BackgroundManager.Instance.SetMapBg();
+        SoundManager.Instance.PlayMapSound();
+    }
 
     public void EnterEventNode()
     {
         UI_Event.SetActive(true);
         UI_Map.SetActive(false);
+        UI_Stage.SetActive(false);
     }
 
     public void OnClickEventExit()
     {
         UI_Event.SetActive(false);
         UI_Map.SetActive(true);
+        UI_Stage.SetActive(true);
+    }
+
+    public void OnClickMain()
+    {
+        SceneManager.LoadScene(SceneName.Main);
+        SoundManager.Instance.PlayTitleSound();
+
+        Destroy(PlayerManager.Instance.gameObject);
+        Destroy(DeckManager.Instance.gameObject);
+        Destroy(MapManager.Instance.gameObject);
     }
 }

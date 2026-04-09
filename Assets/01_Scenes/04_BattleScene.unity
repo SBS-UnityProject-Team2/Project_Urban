@@ -233,8 +233,10 @@ GameObject:
   - component: {fileID: 11590190}
   - component: {fileID: 11590192}
   - component: {fileID: 11590191}
+  - component: {fileID: 11590193}
+  - component: {fileID: 11590194}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UI_Artifacts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,6 +299,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11590189}
   m_CullTransparentMesh: 1
+--- !u!114 &11590193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11590189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192707df22ec8944098b88a23eb80637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerArtifactView
+  rectTransform: {fileID: 11590190}
+  artifactPrefab: {fileID: 2487327249309634463, guid: e48e4339feb622b438ad0da212d95e3a, type: 3}
+--- !u!114 &11590194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11590189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &45924380
 GameObject:
   m_ObjectHideFlags: 0
@@ -11507,6 +11549,7 @@ MonoBehaviour:
   costView: {fileID: 7849055214972223183}
   playerIconView: {fileID: 8788285261447069454}
   statusEffectView: {fileID: 1835179186}
+  playerArtifactView: {fileID: 11590193}
 --- !u!1 &1813820303
 GameObject:
   m_ObjectHideFlags: 0
@@ -15716,3 +15759,4 @@ SceneRoots:
   - {fileID: 362605297}
   - {fileID: 954732935}
   - {fileID: 356369106}
+  - {fileID: 1502025037}

@@ -5928,6 +5928,7 @@ MonoBehaviour:
   Panel_ShelterPopup: {fileID: 464493211}
   UI_Event: {fileID: 156217299}
   NodeImages: {fileID: 1671612187}
+  UI_Stage: {fileID: 1671612187}
 --- !u!1 &481853582
 GameObject:
   m_ObjectHideFlags: 0
@@ -25951,6 +25952,22 @@ PrefabInstance:
     - target: {fileID: 8515701173956739504, guid: 4945d109013214540ac679cc8767b6e6, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521158366070502000, guid: 4945d109013214540ac679cc8767b6e6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 468701848}
+    - target: {fileID: 8521158366070502000, guid: 4945d109013214540ac679cc8767b6e6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickMain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521158366070502000, guid: 4945d109013214540ac679cc8767b6e6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521158366070502000, guid: 4945d109013214540ac679cc8767b6e6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

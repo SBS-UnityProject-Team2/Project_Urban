@@ -32,7 +32,8 @@ public class MonsterAction : MonoBehaviour
 
     public async UniTask Execute(Monster source)
     {
-        await MonsterActionMethod.Execute(curAction.actionId, source);     
+        await MonsterActionMethod.Execute(curAction.actionId, source);    
+        SetNextAction(); 
     }
 
     public void SetNextAction()

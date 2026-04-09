@@ -22,7 +22,7 @@ public class Player : Actor
             artifacts.Add(artifact);
         }
         
-        playerView.Init(Status);
+        playerView.Init(Status, artifacts);
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddAsyncEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
