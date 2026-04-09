@@ -163,7 +163,7 @@ public class EventRewardUI : MonoBehaviour
             if (!TryGetArtifactId(artifactCode, out ArtifactId artifactId))
                 return;
 
-            PlayerManager.Instance.AddArtifact(artifactId);
+            PlayerManager.Instance.Artifacts.AddArtifact(artifactId);
             resultData.artifact = artifactCode;
             selectArtifactButton.gameObject.SetActive(false);
         });

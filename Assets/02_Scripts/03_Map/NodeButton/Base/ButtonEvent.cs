@@ -8,8 +8,8 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     [SerializeField] private GameObject UI_Map;
     [SerializeField] private GameObject UI_EnterShelter;
     [SerializeField] private GameObject Panel_ShelterPopup;
-
     [SerializeField] private GameObject UI_Event;
+    [SerializeField] private GameObject NodeImages;
 
     public void EnterNodeType(NodeType nodeType)
     {
@@ -56,19 +56,15 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterEliteNode()
     {
         EnterBattle(false, 5, 5);
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.PlayEliteSound();
-        }
+        
+        SoundManager.Instance.PlayEliteSound();
+        
     }
 
     private void EnterBossNode()
     {
         EnterBattle(false, 9, 9);
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.PlayBossSound();
-        }
+        SoundManager.Instance.PlayBossSound();
     }
 
     private void EnterBattle(bool isNormal, int minScore, int maxScore)
@@ -79,37 +75,31 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterStoreNode()
     {
         // Store 씬으로 전환하기 전에 음악 재생 (씬 전환 후는 BgmManager가 초기화 중일 수 있음)
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.PlayShopSound();
-        }
+       
+        SoundManager.Instance.PlayShopSound();        
         
         SceneManager.LoadScene(SceneName.Store);
     }
 
     // 쉼터UI
-    public void OnClickShelter()
-    {
-        EnterShelterNode();
-    }
-
     private void EnterShelterNode()
     {
         UI_Shelter.SetActive(true);
         UI_Map.SetActive(false);
         UI_EnterShelter.SetActive(true);
-
-        
-        // SoundManager.Instance.PlayRestSound();
-        
+        NodeImages.SetActive(false);
+        BackgroundManager.Instance.SetRestBg();
+        SoundManager.Instance.PlayRestSound();        
     }
 
-    public void OnClickEnterShelter()
+    public void OnClickShelterEnter()
     {
-        UI_EnterShelter.SetActive(false);
         Panel_ShelterPopup.SetActive(true);
-
-        // BackgroundManager.Instance.SetRestBg();
+        UI_EnterShelter.SetActive(false);
+        UI_Shelter.SetActive(true);
+        UI_Map.SetActive(false);        
+        BackgroundManager.Instance.SetRestBg();
+        SoundManager.Instance.PlayRestSound();
     }
 
     public void OnClickShelterExit()
@@ -118,27 +108,12 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
         UI_EnterShelter.SetActive(true);
         UI_Shelter.SetActive(false);
         UI_Map.SetActive(true);
+        NodeImages.SetActive(true);    
+        BackgroundManager.Instance.SetMapBg();      
+        SoundManager.Instance.PlayMapSound();       
+    } 
 
-        /*
-        BackgroundManager.Instance.SetMapBg();
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.PlayMapSound();
-        }
-        */
-    }
-
-    public void ActiveMap()
-    {
-        UI_Map.SetActive(true);
-    }
-
-    public void OnClickEvent()
-    {
-        EnterEventNode();
-    }
-
-    private void EnterEventNode()
+    public void EnterEventNode()
     {
         UI_Event.SetActive(true);
         UI_Map.SetActive(false);

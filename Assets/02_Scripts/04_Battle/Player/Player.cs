@@ -6,13 +6,22 @@ using Cysharp.Threading.Tasks;
 public class Player : Actor
 {
     [SerializeField] private PlayerView playerView;
+
     public ElementType LastUsedElementType { get; set; }
+    public List<Artifact> artifacts = new();
 
     private void Awake()
     {
         playerView = GetComponent<PlayerView>();
 
         Status.Init(this, PlayerManager.Instance.Health.CurrentHp, PlayerManager.Instance.Health.MaxHp, 10, ElementType.None);
+        foreach(ArtifactId artifactId in PlayerManager.Instance.Artifacts.List)
+        {
+            Artifact artifact = ArtifactFactory.Create(artifactId);
+            artifact.Init(this);
+            artifacts.Add(artifact);
+        }
+        
         playerView.Init(Status);
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
