@@ -156,7 +156,6 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         if (prefab == null)
         {
             Debug.LogWarning($"[MapVisualizer] {node.nodeType} 프리팹이 할당되지 않았습니다!");
-            // 맵노드 프리펩 까먹고 안넣으면 경고용
             return;
         }
 
@@ -281,6 +280,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         // 전체 비활성화
         foreach (var kvp in nodeObjMap)
         {
+            if (kvp.Value == null) continue;
             SetButtonInteractable(kvp.Value.GetComponent<Button>(), false);
         }
 
@@ -289,6 +289,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
         {
             foreach (var kvp in nodeObjMap)
             {
+                if (kvp.Value == null) continue;
                 if (kvp.Key.y == 0 && kvp.Key.isActive)
                 {
                     SetButtonInteractable(kvp.Value.GetComponent<Button>(), true);
@@ -301,6 +302,7 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
             {
                 if (nodeObjMap.TryGetValue(nextNode, out GameObject nextObj))
                 {
+                    if (nextObj == null) continue;
                     SetButtonInteractable(nextObj.GetComponent<Button>(), true);
                 }
             }
@@ -310,19 +312,27 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
     // 플레이어 오브젝트를 목표 방으로 이동시키고, 지나간 방들은 흐리게 만들며 화면을 스크롤
     public void MovePlayer(MapNode targetNode)
     {
+        MovePlayerAsync(targetNode).Forget();
+    }
+
+    public async UniTask MovePlayerAsync(MapNode targetNode)
+    {
         if (MapManager.Instance == null || MapManager.Instance.playerMove == null) return;
 
         if (nodeObjMap.TryGetValue(targetNode, out GameObject targetObj))
         {
+            if (targetObj == null) return;
+
             PlayerMove player = MapManager.Instance.playerMove;
             Vector3 targetLocalPos = targetObj.transform.localPosition;
             targetLocalPos.z = 0;
-            player.MoveTo(targetLocalPos);
 
             FadeOutFloorVisuals(targetNode.y - 1); // 방금 떠난 층을 흐리게 만듦
 
             // 플레이어를 따라 카메라(스크롤 뷰)가 부드럽게 따라올라가도록 비동기 호출
             FocusOnPlayerAsync().Forget();
+
+            await player.MoveToAsync(targetLocalPos);
         }
     }
 
@@ -369,6 +379,8 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
 
         if (nodeObjMap.TryGetValue(targetNode, out GameObject targetObj))
         {
+            if (targetObj == null) return;
+
             PlayerMove player = MapManager.Instance.playerMove;
             player.transform.localPosition = targetObj.transform.localPosition + offset;
         }
@@ -445,20 +457,17 @@ public class MapVisualizer : SceneSingleton<MapVisualizer>
 
     private static void SetButtonInteractable(Button button, bool isInteractable)
     {
-        if (button != null)
-        {
-            button.interactable = isInteractable;
-        }
+        if (button == null) return;
+        button.interactable = isInteractable;
     }
 
     private static void ApplyRenderOrder(GameObject obj, int sortingOrder)
     {
         Canvas canvas = obj.GetComponent<Canvas>();
-        if (canvas != null)
-        {
-            canvas.overrideSorting = true;
-            canvas.sortingOrder = sortingOrder;
-        }
+        if (canvas == null) return;
+
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = sortingOrder;
     }
 
     private void OnDestroy()
