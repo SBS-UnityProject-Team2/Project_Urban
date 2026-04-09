@@ -8,6 +8,17 @@ using System.Threading.Tasks;
 
 public class Battle : SceneSingleton<Battle>
 {
+    private static bool hasEncounterOverride;
+    private static int overrideMonsterScore;
+    private static MonsterLevel overrideMonsterLevel;
+
+    public static void SetEncounter(int score, MonsterLevel level)
+    {
+        hasEncounterOverride = true;
+        overrideMonsterScore = score;
+        overrideMonsterLevel = level;
+    }
+
     [Header("Object Settings")]
     [SerializeField] private Player player;
     [SerializeField] private Monsters monsters;
@@ -40,8 +51,17 @@ public class Battle : SceneSingleton<Battle>
     private async void Start()
     {
         deck.Init(DeckManager.Instance.Deck, hand);
-        await monsters.Init(monsterScore, monsterLevel);
 
+        int startScore = monsterScore;
+        MonsterLevel startLevel = monsterLevel;
+        if (hasEncounterOverride)
+        {
+            startScore = overrideMonsterScore;
+            startLevel = overrideMonsterLevel;
+            hasEncounterOverride = false;
+        }
+
+        await monsters.Init(startScore, startLevel);
         StartBattleLoop();
     }
 

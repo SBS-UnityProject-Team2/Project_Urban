@@ -10,6 +10,10 @@ public class MapNode
     public int x, y; 
     public NodeType nodeType = NodeType.None; 
     public bool isActive = false; 
+    public bool hasBattlePreset = false;
+    public MonsterLevel battleLevel = MonsterLevel.Normal;
+    public int minMonsterScore = 0;
+    public int maxMonsterScore = 0;
 
     [System.NonSerialized]
     public List<MapNode> nextNodes = new List<MapNode>(3);
@@ -218,11 +222,15 @@ public class MapManager : Singleton<MapManager>
                 {
                     node.nodeType = NodeType.None;
                     node.isActive = false;
+                    node.hasBattlePreset = false;
+                    node.minMonsterScore = 0;
+                    node.maxMonsterScore = 0;
                     continue;
                 }
 
                 node.nodeType = fixedType;
                 node.isActive = true;
+                ApplyDemoBattlePreset(node, floor);
             }
         }
 
@@ -284,6 +292,53 @@ public class MapManager : Singleton<MapManager>
         
         // 3. 결정된 노드들을 연결하는 선 긋기
         GenerateFixedPaths();
+    }
+    // 데모 버전용 노드별 고정 배틀 프리셋 설정
+    private void ApplyDemoBattlePreset(MapNode node, int floor)
+    {
+        node.hasBattlePreset = false;
+        node.battleLevel = MonsterLevel.Normal;
+        node.minMonsterScore = 0;
+        node.maxMonsterScore = 0;
+
+        if (node.nodeType == NodeType.Monster)
+        {
+            node.hasBattlePreset = true;
+            node.battleLevel = MonsterLevel.Normal;
+            if (floor == 1)
+            {
+                node.minMonsterScore = 2;
+                node.maxMonsterScore = 2;
+            }
+            else if (floor < 8)
+            {
+                node.minMonsterScore = 2;
+                node.maxMonsterScore = 3;
+            }
+            else
+            {
+                node.minMonsterScore = 3;
+                node.maxMonsterScore = 4;
+            }
+            return;
+        }
+
+        if (node.nodeType == NodeType.Elite)
+        {
+            node.hasBattlePreset = true;
+            node.battleLevel = MonsterLevel.Elite;
+            node.minMonsterScore = 5;
+            node.maxMonsterScore = 5;
+            return;
+        }
+
+        if (node.nodeType == NodeType.Boss)
+        {
+            node.hasBattlePreset = true;
+            node.battleLevel = MonsterLevel.Boss;
+            node.minMonsterScore = 9;
+            node.maxMonsterScore = 9;
+        }
     }
     
     // 노드 타입 결정 로직
@@ -436,7 +491,7 @@ public class MapManager : Singleton<MapManager>
             // 클릭 가능한 버튼 상태 갱신
             MapVisualizer.Instance.UpdateNodeInteractivity(currentNode);
 
-            ButtonEvent.Instance.EnterNodeType(targetNode.nodeType);
+            ButtonEvent.Instance.EnterNode(targetNode);
             isNodeChange = false;
         }
     }

@@ -26,5 +26,5 @@ public class PlayerManager : Singleton<PlayerManager>
         health = new HealthController(maxHp);
         coin = new CoinController(curCoin);
         artifacts = new ArtifactController();
-    }
+    }    
 }

@@ -5,14 +5,21 @@ public class OvercooledLens : Artifact
 
 	public override void Init(Actor actor)
 	{
+		bool isApplyingBonus = false;
+
 		// Attack 이벤트는 기본 공격 계산/적용이 끝난 뒤 발생
 		// 따라서 여기서 보내는 추가 피해는 "기본 타격 직후" 타이밍
 		actor.EventBus.AddEventListener(ActorEvent.Attack, payload =>
 		{
+			if (isApplyingBonus)
+				return;
+
 			Actor target = payload.target;
+			if (target == null)
+				return;
 
 			StatusEffect frost = target.Status.EffectList.GetEffect(StatusEffectName.Frost);
-			if (frost.Stack == 0)		// 대상에게 Frost가 없으면 추가타 발동X
+			if (frost == null || frost.Stack == 0)		// 대상에게 Frost가 없으면 추가타 발동X
 				return;
 
 			// Frost 1스택당 고정 피해 3.
@@ -30,7 +37,9 @@ public class OvercooledLens : Artifact
 			damagePayload.Write(ElementType.None);		
 			damagePayload.Write(additionalDamage);
 
+			isApplyingBonus = true;
 			ActionBus.Dispatch(damagePayload);
+			isApplyingBonus = false;
 		});
 	}
 }
