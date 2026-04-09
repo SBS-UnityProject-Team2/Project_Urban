@@ -41,7 +41,6 @@ public class Battle : SceneSingleton<Battle>
     {
         deck.Init(DeckManager.Instance.Deck, hand);
         await monsters.Init(monsterScore, monsterLevel);
-        InitArtifacts();
 
         StartBattleLoop();
     }

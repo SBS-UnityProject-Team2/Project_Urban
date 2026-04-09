@@ -35,7 +35,7 @@ public class CardRemovePanel : MonoBehaviour
     {
         UICard uiCardPrefab = cardPrefab != null ? cardPrefab.GetComponent<UICard>() : null;        
 
-        foreach (DeckCard cardInstance in deckToRender)
+        foreach (Transform child in displayArea)
         {
             Destroy(child.gameObject);
         }
