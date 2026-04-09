@@ -14,7 +14,7 @@ public class BattleEndUI : MonoBehaviour
             gameObject.SetActive(true);
 
             if (isPlayerWin) successUI.gameObject.SetActive(true);
-            else failUI.gameObject.SetActive(false);
+            else failUI.gameObject.SetActive(true);
         });
     }
 }

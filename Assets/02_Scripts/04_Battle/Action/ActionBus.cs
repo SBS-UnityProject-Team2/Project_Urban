@@ -175,9 +175,7 @@ public static class ActionBus
             target.DispatchEvent(incomingPayload);
 
             if (TryDamageNullification(target))
-            {
-                // 데미지 무효화 처리
-            }
+                return;
 
             int damageByElement = ModifyDamageByElement(baseDamage, target.Status.Element.Type, element);
             int damageByStatusEffect = ModifyStatusEffect(target, payload.source, damageByElement, element);

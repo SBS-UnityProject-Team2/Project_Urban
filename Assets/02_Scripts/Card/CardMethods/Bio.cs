@@ -8,121 +8,124 @@ public static class Bio
     {
         Attack(target, 16);
         Attack(Battle.Instance.Player, 8);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask Plague(Actor target, Func<Actor, UniTask> effectPlay)
-    {
+    {        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask ThornWhip(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask AbsorbingStrike(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask DistortedSlay(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask SpikyBush(Actor target, Func<Actor, UniTask> effectPlay)
     {
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask ElasticWall(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask Blooming(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask SurgingLife(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask CellChange(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask Cycle(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask EnfeebleSludge(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 
     #region Plus
     public static async UniTask DoubleEdgePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask PlaguePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask ThornWhipPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask AbsorbingStrikePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask DistortedSlayPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask SpikyBushPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask ElasticWallPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask BloomingPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask SurgingLifePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask CellChangePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask CyclePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask EnfeebleSludgePlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
-     
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
     #endregion
 

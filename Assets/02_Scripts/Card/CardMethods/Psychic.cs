@@ -138,6 +138,7 @@ public static class Psychic
 
     public static async UniTask Anxiolytic(Actor target, Func<Actor, UniTask> effectPlay)
     {
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask CryoPowder(Actor target, Func<Actor, UniTask> effectPlay)
@@ -317,6 +318,7 @@ public static class Psychic
 
     public static async UniTask AnxiolyticPlus(Actor target, Func<Actor, UniTask> effectPlay)
     {
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask CryoPowderPlus(Actor target, Func<Actor, UniTask> effectPlay)
