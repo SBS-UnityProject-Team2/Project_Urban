@@ -15,28 +15,8 @@ public class EventManager : Singleton<EventManager>
 
     public EventInfo GetRandomEvent()
     {
-        if (eventData == null)
-        {
-            Debug.LogError("EventData가 연결되지 않았습니다.");
-            return null;
-        }
-
         // 데모버전 고정 이벤트(16번)만 반환
         EventInfo eventInfo = eventData.GetEventInfo(16);
-
-        if (eventInfo == null)
-        {
-            Debug.LogWarning("eventCode 16 이벤트를 찾지 못해 첫 번째 이벤트로 대체합니다.");
-
-            if (eventData.EventInfos != null && eventData.EventInfos.Count > 0)
-                eventInfo = eventData.EventInfos[0];
-        }
-
-        if (eventInfo == null)
-        {
-            Debug.LogError("사용 가능한 이벤트가 없습니다.");
-            return null;
-        }
 
         /*
         var filteredList = eventData.EventInfos.Where(info => !info.isExecuted).ToList();
