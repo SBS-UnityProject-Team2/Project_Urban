@@ -53,6 +53,11 @@ public class HealthView : MonoBehaviour
         protectText.text = $"{protect}";
     }
 
+    private void Start()
+    {
+        Bind(PlayerManager.Instance.Health);
+    }
+
     public void Bind(HealthController healthController)
     {
         healthController.OnUpdate.AddListener(UpdateView);
