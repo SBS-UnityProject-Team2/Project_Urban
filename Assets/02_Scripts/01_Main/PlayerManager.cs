@@ -11,13 +11,11 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private HealthController health;
     private CoinController coin;
-    private ArtifactManager artifact;
-    private readonly List<ArtifactId> ownedArtifacts = new();
+    private ArtifactController artifacts;
 
     public HealthController Health => health;
     public CoinController Coin => coin;
-    public ArtifactManager Artifact => artifact;
-    public IReadOnlyList<ArtifactId> OwnedArtifacts => ownedArtifacts;
+    public ArtifactController Artifacts => artifacts;
 
     protected override void Awake()
     {
@@ -27,24 +25,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
         health = new HealthController(maxHp);
         coin = new CoinController(curCoin);
-        artifact = new ArtifactManager();
-    }
-
-    public void AddArtifact(ArtifactId artifactId)
-    {
-        if (ownedArtifacts.Contains(artifactId))
-            return;
-
-        ownedArtifacts.Add(artifactId);
-    }
-
-    public bool HasArtifact(ArtifactId artifactId)
-    {
-        return ownedArtifacts.Contains(artifactId);
-    }
-
-    public void RemoveArtifact(ArtifactId artifactId)
-    {
-        ownedArtifacts.Remove(artifactId);
+        artifacts = new ArtifactController();
     }
 }

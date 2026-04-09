@@ -1,6 +1,6 @@
-public class ArtifactManager
+public static class ArtifactManager
 {
-	public ArtifactInfo GetInfo(ArtifactId artifactId)
+	public static ArtifactInfo GetInfo(ArtifactId artifactId)											// 유물의 ID를 받아서 해당 유물의 정보를 반환하는 메서드
 	{
 		return artifactId switch
 		{
@@ -12,7 +12,7 @@ public class ArtifactManager
 	}
 }
 
-public class ArtifactInfo
+public class ArtifactInfo			// 유물 정보 클래스
 {
 	public ArtifactId Id { get; }
 	public string KoreanName { get; }
