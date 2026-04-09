@@ -50,7 +50,7 @@ MonoBehaviour:
     scriptCode: 105
     choiceCodes: f7030000f8030000f9030000
     isExecuted: 0
-  - eventCode: 0
+  - eventCode: 16
     stage: 1
     eventName: "\uACE8\uB3D9\uD488"
     scriptCode: 124

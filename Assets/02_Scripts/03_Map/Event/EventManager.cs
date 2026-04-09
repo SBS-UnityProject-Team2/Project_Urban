@@ -15,12 +15,18 @@ public class EventManager : Singleton<EventManager>
 
     public EventInfo GetRandomEvent()
     {
+        // 데모버전 고정 이벤트(16번)만 반환
+        EventInfo eventInfo = eventData.GetEventInfo(16);
+
+        /*
         var filteredList = eventData.EventInfos.Where(info => !info.isExecuted).ToList();
 
-        if (filteredList.Count == 0)    
+        if (filteredList.Count == 0)
             Debug.Log("Event All End");
 
         EventInfo eventInfo = filteredList[Random.Range(0, filteredList.Count)];
+        */
+
         eventInfo.isExecuted = true;
 
         return eventInfo;

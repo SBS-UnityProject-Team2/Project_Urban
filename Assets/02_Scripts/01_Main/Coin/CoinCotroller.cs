@@ -37,4 +37,9 @@ public class CoinController
     {
         return curCoin >= price;
     }
+    public void AddCoin(int amount)
+    {
+        curCoin += amount;
+        OnUpdateCoin?.Invoke(curCoin);
+    }
 }

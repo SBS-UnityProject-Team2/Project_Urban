@@ -26,5 +26,10 @@ public class PlayerManager : Singleton<PlayerManager>
         health = new HealthController(maxHp);
         coin = new CoinController(curCoin);
         artifacts = new ArtifactController();
+    }    
+    public void UpdateBattleResult(int remainingHealth, int acquiredCoins)
+    {        
+        health.SetCurrentHealth(remainingHealth);         
+        coin.AddCoin(acquiredCoins);
     }
 }
