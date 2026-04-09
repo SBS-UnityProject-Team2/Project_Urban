@@ -85,4 +85,9 @@ public class HealthController
         protect = 0;
         OnUpdate?.Invoke(curHp, maxHp, protect);
     }
+
+    public void SetHp(int curHp)
+    {
+        this.curHp = curHp;
+    }
 }

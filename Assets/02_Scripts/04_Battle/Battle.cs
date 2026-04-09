@@ -72,6 +72,7 @@ public class Battle : SceneSingleton<Battle>
         }
 
         IsPause = true;
+        PlayerManager.Instance.Health.SetHp(Player.Status.Health.CurHp);
     }
 
     private async UniTask<bool> WaitForTurnEndOrAllMonstersDead()

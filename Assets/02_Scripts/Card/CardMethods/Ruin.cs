@@ -160,6 +160,8 @@ public static class Ruin
     public static async UniTask Stigma(Actor target, Func<Actor, UniTask> effectPlay)
     {
         GiveEffect(target, StatusEffectName.Branded, 1, 1);
+
+        await (effectPlay?.Invoke(target) ?? UniTask.CompletedTask);
     }
 
     public static async UniTask OilSplash(Actor target, Func<Actor, UniTask> effectPlay)

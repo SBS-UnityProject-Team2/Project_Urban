@@ -82,6 +82,13 @@ public static class MonsterActionMethod
 
     public static async UniTask CrudeMolotv(Actor source) // 8004
     {
+        for (int i = 0; i < 2; i++)
+        {
+            Attack(source, ElementType.Ruin, 4);
+            await EffectManager.Instance.PlayerHitEffect();
+        }
+
+        GiveEffect(source, Battle.Instance.Player, StatusEffectName.Burn, -3, 2);
     }
 
     public static async UniTask BurntArm(Actor source) // 8005
@@ -94,8 +101,11 @@ public static class MonsterActionMethod
 
     public static async UniTask PsychicBeat(Actor source) // 8006
     {
-        // for (int i = 0; i < 2; i++)
-        //     Attack(source, ElementType.Psychic, 5);
+        for (int i = 0; i < 2; i++)
+        {
+            Attack(source, ElementType.Psychic, 5);
+            await EffectManager.Instance.PlayerHitEffect();
+        }
     }
 
     public static async UniTask RepulsiveMatrix(Actor source) // 8007
@@ -251,7 +261,7 @@ public static class MonsterActionMethod
 
     public static async UniTask ArmorBreak(Actor source) // 8601
     {
-        // GiveEffect(source, Battle.Instance.Player, StatusEffectName.Armor)
+        GiveEffect(source, Battle.Instance.Player, StatusEffectName.Broken, 3, 3);
 
         await UniTask.CompletedTask;
     }

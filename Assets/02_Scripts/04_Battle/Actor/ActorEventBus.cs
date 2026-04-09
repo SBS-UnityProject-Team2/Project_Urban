@@ -40,7 +40,7 @@ public class ActorEventBus
     {
         DamageTakenPayload payload = new();
 
-        AddEventListener(ActorEvent.AttackDamageTaken, eventPayload =>
+        AddAsyncEventListener(ActorEvent.AttackDamageTaken, async eventPayload =>
         {
             AttackDamageTakenPayload attackDamageTakenPayload = eventPayload as AttackDamageTakenPayload;
 
@@ -48,10 +48,10 @@ public class ActorEventBus
             payload.target = attackDamageTakenPayload.target;
             payload.damage = attackDamageTakenPayload.damage;
 
-            Dispatch(payload);
+            await DispatchAsync(payload);
         });
 
-        AddEventListener(ActorEvent.EffectDamageTaken, eventPayload =>
+        AddAsyncEventListener(ActorEvent.EffectDamageTaken, async eventPayload =>
         {
             EffectDamageTakenPayload effectDamageTakenPayload = eventPayload as EffectDamageTakenPayload;
 
@@ -59,7 +59,7 @@ public class ActorEventBus
             payload.target = effectDamageTakenPayload.target;
             payload.damage = effectDamageTakenPayload.damage;
 
-            Dispatch(payload);
+            await DispatchAsync(payload);
         });
     }
 

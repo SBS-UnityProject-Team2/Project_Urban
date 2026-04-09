@@ -1,3 +1,4 @@
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class Monster : Actor
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        EventBus.AddEventListener(ActorEvent.DamageTaken, HandleTakeDamage);
         EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
@@ -40,7 +42,11 @@ public class Monster : Actor
     {
         Status.Health.Block = 0;
 
-        await action.Execute(this);
+        var actionBlocks = Status.EffectList.GetActiveEffectWith<IActionBlock>();
+
+        if (!actionBlocks.Any(block => block.IsActionBlocked()))
+            await action.Execute(this);
+            
         EndTurn();
     }
 
