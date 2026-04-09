@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public enum NodeType { Monster = 0, Elite, Store, Shelter, Event, Boss, None }
@@ -139,6 +140,7 @@ public class MapManager : Singleton<MapManager>
     
     // 플레이어가 현재 서 있는 위치
     private MapNode currentNode = null;
+    private bool isNodeChange = false;
     public MapNode CurrentNode => currentNode;
 
     // 매 프레임 new List()를 막기 위해 멤버 변수로 미리 할당한 천장용 임시 리스트
@@ -400,25 +402,43 @@ public class MapManager : Singleton<MapManager>
 
     public void OnNodeClicked(MapNode targetNode)
     {
-        if (playerMove == null || MapVisualizer.Instance == null) return;
+        OnNodeClickedAsync(targetNode).Forget();
+    }
+
+    private async UniTaskVoid OnNodeClickedAsync(MapNode targetNode)
+    {
+        if (playerMove == null || MapVisualizer.Instance == null || ButtonEvent.Instance == null) return;
+        if (isNodeChange) return;
         if (playerMove.gameObject.activeSelf && playerMove.IsMoving) return;
 
         // 갈 수 있는 정상적인 길인지 검증
         if (CheckIsPathValid(targetNode))
         {
+            isNodeChange = true;
+
             if (currentNode == null) // 게임 최초 시작 시 (1층 클릭)
             {
                 playerMove.gameObject.SetActive(true);
-                MapVisualizer.Instance.SetPlayerPositionDirectly(targetNode, new Vector3(0, -100f, 0));             
+                MapVisualizer.Instance.SetPlayerPositionDirectly(targetNode, new Vector3(0, -100f, 0));
             }
 
             currentNode = targetNode;
-            
+
             // 이동 연출(시각 효과) 호출
-            MapVisualizer.Instance.MovePlayer(targetNode);
+            await MapVisualizer.Instance.MovePlayerAsync(targetNode);
+
+            if (MapVisualizer.Instance == null || ButtonEvent.Instance == null)
+            {
+                isNodeChange = false;
+                return;
+            }
+
             // 클릭 가능한 버튼 상태 갱신
             MapVisualizer.Instance.UpdateNodeInteractivity(currentNode);
-        }        
+
+            ButtonEvent.Instance.EnterNodeType(targetNode.nodeType);
+            isNodeChange = false;
+        }
     }
 
 

@@ -63,7 +63,7 @@ MonoBehaviour:
   entries:
   - cardName: 1000
     koreanName: "\uD0C0\uACA9 +"
-    element: 0
+    element: 1000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
@@ -78,7 +78,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1005
     koreanName: "\uBC29\uC5B4 +"
-    element: 0
+    element: 1000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4."
     isExtinct: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1001
     koreanName: "\uC0AC\uACA9 +"
-    element: 0
+    element: 1000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1]
       \uAC00\uD569\uB2C8\uB2E4. \uC774\uC804\uC5D0 \uC0AC\uC6A9\uD55C \uCE74\uB4DC\uC758
@@ -109,7 +109,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1002
     koreanName: "\uAC15\uD0C0 +"
-    element: 0
+    element: 1000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
@@ -124,7 +124,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1003
     koreanName: "\uBE44\uC5F4\uD55C \uACF5\uACA9 +"
-    element: 0
+    element: 1000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uC57D\uD654\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -139,7 +139,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1004
     koreanName: "\uAE30\uC2B5 +"
-    element: 0
+    element: 1000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uB3D9\uACB0\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
@@ -155,7 +155,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1006
     koreanName: "\uAD6C\uB974\uAE30 +"
-    element: 0
+    element: 1000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4.
       \uB2E4\uC74C \uD134\uC5D0 \uB4DC\uB85C\uC6B0\uAC00 [ActValue2]\uB9CC\uD07C
@@ -171,7 +171,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1007
     koreanName: "\uC815\uBE44 +"
-    element: 0
+    element: 1000
     target: 0
     description: "\uBF51\uC744 \uCE74\uB4DC \uB354\uBBF8\uC5D0\uC11C [ActValue1]\uB9CC\uD07C
       \uB4DC\uB85C\uC6B0 \uD569\uB2C8\uB2E4."
@@ -186,7 +186,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 1008
     koreanName: "\uB354\uBBF8 +"
-    element: 0
+    element: 1000
     target: 0
     description: "\uB354\uBBF8\uB97C [ActValue1]\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC18C\uBA78"
@@ -201,7 +201,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2000
     koreanName: "\uC810\uD654 +"
-    element: 1000
+    element: 2000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uD654\uC0C1\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -216,7 +216,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2001
     koreanName: "\uC735\uD574 \uC77C\uACA9 +"
-    element: 1000
+    element: 2000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0, \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1\uC744
@@ -232,7 +232,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2002
     koreanName: "\uBD88\uC528 +"
-    element: 1000
+    element: 2000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0, \uB3D9\uC77C\uD55C \uCE74\uB4DC\uB97C \uBF51\uC744
@@ -248,7 +248,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2003
     koreanName: "\uBC31\uC5FC +"
-    element: 1000
+    element: 2000
     target: 1
     description: "\uC18C\uBA78\uB41C \uCE74\uB4DC 1\uC7A5 \uB2F9, \uC801\uC5D0\uAC8C
       \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1] \uAC00\uD569\uB2C8\uB2E4."
@@ -263,7 +263,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2004
     koreanName: "\uBC31\uB4DC\uB798\uD504\uD2B8 +"
-    element: 1000
+    element: 2000
     target: 2
     description: "\uBAA8\uB4E0 \uC801\uC5D0\uAC8C \uD30C\uAD34 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC9C0\uC815\uD55C \uC801\uC758 \uD654\uC0C1
@@ -280,7 +280,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2005
     koreanName: "\uD654\uC5FC \uBC29\uBCBD +"
-    element: 1000
+    element: 2000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC815\uB828\uB428\uC744 [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -295,7 +295,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2006
     koreanName: "\uB2E8\uB828 +"
-    element: 1000
+    element: 2000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC790\uC2E0\uC5D0\uAC8C \uBD80\uC5EC\uB41C \uD654\uC0C1 \uC911\uCCA9 \uB2F9
@@ -312,7 +312,7 @@ MonoBehaviour:
     actValue3: 2
   - cardName: 2007
     koreanName: "\uC18C\uC774\uD0C4 +"
-    element: 1000
+    element: 2000
     target: 0
     description: "\uC18C\uC774\uD0C4 \uC7A5\uC804\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4."
     isExtinct: 0
@@ -326,9 +326,9 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2008
     koreanName: "\uC5F4\uAE30 +"
-    element: 1000
+    element: 2000
     target: 0
-    description: "\uC99D\uAC15\uC744 [ActValue] \uC5BB\uC2B5\uB2C8\uB2E4."
+    description: "\uC99D\uAC15\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 0
     cost: 1
@@ -340,7 +340,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2009
     koreanName: "\uACFC\uC5F4 +"
-    element: 1000
+    element: 2000
     target: 0
     description: "\uCF54\uC2A4\uD2B8\uB97C [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC790\uC2E0\uC5D0\uAC8C \uD654\uC0C1\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
@@ -356,7 +356,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2010
     koreanName: "\uC794\uBD88 +"
-    element: 1000
+    element: 2000
     target: 0
     description: "\uC774\uAE00\uAC70\uB9BC\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC18C\uBA78"
@@ -371,7 +371,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2011
     koreanName: "\uB099\uC778 +"
-    element: 1000
+    element: 2000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uB099\uC778\uC744 [ActValue1] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
     isExtinct: 0
@@ -385,9 +385,9 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 2012
     koreanName: "\uAE30\uB984 \uBFCC\uB9AC\uAE30 +"
-    element: 1000
+    element: 2000
     target: 1
-    description: "\uC801\uC758 \uD654\uC0C1 \uC218\uCE58\uB97C [ActValue]\uBC30\uB85C
+    description: "\uC801\uC758 \uD654\uC0C1 \uC218\uCE58\uB97C [ActValue1]\uBC30\uB85C
       \uD569\uB2C8\uB2E4. \uC18C\uBA78"
     isExtinct: 1
     isSpecial: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3000
     koreanName: "\uBE59\uD558 \uC410\uAE30 +"
-    element: 2000
+    element: 3000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uB0C9\uAE30\uB97C [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -415,7 +415,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3001
     koreanName: "\uD750\uB984\uC758 \uD654\uC0B4 +"
-    element: 2000
+    element: 3000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uB9CC\uC57D \uC9C0\uC815 \uB300\uC0C1\uC774
@@ -432,10 +432,10 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3002
     koreanName: "\uC5D0\uB108\uC9C0 \uC1A1\uACF3 +"
-    element: 2000
+    element: 3000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
-      [ActVaue1] \uAC00\uD558\uACE0 \uCF54\uC2A4\uD2B8\uB97C 1 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
+      [ActValue1] \uAC00\uD558\uACE0 \uCF54\uC2A4\uD2B8\uB97C 1 \uD68C\uBCF5\uD569\uB2C8\uB2E4.
       \uC774 \uCE74\uB4DC\uB97C \uC0AC\uC6A9 \uD6C4 \uCF54\uC2A4\uD2B8\uAC00 0 \uC774\uB77C\uBA74
       \uCD94\uAC00\uB85C 1 \uB354 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
     isExtinct: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3003
     koreanName: "\uD30C\uB3D9 +"
-    element: 2000
+    element: 3000
     target: 2
     description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131
       \uD53C\uD574\uB97C [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uB0C9\uAE30 \uC0C1\uD0DC\uC778
@@ -466,7 +466,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3004
     koreanName: "\uC5FC\uB825 \uC190\uC544\uADC0 +"
-    element: 2000
+    element: 3000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0AC\uC774\uD0A5 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC774 \uCE74\uB4DC \uC774\uC678\uC758
@@ -483,7 +483,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3005
     koreanName: "\uC5BC\uC74C \uBC29\uD328 +"
-    element: 2000
+    element: 3000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0 \uC5FC\uB825
       \uC7A5\uB9C9\uC744 [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -498,7 +498,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3006
     koreanName: "\uC804\uC790\uAE30\uC7A5 +"
-    element: 2000
+    element: 3000
     target: 0
     description: "\uC804\uC790\uAE30\uC7A5\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4."
     isExtinct: 0
@@ -512,7 +512,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3007
     koreanName: "\uAC00\uC18D \uD654\uD569\uBB3C +"
-    element: 2000
+    element: 3000
     target: 0
     description: "\uAC00\uC18D \uD654\uD569\uBB3C\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC18C\uBA78"
@@ -527,7 +527,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3008
     koreanName: "\uCD08\uC804\uB3C4\uCCB4 +"
-    element: 2000
+    element: 3000
     target: 0
     description: "\uBB34\uD6A8\uD654 [ActValue1], \uB3D9\uACB0\uC744 [ActValue2]
       \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78"
@@ -542,7 +542,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3009
     koreanName: "\uC2E0\uACBD \uC548\uC815\uC81C +"
-    element: 2000
+    element: 3000
     target: 0
     description: "\uBC84\uB824\uC9C4 \uCE74\uB4DC \uB354\uBBF8\uC5D0\uC11C \uCE74\uB4DC\uB97C
       \uC9C0\uC815\uD574 \uC190\uD328\uB85C \uAC00\uC838\uC635\uB2C8\uB2E4. \uC774
@@ -559,7 +559,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3010
     koreanName: "\uCD08\uC800\uC628 \uBD84\uB9D0+"
-    element: 2000
+    element: 3000
     target: 2
     description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uB3D9\uACB0\uC744 [ActValue1]
       \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -574,7 +574,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 3011
     koreanName: "\uBC29\uD574 +"
-    element: 2000
+    element: 3000
     target: 2
     description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uD30C\uAC11\uC744 [ActValue1]
       \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -589,7 +589,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4000
     koreanName: "\uC591\uB0A0\uC758 \uAC80 +"
-    element: 3000
+    element: 4000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uADF8 \uC808\uBC18\uC758 \uD53C\uD574\uB97C
@@ -605,7 +605,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4001
     koreanName: "\uC5ED\uBCD1 +"
-    element: 3000
+    element: 4000
     target: 1
     description: "\uD328\uC5D0\uC11C \uCD5C\uB300 3\uC7A5 \uAE4C\uC9C0 \uCE74\uB4DC\uB97C
       \uC120\uD0DD\uD574 \uBC84\uB9AC\uACE0, \uBC84\uB9B0 \uC218 \uB9CC\uD07C \uBC18\uBCF5\uD558\uC5EC
@@ -622,7 +622,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4002
     koreanName: "\uAC00\uC2DC \uCC44\uCC0D +"
-    element: 3000
+    element: 4000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uD30C\uAC11\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4."
@@ -637,7 +637,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4003
     koreanName: "\uD761\uC218\uC758 \uC77C\uACA9 +"
-    element: 3000
+    element: 4000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0, \uB9C9\uD788\uC9C0 \uC54A\uC740 \uB370\uBBF8\uC9C0
@@ -653,7 +653,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4004
     koreanName: "\uB4A4\uD2C0\uB9B0 \uC77C\uACA9 +"
-    element: 3000
+    element: 4000
     target: 1
     description: "\uC801\uC5D0\uAC8C \uC0DD\uCCB4 \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD569\uB2C8\uB2E4. \uC774 \uCE74\uB4DC\uAC00 \uBC84\uB824\uC84C\uC744
@@ -670,7 +670,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4005
     koreanName: "\uAC00\uC2DC \uB364\uBD88 +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0, \uC0DD\uCCB4
       \uBC18\uC751 \uC7A5\uAC11 [ActValue2], \uAC00\uC2DC\uB97C [ActValue3] \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -685,7 +685,7 @@ MonoBehaviour:
     actValue3: 4
   - cardName: 4006
     koreanName: "\uD0C4\uC131 \uC7A5\uBCBD +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uBC29\uC5B4\uB3C4\uB97C [ActValue1] \uC5BB\uACE0, \uC0DD\uCCB4
       \uBC18\uC751 \uC7A5\uAC11 [ActValue2], \uD0C4\uC131\uB9C9\uC744 [ActValue3]
@@ -701,7 +701,7 @@ MonoBehaviour:
     actValue3: 2
   - cardName: 4007
     koreanName: "\uAC1C\uD654 +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uCE74\uB4DC\uB97C [ActValue1] \uC7A5 \uACE8\uB77C \uBC84\uB9AC\uACE0
       \uCF54\uC2A4\uD2B8\uB97C [ActValue2] \uC5BB\uC2B5\uB2C8\uB2E4."
@@ -716,7 +716,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4008
     koreanName: "\uB9E5\uB3D9\uD558\uB294 \uC0DD\uBA85\uCCB4 +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uC7AC\uC0DD\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78"
     isExtinct: 1
@@ -730,7 +730,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4009
     koreanName: "\uC870\uC9C1 \uAD50\uD658 +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uCE74\uB4DC\uB97C [ActValue1] \uC7A5 \uACE8\uB77C \uBC84\uB9AC\uACE0
       [ActValue2]\uC7A5\uC744 \uB4DC\uB85C\uC6B0 \uD569\uB2C8\uB2E4."
@@ -745,7 +745,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4010
     koreanName: "\uC21C\uD658 +"
-    element: 3000
+    element: 4000
     target: 0
     description: "\uC790\uC6D0 \uAD50\uD658\uC744 [ActValue1] \uC5BB\uC2B5\uB2C8\uB2E4.
       \uC18C\uBA78"
@@ -760,7 +760,7 @@ MonoBehaviour:
     actValue3: 0
   - cardName: 4011
     koreanName: "\uC57D\uD654 \uC810\uC561 +"
-    element: 3000
+    element: 4000
     target: 2
     description: "\uC801 \uC804\uCCB4\uC5D0\uAC8C \uC57D\uD654\uB97C [ActValue1]
       \uBD80\uC5EC\uD569\uB2C8\uB2E4."
