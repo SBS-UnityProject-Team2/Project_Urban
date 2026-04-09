@@ -72,8 +72,9 @@ public class Monsters : MonoBehaviour
 
     public async UniTask ExecuteAction(CancellationToken cancellationToken = default)
     {
-        foreach (Monster monster in monsters)
+        foreach (Monster monster in monsters.ToArray())
         {
+            if (monster == null || !monster.gameObject.activeSelf) continue;
             await monster.BeginTurn();
             cancellationToken.ThrowIfCancellationRequested();
         }
@@ -129,7 +130,7 @@ public class Monsters : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Vector3 target = new Vector3(startX + i * spacing, 0f, 0f);
-            Util.MoveTo(monsters[i].gameObject, target, 0.3f).Forget();
+            await Util.MoveTo(monsters[i].gameObject, target, 0.3f);
         }
     }
 }

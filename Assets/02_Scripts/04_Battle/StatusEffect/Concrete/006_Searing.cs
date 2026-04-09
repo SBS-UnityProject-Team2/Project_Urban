@@ -1,13 +1,15 @@
+using Cysharp.Threading.Tasks;
+
 public class Searing : StackEffect
 {
     public override StatusEffectName Name => StatusEffectName.Searing;
 
     public Searing(Actor owner) : base(owner)
     {
-        owner.EventBus.AddEventListener(ActorEvent.DamageTaken, HandleDamage);
+        owner.EventBus.AddAsyncEventListener(ActorEvent.AttackDamageTaken, HandleDamage);
     }
 
-    private void HandleDamage(EventPayload eventPayload)
+    private async UniTask HandleDamage(EventPayload eventPayload)
     {
         if (!isActive) return;
 
@@ -21,5 +23,7 @@ public class Searing : StackEffect
         payload.AddTarget(owner);
         
         ActionBus.Dispatch(payload);
+
+        await UniTask.CompletedTask;
     }
 }

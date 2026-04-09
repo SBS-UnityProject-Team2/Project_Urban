@@ -32,8 +32,7 @@ public class MonsterAction : MonoBehaviour
 
     public async UniTask Execute(Monster source)
     {
-        await MonsterActionMethod.Execute(curAction.actionId, source); 
-        await UniTask.WaitForSeconds(1.0f);       
+        await MonsterActionMethod.Execute(curAction.actionId, source);     
     }
 
     public void SetNextAction()
@@ -55,10 +54,14 @@ public class MonsterAction : MonoBehaviour
         curPattern = phaseEntries[curPhase].patterns;
         
         Reset();
-        if (phaseStep[curPhase].actionId == 0)
+        if (phaseStep[curPhase - 1].actionId == 0)
             SetNextAction();
         else
-            curAction = MonsterManager.Instance.GetMonsterAction(phaseStep[curPhase].actionId);
+        {
+            curAction = MonsterManager.Instance.GetMonsterAction(phaseStep[curPhase - 1].actionId);
+            OnUpdateNextAction?.Invoke(curAction);
+            Debug.Log($"{curPhase} Start!");
+        }
     }
 
     public void Reset()
