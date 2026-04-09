@@ -18,8 +18,8 @@ public class Searing : StackEffect
         };
         payload.Write(Location.Hand);
         payload.Write(stack);
-
         payload.AddTarget(owner);
+        
         ActionBus.Dispatch(payload);
     }
 }

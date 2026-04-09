@@ -5,6 +5,8 @@
 */
 
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,7 +35,7 @@ public class Monsters : MonoBehaviour
         }   
     }
 
-    public void Init(int monsterScore, MonsterLevel monsterLevel)
+    public async Task Init(int monsterScore, MonsterLevel monsterLevel)
     {
         if (monsterLevel == MonsterLevel.Normal)
         {
@@ -56,22 +58,25 @@ public class Monsters : MonoBehaviour
             monsters.Add(monster);
         }
 
-        Align();
+       await Align();
     }
     
-    public void Init(MonsterName monsterName)
+    public async Task Init(MonsterName monsterName)
     {
         MonsterDataEntry monsterData = MonsterManager.Instance.GetMonsterData(monsterName);
         Monster monster = CreateMonster(monsterData);
 
         monsters.Add(monster);
-        Align();
+        await Align();
     }
 
-    public async UniTask ExecuteAction()
+    public async UniTask ExecuteAction(CancellationToken cancellationToken = default)
     {
         foreach (Monster monster in monsters)
+        {
             await monster.BeginTurn();
+            cancellationToken.ThrowIfCancellationRequested();
+        }
     }
 
     private bool CreateRandomMonster(int score, out Monster monster)
@@ -93,10 +98,10 @@ public class Monsters : MonoBehaviour
     {
         Monster monster = Instantiate(MonsterPrefab, transform);
         monster.Init(monsterDataEntry);
-        monster.EventBus.AddEventListener(ActorEvent.Dead, eventPayload =>
+        monster.EventBus.AddAsyncEventListener(ActorEvent.Dead, async eventPayload =>
         {
             monsters.Remove(monster);
-            Destroy(monster.gameObject);
+            monster.gameObject.SetActive(false);
 
             if (monsters.Count <= 0)
             {
@@ -105,13 +110,15 @@ public class Monsters : MonoBehaviour
                 return;
             }
             
-            Align();
+            await Align();
+
+            Destroy(monster.gameObject);
         });
 
         return monster;
     }
 
-    private void Align()
+    private async UniTask Align()
     {
         int count = monsters.Count;
         if (count == 0) return;

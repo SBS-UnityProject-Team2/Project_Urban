@@ -9,6 +9,8 @@ public class Monster : Actor
     private MonsterAction action;
     private MonsterView view;
     private MonsterController controller;
+    
+    private int score;
 
     public MonsterView View => view;
 
@@ -20,6 +22,7 @@ public class Monster : Actor
 
         EventBus.AddAsyncEventListener(ActorEvent.TurnStart, HandleTurnStart);
         EventBus.AddEventListener(ActorEvent.TurnEnd, HandleTurnEnd);
+        EventBus.AddEventListener(ActorEvent.Dead, HandleDead);
     }
 
     public void Init(MonsterDataEntry monsterDataEntry)
@@ -29,10 +32,14 @@ public class Monster : Actor
         view.Init(monsterDataEntry, Status, action);
         action.Init(this, monsterDataEntry);
         controller.Init(view);
+
+        score = monsterDataEntry.score;
     }
 
     private async UniTask HandleTurnStart(EventPayload eventPayload)
     {
+        Status.Health.Block = 0;
+
         await action.Execute(this);
         EndTurn();
     }
@@ -43,13 +50,19 @@ public class Monster : Actor
             action.SetNextPhase();
         else
             action.SetNextAction();
-
-        Status.Health.Block = 0;
     }
 
     private void HandleTakeDamage(EventPayload eventPayload)
     {
         if (Status.Health.CurHp <= action.NextPhaseHp)
             action.SetNextPhase();
+    }
+
+    private void HandleDead(EventPayload payload)
+    {
+        float monsterRatio = score * 0.1f + 1.0f;
+        float randomRatio = Random.Range(-0.2f, 0.2f) + 1.0f;
+
+        Battle.Instance.EarnCoin += (int)(10 * monsterRatio * randomRatio);
     }
 }

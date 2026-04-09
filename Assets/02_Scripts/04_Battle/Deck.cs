@@ -214,6 +214,8 @@ public class Deck : MonoBehaviour
                 break;
 
             case Location.Hand:
+                foreach (Card card in moveCards)
+                    card.transform.parent = hand.transform;
                 await hand.AddCards(moveCards);
                 break;
         }

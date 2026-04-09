@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 5503666024875513558}
   - component: {fileID: 5349848953427459447}
   - component: {fileID: 881094511326269565}
-  - component: {fileID: 647305984448993136}
   m_Layer: 5
   m_Name: UI_CardList
   m_TagString: Untagged
@@ -256,24 +255,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &647305984448993136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 371856731024700754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc238b394d6b1a4ab59df366513a12b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisplayCardList
-  uiCardPrefab: {fileID: 3604647622847428559, guid: 3aca736bbdea80c4c8ba8c107b20b7b8, type: 3}
-  content: {fileID: 5686389525918728731}
-  titleText: {fileID: 3478559690471405011}
-  deckCardListTitle: "\uC804\uCCB4 \uCE74\uB4DC \uBAA9\uB85D"
-  usedCardListTitle: "\uC0AC\uC6A9\uD55C \uCE74\uB4DC \uBAA9\uB85D"
-  extinctCardListTitle: "\uC18C\uBA78\uB41C \uCE74\uB4DC \uBAA9\uB85D"
 --- !u!1 &848232846941635673
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +733,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 647305984448993136}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DisplayCardList, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 1

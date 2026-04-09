@@ -32,6 +32,7 @@ public class Player : Actor
     private async UniTask HandleTurnStart(EventPayload eventPayload)
     {
         RegenCost();
+        Status.Health.Block = 0;
         await InitDraw();
 
         // 조작 가능한 상태로 변경
@@ -39,11 +40,7 @@ public class Player : Actor
 
     private async UniTask HandleTurnEnd(EventPayload eventPayload)
     {
-        Status.Health.Block = 0;
-
         await Battle.Instance.Deck.DiscardAllCard();
-
-        // 조작 불가능한 상태로 변경
     }
 
     private void HandleDead(EventPayload eventPayload)

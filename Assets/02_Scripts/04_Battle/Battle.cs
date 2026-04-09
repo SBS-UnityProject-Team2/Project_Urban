@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 public class Battle : SceneSingleton<Battle>
 {
@@ -16,13 +18,13 @@ public class Battle : SceneSingleton<Battle>
     [SerializeField] private int drawCount;
     [SerializeField] private int monsterScore;
     [SerializeField] private MonsterLevel monsterLevel;
-
-    private UniTask monsterActionTask;
     
     public Player Player => player;
     public Monsters Monsters => monsters;
     public Deck Deck => deck;
     public Hand Hand => hand;
+
+    public int EarnCoin { get; set; }
 
     public int DrawCount
     {
@@ -33,12 +35,13 @@ public class Battle : SceneSingleton<Battle>
     public bool IsPause { get; set; }
 
     public UnityEvent OnBattleStart = new();
-    public UnityEvent OnBattleEnd = new();
+    public UnityEvent<bool> OnBattleEnd = new();
 
-    private void Start()
+    private async void Start()
     {
         deck.Init(DeckManager.Instance.Deck, hand);
-        monsters.Init(monsterScore, monsterLevel);
+        await monsters.Init(monsterScore, monsterLevel);
+        InitArtifacts();
 
         StartBattleLoop();
     }
@@ -47,26 +50,73 @@ public class Battle : SceneSingleton<Battle>
     {
         OnBattleStart?.Invoke();
 
-        // WaitForTurnEndAsync은 기본적으로 턴 종료 신호까지 대기한다.
-        // 만약 몬스터 전원 사망 혹은 플레이어 사망시, 대기를 취소한다.
-        // 대기 취소시, 예외가 발생한다.
-        // 즉, 예외를 배틀 종료 신호로 취급해 catch에서 배틀 종료 후 처리를 한다.
-        try
+        while (true)
         {
-            while (true)
-            {
-                await player.BeginTurn();
-                await player.WaitForTurnEndAsync();
+            // 1. 플레이어 턴 시작
+            await player.BeginTurn();
 
-                monsterActionTask = monsters.ExecuteAction();
-                await monsterActionTask;
+            bool allMonstersDead = await WaitForTurnEndOrAllMonstersDead();
+            if (allMonstersDead)
+            {
+                OnBattleEnd?.Invoke(true);
+
+                break;
+            }
+
+            bool playerDead = await ExecuteMonsterActionsOrPlayerDead();
+            if (playerDead)
+            {
+                OnBattleEnd?.Invoke(false);
+
+                break;
             }
         }
-        catch(OperationCanceledException)
-        {
-            OnBattleEnd?.Invoke();
-        }
 
-        Debug.Log("BattleEnd");
+        IsPause = true;
+    }
+
+    private async UniTask<bool> WaitForTurnEndOrAllMonstersDead()
+    {
+        if (monsters.Count <= 0)
+            return true;
+
+        var allDeadTcs = new UniTaskCompletionSource();
+        void onAllDead() => allDeadTcs.TrySetResult();
+        monsters.OnAllMonsterDead.AddListener(onAllDead);
+
+        try
+        {
+            int winIndex = await UniTask.WhenAny(
+                player.WaitForTurnEndAsync(),
+                allDeadTcs.Task
+            );
+
+            return winIndex == 1;
+        }
+        finally
+        {
+            monsters.OnAllMonsterDead.RemoveListener(onAllDead);
+        }
+    }
+
+    private async UniTask<bool> ExecuteMonsterActionsOrPlayerDead()
+    {
+        using var cts = new CancellationTokenSource();
+        void onPlayerDead(EventPayload _) => cts.Cancel();
+        player.EventBus.AddEventListener(ActorEvent.Dead, onPlayerDead);
+
+        try
+        {
+            await monsters.ExecuteAction(cts.Token);
+            return false;
+        }
+        catch (OperationCanceledException)
+        {
+            return true;
+        }
+        finally
+        {
+            player.EventBus.RemoveEventListener(ActorEvent.Dead, onPlayerDead);
+        }
     }
 }
