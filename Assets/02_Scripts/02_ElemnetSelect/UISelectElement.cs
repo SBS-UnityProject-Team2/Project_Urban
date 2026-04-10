@@ -63,6 +63,30 @@ public class UISelectElement : MonoBehaviour
         CardName.Disturb
     };
 
+    private readonly List<CardName> combineDeck = new()
+    {
+        CardName.Shooting,
+        CardName.Assault,
+        CardName.Maintenance,
+        CardName.MoltenArms,
+        CardName.GlacierWedge,
+        CardName.GlacierWedge,
+        CardName.FlowArrow,
+        CardName.Ember,
+        CardName.Inferno,
+        CardName.KineticGrasp,
+        CardName.Reforge,
+        CardName.Reforge,
+        CardName.IceShield,
+        CardName.IceShield,
+        CardName.Overheat,
+        CardName.Overheat,
+        CardName.Cinder,
+        CardName.AccelConcoction,
+        CardName.AccelConcoction,
+        CardName.Disturb
+    };
+
     public void OnClickRuin()
     {
         DeckManager.Instance.SelectedElement = ElementType.Ruin;
@@ -83,8 +107,12 @@ public class UISelectElement : MonoBehaviour
     }
 
     // 3. Grass 속성 선택 버튼 연결
-    public void OnClickBio()
+    public void OnClickCombine()
     {
+        DeckManager.Instance.SelectedElement = ElementType.Psychic;
+        DeckManager.Instance.AddCards(combineDeck);
 
+        SceneManager.LoadScene(SceneName.Map);
+        SoundManager.Instance.PlayMapSound();
     }
 }
