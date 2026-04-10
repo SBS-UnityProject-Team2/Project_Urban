@@ -1,25 +1,30 @@
-public static class ArtifactManager
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ArtifactManager : Singleton<ArtifactManager>
 {
-	public static ArtifactInfo GetInfo(ArtifactId artifactId)											// 유물의 ID를 받아서 해당 유물의 정보를 반환하는 메서드
+	[SerializeField] private List<ArtifactInfo> infos;
+
+	private readonly Dictionary<ArtifactId, ArtifactInfo> infoMap = new();
+
+	private void Start()
 	{
-		return artifactId switch
-		{
-			ArtifactId.AmmoNecklace => new ArtifactInfo(ArtifactId.AmmoNecklace, "탄약 목걸이"),
-			ArtifactId.OvercooledLens => new ArtifactInfo(ArtifactId.OvercooledLens, "과냉각 렌즈"),
-			ArtifactId.EntangledVines => new ArtifactInfo(ArtifactId.EntangledVines, "얽혀진 덩굴"),
-			_ => null,
-		};
+		foreach (ArtifactInfo info in infos)
+			infoMap[info.id] = info;
+	}
+
+	public ArtifactInfo GetInfo(ArtifactId artifactId)											// 유물의 ID를 받아서 해당 유물의 정보를 반환하는 메서드
+	{
+		return infoMap[artifactId];
 	}
 }
 
+[Serializable]
 public class ArtifactInfo			// 유물 정보 클래스
 {
-	public ArtifactId Id { get; }
-	public string KoreanName { get; }
-
-	public ArtifactInfo(ArtifactId id, string koreanName)
-	{
-		Id = id;
-		KoreanName = koreanName;
-	}
+	public ArtifactId id;
+	public Sprite image;
+	public string name;
+	public string desc;
 }

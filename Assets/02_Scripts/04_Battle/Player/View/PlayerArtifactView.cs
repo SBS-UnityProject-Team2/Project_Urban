@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerArtifactView : MonoBehaviour
 {
     [SerializeField] private RectTransform rectTransform;
-    [SerializeField] private TMP_Text artifactPrefab;
+    [SerializeField] private PlayerArtifactItemView artifactPrefab;
     
     public void Init(List<Artifact> artifacts)
     {
         foreach (Artifact artifact in artifacts)
         {
-            TMP_Text art = Instantiate(artifactPrefab, rectTransform);
-            art.text = $"[{artifact.KoreanName}]";
+            PlayerArtifactItemView art = Instantiate(artifactPrefab, rectTransform);
+            art.Init(artifact.Id);
         }
     }
 }
