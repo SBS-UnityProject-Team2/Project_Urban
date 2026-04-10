@@ -73,6 +73,8 @@ public class EnchantConfirmPopup : MonoBehaviour
         isReadyForUserConfirm = false;
 
         DeckManager.Instance.Enchant(selectedCard.Id);
+        MapManager.Instance.SetCanEnchant(false);
+        cardEnchantPanel.UpdateOpenButton();
         Debug.Log($"[강화 성공] {currentOriginalCard.cardName} -> {currentEnchantedCard.koreanName}");
         
         // 1. 팝업창 닫기 애니메이션 시작

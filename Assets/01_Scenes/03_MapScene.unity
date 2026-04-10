@@ -2197,7 +2197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ac7b77e1cc4054fbc876987b4b452b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: CANCEL
+  buttonText: "\uCDE8\uC18C"
   clickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -2458,7 +2458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CANCEL
+  m_text: "\uCDE8\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -2846,7 +2846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YES
+  m_text: "\uAC15\uD654\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -6696,6 +6696,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
+--- !u!114 &516465509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 526369373906582287, guid: 5e33ac14eea93b946b6286f33f53a481, type: 3}
+  m_PrefabInstance: {fileID: 516465508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &521568221
 GameObject:
   m_ObjectHideFlags: 0
@@ -7580,7 +7591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CANCEL
+  m_text: "\uCDE8\uC18C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -9067,6 +9078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealingPopupUI
   popupObject: {fileID: 180968744}
   statusText: {fileID: 1636026700}
+  HealButton: {fileID: 2084182685143299881}
 --- !u!1 &817063287
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,7 +10004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ac7b77e1cc4054fbc876987b4b452b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: YES
+  buttonText: "\uAC15\uD654\uD558\uAE30"
   clickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -22673,7 +22685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YES
+  m_text: "\uAC15\uD654\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -23817,6 +23829,7 @@ MonoBehaviour:
   EnchantCardPanel: {fileID: 2116948892}
   emptyEnchantableMessageObject: {fileID: 676406854}
   deckEnchantPopup: {fileID: 1379066886}
+  openPanelButton: {fileID: 516465509}
 --- !u!1 &2117164712
 GameObject:
   m_ObjectHideFlags: 0
@@ -24405,7 +24418,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENTER
+  m_text: "\uB4E4\uC5B4\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -24496,7 +24509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ENTER
+  m_text: "\uB4E4\uC5B4\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
   m_sharedMaterial: {fileID: 21513131424051102, guid: 1303a6dde387e694f8da16b62d2cf437, type: 2}
@@ -24900,6 +24913,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 802772271}
   m_SourcePrefab: {fileID: 100100000, guid: 1d08d5aa9b910a046b538134a374467e, type: 3}
+--- !u!114 &2084182685143299881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4145692471575618818, guid: 1d08d5aa9b910a046b538134a374467e, type: 3}
+  m_PrefabInstance: {fileID: 2084182685143299880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180968744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2111957240878492441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25218,7 +25242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ac7b77e1cc4054fbc876987b4b452b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: ENTER
+  buttonText: "\uB4E4\uC5B4\uAC00\uAE30"
   clickEvent:
     m_PersistentCalls:
       m_Calls:

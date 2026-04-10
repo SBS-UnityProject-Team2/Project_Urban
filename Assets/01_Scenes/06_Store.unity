@@ -689,6 +689,17 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
+--- !u!114 &474273029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1108891207010640079, guid: be31e9e090900404f846f58e0358af57, type: 3}
+  m_PrefabInstance: {fileID: 767227405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &474437538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1174,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5317265509055709727, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317265509055709727, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -8.8651
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317265509055709727, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.7499
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317265509055709727, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.4325
+      objectReference: {fileID: 0}
     - target: {fileID: 5431642570533752078, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1234,6 +1261,10 @@ PrefabInstance:
     - target: {fileID: 5996958362374213103, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182438756392144525, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: buttonText
+      value: "\uC81C\uAC70\uD558\uAE30"
       objectReference: {fileID: 0}
     - target: {fileID: 6182438756392144525, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1359,6 +1390,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7642352108340210574, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: buttonText
+      value: "\uCDE8\uC18C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664966282082829191, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: buttonText
+      value: "\uAC15\uD654\uD558\uAE30"
+      objectReference: {fileID: 0}
     - target: {fileID: 7664966282082829191, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1375,6 +1414,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7856343205627045980, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 719
+      objectReference: {fileID: 0}
     - target: {fileID: 7885285440897179528, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1390,6 +1433,10 @@ PrefabInstance:
     - target: {fileID: 8065936559223620597, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseDeckDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102779427875971883, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 718.9999
       objectReference: {fileID: 0}
     - target: {fileID: 8288058242438756263, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_IsActive
@@ -1410,6 +1457,10 @@ PrefabInstance:
     - target: {fileID: 8550752846341794727, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8679846875002885066, guid: be31e9e090900404f846f58e0358af57, type: 3}
+      propertyPath: buttonText
+      value: "\uCDE8\uC18C"
       objectReference: {fileID: 0}
     - target: {fileID: 8679846875002885066, guid: be31e9e090900404f846f58e0358af57, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1525,6 +1576,7 @@ MonoBehaviour:
   EnchantCardPanel: {fileID: 852078133}
   emptyEnchantableMessageObject: {fileID: 893659633}
   deckEnchantPopup: {fileID: 1256202893}
+  openPanelButton: {fileID: 2066577950}
 --- !u!1 &893659633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1812,7 @@ MonoBehaviour:
   RemoveCardPanel: {fileID: 986073471}
   emptyDeckMessage: {fileID: 120782965}
   removeConfirmPopup: {fileID: 949490116}
+  openPanelButton: {fileID: 474273029}
 --- !u!1 &1091682803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2255,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   maxHp: 500
   curCoin: 9999
+--- !u!114 &2066577950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7885285440897179528, guid: be31e9e090900404f846f58e0358af57, type: 3}
+  m_PrefabInstance: {fileID: 767227405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &2144818105
 PrefabInstance:
   m_ObjectHideFlags: 0

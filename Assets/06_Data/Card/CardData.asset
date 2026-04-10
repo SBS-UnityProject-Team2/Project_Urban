@@ -531,7 +531,7 @@ MonoBehaviour:
     target: 0
     description: "\uBB34\uD6A8\uD654 [ActValue1], \uB3D9\uACB0\uC744 [ActValue2]
       \uC5BB\uC2B5\uB2C8\uB2E4. \uC18C\uBA78"
-    isExtinct: 0
+    isExtinct: 1
     isSpecial: 1
     cost: 2
     price: 120

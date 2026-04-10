@@ -3791,41 +3791,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1987620314}
     m_Modifications:
-    - target: {fileID: 4248907808754031295, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 4248907808754031295, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113418605873982031, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 6113418605873982031, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6708222913019499806, guid: 7096622f98054374fab431080d7120ec, type: 3}
       propertyPath: m_Name
       value: Panel_ Settings
-      objectReference: {fileID: 0}
-    - target: {fileID: 6708222913019499806, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7043762210039119823, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 7043762210039119823, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7043762210039119823, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 8770858265610283746, guid: 7096622f98054374fab431080d7120ec, type: 3}
       propertyPath: m_Pivot.x
@@ -3906,18 +3874,6 @@ PrefabInstance:
     - target: {fileID: 8770858265610283746, guid: 7096622f98054374fab431080d7120ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811011051686363868, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811011051686363868, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811011051686363868, guid: 7096622f98054374fab431080d7120ec, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

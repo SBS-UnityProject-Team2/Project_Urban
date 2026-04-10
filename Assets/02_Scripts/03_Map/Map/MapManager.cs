@@ -149,6 +149,10 @@ public class MapManager : Singleton<MapManager>
     private bool hasEncounterPreset;
     private int encounterScore;
     private MonsterLevel encounterLevel = MonsterLevel.Normal;
+    private bool canEnchant;
+    private bool canRemove;
+    public bool CanEnchant => canEnchant;
+    public bool CanRemove => canRemove;
 
     // 매 프레임 new List()를 막기 위해 멤버 변수로 미리 할당한 천장용 임시 리스트
     private readonly List<NodeType> cachedPityList = new List<NodeType>(10);
@@ -512,6 +516,16 @@ public class MapManager : Singleton<MapManager>
         hasEncounterPreset = true;
         encounterScore = score;
         encounterLevel = level;
+    }
+
+    public void SetCanEnchant(bool value)
+    {
+        canEnchant = value;
+    }
+
+    public void SetCanRemove(bool value)
+    {
+        canRemove = value;
     }
 
 
