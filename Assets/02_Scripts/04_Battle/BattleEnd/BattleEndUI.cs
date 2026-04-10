@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleEndUI : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class BattleEndUI : MonoBehaviour
 
         Battle.Instance.OnBattleEnd.AddListener(isPlayerWin =>
         {
+            if (Battle.Instance.MonsterLevel == MonsterLevel.Boss && isPlayerWin)
+            {
+                SceneManager.LoadScene(SceneName.ThankPlay);
+                
+                return;
+            }
+
             gameObject.SetActive(true);
 
             if (isPlayerWin) successUI.gameObject.SetActive(true);

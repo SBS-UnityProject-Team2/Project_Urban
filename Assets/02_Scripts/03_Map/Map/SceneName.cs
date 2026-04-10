@@ -5,4 +5,5 @@ public static class SceneName
 	public const string Map = "03_MapScene";
 	public const string Battle = "04_BattleScene";
 	public const string Store = "06_Store";
+	public const string ThankPlay = "07_ThankPlay";
 }

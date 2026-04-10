@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.Events;
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
+
 
 public class Battle : SceneSingleton<Battle>
 {
@@ -24,6 +23,8 @@ public class Battle : SceneSingleton<Battle>
     public Deck Deck => deck;
     public Hand Hand => hand;
 
+    public MonsterLevel MonsterLevel => monsterLevel;
+
     public int EarnCoin { get; set; }
 
     public int DrawCount
@@ -41,15 +42,13 @@ public class Battle : SceneSingleton<Battle>
     {
         deck.Init(DeckManager.Instance.Deck, hand);
 
-        int startScore = monsterScore;
-        MonsterLevel startLevel = monsterLevel;
         if (MapManager.Instance.DemoMonsterScorePreset(out int presetScore, out MonsterLevel presetLevel))
         {
-            startScore = presetScore;
-            startLevel = presetLevel;
+            monsterScore = presetScore;
+            monsterLevel = presetLevel;
         }
 
-        await monsters.Init(startScore, startLevel);
+        await monsters.Init(monsterScore, monsterLevel);
         StartBattleLoop();
     }
 
