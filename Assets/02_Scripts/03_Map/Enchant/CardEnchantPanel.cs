@@ -10,12 +10,25 @@ public class CardEnchantPanel : MonoBehaviour
     [SerializeField] private GameObject cardPrefab;   // 카드 슬롯 프리팹
     [SerializeField] private GameObject EnchantCardPanel; // 인챈트 패널
     [SerializeField] private GameObject emptyEnchantableMessageObject; // 강화 가능 카드가 없을 때 안내 텍스트
+    
 
     [Header("Popup Settings")]
     [SerializeField] private EnchantConfirmPopup deckEnchantPopup;
+    [SerializeField] private Button openPanelButton;
+
+    private void OnEnable()
+    {
+        UpdateOpenButton();
+    }
 
     public void OpenDeckDisplay()
     {
+        if (!MapManager.Instance.CanEnchant)
+        {
+            UpdateOpenButton();
+            return;
+        }
+
         List<DeckCard> receivedDeck = DeckManager.Instance.Deck;
         bool hasEnchantableCard = receivedDeck.Exists(card => !card.IsEnchanted);
 
@@ -34,6 +47,12 @@ public class CardEnchantPanel : MonoBehaviour
     {
         EnchantCardPanel.SetActive(false);
         emptyEnchantableMessageObject.SetActive(false);
+        UpdateOpenButton();
+    }
+
+    public void UpdateOpenButton()
+    {
+        openPanelButton.interactable = MapManager.Instance.CanEnchant;
     }
 
     private void RenderDeck(List<DeckCard> deckToRender)

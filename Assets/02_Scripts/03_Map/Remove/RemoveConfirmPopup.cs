@@ -31,6 +31,8 @@ public class RemoveConfirmPopup : MonoBehaviour
     public void OnClickRemove()
     {  
         DeckManager.Instance.Remove(targetCard.Id);
+        MapManager.Instance.SetCanRemove(false);
+        cardRemovePanel.UpdateOpenButton();
         Debug.Log($"[카드 제거] {targetCardUI.koreanName} 제거 완료");
 
         ClosePopup();

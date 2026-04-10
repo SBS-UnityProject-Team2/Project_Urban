@@ -126,12 +126,15 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     private void EnterBattle(MonsterLevel level, int minScore, int maxScore)
     {
         int score = Random.Range(minScore, maxScore + 1);
-        Battle.SetEncounter(score, level);
+        MapManager.Instance.SetEncounterPreset(score, level);
         SceneManager.LoadScene(SceneName.Battle);
     }
 
     private void EnterStoreNode()
     {
+        MapManager.Instance.SetCanEnchant(true);
+        MapManager.Instance.SetCanRemove(true);
+
         // Store 씬으로 전환하기 전에 음악 재생 (씬 전환 후는 BgmManager가 초기화 중일 수 있음)
 
         SoundManager.Instance.PlayShopSound();
@@ -142,6 +145,9 @@ public class ButtonEvent : SceneSingleton<ButtonEvent>
     // 쉼터UI
     private void EnterShelterNode()
     {
+        MapManager.Instance.SetCanEnchant(true);
+        MapManager.Instance.SetCanRemove(true);
+
         UI_Shelter.SetActive(true);
         UI_Map.SetActive(false);
         UI_EnterShelter.SetActive(true);

@@ -176,6 +176,11 @@ public class CardDataEntry
     public int actValue3;
 
     public string GetDescription(CardName cardName, bool isEnchant = false)
+    {
+        return GetDescription(cardName, element, isEnchant);
+    }
+
+    public string GetDescription(CardName cardName, ElementType currentElement, bool isEnchant = false)
     {        
         string description = this.description ?? string.Empty;
 
@@ -183,7 +188,19 @@ public class CardDataEntry
         description = description.Replace("[ActValue1]", actValue1.ToString());
         description = description.Replace("[ActValue2]", actValue2.ToString());
         description = description.Replace("[ActValue3]", actValue3.ToString());
+        description = description.Replace("[Elem]", ConvertElementToText(currentElement));
 
         return description;
+    }
+
+    private static string ConvertElementToText(ElementType elementType)
+    {
+        return elementType switch
+        {
+            ElementType.Ruin => "파괴",
+            ElementType.Psychic => "싸이킥",
+            ElementType.Bio => "생체",
+            _ => "무속성"
+        };
     }
 }

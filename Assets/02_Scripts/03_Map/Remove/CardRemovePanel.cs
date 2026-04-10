@@ -12,11 +12,23 @@ public class CardRemovePanel : MonoBehaviour
     [SerializeField] private GameObject emptyDeckMessage; 
     [Header("Popup Settings")]
     [SerializeField] private RemoveConfirmPopup removeConfirmPopup;
+    [SerializeField] private Button openPanelButton;
 
     private int prevCardCount;
 
+    private void OnEnable()
+    {
+        UpdateOpenButton();
+    }
+
     public void OpenDeckDisplay()
     {
+        if (!MapManager.Instance.CanRemove)
+        {
+            UpdateOpenButton();
+            return;
+        }
+
         List<DeckCard> receivedDeck = DeckManager.Instance.Deck;
 
         RenderDeck(receivedDeck);
@@ -29,6 +41,12 @@ public class CardRemovePanel : MonoBehaviour
     {
         RemoveCardPanel.SetActive(false);
         emptyDeckMessage.SetActive(false);
+        UpdateOpenButton();
+    }
+
+    public void UpdateOpenButton()
+    {
+        openPanelButton.interactable = MapManager.Instance.CanRemove;
     }
 
     private void RenderDeck(List<DeckCard> deckToRender)
