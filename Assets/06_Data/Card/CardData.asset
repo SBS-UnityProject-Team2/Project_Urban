@@ -423,7 +423,7 @@ MonoBehaviour:
       1\uC7A5\uC744 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 1
-    cost: 4
+    cost: 1
     price: 120
     effectType: 09000000
     linkId: 300101
