@@ -474,7 +474,7 @@ MonoBehaviour:
       1 \uC904\uC5B4\uB4ED\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 0
-    cost: 1
+    cost: 4
     price: 70
     effectType: 0800000014000000
     linkId: 300402

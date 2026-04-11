@@ -448,7 +448,7 @@
       "element": "Psychic",
       "isExtinct": false,
       "isSpecial": false,
-      "cost": 1,
+      "cost": 4,
       "description": "적에게 사이킥 속성 피해를 [ActValue1] 가합니다. 이 카드 이외의 손패의 카드 [ActValue2] 장당 코스트가 1 줄어듭니다.",
       "price": 50,
       "effectType": "8,20",
