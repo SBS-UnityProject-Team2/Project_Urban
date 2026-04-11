@@ -89,7 +89,7 @@
       "cardName": "Assault",
       "koreanName": "기습 +",
       "element": "None",
-      "isExtinct": false,
+      "isExtinct": true,
       "isSpecial": false,
       "cost": 1,
       "price": 0,

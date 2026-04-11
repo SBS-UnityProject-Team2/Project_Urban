@@ -89,7 +89,7 @@
       "cardName": "Assault",
       "koreanName": "기습",
       "element": "None",
-      "isExtinct": false,
+      "isExtinct": true,
       "isSpecial": false,
       "cost": 1,
       "description": "적에게 물리 속성 피해를 [ActValue1] 가하고 동결을 [ActValue2] 부여합니다. 소멸",
