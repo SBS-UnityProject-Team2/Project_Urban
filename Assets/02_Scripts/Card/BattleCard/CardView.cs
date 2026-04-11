@@ -17,7 +17,12 @@ public class CardView : MonoBehaviour
         textCardName.text = $"{cardDataEntry.koreanName}";
         textCardDesc.text = cardDataEntry.GetDescription(cardDataEntry.cardName);
         textCost.text = $"{cardDataEntry.cost}";
-
         GetComponent<SpriteRenderer>().sprite = CardManager.Instance.GetCardImage(cardDataEntry.cardName);
+    }
+
+    public void SetCost(int cost)
+    {
+        textCost.text = cost.ToString();
+        textCost.color = new Color32(0x00, 0xFF, 0x80, 0xFF); 
     }
 }

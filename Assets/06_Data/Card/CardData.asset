@@ -97,7 +97,7 @@ MonoBehaviour:
     description: "\uC801\uC5D0\uAC8C \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1]
       \uAC00\uD569\uB2C8\uB2E4. \uC774\uC804\uC5D0 \uC0AC\uC6A9\uD55C \uCE74\uB4DC\uC758
       \uC18D\uC131\uACFC \uB3D9\uC77C\uD55C \uC18D\uC131\uC744 \uAC16\uC2B5\uB2C8\uB2E4.
-      \uD604\uC7AC \uC18D\uC131 : [Elem]"
+      \n\uD604\uC7AC \uC18D\uC131 : [Elem]"
     isExtinct: 0
     isSpecial: 0
     cost: 2
@@ -144,7 +144,7 @@ MonoBehaviour:
     description: "\uC801\uC5D0\uAC8C \uBB3C\uB9AC \uC18D\uC131 \uD53C\uD574\uB97C
       [ActValue1] \uAC00\uD558\uACE0 \uB3D9\uACB0\uC744 [ActValue2] \uBD80\uC5EC\uD569\uB2C8\uB2E4.
       \uC18C\uBA78"
-    isExtinct: 0
+    isExtinct: 1
     isSpecial: 0
     cost: 1
     price: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
       1\uC7A5\uC744 \uB4DC\uB85C\uC6B0\uD569\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 1
-    cost: 4
+    cost: 1
     price: 120
     effectType: 09000000
     linkId: 300101
@@ -474,7 +474,7 @@ MonoBehaviour:
       1 \uC904\uC5B4\uB4ED\uB2C8\uB2E4."
     isExtinct: 0
     isSpecial: 0
-    cost: 1
+    cost: 4
     price: 50
     effectType: 0800000014000000
     linkId: 300401

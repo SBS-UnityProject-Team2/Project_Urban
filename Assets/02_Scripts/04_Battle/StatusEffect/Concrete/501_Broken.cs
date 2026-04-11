@@ -1,7 +1,7 @@
 public class Broken : DurationEffect, IDefenderDamageRateChange
 {
     private readonly float damageModifier = 0.3f;
-    public override StatusEffectName Name => StatusEffectName.Weaken;
+    public override StatusEffectName Name => StatusEffectName.Broken;
 
     public Broken(Actor owner) : base(owner) 
     {

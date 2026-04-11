@@ -51,6 +51,7 @@ public class Card : MonoBehaviour
     public void SetCost(int costPoint)
     {
         cardState.Cost = costPoint;
+        cardView.SetCost(costPoint);        // CardView에 실시간으로 반영
     }
 
     public void AddCost(int delta)

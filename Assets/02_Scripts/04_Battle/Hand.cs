@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UnityEngine.Events;
 
 public class Hand : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class Hand : MonoBehaviour
     [SerializeField] private Transform cardDespawnPoint;
 
     public List<Card> CurHand => curHand;
-
+    
+    public UnityEvent<int> OnUpdate = new();
     public async UniTask AddCards(List<Card> cards)
     {
         if (curHand.Count >= maxCardCount)
@@ -28,6 +30,8 @@ public class Hand : MonoBehaviour
             card.gameObject.SetActive(true);
         }
 
+        OnUpdate?.Invoke(curHand.Count);
+
         await Align();
     }
 
@@ -40,6 +44,7 @@ public class Hand : MonoBehaviour
         card.transform.position = cardSpawnPoint.position;
         card.gameObject.SetActive(true);
 
+        OnUpdate?.Invoke(curHand.Count);
         await Align();
     }
 
@@ -49,7 +54,7 @@ public class Hand : MonoBehaviour
 
         UniTask moveTask = card.MoveTo(cardDespawnPoint.position, 0.25f);
         UniTask alignTask = Align();
-
+        OnUpdate?.Invoke(curHand.Count);
         await UniTask.WhenAll(moveTask, alignTask);
     }
 
@@ -67,8 +72,8 @@ public class Hand : MonoBehaviour
         curHand.Clear();
     }
 
-    public Card GetCard(int instanceId)
-    {
+    public Card GetCard(int instanceId) 
+    {   
         return curHand.Find(card => card.GetInstanceID() == instanceId);
     }
 
@@ -91,7 +96,8 @@ public class Hand : MonoBehaviour
             UniTask task = curHand[reverseIndex].MoveTo(cardPos, 0.25f);
             tasks.Add(task);
         }
-
         await UniTask.WhenAll(tasks);
     }
+    
+    
 }
