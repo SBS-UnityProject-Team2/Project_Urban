@@ -17,12 +17,13 @@ public class Deck : MonoBehaviour
     public Hand Hand => hand;
 
     public void Init(List<DeckCard> originDeck, Hand hand)
-    {
+    {   
+        this.hand = hand; // 염력손아귀 카드가 Hand를 참조하는데 다른 카드들은 Hand 참조 안하다보니 Hand 할당보다 카드가 먼저생성되면 염력손아귀만 NullReferenceException 발생해서 Hand 할당 순서를 바꿨습니다
         foreach (DeckCard cardInstance in originDeck)
             CreateCard(cardInstance, Location.Deck);
         Shuffle();
 
-        this.hand = hand;
+        
     }
 
     public async UniTask DrawCard()
@@ -125,6 +126,14 @@ public class Deck : MonoBehaviour
     {
         Card card = Instantiate(CardManager.Instance.GetCardPrefab(), Vector3.zero, Quaternion.identity, transform);
         card.Init(deckCard);
+        if(card.CardData.cardName == CardName.KineticGrasp)
+        {
+            hand.OnUpdate.AddListener(count => {
+                int reduceCost = (count - 1) / 2;
+                int newCost = card.DeckCard.CardData.cost - reduceCost;
+                card.SetCost(newCost);
+            });
+        }
         card.gameObject.SetActive(false);
         
         switch (destination)
