@@ -397,7 +397,7 @@
       "element": "Psychic",
       "isExtinct": false,
       "isSpecial": true,
-      "cost": 4,
+      "cost": 1,
       "price": 150,
       "effectType": 9,
       "effectDelay": 0,

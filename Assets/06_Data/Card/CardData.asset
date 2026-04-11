@@ -97,7 +97,7 @@ MonoBehaviour:
     description: "\uC801\uC5D0\uAC8C \uC18D\uC131 \uD53C\uD574\uB97C [ActValue1]
       \uAC00\uD569\uB2C8\uB2E4. \uC774\uC804\uC5D0 \uC0AC\uC6A9\uD55C \uCE74\uB4DC\uC758
       \uC18D\uC131\uACFC \uB3D9\uC77C\uD55C \uC18D\uC131\uC744 \uAC16\uC2B5\uB2C8\uB2E4.
-      \uD604\uC7AC \uC18D\uC131 : [Elem]"
+      \n\uD604\uC7AC \uC18D\uC131 : [Elem]"
     isExtinct: 0
     isSpecial: 0
     cost: 2
