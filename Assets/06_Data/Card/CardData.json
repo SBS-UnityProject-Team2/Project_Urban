@@ -397,7 +397,7 @@
       "element": "Psychic",
       "isExtinct": false,
       "isSpecial": true,
-      "cost": 4,
+      "cost": 1,
       "description": "적에게 사이킥 속성 피해를 [ActValue1] 가합니다. 만약 지정 대상이 냉기 혹은 동결 상태라면 카드 1장을 드로우합니다.",
       "price": 120,
       "effectType": "9",
